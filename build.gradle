@@ -14,13 +14,13 @@ String idl_dir = "interface"
 def libsbmlDir = new File('libsbml')
 
 if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
-  throw new GradleScriptException('Expected to find the directory "libsbml", but it does not exist')
+  throw new GradleException('Expected to find the directory "libsbml", but it does not exist')
 }
 
-def sbmlTypesH = new File(Paths.get("src","sbml","SBMLTypes.h"))
+def sbmlTypesH = new File(Paths.get("src","sbml","SBMLTypes.h").toString())
 
 if (!sbmlTypesH.exists() || libsbmlDir.isDirectory()) {
-  throw new GradleScriptException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
+  throw new GradleException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
 }
 
 class ConcatFiles extends DefaultTask {
