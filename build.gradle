@@ -9,7 +9,7 @@ boolean enableMulti = false
 boolean enableQual = false
 boolean enableComp = false
 
-String idl_dir = "interface"
+String idl_dir = Paths.get("interface","idl")
 
 def libsbmlDir = new File('libsbml')
 
@@ -17,9 +17,9 @@ if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
   throw new GradleException('Expected to find the directory "libsbml", but it does not exist')
 }
 
-def sbmlTypesH = new File(Paths.get("src","sbml","SBMLTypes.h").toString())
+def sbmlTypesH = new File(Paths.get("libsbml","src","sbml","SBMLTypes.h").toString())
 
-if (!sbmlTypesH.exists() || libsbmlDir.isDirectory()) {
+if (!sbmlTypesH.exists() || sbmlTypesH.isDirectory()) {
   throw new GradleException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
 }
 
@@ -63,6 +63,15 @@ task combineIDL(type: ConcatFiles) {
   }
   if (enableFBC) {
     include Paths.get(idl_dir, "fbc_interface.idl")
+  }
+  if (enableMulti) {
+    include Paths.get(idl_dir, "multi_interface.idl")
+  }
+  if (enableQual) {
+    include Paths.get(idl_dir, "qual_interface.idl")
+  }
+  if (enableComp) {
+    include Paths.get(idl_dir, "comp_interface.idl")
   }
   target = file(Paths.get("$buildDir","interface","sbml_interface.idl"))
 }
