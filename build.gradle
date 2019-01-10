@@ -1,11 +1,27 @@
 import java.nio.file.Path
 import java.nio.file.Paths
 
+// optional packages
 boolean enableLayout = true
 boolean enableRender = true
 boolean enableFBC = false
+boolean enableMulti = false
+boolean enableQual = false
+boolean enableComp = false
 
 String idl_dir = "interface"
+
+def libsbmlDir = new File('libsbml')
+
+if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
+  throw new GradleScriptException('Expected to find the directory "libsbml", but it does not exist')
+}
+
+def sbmlTypesH = new File(Paths.get("src","sbml","SBMLTypes.h"))
+
+if (!sbmlTypesH.exists() || libsbmlDir.isDirectory()) {
+  throw new GradleScriptException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
+}
 
 class ConcatFiles extends DefaultTask {
   // @InputFiles
