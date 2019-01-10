@@ -1,0 +1,574 @@
+[Prefix="libsbml::"]
+interface SpeciesReference {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  DOMString getSpecies();
+  long setSpecies(DOMString spec);
+
+  // TODO: doc
+  [Const] Model getModel();
+};
+
+[Prefix="libsbml::"]
+interface ModifierSpeciesReference {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  DOMString getSpecies();
+  long setSpecies(DOMString spec);
+
+  // TODO: doc
+  [Const] Model getModel();
+};
+
+[Prefix="libsbml::"]
+interface Species {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  double getInitialAmount();
+  long setInitialAmount(double amt);
+  boolean isSetInitialAmount();
+
+  double getInitialConcentration();
+  long setInitialConcentration(double conc);
+  boolean isSetInitialConcentration();
+
+  boolean getHasOnlySubstanceUnits();
+  long setHasOnlySubstanceUnits(boolean val);
+  boolean isSetHasOnlySubstanceUnits();
+
+  // TODO: doc
+  DOMString getCompartment();
+  long setCompartment(DOMString comp);
+  boolean isSetCompartment();
+
+  // TODO: doc
+  DOMString getUnits();
+  long setUnits(DOMString units);
+  boolean isSetUnits();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+};
+
+enum libsbml__idl__ASTNodeType_t {
+    "libsbml::AST_PLUS"
+  , "libsbml::AST_MINUS"
+  , "libsbml::AST_TIMES"
+  , "libsbml::AST_DIVIDE"
+  , "libsbml::AST_POWER"
+
+  , "libsbml::AST_INTEGER"
+  , "libsbml::AST_REAL"
+  , "libsbml::AST_REAL_E"
+  , "libsbml::AST_RATIONAL"
+
+  , "libsbml::AST_NAME"
+  , "libsbml::AST_NAME_AVOGADRO"
+  , "libsbml::AST_NAME_TIME"
+
+  , "libsbml::AST_CONSTANT_E"
+  , "libsbml::AST_CONSTANT_FALSE"
+  , "libsbml::AST_CONSTANT_PI"
+  , "libsbml::AST_CONSTANT_TRUE"
+
+  , "libsbml::AST_LAMBDA"
+
+  , "libsbml::AST_FUNCTION"
+  , "libsbml::AST_FUNCTION_ABS"
+  , "libsbml::AST_FUNCTION_ARCCOS"
+  , "libsbml::AST_FUNCTION_ARCCOSH"
+  , "libsbml::AST_FUNCTION_ARCCOT"
+  , "libsbml::AST_FUNCTION_ARCCOTH"
+  , "libsbml::AST_FUNCTION_ARCCSC"
+  , "libsbml::AST_FUNCTION_ARCCSCH"
+  , "libsbml::AST_FUNCTION_ARCSEC"
+  , "libsbml::AST_FUNCTION_ARCSECH"
+  , "libsbml::AST_FUNCTION_ARCSIN"
+  , "libsbml::AST_FUNCTION_ARCSINH"
+  , "libsbml::AST_FUNCTION_ARCTAN"
+  , "libsbml::AST_FUNCTION_ARCTANH"
+  , "libsbml::AST_FUNCTION_CEILING"
+  , "libsbml::AST_FUNCTION_COS"
+  , "libsbml::AST_FUNCTION_COSH"
+  , "libsbml::AST_FUNCTION_COT"
+  , "libsbml::AST_FUNCTION_COTH"
+  , "libsbml::AST_FUNCTION_CSC"
+  , "libsbml::AST_FUNCTION_CSCH"
+  , "libsbml::AST_FUNCTION_DELAY"
+  , "libsbml::AST_FUNCTION_EXP"
+  , "libsbml::AST_FUNCTION_FACTORIAL"
+  , "libsbml::AST_FUNCTION_FLOOR"
+  , "libsbml::AST_FUNCTION_LN"
+  , "libsbml::AST_FUNCTION_LOG"
+  , "libsbml::AST_FUNCTION_PIECEWISE"
+  , "libsbml::AST_FUNCTION_POWER"
+  , "libsbml::AST_FUNCTION_ROOT"
+  , "libsbml::AST_FUNCTION_SEC"
+  , "libsbml::AST_FUNCTION_SECH"
+  , "libsbml::AST_FUNCTION_SIN"
+  , "libsbml::AST_FUNCTION_SINH"
+  , "libsbml::AST_FUNCTION_TAN"
+  , "libsbml::AST_FUNCTION_TANH"
+
+  , "libsbml::AST_LOGICAL_AND"
+  , "libsbml::AST_LOGICAL_NOT"
+  , "libsbml::AST_LOGICAL_OR"
+  , "libsbml::AST_LOGICAL_XOR"
+
+  , "libsbml::AST_RELATIONAL_EQ"
+  , "libsbml::AST_RELATIONAL_GEQ"
+  , "libsbml::AST_RELATIONAL_GT"
+  , "libsbml::AST_RELATIONAL_LEQ"
+  , "libsbml::AST_RELATIONAL_LT"
+  , "libsbml::AST_RELATIONAL_NEQ"
+
+  , "libsbml::AST_QUALIFIER_BVAR"
+  , "libsbml::AST_QUALIFIER_LOGBASE"
+  , "libsbml::AST_QUALIFIER_DEGREE"
+
+  , "libsbml::AST_SEMANTICS"
+
+  , "libsbml::AST_CONSTRUCTOR_PIECE"
+  , "libsbml::AST_CONSTRUCTOR_OTHERWISE"
+
+  , "libsbml::AST_UNKNOWN"
+  , "libsbml::AST_ORIGINATES_IN_PACKAGE"
+};
+
+[Prefix="libsbml::"]
+interface ASTNode {
+  long getNumChildren();
+  ASTNode getChild(long i);
+
+  libsbml__idl__ASTNodeType_t getType();
+
+  boolean isSetUnits();
+  DOMString getUnits();
+  long setUnits(DOMString units);
+
+  // TODO: doc
+  ByteString getName();
+  long setName(ByteString name);
+};
+
+// TODO: doc
+[Prefix="libsbml::"]
+interface Parameter {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+  boolean isSetName();
+
+  double getValue();
+  long setValue(double value);
+  boolean isSetValue();
+
+  boolean isSetUnits();
+  DOMString getUnits();
+  long setUnits(DOMString units);
+};
+
+// TODO: doc
+[Prefix="libsbml::"]
+interface LocalParameter {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+  boolean isSetName();
+
+  double getValue();
+  long setValue(double value);
+  boolean isSetValue();
+
+  boolean isSetUnits();
+  DOMString getUnits();
+  long setUnits(DOMString units);
+};
+
+[Prefix="libsbml::"]
+interface KineticLaw {
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  // TODO: doc
+  unsigned long getNumLocalParameters();
+  LocalParameter createLocalParameter();
+  LocalParameter getLocalParameter(unsigned long i);
+
+  // TODO: doc
+  unsigned long getNumParameters();
+  Parameter createParameter();
+  Parameter getParameter(unsigned long i);
+
+  // TODO: doc
+  DOMString getFormula();
+  long setFormula(DOMString formula);
+};
+
+[Prefix="libsbml::"]
+interface SBMLFormulaParser {
+  void SBMLFormulaParser();
+  ASTNode parseL3Formula(DOMString formula);
+  ASTNode parseFormula(DOMString formula);
+};
+
+[Prefix="libsbml::"]
+interface Reaction {
+  DOMString getId();
+  long setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  // TODO: doc
+  DOMString getName();
+  long setName(DOMString name);
+
+  long getNumReactants();
+  long getNumProducts();
+  long getNumModifiers();
+
+  SpeciesReference getReactant(long i);
+  SpeciesReference getProduct(long i);
+  ModifierSpeciesReference getModifier(long i);
+
+  long addReactant(SpeciesReference sr);
+  long addProduct(SpeciesReference sr);
+
+  SpeciesReference createReactant();
+  SpeciesReference createProduct();
+  ModifierSpeciesReference createModifier();
+
+  KineticLaw createKineticLaw();
+  KineticLaw getKineticLaw();
+
+  // TODO: doc
+  boolean getReversible();
+  long setReversible(boolean value);
+  boolean isSetReversible();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+};
+
+[Prefix="libsbml::"]
+interface Compartment {
+  DOMString getId();
+  long setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  double getSize();
+  long setSize(double val);
+  boolean isSetSize();
+
+  double getVolume();
+  long setVolume(double val);
+
+  DOMString getUnits();
+  long setUnits(DOMString units);
+  // TODO: doc
+  boolean isSetUnits();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+};
+
+[Prefix="libsbml::"]
+interface Rule {
+  // TODO: doc
+  boolean isRate();
+  boolean isAssignment();
+  boolean isAlgebraic();
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+  boolean isSetMetaId();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  // TODO: doc
+  DOMString getFormula();
+  long setFormula(DOMString formula);
+
+  // TODO: doc
+  boolean isParameter();
+};
+
+[Prefix="libsbml::"]
+interface AssignmentRule {
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+  boolean isSetMetaId();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  // TODO: doc
+  DOMString getVariable();
+  long setVariable(DOMString id);
+  boolean isSetVariable();
+
+  // TODO: doc
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+
+  // TODO: doc
+  DOMString getFormula();
+  long setFormula(DOMString formula);
+
+  // TODO: doc
+  boolean isParameter();
+};
+
+[Prefix="libsbml::"]
+interface RateRule {
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+  boolean isSetMetaId();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  // TODO: doc
+  DOMString getFormula();
+  long setFormula(DOMString formula);
+
+  // TODO: doc
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+
+  // TODO: doc
+  boolean isParameter();
+};
+
+[Prefix="libsbml::"]
+interface AlgebraicRule {
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+  boolean isSetMetaId();
+
+  // TODO: doc
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
+
+  // TODO: doc
+  DOMString getFormula();
+  long setFormula(DOMString formula);
+
+  // TODO: doc
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+
+  // TODO: doc
+  boolean isParameter();
+};
+
+[Prefix="libsbmljs::"]
+interface RuleSwitch {
+  void RuleSwitch();
+
+  AssignmentRule castToAssignmentRule(Rule r);
+  RateRule castToRateRule(Rule r);
+  AlgebraicRule castToAlgebraicRule(Rule r);
+};
+
+[Prefix="libsbml::"]
+interface Model {
+  DOMString getId();
+  long setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+  boolean isSetMetaId();
+
+  unsigned long getNumReactions();
+  Reaction getReaction(unsigned long i);
+  Reaction createReaction();
+
+  unsigned long getNumSpecies();
+  Species createSpecies();
+  Species getSpecies(unsigned long i);
+  // TODO: doc
+  Species removeSpecies(unsigned long i);
+
+  unsigned long getNumCompartments();
+  Compartment getCompartment(unsigned long i);
+  Compartment createCompartment();
+
+  // TODO: doc
+  unsigned long getNumParameters();
+  Parameter createParameter();
+  Parameter getParameter(unsigned long i);
+
+  // TODO: doc
+  unsigned long getNumRules();
+  Rule getRule(unsigned long i);
+
+  // TODO: doc
+  unsigned long getVersion();
+
+  // TODO: doc
+  long setAnnotation(DOMString str);
+
+  // TODO: doc
+  unsigned long getNumPlugins();
+  SBasePlugin getPlugin(unsigned long n);
+//   SBasePlugin getPlugin(DOMString name);
+
+  DOMString getNotesString();
+};
+
+[Prefix="libsbml::"]
+interface SBMLError {
+  DOMString getMessage();
+};
+
+[Prefix="libsbml::"]
+interface SBMLErrorLog {
+// reserved word apparently. whoop-de-doo
+//   DOMString toString();
+};
+
+[Prefix="libsbml::"]
+interface SBasePlugin {
+  // TODO: doc
+  DOMString getPackageName();
+
+  // TODO: doc
+  DOMString getPrefix();
+
+  // TODO: doc
+  DOMString getURI();
+  unsigned long getVersion();
+  unsigned long getLevel();
+};
+
+[Prefix="libsbml::"]
+interface SBMLDocument {
+  // ctor
+  void SBMLDocument(long level, long version);
+
+  // model
+  Model getModel();
+  Model createModel();
+
+  // errors
+  unsigned long getNumErrors();
+  [Const] SBMLError getError(unsigned long n);
+  SBMLErrorLog getErrorLog();
+
+  // level / version
+  unsigned long getVersion();
+  unsigned long getLevel();
+
+  // plugins / packages
+  // TODO: doc
+  unsigned long getNumPlugins();
+  SBasePlugin getPlugin(unsigned long n);
+
+  boolean enablePackage(DOMString pkgName, DOMString pkgPrefix, boolean flag);
+  boolean disablePackage(DOMString pkgName, DOMString pkgPrefix);
+  boolean isPackageEnabled(DOMString pkgName);
+  long setPackageRequired(DOMString pkgName, boolean flag);
+
+  // validation
+  // TODO: doc
+  unsigned long checkConsistency();
+  unsigned long checkInternalConsistency();
+  unsigned long validateSBML();
+
+  // compatibility checking
+  // TODO: doc
+  unsigned long checkL1Compatibility();
+  unsigned long checkL2v1Compatibility();
+  unsigned long checkL2v2Compatibility();
+  unsigned long checkL2v3Compatibility();
+  unsigned long checkL2v4Compatibility();
+  unsigned long checkL3v1Compatibility();
+
+};
+
+[Prefix="libsbml::"]
+interface SBMLReader {
+  void SBMLReader();
+  SBMLDocument readSBMLFromString(DOMString sbmlstr);
+};
+
+// different name req'd b/c libsbml version did not have consistent usage of types
+[Prefix="libsbml::"]
+interface SBMLWriter {
+  void SBMLWriter();
+//   DOMString writeSBMLToString(SBMLDocument doc);
+  // BUG: memory may not be freed
+  ByteString writeSBMLToString(SBMLDocument doc);
+};
+
+[Prefix="libsbmljs::"]
+interface Capabilities {
+  void Capabilities();
+  boolean isLayoutSupported();
+  boolean isRenderSupported();
+};

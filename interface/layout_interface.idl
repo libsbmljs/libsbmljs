@@ -1,0 +1,261 @@
+[Prefix="libsbml::"]
+interface Dimensions {
+  void Dimensions(LayoutPkgNamespaces ns, double w, double h, double d);
+
+  void setWidth(double val);
+  void setHeight(double val);
+  void setDepth(double val);
+
+  double getWidth();
+  double getHeight();
+  double getDepth();
+};
+
+[Prefix="libsbml::"]
+interface Point {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  void setX(double x);
+  void setY(double y);
+  void setZ(double z);
+  void setXOffset(double x);
+  void setYOffset(double y);
+  void setZOffset(double z);
+
+  double x();
+  double y();
+  double z();
+  double getXOffset();
+  double getYOffset();
+  double getZOffset();
+};
+
+[Prefix="libsbml::"]
+interface BoundingBox {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  Dimensions getDimensions();
+  void setDimensions(Dimensions b);
+
+  Point getPosition();
+  void setPosition(Point b);
+
+  void setX(double x);
+  void setY(double y);
+  void setZ(double z);
+
+  double x();
+  double y();
+  double z();
+};
+
+[Prefix="libsbml::"]
+interface GraphicalObject {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+};
+
+[Prefix="libsbml::"]
+interface CompartmentGlyph {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+};
+
+[Prefix="libsbml::"]
+interface GeneralGlyph {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+};
+
+[Prefix="libsbml::"]
+interface LineSegment {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  Point getStart();
+  void setStart(Point p);
+
+  Point getEnd();
+  void setEnd(Point p);
+};
+
+[Prefix="libsbml::"]
+interface CubicBezier {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  Point getStart();
+  void setStart(Point p);
+
+  Point getEnd();
+  void setEnd(Point p);
+
+  Point getBasePoint1();
+  void setBasePoint1(Point p);
+
+  Point getBasePoint2();
+  void setBasePoint2(Point p);
+};
+
+[Prefix="libsbml::"]
+interface ReactionGlyph {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getReactionId();
+  void setReactionId(DOMString t);
+  boolean isSetReactionId();
+
+  BoundingBox getBoundingBox();
+  void setBoundingBox(BoundingBox b);
+
+  unsigned long getNumSpeciesReferenceGlyphs();
+  SpeciesReferenceGlyph getSpeciesReferenceGlyph(unsigned long n);
+};
+
+[Prefix="libsbml::"]
+interface SpeciesGlyph {
+  BoundingBox getBoundingBox();
+  void setBoundingBox(BoundingBox b);
+
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getSpeciesId();
+  void setSpeciesId(DOMString t);
+  boolean isSetSpeciesId();
+};
+
+[Prefix="libsbml::"]
+interface Curve {
+  CubicBezier createCubicBezier();
+  LineSegment createLineSegment();
+
+  unsigned long getNumCurveSegments();
+  LineSegment getCurveSegment(unsigned long n);
+};
+
+[Prefix="libsbml::"]
+interface SpeciesReferenceGlyph {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  BoundingBox getBoundingBox();
+  void setBoundingBox(BoundingBox b);
+
+  CubicBezier createCubicBezier();
+  LineSegment createLineSegment();
+
+  Curve getCurve();
+  boolean isSetCurve();
+};
+
+[Prefix="libsbml::"]
+interface TextGlyph {
+  BoundingBox getBoundingBox();
+  void setBoundingBox(BoundingBox b);
+
+  DOMString getText();
+  void setText(DOMString t);
+  boolean isSetText();
+};
+
+[Prefix="libsbml::"]
+interface Layout {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  Dimensions getDimensions();
+  void setDimensions(Dimensions b);
+
+  GraphicalObject createAdditionalGraphicalObject();
+  CompartmentGlyph createCompartmentGlyph();
+  CubicBezier createCubicBezier();
+  GeneralGlyph createGeneralGlyph();
+  LineSegment createLineSegment();
+  ReactionGlyph createReactionGlyph();
+  SpeciesGlyph createSpeciesGlyph();
+  SpeciesReferenceGlyph createSpeciesReferenceGlyph();
+  TextGlyph createTextGlyph();
+
+  unsigned long getNumAdditionalGraphicalObjects();
+  unsigned long getNumCompartmentGlyphs();
+  unsigned long getNumGeneralGlyphs();
+  unsigned long getNumReactionGlyphs();
+  unsigned long getNumSpeciesGlyphs();
+  unsigned long getNumTextGlyphs();
+
+  GraphicalObject getAdditionalGraphicalObject(unsigned long n);
+  CompartmentGlyph getCompartmentGlyph(unsigned long n);
+  GeneralGlyph getGeneralGlyph(unsigned long n);
+  ReactionGlyph getReactionGlyph(unsigned long n);
+  SpeciesGlyph getSpeciesGlyph(unsigned long n);
+  TextGlyph getTextGlyph(unsigned long n);
+
+  GraphicalObject removeAdditionalGraphicalObject(unsigned long n);
+  CompartmentGlyph removeCompartmentGlyph(unsigned long n);
+  ReactionGlyph removeReactionGlyph(unsigned long n);
+  SpeciesGlyph removeSpeciesGlyph(unsigned long n);
+  SpeciesReferenceGlyph removeSpeciesReferenceGlyph(DOMString id);
+  TextGlyph removeTextGlyph(unsigned long n);
+
+  SBasePlugin getPlugin(DOMString name);
+};
+
+[Prefix="libsbml::"]
+interface ListOfLayouts {
+  SBasePlugin getPlugin(DOMString name);
+};
+
+[Prefix="libsbml::"]
+interface LayoutModelPlugin {
+  Layout createLayout();
+
+  // NOTE: libSBML signedness is inconsistent here
+  long getNumLayouts();
+  Layout getLayout(unsigned long n);
+
+  ListOfLayouts getListOfLayouts();
+};
+
+[Prefix="libsbml::"]
+interface LayoutPkgNamespaces {
+  void LayoutPkgNamespaces(unsigned long level, unsigned long version);
+};
+
+[Prefix="libsbmljs::"]
+interface LayoutCaster {
+  void LayoutCaster();
+  LayoutModelPlugin castToLayoutPlugin(SBasePlugin p);
+};
+
+[Prefix="libsbml::"]
+interface LayoutExtension {
+};
+
+[Prefix="libsbmljs::"]
+interface LayoutExtensionWrapper {
+  void LayoutExtensionWrapper();
+  DOMString getXmlnsL2();
+  DOMString getXmlnsL3V1V1();
+};
+
+[Prefix="libsbmljs::"]
+interface CurveCaster {
+  void CurveCaster();
+  boolean isCubicBezier(LineSegment x);
+  CubicBezier castToCubicBezier(LineSegment x);
+};

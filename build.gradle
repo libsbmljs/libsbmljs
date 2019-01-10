@@ -1,12 +1,16 @@
-import Java.nio.file.Paths
+import java.nio.file.Path
+import java.nio.file.Paths
 
-def enableLayout true
+boolean enableLayout = true
+boolean enableRender = true
+boolean enableFBC = false
 
-def idl_dir "interface"
+String idl_dir = "interface"
 
 class ConcatFiles extends DefaultTask {
-  @InputFiles
-  FileCollection files
+  // @InputFiles
+  // FileCollection files
+  def files = []
 
   @OutputFile
   File target
@@ -14,22 +18,35 @@ class ConcatFiles extends DefaultTask {
   @TaskAction
   void concat() {
     target.withWriter { writer ->
-      files.each { file ->
-        file.withReader { reader ->
+      files.each { f ->
+        getProject().file(f).withReader { reader ->
             writer << reader << '\n'
         }
       }
     }
   }
 
-  @Override
   public ConcatFiles include(String... includes) {
     files.addAll(includes);
     return this;
   }
+
+  public ConcatFiles include(Path... includes) {
+    files.addAll(includes*.toString());
+    return this;
+  }
 }
 
-task combineIDL << {
+task combineIDL(type: ConcatFiles) {
   include Paths.get(idl_dir, "core_interface.idl")
+  if (enableLayout) {
+    include Paths.get(idl_dir, "layout_interface.idl")
+  }
+  if (enableRender) {
+    include Paths.get(idl_dir, "render_interface.idl")
+  }
+  if (enableFBC) {
+    include Paths.get(idl_dir, "fbc_interface.idl")
+  }
   target = file(Paths.get("$buildDir","interface","sbml_interface.idl"))
 }

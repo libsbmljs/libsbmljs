@@ -1,0 +1,611 @@
+[Prefix="libsbml::"]
+interface RelAbsVector {
+  void RelAbsVector();
+  void RelAbsVector(double a, double r);
+
+  void setCoordinate(double a, double r);
+
+  void setAbsoluteValue(double abs);
+  void setRelativeValue(double rel);
+
+  double getAbsoluteValue();
+  double getRelativeValue();
+};
+
+[Prefix="libsbml::"]
+interface LocalStyle {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  unsigned long getNumIds();
+  boolean isInIdList(DOMString id);
+  void removeId(DOMString id);
+
+  RenderGroup getGroup();
+  void setGroup(RenderGroup g);
+
+  unsigned long getNumRoles();
+  DOMString createRoleString(); // NOTE: may leak (returns rvalue)
+  DOMString createTypeString(); // NOTE: may leak (returns rvalue)
+
+  void addRole(DOMString role);
+  boolean isInRoleList(DOMString role);
+  void removeRole(DOMString role);
+
+  unsigned long getNumTypes();
+  void addType(DOMString t);
+  void isInTypeList(DOMString t);
+  void removeType(DOMString t);
+};
+
+[Prefix="libsbml::"]
+interface GlobalStyle {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  RenderGroup getGroup();
+  void setGroup(RenderGroup g);
+
+  unsigned long getNumRoles();
+  DOMString createRoleString(); // NOTE: may leak (returns rvalue)
+  DOMString createTypeString(); // NOTE: may leak (returns rvalue)
+
+  void addRole(DOMString role);
+  boolean isInRoleList(DOMString role);
+  void removeRole(DOMString role);
+
+  unsigned long getNumTypes();
+  void addType(DOMString t);
+  void isInTypeList(DOMString t);
+  void removeType(DOMString t);
+};
+
+[Prefix="libsbml::"]
+interface Text {
+  void setX([Ref] RelAbsVector v);
+  void setY([Ref] RelAbsVector v);
+  void setZ([Ref] RelAbsVector v);
+
+  [Ref] RelAbsVector getX();
+  [Ref] RelAbsVector getY();
+  [Ref] RelAbsVector getZ();
+
+  DOMString getFontFamily();
+  void setFontFamily(DOMString family);
+
+  [Ref] RelAbsVector getFontSize();
+  void setFontSize([Ref] RelAbsVector v);
+
+  libsbml__idl__Text__idl__FONT_WEIGHT getFontWeight();
+  void setFontWeight(libsbml__idl__Text__idl__FONT_WEIGHT weight);
+
+  libsbml__idl__Text__idl__FONT_STYLE getFontStyle();
+  void setFontStyle(libsbml__idl__Text__idl__FONT_STYLE style);
+
+  libsbml__idl__Text__idl__TEXT_ANCHOR getTextAnchor();
+  libsbml__idl__Text__idl__TEXT_ANCHOR getVTextAnchor();
+  void setTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
+  void setVTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
+  boolean isSetTextAnchor();
+  boolean isSetVTextAnchor();
+};
+
+[Prefix="libsbml::"]
+interface RenderPoint {
+  [Ref] RelAbsVector x();
+  [Ref] RelAbsVector y();
+  [Ref] RelAbsVector z();
+  
+  void setX([Ref] RelAbsVector v);
+  void setY([Ref] RelAbsVector v);
+  void setZ([Ref] RelAbsVector v);
+  
+  void setCoordinates([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+  
+  void initDefaults();
+  
+  DOMString getElementName();
+  boolean hasRequiredElements();
+};
+
+[Prefix="libsbml::"]
+interface RenderCubicBezier {
+  [Ref] RelAbsVector basePoint1_X();
+  [Ref] RelAbsVector basePoint1_Y();
+  [Ref] RelAbsVector basePoint1_Z();
+  
+  void setBasePoint1_X([Ref] RelAbsVector v);
+  void setBasePoint1_Y([Ref] RelAbsVector v);
+  void setBasePoint1_Z([Ref] RelAbsVector v);
+  
+  [Ref] RelAbsVector basePoint2_X();
+  [Ref] RelAbsVector basePoint2_Y();
+  [Ref] RelAbsVector basePoint2_Z();
+  
+  void setBasePoint2_X([Ref] RelAbsVector v);
+  void setBasePoint2_Y([Ref] RelAbsVector v);
+  void setBasePoint2_Z([Ref] RelAbsVector v);
+  
+  void setBasePoint1([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+  void setBasePoint2([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+  
+  DOMString getElementName();
+  long getTypeCode();
+  boolean hasRequiredElements();
+  boolean hasRequiredAttributes();
+};
+
+[Prefix="libsbmljs::"]
+interface BezierCaster {
+  void BezierCaster();
+
+  boolean isBezier(RenderPoint p);
+  RenderCubicBezier asBezier(RenderPoint p);
+};
+
+// NOTE: can't wrap due to use of double arrays
+// TODO: write helpers
+[Prefix="libsbml::"]
+interface Transformation2D {
+};
+
+[Prefix="libsbml::"]
+interface Image {
+  void setCoordinates([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+  void setX([Ref] RelAbsVector x);
+  void setY([Ref] RelAbsVector y);
+  void setZ([Ref] RelAbsVector z);
+
+  [Ref] RelAbsVector getX();
+  [Ref] RelAbsVector getY();
+  [Ref] RelAbsVector getZ();
+
+  void setDimensions([Ref] RelAbsVector w, [Ref] RelAbsVector h);
+
+  void setWidth([Ref] RelAbsVector w);
+  void setHeight([Ref] RelAbsVector h);
+
+  [Ref] RelAbsVector getWidth();
+  [Ref] RelAbsVector getHeight();
+
+  void setImageReference(DOMString ref);
+  DOMString getImageReference();
+  boolean isSetImageReference();
+
+  long getTypeCode();
+};
+
+[Prefix="libsbml::"]
+interface Rectangle {
+  void setCoordinatesAndSize([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z, [Ref] RelAbsVector w, [Ref] RelAbsVector h);
+
+  void setCoordinates([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+
+  void setSize([Ref] RelAbsVector w, [Ref] RelAbsVector h);
+
+  void setWidth([Ref] RelAbsVector w);
+  void setHeight([Ref] RelAbsVector h);
+
+  void setRadii([Ref] RelAbsVector rx, [Ref] RelAbsVector ry);
+  void setRadiusX([Ref] RelAbsVector rx);
+  void setRadiusY([Ref] RelAbsVector ry);
+
+  void setX([Ref] RelAbsVector x);
+  void setY([Ref] RelAbsVector y);
+  void setZ([Ref] RelAbsVector z);
+
+  [Ref] RelAbsVector getX();
+  [Ref] RelAbsVector getY();
+  [Ref] RelAbsVector getZ();
+
+  [Ref] RelAbsVector getWidth();
+  [Ref] RelAbsVector getHeight();
+
+  [Ref] RelAbsVector getRadiusX();
+  [Ref] RelAbsVector getRadiusY();
+
+  long getTypeCode();
+};
+
+[Prefix="libsbml::"]
+interface Ellipse {
+  [Ref] RelAbsVector getCX();
+  [Ref] RelAbsVector getCY();
+  [Ref] RelAbsVector getCZ();
+
+  [Ref] RelAbsVector getRX();
+  [Ref] RelAbsVector getRY();
+
+  void setCX([Ref] RelAbsVector v);
+  void setCY([Ref] RelAbsVector v);
+  void setCZ([Ref] RelAbsVector v);
+
+  void setRX([Ref] RelAbsVector v);
+  void setRY([Ref] RelAbsVector v);
+
+  void setCenter2D([Ref] RelAbsVector cx, [Ref] RelAbsVector cy);
+  void setCenter3D([Ref] RelAbsVector cx, [Ref] RelAbsVector cy, [Ref] RelAbsVector cz);
+
+  void setRadii([Ref] RelAbsVector rx, [Ref] RelAbsVector ry);
+
+  long getTypeCode();
+};
+
+[Prefix="libsbml::"]
+interface RenderCurve {
+  DOMString getStartHead();
+  DOMString getEndHead();
+
+  boolean isSetStartHead();
+  boolean isSetEndHead();
+
+  unsigned long getNumElements();
+  RenderPoint getElement(unsigned long n);
+  RenderPoint removeElement(unsigned long n);
+
+  RenderCubicBezier createCubicBezier();
+  RenderPoint createPoint();
+};
+
+[Prefix="libsbml::"]
+interface Polygon {
+  unsigned long getNumElements();
+  RenderPoint getElement(unsigned long n);
+  
+  RenderPoint createPoint();
+  RenderCubicBezier createCubicBezier();
+  DOMString getElementName();
+
+  long getTypeCode();
+};
+
+[Prefix="libsbmljs::"]
+interface PrimitiveCaster {
+  void PrimitiveCaster();
+
+  boolean isPolygon(Transformation2D p);
+  Polygon asPolygon(Transformation2D p);
+
+  boolean isImage(Transformation2D p);
+  Image asImage(Transformation2D p);
+
+  boolean isRectangle(Transformation2D p);
+  Rectangle asRectangle(Transformation2D p);
+
+  boolean isEllipse(Transformation2D p);
+  Ellipse asEllipse(Transformation2D p);
+
+  boolean isRenderCurve(Transformation2D p);
+  RenderCurve asRenderCurve(Transformation2D p);
+
+  boolean isText(Transformation2D p);
+  Text asText(Transformation2D p);
+};
+
+enum libsbml__idl__Text__idl__FONT_WEIGHT {
+  "libsbml::Text::WEIGHT_UNSET",
+  "libsbml::Text::WEIGHT_NORMAL",
+  "libsbml::Text::WEIGHT_BOLD"
+};
+
+enum libsbml__idl__Text__idl__FONT_STYLE {
+  "libsbml::Text::STYLE_UNSET",
+  "libsbml::Text::STYLE_NORMAL",
+  "libsbml::Text::STYLE_ITALIC"
+};
+
+enum libsbml__idl__Text__idl__TEXT_ANCHOR {
+  "libsbml::Text::ANCHOR_UNSET",
+  "libsbml::Text::ANCHOR_START",
+  "libsbml::Text::ANCHOR_MIDDLE",
+  "libsbml::Text::ANCHOR_END",
+  "libsbml::Text::ANCHOR_TOP",
+  "libsbml::Text::ANCHOR_BOTTOM"
+};
+
+[Prefix="libsbml::"]
+interface RenderGroup {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getFontFamily();
+  void setFontFamily(DOMString family);
+
+  [Ref] RelAbsVector getFontSize();
+  void setFontSize([Ref] RelAbsVector v);
+
+  libsbml__idl__Text__idl__FONT_WEIGHT getFontWeight();
+  void setFontWeight(libsbml__idl__Text__idl__FONT_WEIGHT weight);
+
+  libsbml__idl__Text__idl__FONT_STYLE getFontStyle();
+  void setFontStyle(libsbml__idl__Text__idl__FONT_STYLE style);
+
+  libsbml__idl__Text__idl__TEXT_ANCHOR getTextAnchor();
+  libsbml__idl__Text__idl__TEXT_ANCHOR getVTextAnchor();
+  void setTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
+  void setVTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
+  boolean isSetTextAnchor();
+  boolean isSetVTextAnchor();
+
+  DOMString getStartHead();
+  DOMString getEndHead();
+
+  unsigned long getNumElements();
+  Transformation2D getElement(unsigned long n);
+
+  DOMString getElementName();
+
+  Image createImage();
+  RenderGroup createGroup();
+  Rectangle createRectangle();
+  Ellipse createEllipse();
+  RenderCurve createCurve();
+  Polygon createPolygon();
+  Text createText();
+
+  long addChildElement(Transformation2D child);
+
+  boolean isSetStartHead();
+  boolean isSetEndHead();
+  boolean isSetFontFamily();
+  boolean isSetFontWeight();
+  boolean isSetFontStyle();
+
+  long getTypeCode();
+
+  // from GraphicalPrimitive2D
+  void setFillColor(DOMString color);
+  DOMString getFillColor();
+  boolean isSetFillColor();
+
+  // TODO: fill rule
+  boolean isSetFillRule();
+
+  // from GraphicalPrimitive1D
+  void setStroke(DOMString stroke);
+  DOMString getStroke();
+  boolean isSetStroke();
+
+  void setStrokeWidth(double width);
+  double getStrokeWidth();
+  boolean isSetStrokeWidth();
+
+  boolean isSetDashArray();
+  unsigned long getNumDashes();
+  unsigned long getDashByIndex(unsigned long n);
+  void addDash(unsigned long dash);
+  void clearDashes();
+  void setDashByIndex(unsigned long index, unsigned long dash);
+  void insertDash(unsigned long index, unsigned long dash);
+  void removeDash(unsigned long index);
+};
+
+[Prefix="libsbml::"]
+interface LineEnding {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  RenderGroup getGroup();
+  void setGroup(RenderGroup g);
+
+  boolean getIsEnabledRotationalMapping();
+  void setEnableRotationalMapping(boolean enable);
+  
+  BoundingBox getBoundingBox();
+  void setBoundingBox(BoundingBox b);
+};
+
+[Prefix="libsbml::"]
+interface GradientStop {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  [Ref] RelAbsVector getOffset();
+  // WARNING: Do not try to call setOffset with a RelAbsVector arg -
+  // the interface does not protect against it
+  void setOffset(double abs, double rel);
+
+  DOMString getStopColor();
+  void setStopColor(DOMString color);
+};
+
+[Prefix="libsbml::"]
+interface GradientBase {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  unsigned long getNumGradientStops();
+  GradientStop getGradientStop(unsigned long n);
+  GradientStop createGradientStop();
+};
+
+[Prefix="libsbml::"]
+interface LinearGradient {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  void setCoordinates([Ref] RelAbsVector x1, [Ref] RelAbsVector y1, [Ref] RelAbsVector x2, [Ref] RelAbsVector y2);
+  void setPoint1([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+  void setPoint2([Ref] RelAbsVector x, [Ref] RelAbsVector y, [Ref] RelAbsVector z);
+
+  [Ref] RelAbsVector getXPoint1();
+  [Ref] RelAbsVector getYPoint1();
+  [Ref] RelAbsVector getZPoint1();
+
+  [Ref] RelAbsVector getXPoint2();
+  [Ref] RelAbsVector getYPoint2();
+  [Ref] RelAbsVector getZPoint2();
+
+  unsigned long getNumGradientStops();
+  GradientStop getGradientStop(unsigned long n);
+  GradientStop createGradientStop();
+};
+
+[Prefix="libsbml::"]
+interface RadialGradient {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  unsigned long getNumGradientStops();
+  GradientStop getGradientStop(unsigned long n);
+  GradientStop createGradientStop();
+};
+
+[Prefix="libsbmljs::"]
+interface GradientCaster {
+  void GradientCaster();
+
+  boolean isLinear(GradientBase p);
+  LinearGradient asLinear(GradientBase p);
+
+  boolean isRadial(GradientBase p);
+  RadialGradient asRadial(GradientBase p);
+};
+
+[Prefix="libsbml::"]
+interface ColorDefinition {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString createValueString(); // NOTE: may leak (returns rvalue)
+  boolean setColorValue(DOMString val);
+  void setRGBA(unsigned long r, unsigned long g, unsigned long b, unsigned long a);
+
+  void setRed(unsigned long val);
+  void setGreen(unsigned long val);
+  void setBlue(unsigned long val);
+  void setAlpha(unsigned long val);
+
+  unsigned long getRed();
+  unsigned long getGreen();
+  unsigned long getBlue();
+  unsigned long getAlpha();
+};
+
+[Prefix="libsbml::"]
+interface GlobalRenderInformation {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getName();
+  void setName(DOMString t);
+  boolean isSetName();
+
+  DOMString getProgramName();
+  void setProgramName(DOMString name);
+
+  DOMString getProgramVersion();
+  void setProgramVersion(DOMString t);
+
+  DOMString getBackgroundColor();
+  void setBackgroundColor(DOMString t);
+
+  unsigned long getNumColorDefinitions();
+  ColorDefinition getColorDefinition(unsigned long n);
+  ColorDefinition createColorDefinition();
+  ColorDefinition removeColorDefinition(unsigned long n);
+
+  unsigned long getNumGradientDefinitions();
+  GradientBase getGradientDefinition(unsigned long n);
+  LinearGradient createLinearGradientDefinition();
+  RadialGradient createRadialGradientDefinition();
+  GradientBase removeGradientDefinition(unsigned long n);
+
+  unsigned long getNumLineEndings();
+  LineEnding getLineEnding(unsigned long n);
+  LineEnding createLineEnding();
+  LineEnding removeLineEnding(unsigned long n);
+
+  unsigned long getNumStyles();
+  GlobalStyle getStyle(unsigned long n);
+  GlobalStyle createStyle(DOMString id);
+};
+
+[Prefix="libsbml::"]
+interface RenderListOfLayoutsPlugin {
+  unsigned long getNumGlobalRenderInformationObjects();
+  GlobalRenderInformation getRenderInformation(unsigned long n);
+};
+
+[Prefix="libsbml::"]
+interface LocalRenderInformation {
+  DOMString getId();
+  void setId(DOMString t);
+  boolean isSetId();
+
+  DOMString getName();
+  void setName(DOMString t);
+  boolean isSetName();
+
+  DOMString getProgramVersion();
+  void setProgramVersion(DOMString t);
+
+  DOMString getProgramName();
+  void setProgramName(DOMString name);
+
+  DOMString getBackgroundColor();
+  void setBackgroundColor(DOMString t);
+
+  unsigned long getNumColorDefinitions();
+  ColorDefinition getColorDefinition(unsigned long n);
+  ColorDefinition createColorDefinition();
+  ColorDefinition removeColorDefinition(unsigned long n);
+
+  unsigned long getNumGradientDefinitions();
+  GradientBase getGradientDefinition(unsigned long n);
+  LinearGradient createLinearGradientDefinition();
+  RadialGradient createRadialGradientDefinition();
+  GradientBase removeGradientDefinition(unsigned long n);
+
+  unsigned long getNumLineEndings();
+  LineEnding getLineEnding(unsigned long n);
+  LineEnding createLineEnding();
+  LineEnding removeLineEnding(unsigned long n);
+
+  unsigned long getNumStyles();
+  LocalStyle getStyle(unsigned long n);
+  LocalStyle createStyle(DOMString id);
+};
+
+[Prefix="libsbml::"]
+interface RenderExtension {
+};
+
+[Prefix="libsbmljs::"]
+interface RenderExtensionWrapper {
+  void RenderExtensionWrapper();
+  DOMString getXmlnsL2();
+  DOMString getXmlnsL3V1V1();
+};
+
+[Prefix="libsbml::"]
+interface RenderLayoutPlugin {
+  unsigned long getNumLocalRenderInformationObjects();
+  LocalRenderInformation getRenderInformation(unsigned long n);
+
+  LocalRenderInformation createLocalRenderInformation();
+  LocalRenderInformation removeLocalRenderInformation(unsigned long n);
+};
+
+[Prefix="libsbmljs::"]
+interface RenderCaster {
+  void RenderCaster();
+  RenderListOfLayoutsPlugin castToRenderListOfLayoutsPlugin(SBasePlugin p);
+  RenderLayoutPlugin castToRenderLayoutPlugin(SBasePlugin p);
+};
