@@ -9,8 +9,6 @@ boolean enableMulti = false
 boolean enableQual = false
 boolean enableComp = false
 
-String idl_dir = Paths.get("interface","idl")
-
 def libsbmlDir = new File('libsbml')
 
 if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
@@ -24,8 +22,6 @@ if (!sbmlTypesH.exists() || sbmlTypesH.isDirectory()) {
 }
 
 class ConcatFiles extends DefaultTask {
-  // @InputFiles
-  // FileCollection files
   def files = []
 
   @OutputFile
@@ -54,6 +50,7 @@ class ConcatFiles extends DefaultTask {
 }
 
 task combineIDL(type: ConcatFiles) {
+  String idl_dir = Paths.get("interface","idl")
   include Paths.get(idl_dir, "core_interface.idl")
   if (enableLayout) {
     include Paths.get(idl_dir, "layout_interface.idl")
@@ -73,5 +70,30 @@ task combineIDL(type: ConcatFiles) {
   if (enableComp) {
     include Paths.get(idl_dir, "comp_interface.idl")
   }
-  target = file(Paths.get("$buildDir","interface","sbml_interface.idl"))
+  target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
+}
+
+task combineCPP(type: ConcatFiles) {
+  String cpp_dir = Paths.get("interface","cpp")
+  include Paths.get(cpp_dir, "core_interface_wrapper.cpp")
+  include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
+  if (enableLayout) {
+    include Paths.get(cpp_dir, "layout_interface_wrapper.cpp")
+  }
+  if (enableRender) {
+    include Paths.get(cpp_dir, "render_interface_wrapper.cpp")
+  }
+  if (enableFBC) {
+    include Paths.get(cpp_dir, "fbc_interface_wrapper.cpp")
+  }
+  if (enableMulti) {
+    include Paths.get(cpp_dir, "multi_interface_wrapper.cpp")
+  }
+  if (enableQual) {
+    include Paths.get(cpp_dir, "qual_interface_wrapper.cpp")
+  }
+  if (enableComp) {
+    include Paths.get(cpp_dir, "comp_interface_wrapper.cpp")
+  }
+  target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))
 }
