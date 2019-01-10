@@ -1,0 +1,35 @@
+import Java.nio.file.Paths
+
+def enableLayout true
+
+def idl_dir "interface"
+
+class ConcatFiles extends DefaultTask {
+  @InputFiles
+  FileCollection files
+
+  @OutputFile
+  File target
+
+  @TaskAction
+  void concat() {
+    target.withWriter { writer ->
+      files.each { file ->
+        file.withReader { reader ->
+            writer << reader << '\n'
+        }
+      }
+    }
+  }
+
+  @Override
+  public ConcatFiles include(String... includes) {
+    files.addAll(includes);
+    return this;
+  }
+}
+
+task combineIDL << {
+  include Paths.get(idl_dir, "core_interface.idl")
+  target = file(Paths.get("$buildDir","interface","sbml_interface.idl"))
+}
