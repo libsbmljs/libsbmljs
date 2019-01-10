@@ -97,3 +97,8 @@ task combineCPP(type: ConcatFiles) {
   }
   target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))
 }
+
+task patchLibSBML {
+  ant.patch(patchfile: file('disable_compile_check.patch'),
+            originalFile: Paths.get("libsbml","src","CMakeLists.txt"))
+}
