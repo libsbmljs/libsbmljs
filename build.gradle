@@ -1,6 +1,9 @@
 import java.nio.file.Path
 import java.nio.file.Paths
 
+description = "Run libsbml as JavaScript in the browser"
+version = "0.0.1"
+
 // optional packages
 boolean enableLayout = true
 boolean enableRender = true
@@ -10,16 +13,21 @@ boolean enableQual = false
 boolean enableComp = false
 
 def libsbmlDir = new File('libsbml')
-
 if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
   throw new GradleException('Expected to find the directory "libsbml", but it does not exist')
 }
 
 def sbmlTypesH = new File(Paths.get("libsbml","src","sbml","SBMLTypes.h").toString())
-
 if (!sbmlTypesH.exists() || sbmlTypesH.isDirectory()) {
   throw new GradleException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
 }
+
+def sbmlVersionFile = new File(Paths.get("libsbml","VERSION.txt").toString())
+if (!sbmlVersionFile.exists() || sbmlVersionFile.isDirectory()) {
+  throw new GradleException('Your libsbml source directory was expected to contain VERSION.txt, but it does not')
+}
+String sbmlVersion = sbmlVersionFile.text
+println "libsbml version $sbmlVersion"
 
 class ConcatFiles extends DefaultTask {
   def files = []
