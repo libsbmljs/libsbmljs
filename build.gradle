@@ -128,6 +128,7 @@ task generateIdlInterface(type:Exec) {
 
 // validate expat and libsbml source directories
 
+// expat
 ext.expatPath = 'expat'
 def expatDir = new File(expatPath)
 if (!expatDir.exists() || !expatDir.isDirectory()) {
@@ -139,23 +140,14 @@ if (!expatCMakeFile.exists() || expatCMakeFile.isDirectory()) {
   throw new GradleException('Expected to find the file "expat/CMakeLists.txt", but it does not exist')
 }
 String expatCMakeSrc = expatCMakeFile.text
-// println expatCMakeSrc
 def expatVersionMatcher = (expatCMakeSrc =~ /(?m)^set\(PACKAGE_VERSION "([\d.]+)"\)$/)
 if (expatVersionMatcher.getCount() == 1) {
   ext.expatVersion = expatVersionMatcher[0][1]
 } else {
   throw new GradleException('Unable to determine expat version')
 }
-// println (expatVersionMatcher[0][1])
-// println ("set" ==~ /(?m)set/)
-// import java.util.regex.Pattern
-// Pattern p = Pattern.compile("^set", Pattern.MULTILINE)
-// println("set" ==~ p)
-// def matcher = ( "\nset" =~ /(?m)set/ )
-// def matcher = ( "set" =~ p )
-// println matcher.matches()
-// println (("\nset" =~ /set/).getCount())
 
+// libsbml
 ext.libsbmlPath = 'libsbml'
 def libsbmlDir = new File(libsbmlPath)
 if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
@@ -171,7 +163,7 @@ def sbmlVersionFile = new File(Paths.get("libsbml","VERSION.txt").toString())
 if (!sbmlVersionFile.exists() || sbmlVersionFile.isDirectory()) {
   throw new GradleException('Your libsbml source directory was expected to contain VERSION.txt, but it does not')
 }
-String sbmlVersion = sbmlVersionFile.text
+ext.libSbmlVersion = sbmlVersionFile.text.trim()
 
 
 // ** Build Expat **
@@ -219,4 +211,4 @@ model {
 // print all detected settings
 println "Build configuration"
 println " -- expat version $expatVersion"
-println " -- libsbml version $sbmlVersion"
+println " -- libsbml version $libSbmlVersion"
