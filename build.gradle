@@ -1,5 +1,12 @@
+plugins {
+    id 'com.cisco.external-build' version '1.15'
+}
+
 import java.nio.file.Path
 import java.nio.file.Paths
+
+import com.cisco.gradle.externalbuild.ExternalNativeExecutableSpec
+import com.cisco.gradle.externalbuild.tasks.CMake
 
 description = "Run libsbml as JavaScript in the browser"
 version = "0.0.1"
