@@ -110,3 +110,15 @@ task patchLibSBML {
   ant.patch(patchfile: file('disable_compile_check.patch'),
             originalFile: Paths.get("libsbml","src","CMakeLists.txt"))
 }
+
+def emscriptenDir = "$System.env.EMSCRIPTEN"
+def webIDLBinder = new File(Paths.get(emscriptenDir,"tools","webidl_binder.py").toString())
+if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
+  throw new GradleException('Expected to find WebIDL binder at $EMSCRIPTEN/tools/webidl_binder.py, but it does exist')
+}
+
+task generateIdlInterface(type:Exec) {
+  workingDir Paths.get("$buildDir","interface","idl").toString()
+
+  commandLine 'python3', webIDLBinder.getAbsolutePath(), 'sbml_interface.idl', 'sbml_interface'
+}
