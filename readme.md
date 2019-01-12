@@ -1,13 +1,28 @@
-## Install the Emscripten SDK
+## Preliminaries
 
-* Download the Emscripten SDK and activate it using the command
+What you will need:
+* git
+* svn
+* cmake
+
+## Instructions
+
+1. Download the Emscripten SDK and activate it using the command
 ```
 source /path/to/emsdk_env.sh
 ```
 
-## Obtain libsbml source code
+1. Obtain the Expat XML parser source code
+  * Obtain the source code via git clone or download a release and unpack into the `expat` directory. Example:
+```
+wget https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
+mkdir expat
+tar -xf expat-2.2.6.tar.bz2 -C expat --strip-components=1
+```
 
-* Checkout libsbml via svn or download one of the releases and unpack into the `libsbml` directory. For example, to checkout the experimental branch,
+1. Obtain libsbml source code
+
+  * Checkout libsbml via svn or download one of the releases (stable or experimental) and unpack into the `libsbml` directory. For example, to checkout the experimental branch,
 ```
 svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental libsbml
 ```

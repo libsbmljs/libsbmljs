@@ -1,5 +1,5 @@
 plugins {
-    id 'com.cisco.external-build' version '1.15'
+    id 'com.cisco.external-build' version '1.14'
 }
 
 import java.nio.file.Path
@@ -11,30 +11,28 @@ import com.cisco.gradle.externalbuild.tasks.CMake
 description = "Run libsbml as JavaScript in the browser"
 version = "0.0.1"
 
-// optional packages
+// locate and set up Emscripten variables
+
+ext.emscriptenDir = "$System.env.EMSCRIPTEN"
+ext.webIDLBinderPath = Paths.get(emscriptenDir,"tools","webidl_binder.py").toString()
+def webIDLBinder = new File(webIDLBinderPath)
+if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
+  throw new GradleException('Expected to find WebIDL binder at $EMSCRIPTEN/tools/webidl_binder.py, but it does not exist')
+}
+
+ext.emccToolchainPath = Paths.get(emscriptenDir,"cmake","Modules","Platform","Emscripten.cmake").toString()
+def emccToolchain = new File(emccToolchainPath)
+if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
+  throw new GradleException('Expected to find Emscripten.cmake binder at $EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake, but it does not exist')
+}
+
+// optional libsbml packages
 boolean enableLayout = true
 boolean enableRender = true
 boolean enableFBC = false
 boolean enableMulti = false
 boolean enableQual = false
 boolean enableComp = false
-
-def libsbmlDir = new File('libsbml')
-if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
-  throw new GradleException('Expected to find the directory "libsbml", but it does not exist')
-}
-
-def sbmlTypesH = new File(Paths.get("libsbml","src","sbml","SBMLTypes.h").toString())
-if (!sbmlTypesH.exists() || sbmlTypesH.isDirectory()) {
-  throw new GradleException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
-}
-
-def sbmlVersionFile = new File(Paths.get("libsbml","VERSION.txt").toString())
-if (!sbmlVersionFile.exists() || sbmlVersionFile.isDirectory()) {
-  throw new GradleException('Your libsbml source directory was expected to contain VERSION.txt, but it does not')
-}
-String sbmlVersion = sbmlVersionFile.text
-println "libsbml version $sbmlVersion"
 
 class ConcatFiles extends DefaultTask {
   def files = []
@@ -63,6 +61,10 @@ class ConcatFiles extends DefaultTask {
     return this;
   }
 }
+
+
+// ** Create IDL wrapper **
+
 
 task combineIDL(type: ConcatFiles) {
   String idl_dir = Paths.get("interface","idl")
@@ -118,14 +120,103 @@ task patchLibSBML {
             originalFile: Paths.get("libsbml","src","CMakeLists.txt"))
 }
 
-def emscriptenDir = "$System.env.EMSCRIPTEN"
-def webIDLBinder = new File(Paths.get(emscriptenDir,"tools","webidl_binder.py").toString())
-if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
-  throw new GradleException('Expected to find WebIDL binder at $EMSCRIPTEN/tools/webidl_binder.py, but it does exist')
-}
-
 task generateIdlInterface(type:Exec) {
   workingDir Paths.get("$buildDir","interface","idl").toString()
 
   commandLine 'python3', webIDLBinder.getAbsolutePath(), 'sbml_interface.idl', 'sbml_interface'
 }
+
+// validate expat and libsbml source directories
+
+ext.expatPath = 'expat'
+def expatDir = new File(expatPath)
+if (!expatDir.exists() || !expatDir.isDirectory()) {
+  throw new GradleException('Expected to find the directory "expat", but it does not exist')
+}
+
+def expatCMakeFile = new File(Paths.get(expatPath,"CMakeLists.txt").toString())
+if (!expatCMakeFile.exists() || expatCMakeFile.isDirectory()) {
+  throw new GradleException('Expected to find the file "expat/CMakeLists.txt", but it does not exist')
+}
+String expatCMakeSrc = expatCMakeFile.text
+// println expatCMakeSrc
+def expatVersionMatcher = (expatCMakeSrc =~ /(?m)^set\(PACKAGE_VERSION "([\d.]+)"\)$/)
+if (expatVersionMatcher.getCount() == 1) {
+  ext.expatVersion = expatVersionMatcher[0][1]
+} else {
+  throw new GradleException('Unable to determine expat version')
+}
+// println (expatVersionMatcher[0][1])
+// println ("set" ==~ /(?m)set/)
+// import java.util.regex.Pattern
+// Pattern p = Pattern.compile("^set", Pattern.MULTILINE)
+// println("set" ==~ p)
+// def matcher = ( "\nset" =~ /(?m)set/ )
+// def matcher = ( "set" =~ p )
+// println matcher.matches()
+// println (("\nset" =~ /set/).getCount())
+
+ext.libsbmlPath = 'libsbml'
+def libsbmlDir = new File(libsbmlPath)
+if (!libsbmlDir.exists() || !libsbmlDir.isDirectory()) {
+  throw new GradleException('Expected to find the directory "libsbml", but it does not exist')
+}
+
+def sbmlTypesH = new File(Paths.get("libsbml","src","sbml","SBMLTypes.h").toString())
+if (!sbmlTypesH.exists() || sbmlTypesH.isDirectory()) {
+  throw new GradleException('Your libsbml/src/sbml source directory was expected to contain SBMLTypes.h, but it does not')
+}
+
+def sbmlVersionFile = new File(Paths.get("libsbml","VERSION.txt").toString())
+if (!sbmlVersionFile.exists() || sbmlVersionFile.isDirectory()) {
+  throw new GradleException('Your libsbml source directory was expected to contain VERSION.txt, but it does not')
+}
+String sbmlVersion = sbmlVersionFile.text
+
+
+// ** Build Expat **
+
+// https://github.com/awrichar/gradle-external-build/blob/master/examples/cmake/build.gradle
+def getIntermediateDir = { binary ->
+    file("${buildDir}/external-build/${binary.component.name}")
+}
+def getInstallDir = { binary ->
+    file("${buildDir}/install/${binary.component.name}")
+}
+
+model {
+  components {
+    expat(ExternalNativeExecutableSpec) {
+      buildConfig(CMake) {
+        def intDir = getIntermediateDir(binary)
+        def outputDir = getInstallDir(binary)
+
+        // Uncomment for easier debugging
+        redirectOutput = false
+
+        cmakeRoot '.'
+        cmakeArgs "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${outputDir}"
+        targets 'install'
+
+        inputs.dir expatPath
+        inputs.file 'CMakeLists.txt'
+        outputs.dir outputDir
+
+        workingDir intDir
+        // environment = [
+        //     'PATH': toolChainPath,
+        // ]
+      }
+
+      buildOutput {
+        def outputDir = getInstallDir(binary)
+        outputFile = file("${outputDir}/lib/libexpat.so")
+      }
+    }
+  }
+}
+
+// print all detected settings
+println "Build configuration"
+println " -- expat version $expatVersion"
+println " -- libsbml version $sbmlVersion"
