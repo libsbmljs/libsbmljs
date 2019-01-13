@@ -13,6 +13,18 @@ if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
   throw new GradleException('Expected to find WebIDL binder at $EMSCRIPTEN/tools/webidl_binder.py, but it does not exist')
 }
 
+ext.emconfigureCommand = Paths.get(emscriptenDir,"emconfigure").toString()
+def emconfigureFile = new File(emconfigureCommand)
+if (!emconfigureFile.exists() || emconfigureFile.isDirectory()) {
+  throw new GradleException('Expected to find emconfigure script at $EMSCRIPTEN/emconfigure, but it does not exist')
+}
+
+ext.emmakeCommand = Paths.get(emscriptenDir,"emmake").toString()
+def emmakeFile = new File(emconfigureCommand)
+if (!emmakeFile.exists() || emmakeFile.isDirectory()) {
+  throw new GradleException('Expected to find emmake script at $EMSCRIPTEN/emmake, but it does not exist')
+}
+
 ext.emccToolchainPath = Paths.get(emscriptenDir,"cmake","Modules","Platform","Emscripten.cmake").toString()
 def emccToolchain = new File(emccToolchainPath)
 if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
@@ -26,6 +38,11 @@ boolean enableFBC = false
 boolean enableMulti = false
 boolean enableQual = false
 boolean enableComp = false
+boolean enableDistrib = false
+boolean enableDyn = false
+boolean enableGroups = false
+boolean enableArrays = false
+boolean enableSpatial = false
 
 class ConcatFiles extends DefaultTask {
   def files = []
@@ -203,21 +220,17 @@ ext.libSbmlVersion = sbmlVersionFile.text.trim()
 
 ext.cmakeCommand = 'cmake'
 
-println("root ${project.rootDir}")
 task expatGenerate(type:Exec) {
-  // def intDir = getIntermediateDir(binary)
   def outputDir = Paths.get("${buildDir}","install","expat").toString()
   workingDir Paths.get("${buildDir}","build","expat").toString()
   // the award for most obtuse language goes to groovy
-  def freakingStrings = ["${cmakeCommand}",
+  def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCMAKE_INSTALL_PREFIX=${outputDir}",
     "-DBUILD_doc=FALSE",
     Paths.get(project.rootDir.path,'expat').toString()] as String[]
   commandLine freakingStrings
-  // args argsList
-  // def argsList = ["-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}","-DCMAKE_BUILD_TYPE=Release","-DCMAKE_INSTALL_PREFIX=${outputDir}",Paths.get(project.rootDir.path,'expat').toString()] as String[]
 }
 expatGenerate.doFirst {
   mkdir Paths.get("${buildDir}","install","expat").toString()
@@ -225,10 +238,47 @@ expatGenerate.doFirst {
 }
 task expatBuild(type:Exec) {
   workingDir Paths.get("${buildDir}","build","expat").toString()
-  def freakingStrings = ["${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
+  def freakingStrings = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
   commandLine freakingStrings
 }
 expatBuild.dependsOn(expatGenerate)
+
+
+task libsbmlGenerate(type:Exec) {
+  def outputDir = Paths.get("${buildDir}","install","libsbml").toString()
+  workingDir Paths.get("${buildDir}","build","libsbml").toString()
+  // the award for most obtuse language goes to groovy
+  def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
+    "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_INSTALL_PREFIX=${outputDir}",
+    "-DWITH_CPP_NAMESPACE=ON",
+    "-DENABLE_ARRAYS=${enableArrays}",
+    "-DENABLE_COMP=${enableComp}",
+    "-DENABLE_DISTRIB=${enableDistrib}",
+    "-DENABLE_DYN=${enableDyn}",
+    "-DENABLE_FBC=${enableFBC}",
+    "-DENABLE_GROUPS=${enableGroups}",
+    "-DENABLE_LAYOUT=${enableLayout}",
+    "-DENABLE_MULTI=${enableMulti}",
+    "-DENABLE_QUAL=${enableQual}",
+    "-DENABLE_RENDER=${enableRender}",
+    "-DENABLE_REQUIREDELEMENTS=ON",
+    "-DENABLE_SPATIAL=${enableSpatial}",
+    "-DEXPAT_PATH="+Paths.get("${buildDir}","install","expat").toString(),
+    Paths.get(project.rootDir.path,'libsbml').toString()] as String[]
+  commandLine freakingStrings
+}
+libsbmlGenerate.doFirst {
+  mkdir Paths.get("${buildDir}","install","libsbml").toString()
+  mkdir Paths.get("${buildDir}","build","libsbml").toString()
+}
+task libsbmlBuild(type:Exec) {
+  workingDir Paths.get("${buildDir}","build","libsbml").toString()
+  def freakingStrings = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
+  commandLine freakingStrings
+}
+libsbmlBuild.dependsOn(libsbmlGenerate)
 
 // print all detected settings
 println "Build configuration"
