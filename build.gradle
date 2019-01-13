@@ -1,12 +1,5 @@
-plugins {
-    id 'com.cisco.external-build' version '1.14'
-}
-
 import java.nio.file.Path
 import java.nio.file.Paths
-
-import com.cisco.gradle.externalbuild.ExternalNativeExecutableSpec
-import com.cisco.gradle.externalbuild.tasks.CMake
 
 description = "Run libsbml as JavaScript in the browser"
 version = "0.0.1"
@@ -169,43 +162,61 @@ ext.libSbmlVersion = sbmlVersionFile.text.trim()
 // ** Build Expat **
 
 // https://github.com/awrichar/gradle-external-build/blob/master/examples/cmake/build.gradle
-def getIntermediateDir = { binary ->
-    file("${buildDir}/external-build/${binary.component.name}")
+// def getIntermediateDir = { binary ->
+//     file("${buildDir}/external-build/${binary.component.name}")
+// }
+// def getInstallDir = { binary ->
+//     file("${buildDir}/install/${binary.component.name}")
+// }
+
+// model {
+//   // components {
+//     expat(ExternalNativeLibrarySpec) {
+//       buildConfig(CMake) {
+//         def intDir = getIntermediateDir(binary)
+//         def outputDir = getInstallDir(binary)
+//
+//         // Uncomment for easier debugging
+//         redirectOutput = false
+//
+//         cmakeRoot expatPath
+//         cmakeArgs "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${outputDir}"
+//         targets 'install'
+//
+//         inputs.dir 'src'
+//         inputs.file 'CMakeLists.txt'
+//         outputs.dir outputDir
+//
+//         workingDir intDir
+//         // environment = [
+//         //     'PATH': toolChainPath,
+//         // ]
+//       }
+//
+//       buildOutput {
+//         def outputDir = getInstallDir(binary)
+//         outputFile = file("${outputDir}/lib/libexpat.so")
+//       }
+//     }
+//   // }
+// }
+
+ext.cmakeCommand = 'cmake'
+
+println("root ${project.rootDir}")
+task cmakeGenerate(type:Exec) {
+  // def intDir = getIntermediateDir(binary)
+  def outputDir = Paths.get("${buildDir}","install","expat").toString()
+  workingDir Paths.get("${buildDir}","build","expat").toString()
+  // the award for most obtuse language goes to groovy
+  def freakingStrings = ["${cmakeCommand}","-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}","-DCMAKE_BUILD_TYPE=Release","-DCMAKE_INSTALL_PREFIX=${outputDir}",Paths.get(project.rootDir.path,'expat').toString()] as String[]
+  commandLine freakingStrings
+  // args argsList
+  // def argsList = ["-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}","-DCMAKE_BUILD_TYPE=Release","-DCMAKE_INSTALL_PREFIX=${outputDir}",Paths.get(project.rootDir.path,'expat').toString()] as String[]
 }
-def getInstallDir = { binary ->
-    file("${buildDir}/install/${binary.component.name}")
-}
-
-model {
-  components {
-    expat(ExternalNativeExecutableSpec) {
-      buildConfig(CMake) {
-        def intDir = getIntermediateDir(binary)
-        def outputDir = getInstallDir(binary)
-
-        // Uncomment for easier debugging
-        redirectOutput = false
-
-        cmakeRoot '.'
-        cmakeArgs "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${outputDir}"
-        targets 'install'
-
-        inputs.dir expatPath
-        inputs.file 'CMakeLists.txt'
-        outputs.dir outputDir
-
-        workingDir intDir
-        // environment = [
-        //     'PATH': toolChainPath,
-        // ]
-      }
-
-      buildOutput {
-        def outputDir = getInstallDir(binary)
-        outputFile = file("${outputDir}/lib/libexpat.so")
-      }
-    }
-  }
+cmakeGenerate.doFirst {
+  mkdir Paths.get("${buildDir}","install","expat").toString()
+  mkdir Paths.get("${buildDir}","build","expat").toString()
 }
 
 // print all detected settings
