@@ -228,6 +228,7 @@ task expatGenerate(type:Exec) {
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCMAKE_INSTALL_PREFIX=${outputDir}",
+    "-DBUILD_shared=FALSE",
     "-DBUILD_doc=FALSE",
     Paths.get(project.rootDir.path,'expat').toString()] as String[]
   commandLine freakingStrings
@@ -253,6 +254,8 @@ task libsbmlGenerate(type:Exec) {
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCMAKE_INSTALL_PREFIX=${outputDir}",
     "-DWITH_CPP_NAMESPACE=ON",
+    "-DWITH_EXPAT=ON",
+    "-DWITH_LIBXML=OFF",
     "-DENABLE_ARRAYS=${enableArrays}",
     "-DENABLE_COMP=${enableComp}",
     "-DENABLE_DISTRIB=${enableDistrib}",
@@ -266,6 +269,8 @@ task libsbmlGenerate(type:Exec) {
     "-DENABLE_REQUIREDELEMENTS=ON",
     "-DENABLE_SPATIAL=${enableSpatial}",
     "-DEXPAT_PATH="+Paths.get("${buildDir}","install","expat").toString(),
+    "-DLIBEXPAT_INCLUDE_DIR="+Paths.get("${buildDir}","install","expat","include").toString(),
+    "-DLIBEXPAT_LIBRARY="+Paths.get("${buildDir}","install","expat","lib","libexpat.a").toString(),
     Paths.get(project.rootDir.path,'libsbml').toString()] as String[]
   commandLine freakingStrings
 }
