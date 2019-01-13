@@ -204,20 +204,31 @@ ext.libSbmlVersion = sbmlVersionFile.text.trim()
 ext.cmakeCommand = 'cmake'
 
 println("root ${project.rootDir}")
-task cmakeGenerate(type:Exec) {
+task expatGenerate(type:Exec) {
   // def intDir = getIntermediateDir(binary)
   def outputDir = Paths.get("${buildDir}","install","expat").toString()
   workingDir Paths.get("${buildDir}","build","expat").toString()
   // the award for most obtuse language goes to groovy
-  def freakingStrings = ["${cmakeCommand}","-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}","-DCMAKE_BUILD_TYPE=Release","-DCMAKE_INSTALL_PREFIX=${outputDir}",Paths.get(project.rootDir.path,'expat').toString()] as String[]
+  def freakingStrings = ["${cmakeCommand}",
+    "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_INSTALL_PREFIX=${outputDir}",
+    "-DBUILD_doc=FALSE",
+    Paths.get(project.rootDir.path,'expat').toString()] as String[]
   commandLine freakingStrings
   // args argsList
   // def argsList = ["-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}","-DCMAKE_BUILD_TYPE=Release","-DCMAKE_INSTALL_PREFIX=${outputDir}",Paths.get(project.rootDir.path,'expat').toString()] as String[]
 }
-cmakeGenerate.doFirst {
+expatGenerate.doFirst {
   mkdir Paths.get("${buildDir}","install","expat").toString()
   mkdir Paths.get("${buildDir}","build","expat").toString()
 }
+task expatBuild(type:Exec) {
+  workingDir Paths.get("${buildDir}","build","expat").toString()
+  def freakingStrings = ["${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
+  commandLine freakingStrings
+}
+expatBuild.dependsOn(expatGenerate)
 
 // print all detected settings
 println "Build configuration"
