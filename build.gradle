@@ -306,7 +306,7 @@ task emccCompileLibSBML(type:Exec) {
     Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
     "--pre-js",Paths.get(project.rootDir.path,"interface","js","hook.js").toString(),
     Paths.get(expatOutputDir,"lib","libexpat.so").toString(),
-    "--post-js",Paths.get(project.rootDir.path,"interface","js","sbml_interface.js"),
+    "--post-js",Paths.get("$buildDir","interface","idl","sbml_interface.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
     // "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),
@@ -318,6 +318,7 @@ task emccCompileLibSBML(type:Exec) {
     "--post-js",Paths.get(project.rootDir.path,"interface","js","rules_getset.js").toString(),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","export.js"),
     "-s","DISABLE_EXCEPTION_CATCHING=0",
+    "-s","WASM=1",
     // "-g",
     "-o","libsbml.js",
     ] as String[]
