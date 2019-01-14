@@ -7,11 +7,18 @@ version = "0.0.1"
 // locate and set up Emscripten variables
 
 ext.emscriptenDir = "$System.env.EMSCRIPTEN"
-ext.webIDLBinderPath = Paths.get(emscriptenDir,"tools","webidl_binder.py").toString()
+
+ext.webIDLBinderPath = Paths.get(project.rootDir.path,"emtools","webidl_binder.py").toString()
 def webIDLBinder = new File(webIDLBinderPath)
 if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
-  throw new GradleException('Expected to find WebIDL binder at $EMSCRIPTEN/tools/webidl_binder.py, but it does not exist')
+  throw new GradleException('Expected to find WebIDL binder at tools/webidl_binder.py, but it does not exist')
 }
+def emscriptenToolsPath = Paths.get(emscriptenDir,"tools").toString()
+def emscriptenToolsDir = new File(emscriptenToolsPath)
+if (!emscriptenToolsDir.exists() || !emscriptenToolsDir.isDirectory()) {
+  throw new GradleException('Expected to find the Emscripten tools directory $EMSCRIPTEN/tools, but it does not exist')
+}
+println emscriptenToolsPath
 
 ext.emconfigureCommand = Paths.get(emscriptenDir,"emconfigure").toString()
 def emconfigureFile = new File(emconfigureCommand)
@@ -38,17 +45,17 @@ if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
 }
 
 // optional libsbml packages
-boolean enableLayout = true
-boolean enableRender = true
-boolean enableFBC = false
-boolean enableMulti = false
-boolean enableQual = false
-boolean enableComp = false
-boolean enableDistrib = false
-boolean enableDyn = false
-boolean enableGroups = false
-boolean enableArrays = false
-boolean enableSpatial = false
+ext.enableLayout = findProperty('enableLayout') || true
+ext.enableRender = findProperty('enableRender') || true
+ext.enableFBC = findProperty('enableFBC') || false
+ext.enableMulti = findProperty('enableMulti') || false
+ext.enableQual = findProperty('enableQual') || false
+ext.enableComp = findProperty('enableComp') || false
+ext.enableDistrib = findProperty('enableDistrib') || false
+ext.enableDyn = findProperty('enableDyn') || false
+ext.enableGroups = findProperty('enableGroups') || false
+ext.enableArrays = findProperty('enableArrays') || false
+ext.enableSpatial = findProperty('enableSpatial') || false
 
 class ConcatFiles extends DefaultTask {
   def files = []
@@ -108,6 +115,7 @@ task combineIDL(type: ConcatFiles) {
 
 task combineCPP(type: ConcatFiles) {
   String cpp_dir = Paths.get("interface","cpp")
+  include Paths.get(cpp_dir, "common.cpp")
   include Paths.get(cpp_dir, "core_interface_wrapper.cpp")
   include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   if (enableLayout) {
@@ -138,6 +146,10 @@ task patchLibSBML {
 
 task generateIdlInterface(type:Exec) {
   workingDir Paths.get("$buildDir","interface","idl").toString()
+
+  inputs.file(webIDLBinder.getAbsolutePath())
+
+  environment 'PYTHONPATH', emscriptenDir
 
   commandLine 'python3', webIDLBinder.getAbsolutePath(), 'sbml_interface.idl', 'sbml_interface'
 }
