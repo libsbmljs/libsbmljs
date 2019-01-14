@@ -25,6 +25,12 @@ if (!emmakeFile.exists() || emmakeFile.isDirectory()) {
   throw new GradleException('Expected to find emmake script at $EMSCRIPTEN/emmake, but it does not exist')
 }
 
+ext.emccCommand = Paths.get(emscriptenDir,"emcc").toString()
+def emccFile = new File(emccCommand)
+if (!emccFile.exists() || emccFile.isDirectory()) {
+  throw new GradleException('Expected to find emcc at $EMSCRIPTEN/emcc, but it does not exist')
+}
+
 ext.emccToolchainPath = Paths.get(emscriptenDir,"cmake","Modules","Platform","Emscripten.cmake").toString()
 def emccToolchain = new File(emccToolchainPath)
 if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
@@ -135,6 +141,7 @@ task generateIdlInterface(type:Exec) {
 
   commandLine 'python3', webIDLBinder.getAbsolutePath(), 'sbml_interface.idl', 'sbml_interface'
 }
+generateIdlInterface.dependsOn(combineIDL)
 
 // validate expat and libsbml source directories
 
@@ -220,14 +227,14 @@ ext.libSbmlVersion = sbmlVersionFile.text.trim()
 
 ext.cmakeCommand = 'cmake'
 
+def expatOutputDir = Paths.get("${buildDir}","install","expat").toString()
 task expatGenerate(type:Exec) {
-  def outputDir = Paths.get("${buildDir}","install","expat").toString()
   workingDir Paths.get("${buildDir}","build","expat").toString()
   // the award for most obtuse language goes to groovy
   def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
-    "-DCMAKE_INSTALL_PREFIX=${outputDir}",
+    "-DCMAKE_INSTALL_PREFIX=${expatOutputDir}",
     "-DBUILD_shared=FALSE",
     "-DBUILD_doc=FALSE",
     Paths.get(project.rootDir.path,'expat').toString()] as String[]
@@ -244,15 +251,14 @@ task expatBuild(type:Exec) {
 }
 expatBuild.dependsOn(expatGenerate)
 
-
+def libsbmlOutputDir = Paths.get("${buildDir}","install","libsbml").toString()
 task libsbmlGenerate(type:Exec) {
-  def outputDir = Paths.get("${buildDir}","install","libsbml").toString()
   workingDir Paths.get("${buildDir}","build","libsbml").toString()
   // the award for most obtuse language goes to groovy
   def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
-    "-DCMAKE_INSTALL_PREFIX=${outputDir}",
+    "-DCMAKE_INSTALL_PREFIX=${libsbmlOutputDir}",
     "-DWITH_CPP_NAMESPACE=ON",
     "-DWITH_EXPAT=ON",
     "-DWITH_LIBXML=OFF",
@@ -268,7 +274,7 @@ task libsbmlGenerate(type:Exec) {
     "-DENABLE_RENDER=${enableRender}",
     "-DENABLE_REQUIREDELEMENTS=ON",
     "-DENABLE_SPATIAL=${enableSpatial}",
-    "-DEXPAT_PATH="+Paths.get("${buildDir}","install","expat").toString(),
+    "-DEXPAT_PATH=${expatOutputDir}",
     "-DLIBEXPAT_INCLUDE_DIR="+Paths.get("${buildDir}","install","expat","include").toString(),
     "-DLIBEXPAT_LIBRARY="+Paths.get("${buildDir}","install","expat","lib","libexpat.a").toString(),
     Paths.get(project.rootDir.path,'libsbml').toString()] as String[]
@@ -278,12 +284,46 @@ libsbmlGenerate.doFirst {
   mkdir Paths.get("${buildDir}","install","libsbml").toString()
   mkdir Paths.get("${buildDir}","build","libsbml").toString()
 }
+libsbmlGenerate.dependsOn(patchLibSBML)
 task libsbmlBuild(type:Exec) {
   workingDir Paths.get("${buildDir}","build","libsbml").toString()
   def freakingStrings = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
   commandLine freakingStrings
 }
 libsbmlBuild.dependsOn(libsbmlGenerate)
+
+
+task emccCompileLibSBML(type:Exec) {
+  workingDir "${buildDir}"
+  def freakingStrings = ["${emccCommand}",
+    "-O2",
+    "--emrun",
+    "-I",Paths.get(libsbmlOutputDir,"include").toString(),
+    "-I",Paths.get(expatOutputDir,"include").toString(),
+    "-I",Paths.get("$buildDir","interface","idl").toString(),
+    "-std=c++11",
+    combineCPP.target,
+    Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
+    "--pre-js",Paths.get(project.rootDir.path,"interface","js","hook.js").toString(),
+    Paths.get(expatOutputDir,"lib","libexpat.so").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","sbml_interface.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
+    // "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","model_getset.js").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","astnode_getset.js").toString(),
+    "--post-js", Paths.get(project.rootDir.path,"interface","js","reaction_getset.js").toString(),
+    "--post-js", Paths.get(project.rootDir.path,"interface","js","spec_ref_getset.js").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","modifier_spec_ref_getset.js").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","rules_getset.js").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","export.js"),
+    "-s","DISABLE_EXCEPTION_CATCHING=0",
+    // "-g",
+    "-o","libsbml.js",
+    ] as String[]
+  commandLine freakingStrings
+}
+emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
 // print all detected settings
 println "Build configuration"
