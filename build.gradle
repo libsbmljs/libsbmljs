@@ -47,6 +47,9 @@ if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
   throw new GradleException('Expected to find Emscripten.cmake binder at $EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake, but it does not exist')
 }
 
+// additional build options
+ext.withEmrun = findProperty('withEmrun') || false
+
 // optional libsbml packages
 ext.enableLayout = findProperty('enableLayout') || true
 ext.enableRender = findProperty('enableRender') || true
@@ -311,20 +314,18 @@ libsbmlBuild.dependsOn(libsbmlGenerate)
 task emccCompileLibSBML(type:Exec) {
   workingDir "${buildDir}"
   def freakingStrings = ["${emccCommand}",
-    "-O2",
-    "--emrun",
+    "-O0",
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
     "-I",Paths.get("$buildDir","interface","idl").toString(),
     "-std=c++11",
     combineCPP.target,
     Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
-    "--pre-js",Paths.get(project.rootDir.path,"interface","js","hook.js").toString(),
-    // Paths.get(expatOutputDir,"lib","libexpat.so").toString(),
+    // "--pre-js",Paths.get(project.rootDir.path,"interface","js","hook.js").toString(),
     "--post-js",Paths.get("$buildDir","interface","idl","sbml_interface.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
-    // "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","model_getset.js").toString(),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","astnode_getset.js").toString(),
     "--post-js", Paths.get(project.rootDir.path,"interface","js","reaction_getset.js").toString(),
@@ -334,9 +335,16 @@ task emccCompileLibSBML(type:Exec) {
     "--post-js",Paths.get(project.rootDir.path,"interface","js","export.js"),
     "-s","DISABLE_EXCEPTION_CATCHING=0",
     "-s","WASM=1",
+    "-s","BINARYEN_METHOD='native-wasm'",
+    "-s","BINARYEN_TRAP_MODE='clamp'",
+    "-s","MODULARIZE=1",
+    "-s","EXPORT_NAME=\"libsbml\"",
     // "-g",
     "-o","libsbml.js",
     ] as String[]
+  if (withEmrun) {
+    freakingStrings += ["--emrun"]
+  }
   commandLine freakingStrings
 }
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
