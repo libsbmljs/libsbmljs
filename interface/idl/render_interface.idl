@@ -84,14 +84,15 @@ interface Text {
   [Ref] RelAbsVector getFontSize();
   void setFontSize([Ref] RelAbsVector v);
 
-  libsbml__idl__Text__idl__FONT_WEIGHT getFontWeight();
+  // these used to be enums but libsbml developers changed them to ints
+  long getFontWeight();
   void setFontWeight(libsbml__idl__Text__idl__FONT_WEIGHT weight);
 
-  libsbml__idl__Text__idl__FONT_STYLE getFontStyle();
+  long getFontStyle();
   void setFontStyle(libsbml__idl__Text__idl__FONT_STYLE style);
 
-  libsbml__idl__Text__idl__TEXT_ANCHOR getTextAnchor();
-  libsbml__idl__Text__idl__TEXT_ANCHOR getVTextAnchor();
+  long getTextAnchor();
+  long getVTextAnchor();
   void setTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
   void setVTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
   boolean isSetTextAnchor();
@@ -327,14 +328,14 @@ interface RenderGroup {
   [Ref] RelAbsVector getFontSize();
   void setFontSize([Ref] RelAbsVector v);
 
-  libsbml__idl__Text__idl__FONT_WEIGHT getFontWeight();
+  long getFontWeight();
   void setFontWeight(libsbml__idl__Text__idl__FONT_WEIGHT weight);
 
-  libsbml__idl__Text__idl__FONT_STYLE getFontStyle();
+  long getFontStyle();
   void setFontStyle(libsbml__idl__Text__idl__FONT_STYLE style);
 
-  libsbml__idl__Text__idl__TEXT_ANCHOR getTextAnchor();
-  libsbml__idl__Text__idl__TEXT_ANCHOR getVTextAnchor();
+  long getTextAnchor();
+  long getVTextAnchor();
   void setTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
   void setVTextAnchor(libsbml__idl__Text__idl__TEXT_ANCHOR anchor);
   boolean isSetTextAnchor();
