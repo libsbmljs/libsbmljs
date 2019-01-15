@@ -7,6 +7,9 @@ version = "0.0.1"
 // locate and set up Emscripten variables
 
 ext.emscriptenDir = "$System.env.EMSCRIPTEN"
+if ("${emscriptenDir}" == "null") {
+  throw new GradleException('The EMSCRIPTEN environment variable is not set. Run "source /path/to/emsdk_env.sh".')
+}
 
 ext.webIDLBinderPath = Paths.get(project.rootDir.path,"emtools","webidl_binder.py").toString()
 def webIDLBinder = new File(webIDLBinderPath)
@@ -317,7 +320,7 @@ task emccCompileLibSBML(type:Exec) {
     combineCPP.target,
     Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
     "--pre-js",Paths.get(project.rootDir.path,"interface","js","hook.js").toString(),
-    Paths.get(expatOutputDir,"lib","libexpat.so").toString(),
+    // Paths.get(expatOutputDir,"lib","libexpat.so").toString(),
     "--post-js",Paths.get("$buildDir","interface","idl","sbml_interface.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
