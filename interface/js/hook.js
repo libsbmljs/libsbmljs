@@ -7,7 +7,7 @@ var Module = {
   },
   onload: function(callback) {
     this.callbacks.push(callback);
-    if(initialized) {
+    if(typeof initialized !== "undefined" && initialized) {
       callback.apply(this);
     }
   },
