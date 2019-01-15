@@ -152,17 +152,18 @@ enum libsbml__idl__ASTNodeType_t {
   , "libsbml::AST_RELATIONAL_LT"
   , "libsbml::AST_RELATIONAL_NEQ"
 
-  , "libsbml::AST_QUALIFIER_BVAR"
+  /*, "libsbml::AST_QUALIFIER_BVAR"
   , "libsbml::AST_QUALIFIER_LOGBASE"
   , "libsbml::AST_QUALIFIER_DEGREE"
 
   , "libsbml::AST_SEMANTICS"
 
   , "libsbml::AST_CONSTRUCTOR_PIECE"
-  , "libsbml::AST_CONSTRUCTOR_OTHERWISE"
+  , "libsbml::AST_CONSTRUCTOR_OTHERWISE"*/
 
-  , "libsbml::AST_UNKNOWN"
-  , "libsbml::AST_ORIGINATES_IN_PACKAGE"
+  /*, "libsbml::AST_UNKNOWN"
+  , "libsbml::AST_ORIGINATES_IN_PACKAGE"*/
+  // TODO: add min/max based on libsbml version
 };
 
 [Prefix="libsbml::"]

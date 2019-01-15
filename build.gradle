@@ -117,7 +117,6 @@ task combineCPP(type: ConcatFiles) {
   String cpp_dir = Paths.get("interface","cpp")
   include Paths.get(cpp_dir, "common.cpp")
   include Paths.get(cpp_dir, "core_interface_wrapper.cpp")
-  include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   if (enableLayout) {
     include Paths.get(cpp_dir, "layout_interface_wrapper.cpp")
   }
@@ -136,6 +135,7 @@ task combineCPP(type: ConcatFiles) {
   if (enableComp) {
     include Paths.get(cpp_dir, "comp_interface_wrapper.cpp")
   }
+  include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))
 }
 
@@ -336,6 +336,7 @@ task emccCompileLibSBML(type:Exec) {
     ] as String[]
   commandLine freakingStrings
 }
+emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
 // print all detected settings

@@ -1,9 +1,10 @@
 ## Preliminaries
 
-What you will need:
-* Git
-* SVN
-* CMake
+What you will need (tested version):
+* Git (2.4.11)
+* SVN (1.8.15)
+* CMake (3.12.1)
+* Gradle (5.1.1)
 
 ## Instructions
 

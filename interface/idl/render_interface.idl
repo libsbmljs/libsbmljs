@@ -291,24 +291,28 @@ interface PrimitiveCaster {
 };
 
 enum libsbml__idl__Text__idl__FONT_WEIGHT {
-  "Text::WEIGHT_UNSET",
-  "Text::WEIGHT_NORMAL",
-  "Text::WEIGHT_BOLD"
+  "libsbml::Text::WEIGHT_UNSET",
+  "libsbml::Text::WEIGHT_NORMAL",
+  "libsbml::Text::WEIGHT_BOLD",
+  "libsbml::Text::WEIGHT_INVALID"
 };
 
 enum libsbml__idl__Text__idl__FONT_STYLE {
-  "Text::STYLE_UNSET",
-  "Text::STYLE_NORMAL",
-  "Text::STYLE_ITALIC"
+  "libsbml::Text::STYLE_UNSET",
+  "libsbml::Text::STYLE_NORMAL",
+  "libsbml::Text::STYLE_ITALIC",
+  "libsbml::Text::STYLE_INVALID"
 };
 
 enum libsbml__idl__Text__idl__TEXT_ANCHOR {
-  "Text::ANCHOR_UNSET",
-  "Text::ANCHOR_START",
-  "Text::ANCHOR_MIDDLE",
-  "Text::ANCHOR_END",
-  "Text::ANCHOR_TOP",
-  "Text::ANCHOR_BOTTOM"
+  "libsbml::Text::ANCHOR_UNSET",
+  "libsbml::Text::ANCHOR_START",
+  "libsbml::Text::ANCHOR_MIDDLE",
+  "libsbml::Text::ANCHOR_END",
+  "libsbml::Text::ANCHOR_TOP",
+  "libsbml::Text::ANCHOR_BOTTOM",
+  "libsbml::Text::ANCHOR_BASELINE",
+  "libsbml::Text::ANCHOR_INVALID"
 };
 
 [Prefix="libsbml::"]
