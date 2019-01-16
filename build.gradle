@@ -349,19 +349,19 @@ task emccCompileLibSBML(type:Exec) {
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
-// print all detected settings
+// print configured settings
 println "libsbml.js b uild configuration"
 println " -- expat version $expatVersion"
 println " -- libsbml version $libSbmlVersion"
-println "    Packages:"
-println "    -- Layout ${enableLayout}"
-println "    -- Render ${enableRender}"
-println "    -- FBC ${enableFBC}"
-println "    -- Multi ${enableMulti}"
-println "    -- Qual ${enableQual}"
+println "    SBML Packages:"
+println "    -- Arrays ${enableArrays}"
 println "    -- Comp ${enableComp}"
 println "    -- Distrib ${enableDistrib}"
 println "    -- Dyn ${enableDyn}"
+println "    -- FBC ${enableFBC}"
 println "    -- Groups ${enableGroups}"
-println "    -- Arrays ${enableArrays}"
+println "    -- Layout ${enableLayout}"
+println "    -- Multi ${enableMulti}"
+println "    -- Qual ${enableQual}"
+println "    -- Render ${enableRender}"
 println "    -- Spatial ${enableSpatial}"
