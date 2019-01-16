@@ -14,7 +14,7 @@ source /path/to/emsdk_env.sh
 ```
 
 1. Obtain the Expat XML parser source code
-  * Obtain the source code via git clone or download a release and unpack into the `expat` directory. Example:
+  * You can obtain the source code via git clone or download a release and unpack into the `expat` directory. Example:
 ```
 wget https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
 mkdir expat
