@@ -350,7 +350,7 @@ emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
 // print configured settings
-println "libsbml.js b uild configuration"
+println "libsbml.js build configuration"
 println " -- expat version $expatVersion"
 println " -- libsbml version $libSbmlVersion"
 println "    SBML Packages:"
