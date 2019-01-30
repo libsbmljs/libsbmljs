@@ -80,6 +80,73 @@ interface Species {
   boolean isSetSBOTerm();
 };
 
+[Prefix="libsbml::"]
+interface Unit {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  long getScale();
+
+  boolean isAmpere();
+  boolean isAvogadro();
+  boolean isBecquerel();
+  boolean isCandela();
+  boolean isCelsius();
+  boolean isCoulomb();
+  boolean isDimensionless();
+  boolean isFarad();
+  boolean isGram();
+  boolean isGray();
+  boolean isHenry();
+  boolean isHertz();
+  boolean isItem();
+  boolean isJoule();
+  boolean isKatal();
+  boolean isKelvin();
+  boolean isKilogram();
+  boolean isLitre();
+  boolean isLumen();
+  boolean isLux();
+  boolean isMetre();
+  boolean isMole();
+  boolean isNewton();
+  boolean isOhm();
+  boolean isPascal();
+  boolean isRadian();
+  boolean isSecond();
+  boolean isSiemens();
+  boolean isSievert();
+  boolean isSteradian();
+  boolean isTesla();
+  boolean isVolt();
+  boolean isWatt();
+  boolean isWeber();
+};
+
+[Prefix="libsbml::"]
+interface UnitDefinition {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  // TODO: doc
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  unsigned long getNumUnits();
+  Unit createUnit();
+  Unit getUnit(unsigned long n);
+};
+
 enum libsbml__idl__ASTNodeType_t {
     "libsbml::AST_PLUS"
   , "libsbml::AST_MINUS"
@@ -199,6 +266,98 @@ interface Parameter {
   boolean isSetUnits();
   DOMString getUnits();
   long setUnits(DOMString units);
+};
+
+[Prefix="libsbml::"]
+interface Delay {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface Priority {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface EventAssignment {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] DOMString getVariable();
+    long setVariable(DOMString variable);
+    boolean isSetVariable();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface Trigger {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+
+    boolean getPersistent();
+    long setPersistent(boolean persistent);
+    boolean isSetPersistent();
+};
+
+[Prefix="libsbml::"]
+interface Event {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+  boolean isSetName();
+
+  Delay createDelay();
+  Delay getDelay();
+  long setDelay([Const] Delay delay);
+  boolean isSetDelay();
+
+  Priority createPriority();
+  long setPriority(Priority priority);
+  Priority getPriority();
+  boolean isSetPriority();
+
+  long setTrigger(Trigger trigger);
+  Trigger getTrigger();
+  boolean isSetTrigger();
+
+  EventAssignment createEventAssignment();
+  EventAssignment getEventAssignment(unsigned long n);
+  unsigned long getNumEventAssignments();
 };
 
 // TODO: doc
@@ -455,6 +614,10 @@ interface Model {
   // TODO: doc
   Species removeSpecies(unsigned long i);
 
+  unsigned long getNumUnitDefinitions();
+  UnitDefinition getUnitDefinition(unsigned long i);
+  UnitDefinition createUnitDefinition();
+
   unsigned long getNumCompartments();
   Compartment getCompartment(unsigned long i);
   Compartment createCompartment();
@@ -463,6 +626,11 @@ interface Model {
   unsigned long getNumParameters();
   Parameter createParameter();
   Parameter getParameter(unsigned long i);
+
+  // TODO: doc
+  unsigned long getNumEvents();
+  Event createEvent();
+  Event getEvent(unsigned long i);
 
   // TODO: doc
   unsigned long getNumRules();
