@@ -360,6 +360,26 @@ interface Event {
   unsigned long getNumEventAssignments();
 };
 
+[Prefix="libsbml::"]
+interface FunctionDefinition {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+  boolean isSetName();
+
+  unsigned long getNumArguments();
+  [Const] ASTNode getArgument(unsigned long n);
+
+  [Const] ASTNode getBody();
+  boolean isSetBody();
+
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+};
+
 // TODO: doc
 [Prefix="libsbml::"]
 interface LocalParameter {
@@ -631,6 +651,11 @@ interface Model {
   unsigned long getNumEvents();
   Event createEvent();
   Event getEvent(unsigned long i);
+
+  // TODO: doc
+  unsigned long getNumFunctionDefinitions();
+  FunctionDefinition createFunctionDefinition();
+  FunctionDefinition getFunctionDefinition(unsigned long i);
 
   // TODO: doc
   unsigned long getNumRules();
