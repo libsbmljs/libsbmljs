@@ -700,6 +700,26 @@ interface SBasePlugin {
   unsigned long getLevel();
 };
 
+enum libsbml__idl__SBMLErrorCategory_t {
+  "libsbml::LIBSBML_CAT_SBML",
+  "libsbml::LIBSBML_CAT_SBML_L1_COMPAT",
+  "libsbml::LIBSBML_CAT_SBML_L2V1_COMPAT",
+  "libsbml::LIBSBML_CAT_SBML_L2V2_COMPAT",
+  "libsbml::LIBSBML_CAT_GENERAL_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_IDENTIFIER_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_UNITS_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_MATHML_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_SBO_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_OVERDETERMINED_MODEL",
+  "libsbml::LIBSBML_CAT_SBML_L2V3_COMPAT",
+  "libsbml::LIBSBML_CAT_MODELING_PRACTICE",
+  "libsbml::LIBSBML_CAT_INTERNAL_CONSISTENCY",
+  "libsbml::LIBSBML_CAT_SBML_L2V4_COMPAT",
+  "libsbml::LIBSBML_CAT_SBML_L3V1_COMPAT",
+  "libsbml::LIBSBML_CAT_SBML_L3V2_COMPAT",
+  "libsbml::LIBSBML_CAT_SBML_COMPATIBILITY"
+};
+
 [Prefix="libsbml::"]
 interface SBMLDocument {
   // ctor
@@ -742,7 +762,9 @@ interface SBMLDocument {
   unsigned long checkL2v3Compatibility();
   unsigned long checkL2v4Compatibility();
   unsigned long checkL3v1Compatibility();
+  unsigned long checkL3v2Compatibility();
 
+  void setConsistencyChecks(libsbml__idl__SBMLErrorCategory_t category, boolean apply);
 };
 
 [Prefix="libsbml::"]
