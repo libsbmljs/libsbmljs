@@ -2,23 +2,23 @@
 interface SBase {
   DOMString getId();
   boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+
+  DOMString getMetaId();
+  long setMetaId(DOMString id);
+
+  long getSBOTerm();
+  long setSBOTerm(long value);
+  boolean isSetSBOTerm();
 };
 
 [Prefix="libsbml::"]
 interface SpeciesReference {
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
   DOMString getSpecies();
   long setSpecies(DOMString spec);
 
-  // TODO: doc
   [Const] Model getModel();
 };
 
@@ -26,34 +26,16 @@ SpeciesReference implements SBase;
 
 [Prefix="libsbml::"]
 interface ModifierSpeciesReference {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
   DOMString getSpecies();
   long setSpecies(DOMString spec);
 
-  // TODO: doc
   [Const] Model getModel();
 };
 
+SpeciesReference implements SBase;
+
 [Prefix="libsbml::"]
 interface Species {
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-
   double getInitialAmount();
   long setInitialAmount(double amt);
   boolean isSetInitialAmount();
@@ -75,11 +57,6 @@ interface Species {
   DOMString getUnits();
   long setUnits(DOMString units);
   boolean isSetUnits();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
 };
 
 SpeciesReference implements SBase;
