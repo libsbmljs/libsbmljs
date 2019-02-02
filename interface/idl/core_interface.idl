@@ -1,8 +1,11 @@
 [Prefix="libsbml::"]
-interface SpeciesReference {
+interface SBase {
   DOMString getId();
   boolean setId(DOMString id);
+};
 
+[Prefix="libsbml::"]
+interface SpeciesReference {
   // TODO: doc
   DOMString getMetaId();
   long setMetaId(DOMString id);
@@ -18,6 +21,8 @@ interface SpeciesReference {
   // TODO: doc
   [Const] Model getModel();
 };
+
+SpeciesReference implements SBase;
 
 [Prefix="libsbml::"]
 interface ModifierSpeciesReference {
@@ -42,9 +47,6 @@ interface ModifierSpeciesReference {
 
 [Prefix="libsbml::"]
 interface Species {
-  DOMString getId();
-  boolean setId(DOMString id);
-
   // TODO: doc
   DOMString getMetaId();
   long setMetaId(DOMString id);
@@ -79,6 +81,8 @@ interface Species {
   long setSBOTerm(long value);
   boolean isSetSBOTerm();
 };
+
+SpeciesReference implements SBase;
 
 [Prefix="libsbml::"]
 interface Unit {
