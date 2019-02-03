@@ -339,7 +339,7 @@ task emccCompileLibSBML(type:Exec) {
     "-s","MODULARIZE=1",
     "-s","EXPORT_NAME=\"libsbml\"",
     "-s","ALLOW_MEMORY_GROWTH=1",
-    "-s","FILESYSTEM=0",
+    // "-s","FILESYSTEM=0",
     // "-g",
     "-o","libsbml.js",
     ] as String[]

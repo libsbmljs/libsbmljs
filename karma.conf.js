@@ -8,7 +8,7 @@
 // https://stackoverflow.com/questions/22421857/error-no-provider-for-frameworkjasmine-resolving-frameworkjasmine
 
 var path = require('path');
-var webpackConfig = require('./webpack.config');
+const webpack = require('webpack');
 // var entry = path.resolve(webpackConfig.context, webpackConfig.entry);
 // var preprocessors = {};
 // preprocessors[entry] = ['webpack'];
@@ -33,10 +33,28 @@ module.exports = function(config) {
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       {pattern: 'karma/tests/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       // 'node_modules/@babel/polyfill/dist/polyfill.js',
-      'karma/tests/*.js'
+      'karma/tests/libsbml-basic.js'
     ],
 
-    webpack: webpackConfig,
+    webpack: {
+      resolve: {
+        modules: ['/extra/devel/src/libsbml.js/build ','node_modules']
+      },
+      module: {
+        rules: [
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader"
+            }
+          },
+        ]
+      },
+      plugins: [
+        new webpack.IgnorePlugin(/^fs$/)
+      ]
+    },
 
     proxies: {
       '/libsbml.wasm': '/base/libsbml.wasm'
@@ -49,7 +67,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'karma/tests/*.js': ['webpack']
+      'karma/tests/libsbml-basic.js': ['webpack']
     },
 
     // test results reporter to use
