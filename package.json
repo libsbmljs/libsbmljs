@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://gitlab.com/0u812/libsbml.js/issues"
   },
-  "homepage": "https://gitlab.com/0u812/libsbml.js#README"
+  "homepage": "https://gitlab.com/0u812/libsbml.js#README",
+  "dependencies": {
+    "karma": "^4.0.0"
+  }
 }

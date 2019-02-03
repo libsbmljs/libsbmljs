@@ -2,4 +2,5 @@
 /build
 /libsbml
 /expat
+/node_modules
 *.swp
