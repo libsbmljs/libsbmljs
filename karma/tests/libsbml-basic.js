@@ -1,4 +1,4 @@
-import libsbml from 'libsbml.js'
+import libsbml from './libsbml.js'
 // const libsbml = require('libsbml.js')
 
 var reader;
@@ -95,7 +95,14 @@ describe("Basic API tests for libsbml.js", function() {
   beforeEach((done) => libsbml().then((module) => done()))
 
   it("loads raw SBML", function(done) {
-    console.log(libsbml['calledRun'])
+    console.log('loads sbml')
+    // console.log(libsbml['calledRun'])
+    // setTimeout(() => {
+    //   libsbml().then((module) => {
+    //     console.log('loaded libsbml')
+    //     done()
+    //   })
+    // }, 2000)
     done();
     // runs(function() {
     //   // read with no errors

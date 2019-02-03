@@ -4,3 +4,5 @@
 /expat
 /node_modules
 *.swp
+*.wasm
+libsbml.js

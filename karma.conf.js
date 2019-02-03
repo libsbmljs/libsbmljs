@@ -3,6 +3,17 @@
 
 // https://github.com/babel/karma-babel-preprocessor
 
+// https://stackoverflow.com/questions/38573690/uncaught-referenceerror-require-is-not-defined-on-karma-start-karma-conf-js/38579355
+
+// https://stackoverflow.com/questions/22421857/error-no-provider-for-frameworkjasmine-resolving-frameworkjasmine
+
+var path = require('path');
+var webpackConfig = require('./webpack.config');
+// var entry = path.resolve(webpackConfig.context, webpackConfig.entry);
+// var preprocessors = {};
+// preprocessors[entry] = ['webpack'];
+// preprocessors = ['webpack']
+
 module.exports = function(config) {
   config.set({
 
@@ -10,13 +21,26 @@ module.exports = function(config) {
     basePath: '',
 
     // https://stackoverflow.com/questions/19117092/jasmine-tests-in-karma-uncaught-referenceerror-require-is-not-defined
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
 
-    // list of files / patterns to load in the browser
+    mime: {
+     'application/wasm': ['wasm']
+    },
+
+    // https://github.com/webpack/webpack-dev-middleware/issues/229
     files: [
-      'node_modules/@babel/polyfill/dist/polyfill.js',
+      {pattern: 'libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      {pattern: 'karma/tests/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      // 'node_modules/@babel/polyfill/dist/polyfill.js',
       'karma/tests/*.js'
     ],
+
+    webpack: webpackConfig,
+
+    proxies: {
+      '/libsbml.wasm': '/base/libsbml.wasm'
+    },
 
     // list of files to exclude
     exclude: [
@@ -25,18 +49,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'karma/tests/*.js': ['browserify', 'babel']
-    },
-
-    babelPreprocessor: {
-      options: {
-        presets: ['@babel/preset-env'],
-        sourceMap: 'inline'
-      }
-    },
-    browserify: {
-      debug: true,
-      transform: [ ['babelify', {presets: ["@babel/preset-env"]}] ],
+      'karma/tests/*.js': ['webpack']
     },
 
     // test results reporter to use
@@ -63,6 +76,16 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    concurrency: Infinity,
+    plugins:[
+      require('karma-webpack'),
+      ('karma-jasmine'),
+      // ('karma-chai'),
+      // ('karma-mocha'),
+      // ('karma-chrome-launcher')
+      ('karma-firefox-launcher'),
+    ]
   });
 };
