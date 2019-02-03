@@ -22,5 +22,17 @@
   "homepage": "https://gitlab.com/0u812/libsbml.js#README",
   "dependencies": {
     "karma": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "karma-babel-preprocessor": "^8.0.0-beta.0",
+    "karma-browserify": "^6.0.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^2.0.1",
+    "watchify": "^3.11.0"
   }
 }
