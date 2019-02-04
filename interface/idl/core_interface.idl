@@ -2,12 +2,15 @@
 interface SBase {
   DOMString getId();
   boolean setId(DOMString id);
+  boolean isSetId();
 
   DOMString getName();
   long setName(DOMString name);
+  boolean isSetName();
 
   DOMString getMetaId();
   long setMetaId(DOMString id);
+  boolean isSetMetaId();
 
   long getSBOTerm();
   long setSBOTerm(long value);
@@ -414,17 +417,6 @@ interface SBMLFormulaParser {
 
 [Prefix="libsbml::"]
 interface Reaction {
-  DOMString getId();
-  long setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  // TODO: doc
-  DOMString getName();
-  long setName(DOMString name);
-
   long getNumReactants();
   long getNumProducts();
   long getNumModifiers();
@@ -435,6 +427,7 @@ interface Reaction {
 
   long addReactant(SpeciesReference sr);
   long addProduct(SpeciesReference sr);
+  long addModifier(ModifierSpeciesReference sr);
 
   SpeciesReference createReactant();
   SpeciesReference createProduct();
@@ -442,26 +435,20 @@ interface Reaction {
 
   KineticLaw createKineticLaw();
   KineticLaw getKineticLaw();
+  boolean isSetKineticLaw();
 
-  // TODO: doc
   boolean getReversible();
   long setReversible(boolean value);
   boolean isSetReversible();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
 };
+
+Reaction implements SBase;
 
 [Prefix="libsbml::"]
 interface Compartment {
-  DOMString getId();
-  long setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
 
   double getSize();
   long setSize(double val);
@@ -469,17 +456,14 @@ interface Compartment {
 
   double getVolume();
   long setVolume(double val);
+  boolean isSetVolume();
 
   DOMString getUnits();
   long setUnits(DOMString units);
-  // TODO: doc
   boolean isSetUnits();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
 };
+
+Compartment implements SBase;
 
 [Prefix="libsbml::"]
 interface Rule {
