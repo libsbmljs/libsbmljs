@@ -1,6 +1,7 @@
 ## Preliminaries
 
-What you will need (tested version):
+What you will need before starting (minimum version):
+
 * Git (2.4.11)
 * SVN (1.8.15)
 * CMake (3.12.1)
@@ -35,3 +36,24 @@ Optionally, you can specify which packages should be enabled/disabled on the com
 ```
 gradle -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=true -PenableQual=true -PenableComp=true -PenableDistrib=true -PenableDyn=true -PenableGroups=true -PenableArrays=true -PenableSpatial=true
 ```
+
+## Testing with Karma
+
+The libsbml.js wrapper can be tested in the browser using [Karma](http://karma-runner.github.io/latest/index.html).
+
+What you will need before starting (minimum version):
+* Node (10.15.0)
+
+1. First run
+
+```
+npm install
+```
+
+1. Now you should be able to run the tests using
+
+```
+./node_modules/karma/bin/karma start
+```
+
+The wrapper will be tested using Firefox. To test with other browsers, edit `karma.conf.js` and add the desired browsers.
