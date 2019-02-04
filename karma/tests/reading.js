@@ -1,6 +1,6 @@
 import libsbml from 'libsbml.js'
 
-describe("Basic API tests for libsbml.js", function() {
+describe("Synchronous reading from inline string", function() {
   it("loads SBML from an inline string", (done) => {
     libsbml().then((libsbml) => {
       const sbmlstr = " \
@@ -115,7 +115,7 @@ describe("Basic API tests for libsbml.js", function() {
   })
 })
 
-describe("Decay model test", function() {
+describe("Asynchronous reading from URL", function() {
   it('loads SBML asynchronously using an XHR', (done) => {
     libsbml().then((libsbml) => {
       const reader = new libsbml.SBMLReader()
