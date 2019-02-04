@@ -30,14 +30,10 @@ module.exports = function(config) {
     files: [
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       {pattern: 'karma/models/*.xml', watched: false, served: true, included: false},
-      'karma/tests/libsbml-basic.js'
+      'karma/tests/*.js'
     ],
 
     webpack: {
-      output: {
-        // https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url/43212553
-        publicPath: '/'
-      },
       resolve: {
         modules: ['build','node_modules']
       },
@@ -68,7 +64,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'karma/tests/libsbml-basic.js': ['webpack']
+      'karma/tests/*.js': ['webpack']
     },
 
     // test results reporter to use
