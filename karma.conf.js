@@ -20,7 +20,6 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-    // https://stackoverflow.com/questions/19117092/jasmine-tests-in-karma-uncaught-referenceerror-require-is-not-defined
     frameworks: ['jasmine'],
 
     mime: {
@@ -29,10 +28,7 @@ module.exports = function(config) {
 
     // https://github.com/webpack/webpack-dev-middleware/issues/229
     files: [
-      // {pattern: 'libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
-      // {pattern: 'karma/tests/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
-      // 'node_modules/@babel/polyfill/dist/polyfill.js',
       'karma/tests/libsbml-basic.js'
     ],
 
