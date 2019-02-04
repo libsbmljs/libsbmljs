@@ -1,14 +1,4 @@
 import libsbml from './libsbml.js'
-// const libsbml = require('libsbml.js')
-
-// var reader;
-// var doc;
-// var doneLoadingEmbeddedModel = false;
-// var ready = false;
-
-// Module["noExitRuntime"] = true
-
-console.log(navigator.userAgent)
 
 describe("Basic API tests for libsbml.js", function() {
   it("loads SBML from an inline string", (done) => {
@@ -89,7 +79,6 @@ describe("Basic API tests for libsbml.js", function() {
 </sbml>"
       const reader = new libsbml.SBMLReader()
       const doc = reader.readSBMLFromString(sbmlstr)
-      console.log('loads sbml')
 
       // read with no errors
       expect(doc.getNumErrors()).toEqual(0)
