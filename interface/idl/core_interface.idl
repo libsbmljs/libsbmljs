@@ -60,6 +60,22 @@ interface Species {
   DOMString getUnits();
   long setUnits(DOMString units);
   boolean isSetUnits();
+
+  boolean getBoundaryCondition();
+  long setBoundaryCondition(boolean value);
+  boolean isSetBoundaryCondition();
+
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
+
+  DOMString getSubstanceUnits();
+  long setSubstanceUnits(DOMString sid);
+  boolean isSetSubstanceUnits();
+
+  DOMString getConversionFactor();
+  long setConversionFactor(DOMString sid);
+  boolean isSetConversionFactor();
 };
 
 Species implements SBase;
