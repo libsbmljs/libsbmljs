@@ -21,8 +21,11 @@ interface SBase {
 interface SpeciesReference {
   DOMString getSpecies();
   long setSpecies(DOMString spec);
+  boolean isSetSpecies();
 
-  [Const] Model getModel();
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
 };
 
 SpeciesReference implements SBase;
@@ -31,8 +34,7 @@ SpeciesReference implements SBase;
 interface ModifierSpeciesReference {
   DOMString getSpecies();
   long setSpecies(DOMString spec);
-
-  [Const] Model getModel();
+  boolean isSetSpecies();
 };
 
 ModifierSpeciesReference implements SBase;
