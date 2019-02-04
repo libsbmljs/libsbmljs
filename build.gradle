@@ -322,6 +322,7 @@ task emccCompileLibSBML(type:Exec) {
     combineCPP.target,
     Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
     "--post-js",Paths.get("$buildDir","interface","idl","sbml_interface.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","xhr.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),

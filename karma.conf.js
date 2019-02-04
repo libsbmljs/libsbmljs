@@ -29,6 +29,7 @@ module.exports = function(config) {
     // https://github.com/webpack/webpack-dev-middleware/issues/229
     files: [
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      {pattern: 'karma/models/*.xml', watched: false, served: true, included: false},
       'karma/tests/libsbml-basic.js'
     ],
 

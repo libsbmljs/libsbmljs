@@ -32,7 +32,7 @@ interface ModifierSpeciesReference {
   [Const] Model getModel();
 };
 
-SpeciesReference implements SBase;
+ModifierSpeciesReference implements SBase;
 
 [Prefix="libsbml::"]
 interface Species {
@@ -59,7 +59,7 @@ interface Species {
   boolean isSetUnits();
 };
 
-SpeciesReference implements SBase;
+Species implements SBase;
 
 [Prefix="libsbml::"]
 interface Unit {
