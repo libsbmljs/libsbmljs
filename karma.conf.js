@@ -29,16 +29,20 @@ module.exports = function(config) {
 
     // https://github.com/webpack/webpack-dev-middleware/issues/229
     files: [
-      {pattern: 'libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      // {pattern: 'libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
-      {pattern: 'karma/tests/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      // {pattern: 'karma/tests/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       // 'node_modules/@babel/polyfill/dist/polyfill.js',
       'karma/tests/libsbml-basic.js'
     ],
 
     webpack: {
+      output: {
+        // https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url/43212553
+        publicPath: '/'
+      },
       resolve: {
-        modules: ['/extra/devel/src/libsbml.js/build ','node_modules']
+        modules: ['build','node_modules']
       },
       module: {
         rules: [
@@ -57,7 +61,7 @@ module.exports = function(config) {
     },
 
     proxies: {
-      '/libsbml.wasm': '/base/libsbml.wasm'
+      '/base/karma/tests/libsbml.wasm': '/base/build/libsbml.wasm'
     },
 
     // list of files to exclude

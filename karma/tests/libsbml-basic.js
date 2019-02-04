@@ -1,4 +1,4 @@
-import libsbml from './libsbml.js'
+import libsbml from 'libsbml.js'
 
 describe("Basic API tests for libsbml.js", function() {
   it("loads SBML from an inline string", (done) => {
