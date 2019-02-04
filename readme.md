@@ -1,29 +1,34 @@
+# libsbml.js
+
+This repository hosts the build scripts for libsbml.js. You can use the included Gradle script to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17 and may break for older/newer versions).
+
 ## Preliminaries
 
-What you will need before starting (minimum version):
+What you will need before starting:
 
-* Git (2.4.11)
-* SVN (1.8.15)
-* CMake (3.12.1)
-* Gradle (5.1.1)
+* Git (2.4.11 or later)
+* SVN (1.8.15 or later) (if you want to build libSBML from svn)
+* CMake (3.12.1 or later)
+* Gradle (5.1.1 or later)
+* [Emscripten SDK](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html) (1.38.21 or later)
 
 ## Instructions
 
-1. Download the [Emscripten SDK](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html) and activate it using the command
+1. Activate the Emscripten SDK using the command
 ```
 source /path/to/emsdk_env.sh
 ```
 
-1. Obtain the Expat XML parser source code
-  * You can obtain the source code via git clone or download a release and unpack into the `expat` directory. Example:
+1. Obtain the Expat XML parser source code and store it in a directory named `expat` inside this directory.
+  * You can obtain the source code via git or download a release and unpack into the `expat` directory. Example:
 ```
 wget https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
 mkdir expat
 tar -xf expat-2.2.6.tar.bz2 -C expat --strip-components=1
 ```
 
-1. Obtain libsbml source code
-  * Checkout libsbml via svn or download one of the releases (stable or experimental) and unpack into the `libsbml` directory. For example, to checkout the experimental branch,
+1. Obtain the libSBML source code and store it in a directory named `libsbml` inside this directory.
+  * Checkout libSBML via svn or download one of the releases (stable or experimental) and unpack into the `libsbml` directory. For example, to checkout the experimental branch,
 ```
 svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental libsbml
 ```
@@ -40,9 +45,13 @@ gradle -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=tr
 ## Testing with Karma
 
 The libsbml.js wrapper can be tested in the browser using [Karma](http://karma-runner.github.io/latest/index.html).
+You must first build libsbml.js from source as described above.
 
-What you will need before starting (minimum version):
-* Node (10.15.0)
+What you will need before starting:
+
+* Node (10.15.0 or later)
+
+How to run testing with Karma:
 
 1. First run
 
@@ -57,3 +66,8 @@ npm install
 ```
 
 The wrapper will be tested using Firefox. To test with other browsers, edit `karma.conf.js` and add the desired browsers.
+
+## FAQ
+
+* Is compression support for SBML models built-in?
+  * No. We have tried to minimize the size of the generated WASM binary by excluding non-essential components. You can easily compress your hosted SBML models using (HTTP compression)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression] without all of the downsides mentioned above.
