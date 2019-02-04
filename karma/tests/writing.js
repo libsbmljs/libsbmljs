@@ -70,6 +70,8 @@ describe("Writing test", function() {
         expect(ast_root.getNumChildren()).toEqual(2)
         expect(ast_root.getChild(0).getType()).toEqual(libsbml.AST_NAME)
         expect(ast_root.getChild(0).getName()).toEqual('S1')
+        expect(ast_root.getChild(1).getType()).toEqual(libsbml.AST_NAME)
+        expect(ast_root.getChild(1).getName()).toEqual('S2')
 
         expect(model_after.getNumSpecies()).toEqual(2)
 
