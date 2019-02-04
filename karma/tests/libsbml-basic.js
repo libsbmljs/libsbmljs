@@ -11,12 +11,7 @@ import libsbml from './libsbml.js'
 console.log(navigator.userAgent)
 
 describe("Basic API tests for libsbml.js", function() {
-  // beforeEach((done) => libsbml().then((module) => {
-  //   const reader = new module.SBMLReader()
-  //   done()
-  // }))
-
-  it("loads raw SBML", (done) => {
+  it("loads SBML from an inline string", (done) => {
     libsbml().then((libsbml) => {
       const sbmlstr = " \
 <!-- Created by libAntimony version v2.5 on 2014-10-09 21:22 with libSBML version 5.10.0. --> \
@@ -92,22 +87,14 @@ describe("Basic API tests for libsbml.js", function() {
     </listOfReactions> \
   </model> \
 </sbml>"
-      // done()
       const reader = new libsbml.SBMLReader()
       const doc = reader.readSBMLFromString(sbmlstr)
       console.log('loads sbml')
-      // console.log(libsbml['calledRun'])
-      // setTimeout(() => {
-      //   libsbml().then((module) => {
-      //     console.log('loaded libsbml')
-      //     done()
-      //   })
-      // }, 2000)
-      // runs(function() {
+
       // read with no errors
       expect(doc.getNumErrors()).toEqual(0)
-      //
-      const  model = doc.getModel();
+
+      const  model = doc.getModel()
 
       // three reactions in model
       expect(model.getNumReactions()).toEqual(3)
@@ -130,16 +117,13 @@ describe("Basic API tests for libsbml.js", function() {
       expect(model.reactions[2].getId()).toEqual('_J2')
       expect(model.reactions[2].getNumReactants()).toEqual(1)
       expect(model.reactions[2].getReactant(0).getSpecies()).toEqual('S2')
-      // });
+
+      libsbml.destroy(doc)
+      libsbml.destroy(reader)
+
       done()
     })
   });
-
-  // it('cleans up resources', function() {
-  //   libsbml.destroy(doc);
-  //   libsbml.destroy(reader);
-  // });
-
 });
 
 // var decayDoc;
