@@ -363,14 +363,14 @@ task generateDocumentation(type:Exec) {
   workingDir "${buildDir}"
   def freakingStrings = ["node",
     "${documentationJSScript}",
-    "build",Paths.get("build","interface","idl","sbml_interface_docstrings.js").toString(),
+    "build",Paths.get("interface","idl","sbml_interface_docstrings.js").toString(),
     "--project-name","libsbml.js",
-    "--project-version","libSbmlVersion",
+    "--project-version","${libSbmlVersion}",
     "--project-description","WebAssembly/JavaScript bindings for libSBML",
     "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
     "--shallow",
     "--format","html",
-    "--output",Paths.get("build","libsbml_doc.html").toString(),
+    "--output","libsbml_htmldoc",
     ] as String[]
   commandLine freakingStrings
 }
