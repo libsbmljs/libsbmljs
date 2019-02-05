@@ -48,9 +48,8 @@ interface CVTerm {
 };
 
 /**
- * A table object
- * @param {number} width
- * @param {number} height
+ * Le SBase.
+ * It is a le class.
  */
 [Prefix="libsbml::"]
 interface SBase {

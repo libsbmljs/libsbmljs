@@ -47,6 +47,9 @@ if (!emccToolchain.exists() || emccToolchain.isDirectory()) {
   throw new GradleException('Expected to find Emscripten.cmake binder at $EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake, but it does not exist')
 }
 
+ext.documentationJSScript = Paths.get(project.rootDir.path,"node_modules","documentation","bin","documentation.js").toString()
+def documentationJSScriptFile = new File(documentationJSScript)
+
 // additional build options
 ext.withEmrun = findProperty('withEmrun') || false
 
@@ -351,6 +354,28 @@ task emccCompileLibSBML(type:Exec) {
 }
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
+
+
+task generateDocumentation(type:Exec) {
+  if (!documentationJSScriptFile.exists() || documentationJSScriptFile.isDirectory()) {
+    throw new GradleException('Expected to find documentation.js at node_modules/documentation/bin/documentation.js, but it does not exist')
+  }
+  workingDir "${buildDir}"
+  def freakingStrings = ["node",
+    "${documentationJSScript}",
+    "build",Paths.get("build","interface","idl","sbml_interface_docstrings.js").toString(),
+    "--project-name","libsbml.js",
+    "--project-version","libSbmlVersion",
+    "--project-description","WebAssembly/JavaScript bindings for libSBML",
+    "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
+    "--shallow",
+    "--format","html",
+    "--output",Paths.get("build","libsbml_doc.html").toString(),
+    ] as String[]
+  commandLine freakingStrings
+}
+generateDocumentation.dependsOn(emccCompileLibSBML)
+
 
 // print configured settings
 println "libsbml.js build configuration"

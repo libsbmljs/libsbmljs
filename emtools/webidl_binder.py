@@ -48,6 +48,7 @@ output_base = sys.argv[2]
 
 shared.try_delete(output_base + '.cpp')
 shared.try_delete(output_base + '.js')
+shared.try_delete(output_base + '_docstrings.js')
 
 p = WebIDL.Parser()
 input_text = open(input_file).read()
@@ -73,7 +74,9 @@ for thing in data:
     implements.setdefault(thing.implementor.identifier.name, []).append(thing.implementee.identifier.name)
   elif isinstance(thing, WebIDL.IDLEnum):
     enums[thing.identifier.name] = thing
-print(doc_gen.render())
+
+with open(output_base + '_docstrings.js', 'w') as js_docstrings:
+    js_docstrings.write(doc_gen.render())
 
 #print interfaces
 #print implements
