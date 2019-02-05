@@ -1,6 +1,6 @@
 # libsbml.js
 
-This repository hosts the build scripts for libsbml.js. You can use the included Gradle script to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17 and may break for older/newer versions).
+This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScript wrapper for the C++ library [libSBML](http://sbml.org/Software/libSBML). You can use the included Gradle script to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17 and may break for older/newer versions).
 
 ## Preliminaries
 
