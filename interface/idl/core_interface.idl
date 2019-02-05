@@ -47,6 +47,11 @@ interface CVTerm {
   long setModelQualifierType(libsbml__idl__ModelQualifierType_t type);
 };
 
+/**
+ * A table object
+ * @param {number} width
+ * @param {number} height
+ */
 [Prefix="libsbml::"]
 interface SBase {
   DOMString getId();
