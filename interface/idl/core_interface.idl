@@ -1,3 +1,52 @@
+enum libsbml__idl__QualifierType_t {
+  "libsbml::MODEL_QUALIFIER",
+  "libsbml::BIOLOGICAL_QUALIFIER",
+  "libsbml::UNKNOWN_QUALIFIER"
+};
+
+enum libsbml__idl__BiolQualifierType_t {
+  "libsbml::BQB_IS",
+  "libsbml::BQB_HAS_PART",
+  "libsbml::BQB_IS_PART_OF",
+  "libsbml::BQB_IS_VERSION_OF",
+  "libsbml::BQB_HAS_VERSION",
+  "libsbml::BQB_IS_HOMOLOG_TO",
+  "libsbml::BQB_IS_DESCRIBED_BY",
+  "libsbml::BQB_IS_ENCODED_BY",
+  "libsbml::BQB_ENCODES",
+  "libsbml::BQB_OCCURS_IN",
+  "libsbml::BQB_HAS_PROPERTY",
+  "libsbml::BQB_IS_PROPERTY_OF",
+  "libsbml::BQB_HAS_TAXON",
+  "libsbml::BQB_UNKNOWN"
+};
+
+enum libsbml__idl__ModelQualifierType_t {
+  "libsbml::BQM_IS",
+  "libsbml::BQM_IS_DESCRIBED_BY",
+  "libsbml::BQM_IS_DERIVED_FROM",
+  "libsbml::BQM_IS_INSTANCE_OF",
+  "libsbml::BQM_HAS_INSTANCE",
+  "libsbml::BQM_UNKNOWN"
+};
+
+[Prefix="libsbml::"]
+interface CVTerm {
+  long addResource(DOMString resource);
+  unsigned long getNumResources();
+	DOMString getResourceURI(unsigned long n);
+  long removeResource(DOMString resource);
+
+  libsbml__idl__QualifierType_t getQualifierType();
+  long setQualifierType(libsbml__idl__QualifierType_t type);
+
+  libsbml__idl__BiolQualifierType_t getBiologicalQualifierType();
+  long setBiologicalQualifierType(libsbml__idl__BiolQualifierType_t type);
+
+  libsbml__idl__ModelQualifierType_t getModelQualifierType();
+  long setModelQualifierType(libsbml__idl__ModelQualifierType_t type);
+};
+
 [Prefix="libsbml::"]
 interface SBase {
   DOMString getId();
@@ -15,6 +64,16 @@ interface SBase {
   long getSBOTerm();
   long setSBOTerm(long value);
   boolean isSetSBOTerm();
+
+  long setAnnotation(DOMString str);
+  DOMString getAnnotationString();
+
+  unsigned long getVersion();
+
+  DOMString getNotesString();
+
+  long getNumCVTerms();
+  CVTerm getCVTerm(unsigned long n);
 };
 
 [Prefix="libsbml::"]
@@ -84,16 +143,6 @@ Species implements SBase;
 
 [Prefix="libsbml::"]
 interface Unit {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-
   long getScale();
 
   boolean isAmpere();
@@ -132,22 +181,16 @@ interface Unit {
   boolean isWeber();
 };
 
+Unit implements SBase;
+
 [Prefix="libsbml::"]
 interface UnitDefinition {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-
   unsigned long getNumUnits();
   Unit createUnit();
   Unit getUnit(unsigned long n);
 };
+
+UnitDefinition implements SBase;
 
 enum libsbml__idl__ASTNodeType_t {
     "libsbml::AST_PLUS"
@@ -246,21 +289,12 @@ interface ASTNode {
   DOMString getUnits();
   long setUnits(DOMString units);
 
-  // TODO: doc
   ByteString getName();
   long setName(ByteString name);
 };
 
-// TODO: doc
 [Prefix="libsbml::"]
 interface Parameter {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-  boolean isSetName();
-
   double getValue();
   long setValue(double value);
   boolean isSetValue();
@@ -268,7 +302,13 @@ interface Parameter {
   boolean isSetUnits();
   DOMString getUnits();
   long setUnits(DOMString units);
+
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
 };
+
+Parameter implements SBase;
 
 [Prefix="libsbml::"]
 interface Delay {
@@ -382,16 +422,8 @@ interface FunctionDefinition {
   boolean isSetMath();
 };
 
-// TODO: doc
 [Prefix="libsbml::"]
 interface LocalParameter {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-  boolean isSetName();
-
   double getValue();
   long setValue(double value);
   boolean isSetValue();
@@ -399,7 +431,13 @@ interface LocalParameter {
   boolean isSetUnits();
   DOMString getUnits();
   long setUnits(DOMString units);
+
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
 };
+
+LocalParameter implements SBase;
 
 [Prefix="libsbml::"]
 interface KineticLaw {
@@ -407,24 +445,19 @@ interface KineticLaw {
   long setMath(ASTNode math);
   boolean isSetMath();
 
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-
-  // TODO: doc
   unsigned long getNumLocalParameters();
   LocalParameter createLocalParameter();
   LocalParameter getLocalParameter(unsigned long i);
 
-  // TODO: doc
   unsigned long getNumParameters();
   Parameter createParameter();
   Parameter getParameter(unsigned long i);
 
-  // TODO: doc
   DOMString getFormula();
   long setFormula(DOMString formula);
 };
+
+KineticLaw implements SBase;
 
 [Prefix="libsbml::"]
 interface SBMLFormulaParser {
@@ -485,108 +518,63 @@ Compartment implements SBase;
 
 [Prefix="libsbml::"]
 interface Rule {
-  // TODO: doc
   boolean isRate();
   boolean isAssignment();
   boolean isAlgebraic();
 
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-  boolean isSetMetaId();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
-  // TODO: doc
   DOMString getFormula();
   long setFormula(DOMString formula);
 
-  // TODO: doc
   boolean isParameter();
 };
 
+Rule implements SBase;
+
 [Prefix="libsbml::"]
 interface AssignmentRule {
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-  boolean isSetMetaId();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
-  // TODO: doc
   DOMString getVariable();
   long setVariable(DOMString id);
   boolean isSetVariable();
 
-  // TODO: doc
   [Const] ASTNode getMath();
   long setMath(ASTNode math);
   boolean isSetMath();
 
-  // TODO: doc
   DOMString getFormula();
   long setFormula(DOMString formula);
 
-  // TODO: doc
   boolean isParameter();
 };
+
+AssignmentRule implements SBase;
 
 [Prefix="libsbml::"]
 interface RateRule {
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-  boolean isSetMetaId();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
-  // TODO: doc
   DOMString getFormula();
   long setFormula(DOMString formula);
 
-  // TODO: doc
   [Const] ASTNode getMath();
   long setMath(ASTNode math);
   boolean isSetMath();
 
-  // TODO: doc
   boolean isParameter();
 };
+
+RateRule implements SBase;
 
 [Prefix="libsbml::"]
 interface AlgebraicRule {
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-  boolean isSetMetaId();
-
-  // TODO: doc
-  long getSBOTerm();
-  long setSBOTerm(long value);
-  boolean isSetSBOTerm();
-
-  // TODO: doc
   DOMString getFormula();
   long setFormula(DOMString formula);
 
-  // TODO: doc
   [Const] ASTNode getMath();
   long setMath(ASTNode math);
   boolean isSetMath();
 
-  // TODO: doc
   boolean isParameter();
 };
+
+AlgebraicRule implements SBase;
 
 [Prefix="libsbmljs::"]
 interface RuleSwitch {
@@ -599,14 +587,6 @@ interface RuleSwitch {
 
 [Prefix="libsbml::"]
 interface Model {
-  DOMString getId();
-  long setId(DOMString id);
-
-  // TODO: doc
-  DOMString getMetaId();
-  long setMetaId(DOMString id);
-  boolean isSetMetaId();
-
   unsigned long getNumReactions();
   Reaction getReaction(unsigned long i);
   Reaction createReaction();
@@ -614,7 +594,6 @@ interface Model {
   unsigned long getNumSpecies();
   Species createSpecies();
   Species getSpecies(unsigned long i);
-  // TODO: doc
   Species removeSpecies(unsigned long i);
 
   unsigned long getNumUnitDefinitions();
@@ -625,38 +604,27 @@ interface Model {
   Compartment getCompartment(unsigned long i);
   Compartment createCompartment();
 
-  // TODO: doc
   unsigned long getNumParameters();
   Parameter createParameter();
   Parameter getParameter(unsigned long i);
 
-  // TODO: doc
   unsigned long getNumEvents();
   Event createEvent();
   Event getEvent(unsigned long i);
 
-  // TODO: doc
   unsigned long getNumFunctionDefinitions();
   FunctionDefinition createFunctionDefinition();
   FunctionDefinition getFunctionDefinition(unsigned long i);
 
-  // TODO: doc
   unsigned long getNumRules();
   Rule getRule(unsigned long i);
 
-  // TODO: doc
-  unsigned long getVersion();
-
-  // TODO: doc
-  long setAnnotation(DOMString str);
-
-  // TODO: doc
   unsigned long getNumPlugins();
   SBasePlugin getPlugin(unsigned long n);
 //   SBasePlugin getPlugin(DOMString name);
-
-  DOMString getNotesString();
 };
+
+Model implements SBase;
 
 [Prefix="libsbml::"]
 interface SBMLError {
