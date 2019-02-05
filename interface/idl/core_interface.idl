@@ -690,7 +690,6 @@ interface SBMLDocument {
   unsigned long getLevel();
 
   // plugins / packages
-  // TODO: doc
   unsigned long getNumPlugins();
   SBasePlugin getPlugin(unsigned long n);
 
@@ -700,13 +699,11 @@ interface SBMLDocument {
   long setPackageRequired(DOMString pkgName, boolean flag);
 
   // validation
-  // TODO: doc
   unsigned long checkConsistency();
   unsigned long checkInternalConsistency();
   unsigned long validateSBML();
 
   // compatibility checking
-  // TODO: doc
   unsigned long checkL1Compatibility();
   unsigned long checkL2v1Compatibility();
   unsigned long checkL2v2Compatibility();
@@ -728,8 +725,7 @@ interface SBMLReader {
 [Prefix="libsbml::"]
 interface SBMLWriter {
   void SBMLWriter();
-//   DOMString writeSBMLToString(SBMLDocument doc);
-  // BUG: memory may not be freed
+  // BUG in Emscripten: memory may not be freed
   ByteString writeSBMLToString(SBMLDocument doc);
 };
 
