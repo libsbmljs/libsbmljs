@@ -50,18 +50,24 @@ shared.try_delete(output_base + '.cpp')
 shared.try_delete(output_base + '.js')
 
 p = WebIDL.Parser()
+input_text = open(input_file).read()
 p.parse(r'''
 interface VoidPtr {
 };
-''' + open(input_file).read())
+''' + input_text)
 data = p.finish()
 
 interfaces = {}
 implements = {}
 enums = {}
 
+from js_documentation_generator import JSDocumentationGenerator
+doc_gen = JSDocumentationGenerator()
+
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):
+    thing.location.resolve()
+    doc_gen.parseInterfaceAtLoc(thing.identifier.name, thing.location._lineno-4, input_text)
     interfaces[thing.identifier.name] = thing
   elif isinstance(thing, WebIDL.IDLImplementsStatement):
     implements.setdefault(thing.implementor.identifier.name, []).append(thing.implementee.identifier.name)

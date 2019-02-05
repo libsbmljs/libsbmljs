@@ -6,3 +6,4 @@
 *.swp
 *.wasm
 libsbml.js
+__pycache__
