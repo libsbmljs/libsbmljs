@@ -73,6 +73,7 @@ for thing in data:
     implements.setdefault(thing.implementor.identifier.name, []).append(thing.implementee.identifier.name)
   elif isinstance(thing, WebIDL.IDLEnum):
     enums[thing.identifier.name] = thing
+print(doc_gen.render())
 
 #print interfaces
 #print implements

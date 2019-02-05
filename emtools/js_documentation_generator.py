@@ -1,13 +1,37 @@
 # Copyright 2019 J Kyle Medley
 
 import re
+from jinja2 import Template, Environment, DictLoader
+
+jinja_env = Environment(loader=DictLoader(dict(
+    class_wrapper='''
+{{ docstring }}
+class {{ symbol }} {}
+''',
+    classes='''
+{% for class in classes %}
+{{ class }}
+{% endfor %}
+''',
+)))
+jinja_env.trim_blocks = True
+jinja_env.lstrip_blocks = True
 
 class Interface:
-    def __init__(self, symbol, docstring):
+
+    def __init__(self, symbol, docstring_lines):
         self.symbol = symbol
-        self.docstring = docstring
+        self.docstring_lines = docstring_lines
+
+
+    def render(self):
+        return jinja_env.get_template('class_wrapper').render(
+            docstring = '\n'.join(self.docstring_lines),
+            symbol = self.symbol,
+        )
 
 class JSDocumentationGenerator:
+
     def __init__(self):
         self.interfaces = []
         self.space_re           = re.compile(r'^[\s]*$')
@@ -16,6 +40,7 @@ class JSDocumentationGenerator:
         self.docstring_continue = re.compile(r'^[\s]*\*.*$')
         self.docstring_stop     = re.compile(r'^[\s]*\*/[\s]*$')
 
+
     def parseInterfaceAtLoc(self, interface, lineno, input):
         '''
         Parses the documentation string preceding the interface
@@ -23,7 +48,7 @@ class JSDocumentationGenerator:
         '''
         lines = input.splitlines()
         docstring_lines = []
-        def collect_docstring_lines(l):
+        def collect_docstring_lines_reversed(l):
             if l < 0:
                 return
             while True:
@@ -56,8 +81,16 @@ class JSDocumentationGenerator:
                     yield line
                 else:
                     return
+        def collect_docstring_lines(l):
+            return reversed(tuple(collect_docstring_lines_reversed(l)))
 
         docstring_lines = tuple(collect_docstring_lines(lineno-1))
-        print('lines for',interface)
-        print('\n'.join(docstring_lines))
+        # print('lines for',interface)
+        # print('\n'.join(docstring_lines))
         self.interfaces.append(Interface(interface, docstring_lines))
+
+
+    def render(self):
+        return jinja_env.get_template('classes').render(
+            classes = tuple(i.render() for i in self.interfaces),
+        )
