@@ -1,6 +1,6 @@
 # libsbml.js
 
-This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScript wrapper for the C++ library [libSBML](http://sbml.org/Software/libSBML). You can use the included Gradle script to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17.x and may break for older/newer versions).
+This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScript wrapper for the C++ library [libSBML](http://sbml.org/Software/libSBML). In order to make this wrapper more versatile, we have encapsulated the build process in the included Gradle script. It is possible to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17.x and may not be valid for older/newer versions).
 
 ## Project Structure
 
@@ -11,10 +11,12 @@ This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScri
 
 ## Building
 
+It is possible to build a copy of libsbml.js based on a libSBML source tree of your choosing (stable or experimental).
+
 What you will need before starting:
 
 * Git (2.4.11 or later)
-* SVN (1.8.15 or later) (if you want to build libSBML from svn)
+* SVN (1.8.15 or later, only if you want to build libSBML from svn)
 * CMake (3.12.1 or later)
 * Gradle (5.1.1 or later)
 * [Emscripten SDK](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html) (1.38.21 or later)
