@@ -9,8 +9,6 @@ This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScri
 * The `karma/tests` directory contains scripts for testing libsbml.js in your browser via [Karma](http://karma-runner.github.io/latest/index.html).
 * The `emtools` directory contains a patched version of the Emscripten WebIDL binder which enables wrapping the C++ `std::string` type (the original WebIDL binder could only wrap raw `char*` pointers).
 
-TODO: delete sandbox-tests
-
 ## Building
 
 What you will need before starting:
