@@ -252,14 +252,14 @@ def expatOutputDir = Paths.get("${buildDir}","install","expat").toString()
 task expatGenerate(type:Exec) {
   workingDir Paths.get("${buildDir}","build","expat").toString()
   // the award for most obtuse language goes to groovy
-  def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
+  def cmdlineArgs = ["${emconfigureCommand}","${cmakeCommand}",
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCMAKE_INSTALL_PREFIX=${expatOutputDir}",
     "-DBUILD_shared=FALSE",
     "-DBUILD_doc=FALSE",
     Paths.get(project.rootDir.path,'expat').toString()] as String[]
-  commandLine freakingStrings
+  commandLine cmdlineArgs
 }
 expatGenerate.doFirst {
   mkdir Paths.get("${buildDir}","install","expat").toString()
@@ -267,8 +267,8 @@ expatGenerate.doFirst {
 }
 task expatBuild(type:Exec) {
   workingDir Paths.get("${buildDir}","build","expat").toString()
-  def freakingStrings = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
-  commandLine freakingStrings
+  def cmdlineArgs = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
+  commandLine cmdlineArgs
 }
 expatBuild.dependsOn(expatGenerate)
 
@@ -276,7 +276,7 @@ def libsbmlOutputDir = Paths.get("${buildDir}","install","libsbml").toString()
 task libsbmlGenerate(type:Exec) {
   workingDir Paths.get("${buildDir}","build","libsbml").toString()
   // the award for most obtuse language goes to groovy
-  def freakingStrings = ["${emconfigureCommand}","${cmakeCommand}",
+  def cmdlineArgs = ["${emconfigureCommand}","${cmakeCommand}",
     "-DCMAKE_TOOLCHAIN_FILE=${emccToolchain}",
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCMAKE_INSTALL_PREFIX=${libsbmlOutputDir}",
@@ -299,7 +299,7 @@ task libsbmlGenerate(type:Exec) {
     "-DLIBEXPAT_INCLUDE_DIR="+Paths.get("${buildDir}","install","expat","include").toString(),
     "-DLIBEXPAT_LIBRARY="+Paths.get("${buildDir}","install","expat","lib","libexpat.a").toString(),
     Paths.get(project.rootDir.path,'libsbml').toString()] as String[]
-  commandLine freakingStrings
+  commandLine cmdlineArgs
 }
 libsbmlGenerate.doFirst {
   mkdir Paths.get("${buildDir}","install","libsbml").toString()
@@ -308,15 +308,15 @@ libsbmlGenerate.doFirst {
 libsbmlGenerate.dependsOn(patchLibSBML)
 task libsbmlBuild(type:Exec) {
   workingDir Paths.get("${buildDir}","build","libsbml").toString()
-  def freakingStrings = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
-  commandLine freakingStrings
+  def cmdlineArgs = ["${emmakeCommand}","${cmakeCommand}", "--build", ".", "--target", "install", "--config", "Release"] as String[]
+  commandLine cmdlineArgs
 }
 libsbmlBuild.dependsOn(libsbmlGenerate)
 
 
 task emccCompileLibSBML(type:Exec) {
   workingDir "${buildDir}"
-  def freakingStrings = ["${emccCommand}",
+  def cmdlineArgs = ["${emccCommand}",
     "-O0",
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
@@ -348,9 +348,9 @@ task emccCompileLibSBML(type:Exec) {
     "-o","libsbml.js",
     ] as String[]
   if (withEmrun) {
-    freakingStrings += ["--emrun"]
+    cmdlineArgs += ["--emrun"]
   }
-  commandLine freakingStrings
+  commandLine cmdlineArgs
 }
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
@@ -361,7 +361,7 @@ task generateDocumentation(type:Exec) {
     throw new GradleException('Expected to find documentation.js at node_modules/documentation/bin/documentation.js, but it does not exist')
   }
   workingDir "${buildDir}"
-  def freakingStrings = ["node",
+  def cmdlineArgs = ["node",
     "${documentationJSScript}",
     "build",Paths.get("interface","idl","sbml_interface_docstrings.js").toString(),
     "--project-name","libsbml.js",
@@ -372,7 +372,7 @@ task generateDocumentation(type:Exec) {
     "--format","html",
     "--output","libsbml_htmldoc",
     ] as String[]
-  commandLine freakingStrings
+  commandLine cmdlineArgs
 }
 generateDocumentation.dependsOn(emccCompileLibSBML)
 
