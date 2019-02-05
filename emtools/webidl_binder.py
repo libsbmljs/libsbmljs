@@ -63,21 +63,26 @@ implements = {}
 enums = {}
 
 from js_documentation_generator import JSDocumentationGenerator
-doc_gen = JSDocumentationGenerator()
-doc_gen.parseModuleHeader(input_text)
-
+doc_gen = JSDocumentationGenerator(r'''
+interface VoidPtr {
+};
+''' + input_text)
+doc_gen.parseModuleHeader()
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):
     thing.location.resolve()
-    doc_gen.parseInterfaceAtLoc(thing.identifier.name, thing.location._lineno-4, input_text)
+    doc_gen.parseInterface(thing)
+
+with open(output_base + '_docstrings.js', 'w') as js_docstrings:
+    js_docstrings.write(doc_gen.render())
+
+for thing in data:
+  if isinstance(thing, WebIDL.IDLInterface):
     interfaces[thing.identifier.name] = thing
   elif isinstance(thing, WebIDL.IDLImplementsStatement):
     implements.setdefault(thing.implementor.identifier.name, []).append(thing.implementee.identifier.name)
   elif isinstance(thing, WebIDL.IDLEnum):
     enums[thing.identifier.name] = thing
-
-with open(output_base + '_docstrings.js', 'w') as js_docstrings:
-    js_docstrings.write(doc_gen.render())
 
 #print interfaces
 #print implements

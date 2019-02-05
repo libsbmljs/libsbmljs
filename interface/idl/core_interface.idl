@@ -58,6 +58,10 @@ interface CVTerm {
  */
 [Prefix="libsbml::"]
 interface SBase {
+  /**
+   * Le getId.
+   * Get the le id.
+   */
   DOMString getId();
   boolean setId(DOMString id);
   boolean isSetId();

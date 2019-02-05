@@ -370,7 +370,7 @@ task generateDocumentation(type:Exec) {
     "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
     "--shallow",
     "--format","html",
-    "--output","libsbml_htmldoc",
+    "--output","libsbml_apidoc",
     ] as String[]
   commandLine cmdlineArgs
 }
