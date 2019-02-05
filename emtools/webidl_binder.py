@@ -64,6 +64,7 @@ enums = {}
 
 from js_documentation_generator import JSDocumentationGenerator
 doc_gen = JSDocumentationGenerator()
+doc_gen.parseModuleHeader(input_text)
 
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):

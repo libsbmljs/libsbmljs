@@ -1,3 +1,8 @@
+/**
+ * module description
+ * @module libsbml
+ */
+
 enum libsbml__idl__QualifierType_t {
   "libsbml::MODEL_QUALIFIER",
   "libsbml::BIOLOGICAL_QUALIFIER",
