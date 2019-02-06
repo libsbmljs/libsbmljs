@@ -122,13 +122,13 @@ interface CVTerm {
  * the form "SBO:NNNNNNN", where "NNNNNNN" is a seven digit integer number;
  * libSBML simplifies the representation by only storing the "NNNNNNN"
  * integer portion.  Thus, in libSBML, the "sboTerm" attribute on SBase has
- * data type @c int, and SBO identifiers are stored simply as integers.
+ * data type int, and SBO identifiers are stored simply as integers.
  * (For convenience, SBase offers methods for returning both the integer
  * form and a text-string form of the SBO identifier.)  SBO terms are a
  * type of optional annotation, and each different class of SBML object
  * derived from SBase imposes its own requirements about the values
  * permitted for "sboTerm".  More details can be found in SBML specifications
- * for Level&nbsp;2 Version&nbsp;2 and above.
+ * for Level 2 Version 2 and above.
  *
  * Finally, note that, in the list of methods on SBase, there is no public
  * constructor because SBase is an abstract class.  The constructors reside
@@ -148,34 +148,266 @@ interface SBase {
    *
    * @note Because of the inconsistent behavior of this function with respect
    * to assignments and rules, callers should use getIdAttribute() instead.
-   *
-   * @see getIdAttribute()
-   * @see setIdAttribute(const std::string& sid)
-   * @see isSetIdAttribute()
-   * @see unsetIdAttribute()
    */
   DOMString getId();
+  /**
+   * Sets the value of the "id" attribute of this SBML object.
+   *
+   * @param {string} id.
+   */
   boolean setId(DOMString id);
+  /**
+   * Predicate returning true if a call to getId() returns a
+   * non-empty string.
+   *
+   * For most objects, this function will return true if its "id"
+   * attribute is set, and false if it is not, or if the object has no
+   * "id" attribute at all.  However, for an EventAssignment or a Rule,
+   * isSetId() checks whether the "variable" attribute is set, and for an
+   * InitialAssignment, it checks whether the "symbol" attribute is set.
+   * Because those elements will also have an "id" attribute in SBML
+   * Level 3 Version 2 which isSetId() will not check, the function
+   * itself is deprecated, and it is recommended to use isSetIdAttribute() in
+   * all cases where one needs to know whether the "id" attribute is set, and
+   * to use EventAssignment::isSetVariable(), Rule::isSetVariable() and
+   * InitialAssignment::isSetSymbol() when the status of the "variable" or
+   * "symbol" attributes need to be checked.
+   */
   boolean isSetId();
 
+  /**
+   * Returns the value of the "name" attribute of this SBML object.
+   */
   DOMString getName();
+
+  /**
+   * Sets the value of the "name" attribute of this SBML object.
+   */
   long setName(DOMString name);
+
+  /**
+   * Predicate returning true if this
+   * object's "name" attribute is set.
+   */
   boolean isSetName();
 
   DOMString getMetaId();
-  long setMetaId(DOMString id);
+  /**
+   * Sets the value of the meta-identifier attribute of this SBML object.
+   *
+   * The string metaid is copied.
+   *
+   * @param {string} metaid the identifier string to use as the value of the
+   * "metaid" attribute.
+   *
+   * @see getMetaId()
+   * @see isSetMetaId()
+   */
+  long setMetaId(DOMString metaid);
+
+  /**
+   * Predicate returning true if this object's "metaid" attribute is set.
+   *
+   * @return {boolean} true if the "metaid" attribute of this SBML object is
+   * set, false otherwise.
+   *
+   * @see getMetaId()
+   * @see setMetaId(const std::string& metaid)
+   */
   boolean isSetMetaId();
 
+  /**
+   * Returns the URL representation of the "sboTerm" attribute of this
+   * object.
+   *
+   * This method returns the entire SBO identifier as a text string in the
+   * form `http://identifiers.org/biomodels.sbo/SBO:NNNNNNN`.
+   *
+   * @return {number} the value of the "sboTerm" attribute as an identifiers.org URL,
+   * or an empty string if the value is not set.
+   */
   long getSBOTerm();
+  /**
+   * Sets the value of the "sboTerm" attribute.
+   *
+   * @param {number} value the NNNNNNN integer portion of the SBO identifier.
+   */
   long setSBOTerm(long value);
+
+  /**
+   * Predicate returning true if this
+   * object's "sboTerm" attribute is set.
+   *
+   * @return {boolean} true if the "sboTerm" attribute of this SBML object is
+   * set, false otherwise.
+   */
   boolean isSetSBOTerm();
 
+  /**
+   * Unsets the value of the "sboTerm" attribute of this SBML object.
+   */
+  long unsetSBOTerm();
+
+  /**
+   * Sets the value of the "annotation" subelement of this SBML object.
+   *
+   * The content of annotation is copied, and any previous content of
+   * this object's "annotation" subelement is deleted.
+   *
+   * Whereas the SBase "notes" subelement is a container for content to be
+   * shown directly to humans, the "annotation" element is a container for
+   * optional software-generated content @em not meant to be shown to
+   * humans.  Every object derived from SBase can have its own value for
+   * "annotation".  The element's content type is <a target="_blank"
+   * href="http://www.w3.org/TR/2004/REC-xml-20040204/#elemdecls">XML type
+   * "any"</a>, allowing essentially arbitrary well-formed XML data
+   * content.
+   *
+   * SBML places a few restrictions on the organization of the content of
+   * annotations; these are intended to help software tools read and write
+   * the data as well as help reduce conflicts between annotations added by
+   * different tools.  Please see the SBML specifications for more details.
+   *
+   * Call this method will result in any existing content of the
+   * "annotation" subelement to be discarded.  Unless you have taken steps
+   * to first copy and reconstitute any existing annotations into the @p
+   * annotation that is about to be assigned, it is likely that performing
+   * such wholesale replacement is unfriendly towards other software
+   * applications whose annotations are discarded.  An alternative may be
+   * to use SBase::appendAnnotation(const XMLNode* annotation) or
+   * SBase::appendAnnotation(const std::string& annotation).
+   *
+   * @param annotation an XML string that is to be used as the content
+   * of the "annotation" subelement of this object.
+   *
+   * @see getAnnotationString()
+   * @see isSetAnnotation()
+   */
   long setAnnotation(DOMString str);
+
+  /**
+   * Unsets the value of the "annotation" subelement of this SBML object.
+   *
+   * Whereas the SBase "notes" subelement is a container for content to be
+   * shown directly to humans, the "annotation" element is a container for
+   * optional software-generated content @em not meant to be shown to
+   * humans.  Every object derived from SBase can have its own value for
+   * "annotation".  The element's content type is <a target="_blank"
+   * href="http://www.w3.org/TR/2004/REC-xml-20040204/#elemdecls">XML type
+   * "any"</a>, allowing essentially arbitrary well-formed XML data
+   * content.
+   *
+   * SBML places a few restrictions on the organization of the content of
+   * annotations; these are intended to help software tools read and write
+   * the data as well as help reduce conflicts between annotations added by
+   * different tools.  Please see the SBML specifications for more details.
+   */
+  long unsetAnnotation();
+
+  /**
+   * Returns the content of the "annotation" subelement of this object as a
+   * character string.
+   *
+   * The annotations returned by this method will be in string form.  See the
+   * method getAnnotation() for a version that returns annotations in XML form.
+   *
+   * @return {string} the annotation of this SBML object as a character string.
+   *
+   * @see getAnnotation()
+   * @see isSetAnnotation()
+   * @see unsetAnnotation()
+   */
   DOMString getAnnotationString();
 
+  /**
+   * Returns the SBML Level of the SBMLDocument object containing @em this
+   * object.
+   *
+   * @return {number} the SBML level of this SBML object.
+   *
+   * @see getVersion()
+   */
+  unsigned long getLevel();
+
+  /**
+   * Returns the Version within the SBML Level of the SBMLDocument object
+   * containing @em this object.
+   *
+   * @return {number} the SBML version of this SBML object.
+   *
+   * @see getLevel()
+   */
   unsigned long getVersion();
 
+  /**
+   * Returns the content of the "notes" subelement of this object as a
+   * string.
+   *
+   * For an alternative method of accessing the notes, see getNotes(),
+   * which returns the content as an XMLNode tree structure.  Depending on
+   * an application's needs, one or the other method may be more
+   * convenient.
+   *
+   * @return {string} the content of the "notes" subelement of this SBML object as a
+   * string.
+   *
+   * @see getNotes()
+   * @see isSetNotes()
+   * @see unsetNotes()
+   */
   DOMString getNotesString();
+  /**
+   * Predicate returning true if this
+   * object's "notes" subelement exists and has content.
+   *
+   * The optional SBML element named "notes", present on every major SBML
+   * component type, is intended as a place for storing optional
+   * information intended to be seen by humans.  An example use of the
+   * "notes" element would be to contain formatted user comments about the
+   * model element in which the "notes" element is enclosed.  Every object
+   * derived directly or indirectly from type SBase can have a separate
+   * value for "notes", allowing users considerable freedom when adding
+   * comments to their models.
+   *
+   * The format of "notes" elements must be <a target="_blank"
+   * href="http://www.w3.org/TR/xhtml1/">XHTML 1.0</a>.  To help
+   * verify the formatting of "notes" content, libSBML provides the static
+   * utility method SyntaxChecker::hasExpectedXHTMLSyntax however,
+   * readers are urged to consult the appropriate <a target="_blank"
+   * href="http://sbml.org/Documents/Specifications">SBML specification
+   * document</a> for the Level and Version of their model for more
+   * in-depth explanations.  The SBML Level 2 and 3
+   * specifications have considerable detail about how "notes" element
+   * content must be structured.
+   *
+   * @return {string} true if a "notes" subelement exists, false otherwise.
+   */
+  boolean isSetNotes();
+
+  /**
+   * Unsets the value of the "notes" subelement of this SBML object.
+   *
+   * The optional SBML element named "notes", present on every major SBML
+   * component type, is intended as a place for storing optional
+   * information intended to be seen by humans.  An example use of the
+   * "notes" element would be to contain formatted user comments about the
+   * model element in which the "notes" element is enclosed.  Every object
+   * derived directly or indirectly from type SBase can have a separate
+   * value for "notes", allowing users considerable freedom when adding
+   * comments to their models.
+   *
+   * The format of "notes" elements must be <a target="_blank"
+   * href="http://www.w3.org/TR/xhtml1/">XHTML 1.0</a>.  To help
+   * verify the formatting of "notes" content, libSBML provides the static
+   * utility method SyntaxChecker::hasExpectedXHTMLSyntax however,
+   * readers are urged to consult the appropriate <a target="_blank"
+   * href="http://sbml.org/Documents/Specifications">SBML specification
+   * document</a> for the Level and Version of their model for more
+   * in-depth explanations.  The SBML Level 2 and 3
+   * specifications have considerable detail about how "notes" element
+   * content must be structured.
+   */
+  long unsetNotes();
 
   long getNumCVTerms();
   CVTerm getCVTerm(unsigned long n);
