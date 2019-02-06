@@ -1181,42 +1181,273 @@ ModifierSpeciesReference implements SBase;
  */
 [Prefix="libsbml::"]
 interface Species {
+  /**
+   * Get the value of the "initialAmount" attribute.
+   *
+   * @return {number} the initialAmount of this Species, as a floating point number
+   */
   double getInitialAmount();
-  long setInitialAmount(double amt);
+
+  /**
+   * Sets the "initialAmount" attribute of this Species and marks the field
+   * as set.
+   *
+   * This method also unsets the "initialConcentration" attribute.
+   *
+   * @param {number} value the value to which the "initialAmount" attribute should
+   * be set
+   */
+  long setInitialAmount(double value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "initialAmount" attribute is set.
+   *
+   * @return {boolean} true if the "initialAmount" attribute of this Species is
+   * set, false otherwise
+   *
+   * @note In SBML Level 1, Species' "initialAmount" is required and
+   * therefore <em>should always be set</em>.  (However, in Level 1, the
+   * attribute has no default value either, so this method will not return
+   * true until a value has been assigned.)  In SBML Level 2,
+   * "initialAmount" is optional and as such may or may not be set.
+   */
   boolean isSetInitialAmount();
 
+  /**
+   * Get the value of the "initialConcentration" attribute.
+   *
+   * @return {number} the initialConcentration of this Species, as a floating point
+   * number
+   *
+   * @note The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
   double getInitialConcentration();
-  long setInitialConcentration(double conc);
+
+  /**
+   * Sets the "initialConcentration" attribute of this Species and marks
+   * the field as set.
+   *
+   * This method also unsets the "initialAmount" attribute.
+   *
+   * @param {number} value the value to which the "initialConcentration" attribute
+   * should be set
+   *
+   * @note The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
+  long setInitialConcentration(double value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "initialConcentration" attribute is set.
+   *
+   * @return {boolean} true if the "initialConcentration" attribute of this Species is
+   * set, false otherwise
+   *
+   * @note The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
   boolean isSetInitialConcentration();
 
+  /**
+   * Get the value of the "hasOnlySubstanceUnits" attribute.
+   *
+   * @return {boolean} true if this Species' "hasOnlySubstanceUnits" attribute
+   * value is true, false otherwise
+   *
+   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
   boolean getHasOnlySubstanceUnits();
-  long setHasOnlySubstanceUnits(boolean val);
+
+  /**
+   * Sets the "hasOnlySubstanceUnits" attribute of this Species object.
+   *
+   * @param {boolean} value boolean value for the "hasOnlySubstanceUnits" attribute
+   *
+   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
+  long setHasOnlySubstanceUnits(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "hasOnlySubstanceUnits" attribute is set.
+   *
+   * @return {boolean} true if the "hasOnlySubstanceUnits" attribute of this Species is
+   * set, false otherwise
+   *
+   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
   boolean isSetHasOnlySubstanceUnits();
 
-  // TODO: doc
+  /**
+   * Get the compartment in which this species is located.
+   *
+   * The compartment is designated by its identifier.
+   *
+   * @return {string} the value of the "compartment" attribute of this Species
+   * object, as a string.
+   */
   DOMString getCompartment();
+
+  /**
+   * Sets the "compartment" attribute of this Species object.
+   *
+   * @param {string} sid the identifier of a Compartment object defined elsewhere
+   * in this Model
+   */
   long setCompartment(DOMString comp);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "compartment" attribute is set.
+   *
+   * @return {boolean} true if the "compartment" attribute of this Species is
+   * set, false otherwise.
+   */
   boolean isSetCompartment();
 
-  // TODO: doc
+  /**
+   * Get the value of the "units" attribute.
+   *
+   * @return {string} the units of this Species (L1 only)
+   */
   DOMString getUnits();
+
+  /**
+   * (SBML Level 1 only) Sets the units of this Species object.
+   *
+   * @param {string} sname the identifier of the unit to use.
+  */
   long setUnits(DOMString units);
+
+  /**
+   * Predicate returning true if
+   * this Species object's "units" attribute is set.
+   *
+   * @return {boolean} true if the "units" attribute of this Species is
+   * set, false otherwise
+   */
   boolean isSetUnits();
 
+  /**
+   * Get the value of the "boundaryCondition" attribute.
+   *
+   * @return {boolean} true if this Species' "boundaryCondition" attribute value
+   * is true, false otherwise
+   */
   boolean getBoundaryCondition();
   long setBoundaryCondition(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "boundaryCondition" attribute is set.
+   *
+   * @return {boolean} true if the "boundaryCondition" attribute of this Species is
+   * set, false otherwise
+   */
   boolean isSetBoundaryCondition();
 
+  /**
+   * Get the value of the "constant" attribute.
+   *
+   * @return {boolean} true if this Species's "constant" attribute value is
+   * true, false otherwise
+   *
+   * @note The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
   boolean getConstant();
+
+  /**
+   * Sets the "constant" attribute of this Species object.
+   *
+   * @param {value} value a boolean value for the "constant" attribute
+   *
+   * @note The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
   long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "constant" attribute is set.
+   *
+   * @return {boolean} true if the "constant" attribute of this Species is
+   * set, false otherwise
+   *
+   * @note The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
   boolean isSetConstant();
 
+  /**
+   * Get the value of the "substanceUnits" attribute.
+   *
+   * @return {string} the value of the "substanceUnits" attribute of this Species,
+   * as a string.  An empty string indicates that no units have been
+   * assigned
+   *
+   * @see isSetSubstanceUnits()
+   * @see setSubstanceUnits()
+   */
   DOMString getSubstanceUnits();
+
+  /**
+   * Sets the "substanceUnits" attribute of this Species object.
+   *
+   * @param {string} sid the identifier of the unit to use
+   */
   long setSubstanceUnits(DOMString sid);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "substanceUnits" attribute is set.
+   *
+   * @return {boolean} true if the "substanceUnits" attribute of this Species is
+   * set, false otherwise
+   */
   boolean isSetSubstanceUnits();
 
+  /**
+   * Get the value of the "conversionFactor" attribute.
+   *
+   * @return {string} the conversionFactor of this Species, as a string
+   *
+   * @note The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
   DOMString getConversionFactor();
+
+  /**
+   * Sets the value of the "conversionFactor" attribute of this Species object.
+   *
+   * The string in @p sid is copied.
+   *
+   * @param {string} sid the new conversionFactor for the Species
+   *
+   * @note The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
   long setConversionFactor(DOMString sid);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "conversionFactor" attribute is set.
+   *
+   * @return {boolean} true if the "conversionFactor" attribute of this Species is
+   * set, false otherwise
+   *
+   * @note The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
   boolean isSetConversionFactor();
 };
 
