@@ -9,7 +9,7 @@ jinja_env = Environment(loader=DictLoader(dict(
 export class {{ symbol }} {
 {% for member in members %}
 {{ member.getDocstring() }}
-  {{ member['identifier']}}() {}
+  {% if member.isStatic() %}static {% endif %}{{ member['identifier']}}() {}
 {% endfor %}
 }
 ''',
@@ -23,14 +23,19 @@ export class {{ symbol }} {
 jinja_env.trim_blocks = True
 jinja_env.lstrip_blocks = True
 
-class Member:
-    def __init__(self, symbol, docstring_lines):
+class Method:
+    def __init__(self, symbol, docstring_lines, static):
         self.identifier = symbol
         self.docstring_lines = docstring_lines
+        self.static = static
         # if self.docstring_lines:
             # print(self.identifier, self.docstring_lines)
+
     def getDocstring(self):
         return '\n'.join(self.docstring_lines)
+
+    def isStatic(self):
+        return self.static
 
 class Interface:
 
@@ -112,7 +117,7 @@ class JSDocumentationGenerator:
                 # print(member.identifier.name,self.lines[member.location._lineno-2],member_docstring_lines)
                 # print(member.location._lineno)
                 # print(member_docstring)
-                i.add_member(Member(member.identifier.name, member_docstring_lines))
+                i.add_member(Method(member.identifier.name, member_docstring_lines, member.isStatic()))
         self.interfaces.append(i)
 
 

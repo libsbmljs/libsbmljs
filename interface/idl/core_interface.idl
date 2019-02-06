@@ -1637,11 +1637,13 @@ interface Unit {
    * @param {string} name a string to be tested against the built-in unit names
    * @param {number} level the level of SBML one is checking
    *
-   * @return true if name is one of "substance", "volume",
+   * @return {boolean} true if name is one of "substance", "volume",
    * or "time" and the level is 1; or if name is one of
    * "substance", "volume", "area", "length", or "time" and
    * the level is 2; false otherwise (including all values when
    * level is 3).
+   *
+   * @static
    */
   static boolean isBuiltIn(DOMString name, unsigned long level);
 
@@ -1649,7 +1651,7 @@ interface Unit {
    * Predicate returning true if two
    * Unit objects are identical.
    *
-   * Two Unit objects are considered to be @em identical if they match in
+   * Two Unit objects are considered to be identical if they match in
    * all attributes.  (Contrast this to the method areEquivalent(), which compares Unit objects only with respect
    * to certain attributes.)
    *
@@ -1658,6 +1660,8 @@ interface Unit {
    *
    * @return {boolean} true if all the attributes of unit1 are identical
    * to the attributes of unit2, false otherwise
+   *
+   * @static
    */
   static boolean areIdentical(Unit unit1, Unit unit2);
 
@@ -1665,7 +1669,7 @@ interface Unit {
    * Predicate returning true if
    * Unit objects are equivalent.
    *
-   * Two Unit objects are considered to be @em equivalent either if (1) both
+   * Two Unit objects are considered to be equivalent either if (1) both
    * have a "kind" attribute value of dimensionless, or (2) their "kind",
    * "exponent" and (for SBML Level&nbsp;2 Version&nbsp;1) "offset"
    * attribute values are equal. (Contrast this to the method
@@ -1678,6 +1682,8 @@ interface Unit {
    * @return {boolean} true if the "kind" and "exponent" attributes of unit1 are
    * identical to the kind and exponent attributes of unit2, or if the kind
    * attributes of both are dimensionless; false otherwise.
+   *
+   * @static
    */
   static boolean areEquivalent(Unit unit1, Unit unit2);
 
@@ -1691,6 +1697,8 @@ interface Unit {
    * multiplier=<code>"0.001"</code> scale="0" exponent="1".
    *
    * @param {Unit} unit the Unit object to manipulate
+   *
+   * @static
    */
   static long removeScale(Unit unit);
 
@@ -1713,6 +1721,8 @@ interface Unit {
    * the two units have different kinds
    *
    * @param {Unit} unit2 the second Unit object to merge with the first.
+   *
+   * @static
    */
   static void merge(Unit unit1, Unit unit2);
 
