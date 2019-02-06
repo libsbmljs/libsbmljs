@@ -374,7 +374,8 @@ task generateDocumentation(type:Exec) {
     ] as String[]
   commandLine cmdlineArgs
 }
-generateDocumentation.dependsOn(emccCompileLibSBML)
+generateDocumentation.dependsOn(combineCPP)
+generateDocumentation.dependsOn(generateIdlInterface)
 
 
 // print configured settings
