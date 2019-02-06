@@ -219,7 +219,7 @@ interface SBase {
   boolean setId(DOMString id);
 
   /**
-   * Predicate returning @c true if this object's "id" attribute is set.
+   * Predicate returning true if this object's "id" attribute is set.
    *
    * @copydetails doc_id_attribute
    *
@@ -479,11 +479,48 @@ interface SBase {
    * @param {number} n unsigned int the index of the CVTerm to retrieve
    *
    * @return {CVTerm} the nth CVTerm in the list of CVTerms for this SBML object.
-   * If the index n is invalid, @c NULL is returned.
+   * If the index n is invalid, NULL is returned.
    */
   CVTerm getCVTerm(unsigned long n);
 };
 
+/**
+ * A reference to an SBML species in a reaction.
+ *
+ * The Reaction structure provides a way to express which species act as
+ * reactants and which species act as products in a reaction.  In a given
+ * reaction, references to those species acting as reactants and/or
+ * products are made using instances of SpeciesReference structures in a
+ * Reaction object's lists of reactants and products.
+ *
+ * A species can occur more than once in the lists of reactants and
+ * products of a given Reaction instance.  The effective stoichiometry for
+ * a species in a reaction is the sum of the stoichiometry values given on
+ * the SpeciesReference object in the list of products minus the sum of
+ * stoichiometry values given on the SpeciesReference objects in the list
+ * of reactants.  A positive value indicates the species is effectively a
+ * product and a negative value indicates the species is effectively a
+ * reactant.  SBML places no restrictions on the effective stoichiometry of
+ * a species in a reaction; for example, it can be zero.
+ *
+ * In SBML Level 3, the unit of measurement associated with the value of a
+ * species' stoichiometry is always considered to be dimensionless.
+ * This has the following implications:
+ * * When a species reference's identifier appears in mathematical
+ * formulas elsewhere in the model, the unit associated with that value is
+ * dimensionless.
+ *
+ * * The units of the "math" elements of AssignmentRule,
+ * InitialAssignment and EventAssignment objects setting the stoichiometry
+ * of the species reference should be dimensionless.
+ *
+ * * If a species reference's identifier is the subject of a RateRule,
+ * the unit associated with the RateRule object's value should be
+ * <code>dimensionless</code>/<em>time</em>, where <em>time</em> is the
+ * model-wide unit of time set on the Model object.
+ *
+ * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_species_reference.html)
+ */
 [Prefix="libsbml::"]
 interface SpeciesReference {
   DOMString getSpecies();

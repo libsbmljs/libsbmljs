@@ -105,13 +105,14 @@ class JSDocumentationGenerator:
         ''' Parse a WebIDL interface.'''
         docstring_lines = self.parseDocstring(interface.location._lineno-3)
         i = Interface(interface.identifier.name, docstring_lines)
-        for member in interface.members:
-            member.location.resolve()
-            member_docstring_lines = self.parseDocstring(member.location._lineno-2)
-            # print(member.identifier.name,self.lines[member.location._lineno-2],member_docstring_lines)
-            # print(member.location._lineno)
-            # print(member_docstring)
-            i.add_member(Member(member.identifier.name, member_docstring_lines))
+        for member in interface.members :
+            if member.isMethod():
+                member.location.resolve()
+                member_docstring_lines = self.parseDocstring(member.location._lineno-2)
+                # print(member.identifier.name,self.lines[member.location._lineno-2],member_docstring_lines)
+                # print(member.location._lineno)
+                # print(member_docstring)
+                i.add_member(Member(member.identifier.name, member_docstring_lines))
         self.interfaces.append(i)
 
 
