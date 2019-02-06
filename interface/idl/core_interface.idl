@@ -287,7 +287,7 @@ interface CVTerm {
    * @param {BiolQualifierType_t} type the biology
    * qualifier type.
    *
-   * @note If the Qualifier Type of this object is not
+   * **Note:** If the Qualifier Type of this object is not
    * libsbml.BIOLOGICAL_QUALIFIER,
    * then the biology qualifier type
    * will default to libsbml.BQB_UNKNOWN.
@@ -344,7 +344,7 @@ interface CVTerm {
    *
    * @param {ModelQualifierType_t} type the model qualifier type.
    *
-   * @note If the qualifier type of this object is not
+   * **Note:** If the qualifier type of this object is not
    * libsbml.MODEL_QUALIFIER, then the
    * then the model qualifier typ
    * will default to libsbml.BQM_UNKNOWN.
@@ -448,7 +448,7 @@ interface SBase {
    * @return {String} the id of this SBML object, or the "variable" if the object is a
    * Rule, or the "symbol" if the object is an InitialAssignment.
    *
-   * @note Because of the inconsistent behavior of this function with respect
+   * **Note:** Because of the inconsistent behavior of this function with respect
    * to assignments and rules, callers should use getIdAttribute() instead.
    */
   DOMString getId();
@@ -1206,7 +1206,7 @@ interface Species {
    * @return {boolean} true if the "initialAmount" attribute of this Species is
    * set, false otherwise
    *
-   * @note In SBML Level 1, Species' "initialAmount" is required and
+   * **Note:** In SBML Level 1, Species' "initialAmount" is required and
    * therefore <em>should always be set</em>.  (However, in Level 1, the
    * attribute has no default value either, so this method will not return
    * true until a value has been assigned.)  In SBML Level 2,
@@ -1220,7 +1220,7 @@ interface Species {
    * @return {number} the initialConcentration of this Species, as a floating point
    * number
    *
-   * @note The attribute "initialConcentration" is only available in SBML
+   * **Note:** The attribute "initialConcentration" is only available in SBML
    * Level 2 and 3.  It does not exist on Species in Level 1.
    */
   double getInitialConcentration();
@@ -1234,7 +1234,7 @@ interface Species {
    * @param {number} value the value to which the "initialConcentration" attribute
    * should be set
    *
-   * @note The attribute "initialConcentration" is only available in SBML
+   * **Note:** The attribute "initialConcentration" is only available in SBML
    * Level 2 and 3.  It does not exist on Species in Level 1.
    */
   long setInitialConcentration(double value);
@@ -1246,7 +1246,7 @@ interface Species {
    * @return {boolean} true if the "initialConcentration" attribute of this Species is
    * set, false otherwise
    *
-   * @note The attribute "initialConcentration" is only available in SBML
+   * **Note:** The attribute "initialConcentration" is only available in SBML
    * Level 2 and 3.  It does not exist on Species in Level 1.
    */
   boolean isSetInitialConcentration();
@@ -1257,7 +1257,7 @@ interface Species {
    * @return {boolean} true if this Species' "hasOnlySubstanceUnits" attribute
    * value is true, false otherwise
    *
-   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
    * Level 1.
    */
   boolean getHasOnlySubstanceUnits();
@@ -1267,7 +1267,7 @@ interface Species {
    *
    * @param {boolean} value boolean value for the "hasOnlySubstanceUnits" attribute
    *
-   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
    * Level 1.
    */
   long setHasOnlySubstanceUnits(boolean value);
@@ -1279,7 +1279,7 @@ interface Species {
    * @return {boolean} true if the "hasOnlySubstanceUnits" attribute of this Species is
    * set, false otherwise
    *
-   * @note The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
    * Level 1.
    */
   boolean isSetHasOnlySubstanceUnits();
@@ -1358,7 +1358,7 @@ interface Species {
    * @return {boolean} true if this Species's "constant" attribute value is
    * true, false otherwise
    *
-   * @note The attribute "constant" is only available in SBML Levels 2
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
    * and 3.  It does not exist on Species in Level 1.
    */
   boolean getConstant();
@@ -1368,7 +1368,7 @@ interface Species {
    *
    * @param {value} value a boolean value for the "constant" attribute
    *
-   * @note The attribute "constant" is only available in SBML Levels 2
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
    * and 3.  It does not exist on Species in Level 1.
    */
   long setConstant(boolean value);
@@ -1380,7 +1380,7 @@ interface Species {
    * @return {boolean} true if the "constant" attribute of this Species is
    * set, false otherwise
    *
-   * @note The attribute "constant" is only available in SBML Levels 2
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
    * and 3.  It does not exist on Species in Level 1.
    */
   boolean isSetConstant();
@@ -1418,7 +1418,7 @@ interface Species {
    *
    * @return {string} the conversionFactor of this Species, as a string
    *
-   * @note The "conversionFactor" attribute was introduced in SBML
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
    * Level 3.  It does not exist on Species in SBML Levels 1
    * and 2.
    */
@@ -1427,11 +1427,11 @@ interface Species {
   /**
    * Sets the value of the "conversionFactor" attribute of this Species object.
    *
-   * The string in @p sid is copied.
+   * The string in sid is copied.
    *
    * @param {string} sid the new conversionFactor for the Species
    *
-   * @note The "conversionFactor" attribute was introduced in SBML
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
    * Level 3.  It does not exist on Species in SBML Levels 1
    * and 2.
    */
@@ -1444,7 +1444,7 @@ interface Species {
    * @return {boolean} true if the "conversionFactor" attribute of this Species is
    * set, false otherwise
    *
-   * @note The "conversionFactor" attribute was introduced in SBML
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
    * Level 3.  It does not exist on Species in SBML Levels 1
    * and 2.
    */
