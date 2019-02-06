@@ -1549,7 +1549,172 @@ Species implements SBase;
  */
 [Prefix="libsbml::"]
 interface Unit {
+  /**
+   * Unsets the "kind" attribute value of this Unit.
+   */
+  long unsetKind();
+
   long getScale();
+
+  /**
+   * Sets the "scale" attribute value of this Unit.
+   *
+   * @param {number} value the integer to which the attribute "scale" should be set
+   */
+  long setScale(long value);
+
+  /**
+   * Predicate to test whether the "scale" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "scale" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetScale();
+
+  /**
+   * Sets the "multipler" attribute value of this Unit.
+   *
+   * @param {number} value the floating-point value to which the attribute
+   * "multiplier" should be set
+   */
+  long setMultiplier(double value);
+
+  /**
+   * Predicate to test whether the "multiplier" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "multiplier" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetMultiplier();
+
+  /**
+   * Unsets the "multipler" attribute value of this Unit.
+   */
+  long unsetMultiplier();
+
+  /**
+   * Sets the "exponent" attribute value of this Unit.
+   *
+   * @param {number} value the integer to which the attribute "exponent" should be set
+   */
+  long setExponent(double value);
+
+  /**
+   * Predicate to test whether the "exponent" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "exponent" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetExponent();
+
+  /**
+   * Unsets the "exponent" attribute value of this Unit.
+   */
+  long unsetExponent ();
+
+  /**
+   * Sets the "offset" attribute value of this Unit.
+   *
+   * @param {number} value the floating point value to which the attribute "offset"
+   * should set
+   */
+  long setOffset(double value);
+
+  /**
+   * Unsets the "offset" attribute value of this Unit.
+   */
+  long unsetOffset();
+
+  /**
+   * Predicate to test whether a given string is the name of a built-in SBML
+   * unit, depending on the SBML level, since new predefined units were added
+   * between level 2 versions 1 and 2, and then all predefined units were removed
+   * again in SBML Level 3.
+   *
+   * @param {string} name a string to be tested against the built-in unit names
+   * @param {number} level the level of SBML one is checking
+   *
+   * @return true if name is one of "substance", "volume",
+   * or "time" and the level is 1; or if name is one of
+   * "substance", "volume", "area", "length", or "time" and
+   * the level is 2; false otherwise (including all values when
+   * level is 3).
+   */
+  static boolean isBuiltIn(DOMString name, unsigned long level);
+
+  /**
+   * Predicate returning true if two
+   * Unit objects are identical.
+   *
+   * Two Unit objects are considered to be @em identical if they match in
+   * all attributes.  (Contrast this to the method areEquivalent(), which compares Unit objects only with respect
+   * to certain attributes.)
+   *
+   * @param {Unit} unit1 the first Unit object to compare
+   * @param {Unit} unit2 the second Unit object to compare
+   *
+   * @return {boolean} true if all the attributes of unit1 are identical
+   * to the attributes of unit2, false otherwise
+   */
+  static boolean areIdentical(Unit unit1, Unit unit2);
+
+  /**
+   * Predicate returning true if
+   * Unit objects are equivalent.
+   *
+   * Two Unit objects are considered to be @em equivalent either if (1) both
+   * have a "kind" attribute value of dimensionless, or (2) their "kind",
+   * "exponent" and (for SBML Level&nbsp;2 Version&nbsp;1) "offset"
+   * attribute values are equal. (Contrast this to the method
+   * areIdentical(), which compares Unit objects with respect to all
+   * attributes, not just the "kind" and "exponent".)
+   *
+   * @param {Unit} unit1 the first Unit object to compare
+   * @param {Unit} unit2 the second Unit object to compare
+   *
+   * @return {boolean} true if the "kind" and "exponent" attributes of unit1 are
+   * identical to the kind and exponent attributes of unit2, or if the kind
+   * attributes of both are dimensionless; false otherwise.
+   */
+  static boolean areEquivalent(Unit unit1, Unit unit2);
+
+  /**
+   * Manipulates the attributes of the Unit to express the unit with the
+   * value of the scale attribute reduced to zero.
+   *
+   * For example, 1 millimetre can be expressed as a Unit with kind=
+   * "metre" multiplier="1" scale="-3" exponent="1". It can also be
+   * expressed as a Unit with kind="metre"
+   * multiplier=<code>"0.001"</code> scale="0" exponent="1".
+   *
+   * @param {Unit} unit the Unit object to manipulate
+   */
+  static long removeScale(Unit unit);
+
+  /**
+   * Merges two Unit objects with the same "kind" attribute value into a
+   * single Unit.
+   *
+   * For example, the following,
+   * ```
+   * <unit kind="metre" exponent="2"/>
+   * <unit kind="metre" exponent="1"/>
+   * ```
+   * would be merged to become
+   * ```
+    *<unit kind="metre" exponent="3"/>
+   * ```
+   *
+   * @param {Unit} unit1 the first Unit object; the result of the operation is
+   * left as a new version of this unit, modified in-place - not modified if
+   * the two units have different kinds
+   *
+   * @param {Unit} unit2 the second Unit object to merge with the first.
+   */
+  static void merge(Unit unit1, Unit unit2);
 
   boolean isAmpere();
   boolean isAvogadro();
