@@ -1,3 +1,13 @@
+/**
+ * # UnitKind_t
+ *
+ * Enumeration of predefined SBML base units.
+ *
+ * See the [libSBML C++ docs for UnitKind_t](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_unit_kind_8h.html#a9597e6a39c3bb3fde6ff0073f47f1804).
+ *
+ * @readonly
+ * @enum
+ */
 enum libsbml__idl__UnitKind_t {
   "libsbml::UNIT_KIND_AMPERE",
   "libsbml::UNIT_KIND_AVOGADRO",
@@ -40,7 +50,7 @@ enum libsbml__idl__UnitKind_t {
 
 /**
  * # A single unit referenced in an SBML <em>unit definition</em>.
- * 
+ *
  * The SBML unit definition facility uses two classes of objects,
  * UnitDefinition and Unit.  The approach to defining units in SBML is
  * compositional; for example, <em>meter second<sup> -2</sup></em> is

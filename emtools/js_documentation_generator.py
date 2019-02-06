@@ -13,8 +13,19 @@ export class {{ symbol }} {
 {% endfor %}
 }
 ''',
+    enum=\
+'''{{ docstring }}
+const {{ symbol }} = {
+{% for value in values %}
+  {{ value }}: {{ loop.index0 }},
+{% endfor %}
+}
+''',
     module=\
 '''{{ module_docstring }}
+{% for enum in enums %}
+{{ enum.render() }}
+{% endfor %}
 {% for class in classes %}
 {{ class }}
 {% endfor %}
@@ -37,8 +48,8 @@ class Method:
     def isStatic(self):
         return self.static
 
-class Interface:
 
+class Interface:
     def __init__(self, symbol, docstring_lines):
         self.members = []
         self.symbol = symbol
@@ -56,18 +67,41 @@ class Interface:
             members = self.members,
         )
 
-class JSDocumentationGenerator:
 
+class Enum:
+    def __init__(self, symbol, docstring_lines, values):
+        self.identifier = symbol
+        self.docstring_lines = docstring_lines
+        self.values = values
+
+    def getDocstring(self):
+        return '\n'.join(self.docstring_lines)
+
+
+    def render(self):
+        return jinja_env.get_template('enum').render(
+            docstring = '\n'.join(self.docstring_lines),
+            symbol = self.identifier,
+            values = self.values,
+        )
+
+
+class JSDocumentationGenerator:
     def __init__(self, input):
-        self.input = input
-        self.lines = self.input.splitlines()
+        self.input                  = input
+        self.lines                  = self.input.splitlines()
         self.module_docstring_lines = tuple()
-        self.interfaces = []
+        self.interfaces             = []
+        self.enums                  = []
+
         self.space_re           = re.compile(r'^[\s]*$')
         self.prefix_re          = re.compile(r'^[\s]*\[Prefix="[^"]+"\][\s]*$')
+
         self.docstring_start    = re.compile(r'^[\s]*/\*\*.*$')
         self.docstring_continue = re.compile(r'^[\s]*\*.*$')
         self.docstring_stop     = re.compile(r'^[\s]*\*/[\s]*$')
+
+        self.enum_value_re      = re.compile(r'^[\s]*"([^"]+)",?[\s]*$')
 
 
     def collect_docstring_lines(self,l):
@@ -108,17 +142,24 @@ class JSDocumentationGenerator:
 
     def parseInterface(self, interface):
         ''' Parse a WebIDL interface.'''
-        docstring_lines = self.parseDocstring(interface.location._lineno-3)
-        i = Interface(interface.identifier.name, docstring_lines)
+        i = Interface(interface.identifier.name,
+            self.parseDocstring(interface.location._lineno-3))
         for member in interface.members :
             if member.isMethod():
                 member.location.resolve()
                 member_docstring_lines = self.parseDocstring(member.location._lineno-2)
-                # print(member.identifier.name,self.lines[member.location._lineno-2],member_docstring_lines)
-                # print(member.location._lineno)
-                # print(member_docstring)
                 i.add_member(Method(member.identifier.name, member_docstring_lines, member.isStatic()))
         self.interfaces.append(i)
+
+
+    def parseEnum(self, interface):
+        ''' Parse a WebIDL interface.'''
+        symbol = interface.identifier.name.split('__idl__')[-1]
+        docstring_lines = self.parseDocstring(interface.location._lineno-2)
+        enum_values = self.parseEnumValues(interface.location._lineno)
+        # print(enum_values)
+        e = Enum(symbol, docstring_lines, enum_values)
+        self.enums.append(e)
 
 
     def parseDocstring(self, lineno):
@@ -127,6 +168,20 @@ class JSDocumentationGenerator:
         at the given line number.
         '''
         return tuple(self.collect_docstring_lines(lineno))
+
+
+    def parseEnumValues(self, lineno):
+        def inner(lineno):
+            l = lineno
+            while l < len(self.lines):
+                l += 1
+                m = self.enum_value_re.match(self.lines[l])
+                if m is not None:
+                    yield m.group(1).split('::')[-1]
+                    continue
+                else:
+                    break
+        return tuple(inner(lineno-1))
 
 
     def parseModuleHeader(self):
@@ -158,4 +213,5 @@ class JSDocumentationGenerator:
         return jinja_env.get_template('module').render(
             module_docstring = '\n'.join(self.module_docstring_lines),
             classes = tuple(i.render() for i in self.interfaces),
+            enums = self.enums,
         )
