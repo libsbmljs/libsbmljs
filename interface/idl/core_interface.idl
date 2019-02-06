@@ -60,7 +60,7 @@ enum libsbml__idl__ModelQualifierType_t {
  * using CVTerm objects.  The relation-resource pairs discussed in the
  * previous section are the "controlled vocabulary" terms that CVTerm is
  * designed to store and manipulate.  A set of RDF-based annotations attached
- * to a given SBML <code>`<annotation>`</code> element are read by
+ * to a given SBML `<annotation>` element are read by
  * RDFAnnotationParser and converted into a list of these CVTerm objects.
  * Each CVTerm object instance stores the following components of an
  * annotation:
@@ -97,6 +97,58 @@ enum libsbml__idl__ModelQualifierType_t {
  */
 [Prefix="libsbml::"]
 interface CVTerm {
+  /**
+   * Adds a resource reference to this CVTerm object.
+   *
+   * The specific RDF element used in this SBML format for referring to
+   * external entities is <rdf:Description>, with a
+   * `<rdf:Bag>` element containing one or more
+   * `<rdf:li>` elements.  Each such element refers to a
+   * data item in an external resource; the resource and data item are
+   * together identified uniquely using a URI.
+   *
+   *
+   * ```
+   * <rdf:Description rdf:about=&quot;#<span style="border-bottom: 1px solid black">meta id</span">
+   *   <span style="background-color: #e0e0e0; border-bottom: 2px dotted #888">HISTORY</span>
+   *   <<span style="background-color: #bbb">RELATION_ELEMENT</span>>
+   *     <rdf:Bag>
+   *       <rdf:li rdf:resource=&quot;<span style="background-color: #d0d0ee">resource URI</span" />
+   *       <span style="background-color: #edd">...</span>
+   *     </rdf:Bag>
+   *   </<span style="background-color: #bbb">RELATION_ELEMENT</span>>
+   *   <span style="background-color: #edd">...</span>
+   * </rdf:Description>
+   * ```
+   *
+   * In the template above, the placeholder `meta id` stands for the
+   * element's meta identifier, which is a field available on all SBML
+   * components derived from the SBase base object class.  The <span
+   * style="border-bottom: 2px dotted #888">dotted</span> portions are
+   * optional, and the ellipses `...` are placeholders for zero or
+   * more elements of the same form as the immediately preceding element.
+   * The placeholder
+   * `RELATION_ELEMENT` refers to a BioModels.net qualifier element
+   * name.  This is an element in either the XML namespace
+   * `http://biomodels.net/model-qualifiers` (for model
+   * qualifiers) or `http://biomodels.net/biology-qualifiers`
+   * (for biological qualifier).
+   *
+   * The resource `URI` is a required data value that uniquely identifies a
+   * resource and data within that resource to which the annotation refers.
+   * The present method allows callers to add a reference to a resource URI
+   * with the same relationship to the enclosing SBML object.  (In other
+   * words, the argument to this method is a `resource URI` as shown in the
+   * XML fragment above.)  Resources are stored in this CVTerm object
+   * within an XMLAttributes object.
+   *
+   * The relationship of this CVTerm to the enclosing SBML object can be
+   * determined using the CVTerm methods such as
+   * CVTerm.getModelQualifierType() and CVTerm.getBiologicalQualifierType().
+   *
+   * @param {string} resource a string representing the URI of the resource and data
+   * item being referenced eg http://www.geneontology.org/#GO:0005892
+   */
   long addResource(DOMString resource);
   unsigned long getNumResources();
 	DOMString getResourceURI(unsigned long n);
@@ -516,7 +568,7 @@ interface SBase {
  *
  * * If a species reference's identifier is the subject of a RateRule,
  * the unit associated with the RateRule object's value should be
- * <code>dimensionless</code>/<em>time</em>, where <em>time</em> is the
+ * dimensionless/<em>time</em>, where <em>time</em> is the
  * model-wide unit of time set on the Model object.
  *
  * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_species_reference.html)
