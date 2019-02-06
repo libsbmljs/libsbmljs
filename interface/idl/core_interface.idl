@@ -109,22 +109,21 @@ interface CVTerm {
    *
    *
    * ```
-   * <rdf:Description rdf:about=&quot;#<span style="border-bottom: 1px solid black">meta id</span">
-   *   <span style="background-color: #e0e0e0; border-bottom: 2px dotted #888">HISTORY</span>
-   *   <<span style="background-color: #bbb">RELATION_ELEMENT</span>>
+   * <rdf:Description rdf:about=&quot;#meta id</span">
+   *   HISTORY
+   *   <RELATION_ELEMENT>
    *     <rdf:Bag>
-   *       <rdf:li rdf:resource=&quot;<span style="background-color: #d0d0ee">resource URI</span" />
-   *       <span style="background-color: #edd">...</span>
+   *       <rdf:li rdf:resource=&quot;resource URI</span" />
+   *       ...
    *     </rdf:Bag>
-   *   </<span style="background-color: #bbb">RELATION_ELEMENT</span>>
-   *   <span style="background-color: #edd">...</span>
+   *   </RELATION_ELEMENT>
+   *   ...
    * </rdf:Description>
    * ```
    *
    * In the template above, the placeholder `meta id` stands for the
    * element's meta identifier, which is a field available on all SBML
-   * components derived from the SBase base object class.  The <span
-   * style="border-bottom: 2px dotted #888">dotted</span> portions are
+   * components derived from the SBase base object class.  The dotted portions are
    * optional, and the ellipses `...` are placeholders for zero or
    * more elements of the same form as the immediately preceding element.
    * The placeholder
@@ -150,8 +149,43 @@ interface CVTerm {
    * item being referenced eg http://www.geneontology.org/#GO:0005892
    */
   long addResource(DOMString resource);
+  /**
+   * Returns the number of resources for this CVTerm object.
+   *
+   * The fragment above illustrates that there can be more than one
+   * resource referenced by a given relationship annotation (i.e., the
+   * resource
+   * URI values associated with a particular RELATION_ELEMENT).  The present
+   * method returns a count of the resources stored in this CVTerm object.
+   *
+   * @return {number} the number of resources in the set of XMLAttributes
+   * of this CVTerm
+   */
   unsigned long getNumResources();
+  /**
+   * Returns the value of the <em>n</em>th resource for this CVTerm object.
+   *
+   * The fragment above illustrates that there can be more than one resource
+   * referenced by a given relationship annotation (i.e., the resource URI
+   * values associated with a particular RELATION_ELEMENT).  LibSBML stores
+   * all resource URIs in a single CVTerm object for a given relationship.
+   * Callers can use CVTerm::getNumResources() to find out how many resources
+   * are stored in this CVTerm object, then call this method to retrieve the
+   * <em>n</em>th resource URI.
+   *
+   * @param {number} n the index of the resource to query.
+   *
+   * @return string representing the value of the nth resource
+   * in the set of XMLAttributes of this CVTerm
+   */
 	DOMString getResourceURI(unsigned long n);
+  /**
+   * Removes a resource URI from the set of resources stored in this CVTerm
+   * object.
+   *
+   * @param {string} resource a string representing the resource URI to remove, eg http://www.geneontology.org/#GO:0005892.
+   * @see addResource(const std::string& resource)
+   */
   long removeResource(DOMString resource);
 
   libsbml__idl__QualifierType_t getQualifierType();
