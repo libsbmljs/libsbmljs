@@ -1455,6 +1455,46 @@ interface Species {
 
 Species implements SBase;
 
+enum libsbml__idl__UnitKind_t {
+  "libsbml::UNIT_KIND_AMPERE",
+  "libsbml::UNIT_KIND_AVOGADRO",
+  "libsbml::UNIT_KIND_BECQUEREL",
+  "libsbml::UNIT_KIND_CANDELA",
+  "libsbml::UNIT_KIND_CELSIUS",
+  "libsbml::UNIT_KIND_COULOMB",
+  "libsbml::UNIT_KIND_DIMENSIONLESS",
+  "libsbml::UNIT_KIND_FARAD",
+  "libsbml::UNIT_KIND_GRAM",
+  "libsbml::UNIT_KIND_GRAY",
+  "libsbml::UNIT_KIND_HENRY",
+  "libsbml::UNIT_KIND_HERTZ",
+  "libsbml::UNIT_KIND_ITEM",
+  "libsbml::UNIT_KIND_JOULE",
+  "libsbml::UNIT_KIND_KATAL",
+  "libsbml::UNIT_KIND_KELVIN",
+  "libsbml::UNIT_KIND_KILOGRAM",
+  "libsbml::UNIT_KIND_LITER",
+  "libsbml::UNIT_KIND_LITRE",
+  "libsbml::UNIT_KIND_LUMEN",
+  "libsbml::UNIT_KIND_LUX",
+  "libsbml::UNIT_KIND_METER",
+  "libsbml::UNIT_KIND_METRE",
+  "libsbml::UNIT_KIND_MOLE",
+  "libsbml::UNIT_KIND_NEWTON",
+  "libsbml::UNIT_KIND_OHM",
+  "libsbml::UNIT_KIND_PASCAL",
+  "libsbml::UNIT_KIND_RADIAN",
+  "libsbml::UNIT_KIND_SECOND",
+  "libsbml::UNIT_KIND_SIEMENS",
+  "libsbml::UNIT_KIND_SIEVERT",
+  "libsbml::UNIT_KIND_STERADIAN",
+  "libsbml::UNIT_KIND_TESLA",
+  "libsbml::UNIT_KIND_VOLT",
+  "libsbml::UNIT_KIND_WATT",
+  "libsbml::UNIT_KIND_WEBER",
+  "libsbml::UNIT_KIND_INVALID"
+};
+
 /**
  * # A single unit referenced in an SBML <em>unit definition</em>.
  *
@@ -1550,6 +1590,29 @@ Species implements SBase;
 [Prefix="libsbml::"]
 interface Unit {
   /**
+   * Returns the "kind" of Unit this is.
+   *
+   * @return {UnitKind_t} the value of the "kind" attribute of this Unit as a
+   * value from the UnitKind_t enumeration.
+   */
+  libsbml__idl__UnitKind_t getKind();
+
+  /**
+   * Sets the "kind" attribute value of this Unit.
+   *
+   * @param {UnitKind_t} kind a value from the UnitKind_t enumeration.
+   */
+  long setKind(libsbml__idl__UnitKind_t kind);
+
+  /**
+   * Predicate to test whether the "kind" attribute of this Unit is set.
+   *
+   * @return {boolean} true if the "kind" attribute of this Unit is set,
+   * false otherwise.
+   */
+  boolean isSetKind();
+
+  /**
    * Unsets the "kind" attribute value of this Unit.
    */
   long unsetKind();
@@ -1608,9 +1671,9 @@ interface Unit {
    * sets the values to certain common defaults, based mostly on what they
    * are in SBML Level&nbsp;2.  Specifically:
    *
-   * * Sets attribute "exponent" to @c 1
-   * * Sets attribute "scale" to @c 0
-   * * Sets attribute "multiplier" to @c 1.0
+   * * Sets attribute "exponent" to 1
+   * * Sets attribute "scale" to 0
+   * * Sets attribute "multiplier" to 1.0
    *
    *
    * The "kind" attribute is left unchanged.
