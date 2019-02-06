@@ -35,6 +35,66 @@ enum libsbml__idl__ModelQualifierType_t {
   "libsbml::BQM_UNKNOWN"
 };
 
+/**
+ * A MIRIAM-compliant controlled vocabulary term.
+ *
+ * The SBML Level 2 and Level 3 specifications define a simple
+ * format for annotating models when (a) referring to controlled vocabulary
+ * terms and database identifiers that define and describe biological and
+ * biochemical entities, and (b) describing the creator of a model and the
+ * model's modification history.  This SBML format is a concrete syntax that
+ * conforms to the guidelines of MIRIAM (<a target="_blank"
+ * href="http://www.nature.com/nbt/journal/v23/n12/abs/nbt1156.html">"Minimum
+ * Information Requested in the Annotation of biochemical Models"</a>,
+ * <i>Nature Biotechnology</i>, vol. 23, no. 12, Dec. 2005).  The format uses
+ * a subset of W3C RDF (<a target="_blank"
+ * href="http://www.w3.org/RDF/">Resource Description Format</a>).  In order
+ * to help application developers work with annotations in this format,
+ * libSBML provides several helper classes that provide higher-level
+ * interfaces to the data elements; these classes include CVTerm,
+ * ModelCreator, ModelHistory, RDFAnnotationParser, and Date.
+ *
+ * The parts of a CVTerm
+ *
+ * Annotations that refer to controlled vocabularies are managed in libSBML
+ * using CVTerm objects.  The relation-resource pairs discussed in the
+ * previous section are the "controlled vocabulary" terms that CVTerm is
+ * designed to store and manipulate.  A set of RDF-based annotations attached
+ * to a given SBML <code>&lt;annotation&gt;</code> element are read by
+ * RDFAnnotationParser and converted into a list of these CVTerm objects.
+ * Each CVTerm object instance stores the following components of an
+ * annotation:
+ *
+ * <ul>
+ *
+ * <li>The qualifier, which can be a BioModels.net "biological
+ * qualifier", a BioModels.net "model qualifier", or an unknown qualifier
+ * (as far as the CVTerm class is concerned).  Qualifiers are used in
+ * MIRIAM to indicate the nature of the relationship between the object
+ * being annotated and the resource.  In CVTerm, the qualifiers can be
+ * manipulated using the methods CVTerm::getQualifierType(),
+ * CVTerm::setQualifierType(@if java int@endif), and related methods.
+ *
+ * <li>The resource, represented by a URI (which, we must remind
+ * developers, is not the same as a URL).  In the CVTerm class, the
+ * resource component can be manipulated using the methods
+ * CVTerm::addResource() and
+ * CVTerm::removeResource().
+ *
+ * </ul>
+ *
+ * Note that a CVTerm contains a single qualifier, but possibly more than
+ * one resource.  This corresponds to the possibility of an annotation that
+ * points to multiple resources, all of which are qualified by the same
+ * BioModels.net qualifier.  The CVTerm object class supports this by
+ * supporting a list of resources.
+ *
+ * Detailed explanations of the qualifiers defined by BioModels.net can be
+ * found at <a target="_blank"
+ * href="http://co.mbine.org/standards/qualifiers">http://co.mbine.org/standards/qualifiers</a>.
+ *
+ * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_c_v_term.html).
+ */
 [Prefix="libsbml::"]
 interface CVTerm {
   long addResource(DOMString resource);
@@ -134,7 +194,7 @@ interface CVTerm {
  * constructor because SBase is an abstract class.  The constructors reside
  * in the subclasses derived from SBase.
  *
- * See the [libSBML C++ docs for SBase](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_s_base.html).
+ * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_s_base.html).
  */
 [Prefix="libsbml::"]
 interface SBase {
@@ -150,30 +210,24 @@ interface SBase {
    * to assignments and rules, callers should use getIdAttribute() instead.
    */
   DOMString getId();
+
   /**
    * Sets the value of the "id" attribute of this SBML object.
    *
-   * @param {string} id.
+   * @param {string} id
    */
   boolean setId(DOMString id);
+
   /**
-   * Predicate returning true if a call to getId() returns a
-   * non-empty string.
+   * Predicate returning @c true if this object's "id" attribute is set.
    *
-   * For most objects, this function will return true if its "id"
-   * attribute is set, and false if it is not, or if the object has no
-   * "id" attribute at all.  However, for an EventAssignment or a Rule,
-   * isSetId() checks whether the "variable" attribute is set, and for an
-   * InitialAssignment, it checks whether the "symbol" attribute is set.
-   * Because those elements will also have an "id" attribute in SBML
-   * Level 3 Version 2 which isSetId() will not check, the function
-   * itself is deprecated, and it is recommended to use isSetIdAttribute() in
-   * all cases where one needs to know whether the "id" attribute is set, and
-   * to use EventAssignment::isSetVariable(), Rule::isSetVariable() and
-   * InitialAssignment::isSetSymbol() when the status of the "variable" or
-   * "symbol" attributes need to be checked.
+   * @copydetails doc_id_attribute
+   *
+   * @return {boolean} true if the "id" attribute of this SBML object is
+   * set, false otherwise.
    */
-  boolean isSetId();
+  boolean isSetIdAttribute();
+
 
   /**
    * Returns the value of the "name" attribute of this SBML object.
@@ -230,7 +284,7 @@ interface SBase {
   /**
    * Sets the value of the "sboTerm" attribute.
    *
-   * @param {number} value the NNNNNNN integer portion of the SBO identifier.
+   * @param {number} value the NNNNNNN integer portion of the SBO identifier
    */
   long setSBOTerm(long value);
 
@@ -256,7 +310,7 @@ interface SBase {
    *
    * Whereas the SBase "notes" subelement is a container for content to be
    * shown directly to humans, the "annotation" element is a container for
-   * optional software-generated content @em not meant to be shown to
+   * optional software-generated content not meant to be shown to
    * humans.  Every object derived from SBase can have its own value for
    * "annotation".  The element's content type is <a target="_blank"
    * href="http://www.w3.org/TR/2004/REC-xml-20040204/#elemdecls">XML type
@@ -290,7 +344,7 @@ interface SBase {
    *
    * Whereas the SBase "notes" subelement is a container for content to be
    * shown directly to humans, the "annotation" element is a container for
-   * optional software-generated content @em not meant to be shown to
+   * optional software-generated content not meant to be shown to
    * humans.  Every object derived from SBase can have its own value for
    * "annotation".  The element's content type is <a target="_blank"
    * href="http://www.w3.org/TR/2004/REC-xml-20040204/#elemdecls">XML type
@@ -320,7 +374,7 @@ interface SBase {
   DOMString getAnnotationString();
 
   /**
-   * Returns the SBML Level of the SBMLDocument object containing @em this
+   * Returns the SBML Level of the SBMLDocument object containing this
    * object.
    *
    * @return {number} the SBML level of this SBML object.
@@ -331,7 +385,7 @@ interface SBase {
 
   /**
    * Returns the Version within the SBML Level of the SBMLDocument object
-   * containing @em this object.
+   * containing this object.
    *
    * @return {number} the SBML version of this SBML object.
    *
@@ -356,6 +410,7 @@ interface SBase {
    * @see unsetNotes()
    */
   DOMString getNotesString();
+
   /**
    * Predicate returning true if this
    * object's "notes" subelement exists and has content.
@@ -409,7 +464,23 @@ interface SBase {
    */
   long unsetNotes();
 
+  /**
+   * Returns the number of CVTerm objects in the annotations of this SBML
+   * object.
+   *
+   * @return {number} the number of CVTerms for this SBML object
+   */
   long getNumCVTerms();
+
+  /**
+   * Returns the nth CVTerm in the list of CVTerms of this SBML
+   * object.
+   *
+   * @param {number} n unsigned int the index of the CVTerm to retrieve
+   *
+   * @return {CVTerm} the nth CVTerm in the list of CVTerms for this SBML object.
+   * If the index n is invalid, @c NULL is returned.
+   */
   CVTerm getCVTerm(unsigned long n);
 };
 
