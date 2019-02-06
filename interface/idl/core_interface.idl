@@ -445,7 +445,7 @@ interface SBase {
    * or the "variable" attribute of a Rule, or the "symbol" attribute of
    * an InitialAssignment.
    *
-   * @return {String} the id of this SBML object, or the "variable" if the object is a
+   * @return {string} the id of this SBML object, or the "variable" if the object is a
    * Rule, or the "symbol" if the object is an InitialAssignment.
    *
    * **Note:** Because of the inconsistent behavior of this function with respect
