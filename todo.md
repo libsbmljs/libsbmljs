@@ -10,6 +10,6 @@
   * Basic reading
   * Async reading
   * Basic writing
-  * CV & SBO terms
-  * Fancy math?
+  * writing CV & SBO terms
+  * writing Fancy math and units?
   * Packages

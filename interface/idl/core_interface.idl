@@ -1456,13 +1456,13 @@ interface Species {
 Species implements SBase;
 
 /**
- * @sbmlbrief{core} A single unit referenced in an SBML <em>unit definition</em>.
+ * # A single unit referenced in an SBML <em>unit definition</em>.
  *
  * The SBML unit definition facility uses two classes of objects,
- * UnitDefinition and Unit.  The approach to defining units in %SBML is
- * compositional; for example, <em>meter second<sup> &ndash;2</sup></em> is
+ * UnitDefinition and Unit.  The approach to defining units in SBML is
+ * compositional; for example, <em>meter second<sup> -2</sup></em> is
  * constructed by combining a Unit object representing <em>meter</em> with
- * another Unit object representing <em>second<sup> &ndash;2</sup></em>.
+ * another Unit object representing <em>second<sup> -2</sup></em>.
  * The combination is wrapped inside a UnitDefinition, which provides for
  * assigning an identifier and optional name to the combination.  The
  * identifier can then be referenced from elsewhere in a model.  Thus, the
@@ -1475,17 +1475,14 @@ Species implements SBase;
  * Its value must be one of the text strings listed below; this list
  * corresponds to SBML Level3:
  *
- * @copydetails doc_base_units
- *
  * A few small differences exist between the Level3 list of base
  * units and the list defined in other Level/Version combinations of SBML.
  * Specifically, Levels of SBML before Level3 do not define
  * avogadro; conversely, Level2 Version1 defines Celsius,
  * and Level1 defines celsius, meter, and liter, none of
  * which are available in Level3.  In libSBML, each of the predefined
- * base unit names is represented by an enumeration value @if clike in
- * #UnitKind_t@else whose name begins with the characters
- * UNIT_KIND_@endif, discussed in a separate section below.
+ * base unit names is represented by an enumeration value whose name begins with the characters
+ * UNIT_KIND_, discussed in a separate section below.
  *
  * The attribute named "exponent" on Unit represents an exponent on the
  * unit.  In SBML Level2, the attribute is optional and has a default
@@ -1494,7 +1491,7 @@ Species implements SBase;
  * called "scale"; its value must be an integer exponent for a power-of-ten
  * multiplier used to set the scale of the unit.  For example, a unit
  * having a "kind" value of gram and a "scale" value of -3 signifies
- * 10<sup>&ndash;3</sup> \f$\times\f$ gram, or milligrams.  In SBML
+ * 10<sup>-3</sup> * gram, or milligrams.  In SBML
  * Level2, the attribute is optional and has a default value of 0
  * (zero), because 10<sup> 0</sup> = 1; in SBML Level3, the attribute
  * is mandatory and has no default value.  Lastly, the attribute named
@@ -1506,7 +1503,7 @@ Species implements SBase;
  * default value of 1 (one); in SBML Level3, the attribute is
  * mandatory and has no default value.
  *
- * # %Unit identification codes
+ * # Unit identification codes
  *
  * As discussed above, SBML defines a set of base units which serves as the
  * starting point for new unit definitions.  This set of base units
@@ -1517,7 +1514,7 @@ Species implements SBase;
  * existed a data type in the SBML specifications called UnitKind,
  * enumerating the possible SBML base units.  Although SBML Level2
  * Version3 removed this type from the language specification,
- * libSBML maintains the corresponding enumeration type #UnitKind_t as a
+ * libSBML maintains the corresponding enumeration type UnitKind_t as a
  * convenience and as a way to provide backward compatibility to previous
  * SBML Level/Version specifications.  (The removal in SBML Level2
  * Version3 of the enumeration UnitKind was also accompanied by
