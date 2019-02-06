@@ -1,4 +1,6 @@
 /**
- * module description
+ * A WebAssembly / JavaScript wrapper for the [libSBML C++ library](http://sbml.org/Software/libSBML).
  * @module libsbml
  */
+
+

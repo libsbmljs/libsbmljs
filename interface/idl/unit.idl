@@ -5,8 +5,6 @@
  *
  * See the [libSBML C++ docs for UnitKind_t](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_unit_kind_8h.html#a9597e6a39c3bb3fde6ff0073f47f1804).
  *
- * @readonly
- * @enum
  */
 enum libsbml__idl__UnitKind_t {
   "libsbml::UNIT_KIND_AMPERE",

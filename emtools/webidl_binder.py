@@ -63,19 +63,8 @@ interfaces = {}
 implements = {}
 enums = {}
 
-from js_documentation_generator import JSDocumentationGenerator
-doc_gen = JSDocumentationGenerator(wrapper_input)
-doc_gen.parseModuleHeader()
-for thing in data:
-  if isinstance(thing, WebIDL.IDLInterface):
-    thing.location.resolve()
-    doc_gen.parseInterface(thing)
-  elif isinstance(thing, WebIDL.IDLEnum):
-    thing.location.resolve()
-    doc_gen.parseEnum(thing)
-
-with open(output_base + '_docstrings.js', 'w') as js_docstrings:
-    js_docstrings.write(doc_gen.render())
+from js_documentation_generator import process_webidl
+process_webidl(input_text, output_base)
 
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):

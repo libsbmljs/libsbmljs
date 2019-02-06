@@ -2,6 +2,7 @@
 
 import re
 from jinja2 import Template, Environment, DictLoader
+import WebIDL
 
 jinja_env = Environment(loader=DictLoader(dict(
     class_wrapper=\
@@ -74,13 +75,27 @@ class Enum:
         self.docstring_lines = docstring_lines
         self.values = values
 
+
+    def makeValuesDocstring(self):
+        yield ' * ```'
+        for v in self.values:
+            yield ' * {}'.format(v)
+        yield ' * ```'
+        return
+
+
     def getDocstring(self):
-        return '\n'.join(self.docstring_lines)
+        lines = self.docstring_lines
+        if lines:
+            lines = lines[:-1] + tuple(self.makeValuesDocstring()) + lines[-1:]
+            return '\n'.join(lines)
+        else:
+            return ''
 
 
     def render(self):
         return jinja_env.get_template('enum').render(
-            docstring = '\n'.join(self.docstring_lines),
+            docstring = self.getDocstring(),
             symbol = self.identifier,
             values = self.values,
         )
@@ -114,9 +129,9 @@ class JSDocumentationGenerator:
                 line = self.lines[l]
                 if l < 0:
                     return
-                space = self.space_re.match(line)
-                if space is not None:
-                    continue
+                # space = self.space_re.match(line)
+                # if space is not None:
+                #     continue
                 prefix = self.prefix_re.match(line)
                 if prefix is not None:
                     continue
@@ -215,3 +230,22 @@ class JSDocumentationGenerator:
             classes = tuple(i.render() for i in self.interfaces),
             enums = self.enums,
         )
+
+def process_webidl(input_text, output_base):
+    p = WebIDL.Parser()
+    p.parse(input_text)
+    data = p.finish()
+
+    doc_gen = JSDocumentationGenerator(input_text)
+
+    doc_gen.parseModuleHeader()
+    for thing in data:
+      if isinstance(thing, WebIDL.IDLInterface):
+        thing.location.resolve()
+        doc_gen.parseInterface(thing)
+      elif isinstance(thing, WebIDL.IDLEnum):
+        thing.location.resolve()
+        doc_gen.parseEnum(thing)
+
+    with open(output_base + '_docstrings.js', 'w') as js_docstrings:
+        js_docstrings.write(doc_gen.render())
