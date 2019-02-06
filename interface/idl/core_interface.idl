@@ -470,12 +470,14 @@ interface SBase {
 
 
   /**
-   * Returns the value of the "name" attribute of this SBML object.
+   * @return {string} the value of the "name" attribute of this SBML object.
    */
   DOMString getName();
 
   /**
    * Sets the value of the "name" attribute of this SBML object.
+   *
+   * @param {string} name the value to assign to the name attribute
    */
   long setName(DOMString name);
 
