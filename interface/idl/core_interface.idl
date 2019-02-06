@@ -765,21 +765,111 @@ interface SBase {
  */
 [Prefix="libsbml::"]
 interface SpeciesReference {
+  /**
+   * Get the value of the "species" attribute.
+   *
+   * @return {string} the value of the attribute "species" for this
+   * SpeciesReference
+   */
   DOMString getSpecies();
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
   long setSpecies(DOMString spec);
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
   boolean isSetSpecies();
 
+  /**
+   * Get the value of the "constant" attribute.
+   *
+   * @return {boolean} the value of the "constant" attribute of this
+   * SpeciesReference.
+   */
   boolean getConstant();
+
+  /**
+   * Sets the "constant" attribute of this SpeciesReference to the given boolean
+   * flag.
+   *
+   * @param {boolean} flag, the value for the "constant" attribute of this
+   * SpeciesReference instance.
+   */
   long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "constant" attribute is set
+   *
+   * @return {boolean} true if the "constant" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
   boolean isSetConstant();
 };
 
 SpeciesReference implements SBase;
 
+/**
+ * A reference to an SBML modifier species.
+ *
+ * Sometimes a species appears in the kinetic rate formula of a reaction
+ * but is itself neither created nor destroyed in that reaction (for
+ * example, because it acts as a catalyst or inhibitor).  In SBML, all such
+ * species are simply called @em modifiers without regard to the detailed
+ * role of those species in the model.  The Reaction structure provides a
+ * way to express which species act as modifiers in a given reaction.  This
+ * is the purpose of the list of modifiers available in Reaction.  The list
+ * contains instances of ModifierSpeciesReference structures.
+ *
+ * The ModifierSpeciesReference structure inherits the mandatory attribute
+ * "species" and optional attributes "id" and "name" from the parent class
+ * SimpleSpeciesReference.  See the description of SimpleSpeciesReference
+ * for more information about these.
+ *
+ * The value of the "species" attribute must be the identifier of a species
+ * defined in the enclosing Model; this species is designated as a modifier
+ * for the current reaction.  A reaction may have any number of modifiers.
+ * It is permissible for a modifier species to appear simultaneously in the
+ * list of reactants and products of the same reaction where it is
+ * designated as a modifier, as well as to appear in the list of reactants,
+ * products and modifiers of other reactions in the model.
+ */
 [Prefix="libsbml::"]
 interface ModifierSpeciesReference {
+  /**
+   * Get the value of the "species" attribute.
+   *
+   * @return {string} the value of the attribute "species" for this
+   * SpeciesReference
+   */
   DOMString getSpecies();
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
   long setSpecies(DOMString spec);
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
   boolean isSetSpecies();
 };
 
