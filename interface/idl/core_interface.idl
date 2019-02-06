@@ -1554,6 +1554,11 @@ interface Unit {
    */
   long unsetKind();
 
+  /**
+   * Returns the value of the "scale" attribute of this unit.
+   *
+   * @return the "scale" value of this Unit, as an integer
+   */
   long getScale();
 
   /**
@@ -1595,6 +1600,38 @@ interface Unit {
   long unsetMultiplier();
 
   /**
+   * Initializes the fields of this Unit object to "typical" default
+   * values.
+   *
+   * The SBML Unit component has slightly different aspects and default
+   * attribute values in different SBML Levels and Versions.  This method
+   * sets the values to certain common defaults, based mostly on what they
+   * are in SBML Level&nbsp;2.  Specifically:
+   *
+   * * Sets attribute "exponent" to @c 1
+   * * Sets attribute "scale" to @c 0
+   * * Sets attribute "multiplier" to @c 1.0
+   *
+   *
+   * The "kind" attribute is left unchanged.
+   */
+  void initDefaults();
+
+  /**
+   * Returns the value of the "exponent" attribute of this unit.
+   *
+   * @return the "exponent" value of this Unit, as an integer
+   */
+  long getExponent();
+
+  /**
+   * Returns the value of the "exponent" attribute of this unit.
+   *
+   * @return the "exponent" value of this Unit, as a double
+   */
+  double getExponentAsDouble();
+
+  /**
    * Sets the "exponent" attribute value of this Unit.
    *
    * @param {number} value the integer to which the attribute "exponent" should be set
@@ -1614,6 +1651,13 @@ interface Unit {
    * Unsets the "exponent" attribute value of this Unit.
    */
   long unsetExponent ();
+
+  /**
+   * Returns the value of the "offset" attribute of this Unit.
+   *
+   * @return the "offset" value of this Unit, as a double
+   */
+  double getOffset();
 
   /**
    * Sets the "offset" attribute value of this Unit.
