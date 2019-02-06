@@ -52,10 +52,11 @@ shared.try_delete(output_base + '_docstrings.js')
 
 p = WebIDL.Parser()
 input_text = open(input_file).read()
-p.parse(r'''
+wrapper_input = r'''
 interface VoidPtr {
 };
-''' + input_text)
+''' + input_text
+p.parse(wrapper_input)
 data = p.finish()
 
 interfaces = {}
@@ -63,10 +64,7 @@ implements = {}
 enums = {}
 
 from js_documentation_generator import JSDocumentationGenerator
-doc_gen = JSDocumentationGenerator(r'''
-interface VoidPtr {
-};
-''' + input_text)
+doc_gen = JSDocumentationGenerator(wrapper_input)
 doc_gen.parseModuleHeader()
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):

@@ -163,15 +163,15 @@ interface CVTerm {
    */
   unsigned long getNumResources();
   /**
-   * Returns the value of the <em>n</em>th resource for this CVTerm object.
+   * Returns the value of the nth resource for this CVTerm object.
    *
    * The fragment above illustrates that there can be more than one resource
    * referenced by a given relationship annotation (i.e., the resource URI
    * values associated with a particular RELATION_ELEMENT).  LibSBML stores
    * all resource URIs in a single CVTerm object for a given relationship.
-   * Callers can use CVTerm::getNumResources() to find out how many resources
+   * Callers can use CVTerm.getNumResources() to find out how many resources
    * are stored in this CVTerm object, then call this method to retrieve the
-   * <em>n</em>th resource URI.
+   * nth resource URI.
    *
    * @param {number} n the index of the resource to query.
    *
@@ -188,13 +188,171 @@ interface CVTerm {
    */
   long removeResource(DOMString resource);
 
+  /**
+   * Returns the qualifier type of this CVTerm object.
+   *
+   * The placeholder
+   * RELATION_ELEMENT refers to a BioModels.net qualifier
+   * element name.  This is an element in either the XML namespace
+   * `http://biomodels.net/model-qualifiers` (for model
+   * qualifiers) or `http://biomodels.net/biology-qualifiers`
+   * (for biological qualifier).  The present method returns a code
+   * identifying which one of these two relationship namespaces is being
+   * used; any other qualifier in libSBML is considered unknown (as far as
+   * the CVTerm class is concerned).  Consequently, this method will return
+   * one of the following values:
+   *
+   * ```
+   * libsbml.MODEL_QUALIFIER
+   * libsbml.BIOLOGICAL_QUALIFIER
+   * libsbml.UNKNOWN_QUALIFIER
+   * ```
+   *
+   * The specific relationship of this CVTerm to the enclosing SBML object
+   * can be determined using the CVTerm methods such as
+   * CVTerm.getModelQualifierType() and
+   * CVTerm.getBiologicalQualifierType().  Callers will typically want to
+   * use the present method to find out which one of the other two
+   * methods to call to find out the specific relationship.
+   *
+   * @return {QualifierType_t} the qualifier type
+   * of this object or `libsbml.UNKNOWN_QUALIFIER`
+   * (the default).
+   *
+   * @see getResources()
+   * @see getModelQualifierType()
+   * @see getBiologicalQualifierType()
+   */
   libsbml__idl__QualifierType_t getQualifierType();
+
+  /**
+   * Sets the qualifier code of this
+   * CVTerm object.
+   *
+   * @param {QualifierType_t} type the qualifier type
+   *
+   * @see getQualifierType()
+   */
   long setQualifierType(libsbml__idl__QualifierType_t type);
 
+  /**
+   * Returns the biological qualifier type of this CVTerm object.
+   *
+   * The placeholder
+   * RELATION_ELEMENT refers to a BioModels.net qualifier element
+   * name.  This is an element in either the XML namespace
+   * `http://biomodels.net/model-qualifiers` (for model
+   * qualifiers) or `http://biomodels.net/biology-qualifiers`
+   * (for biological qualifier).  Callers will typically use
+   * CVTerm::getQualifierType() to find out the type of qualifier relevant to
+   * this particular CVTerm object, then if it is a biological qualifier,
+   * use the present method to determine the specific qualifier.
+   *
+   * Annotations with biological qualifiers express a relationship between an
+   * annotation resource and the biological concept represented by a
+   * given object in the model. The diagram
+   * below illustrates the relationship in this case:
+   *
+   * The set of known biological qualifiers is, at the time of this
+   * libSBML release, the following:
+   *
+   * ```
+   * libsbml.BQB_IS
+   * libsbml.BQB_HAS_PART
+   * libsbml.BQB_IS_PART_OF
+   * libsbml.BQB_IS_VERSION_OF
+   * libsbml.BQB_HAS_VERSION
+   * libsbml.BQB_IS_HOMOLOG_TO
+   * libsbml.BQB_IS_DESCRIBED_BY
+   * libsbml.BQB_IS_ENCODED_BY
+   * libsbml.BQB_ENCODES
+   * libsbml.BQB_OCCURS_IN
+   * libsbml.BQB_HAS_PROPERTY
+   * libsbml.BQB_IS_PROPERTY_OF
+   * libsbml.BQB_HAS_TAXON
+   * ```
+   *
+   * Any other BioModels.net qualifier found in the model is considered
+   * unknown by libSBML and reported as
+   * libsbml.BQB_UNKNOWN.
+   *
+   * @return {BiolQualifierType_t} the biology qualifier type
+   * of this object or `libsbml.BQB_UNKNOWN`
+   * (the default).
+   */
   libsbml__idl__BiolQualifierType_t getBiologicalQualifierType();
+
+  /**
+   * Sets the biology qualifier
+   * type of this CVTerm object.
+   *
+   * @param {BiolQualifierType_t} type the biology
+   * qualifier type.
+   *
+   * @note If the Qualifier Type of this object is not
+   * libsbml.BIOLOGICAL_QUALIFIER,
+   * then the biology qualifier type
+   * will default to libsbml.BQB_UNKNOWN.
+   *
+   * @see getQualifierType()
+   */
   long setBiologicalQualifierType(libsbml__idl__BiolQualifierType_t type);
 
+  /**
+   * Returns the model qualifier type of this CVTerm object.
+   *
+   * The placeholder
+   * RELATION_ELEMENT refers to a BioModels.net qualifier
+   * element name.  This is an element in either the XML namespace
+   * `http://biomodels.net/model-qualifiers` (for model
+   * qualifiers) or `http://biomodels.net/biology-qualifiers`
+   * (for biological qualifier).  Callers will typically use
+   * CVTerm::getQualifierType() to find out the type of qualifier relevant to this
+   * particular CVTerm object, then if it is a model qualifier, use the
+   * present method to determine the specific qualifier.
+   *
+   * Annotations with model qualifiers express a relationship between an
+   * annotation resource and the modeling concept represented by a
+   * given object in the model.  The diagram below illustrates the
+   * relationship in this case:
+   *
+   * @image html model-qualifiers.png "Relationship expressed by model qualifiers"
+   * @image latex model-qualifiers.png "Relationship expressed by model qualifiers"
+   *
+   * The set of known model qualifiers is, at the time of this libSBML
+   * release, the following:
+   *
+   * ```
+   * libsbml.BQM_IS
+   * libsbml.BQM_IS_DESCRIBED_BY
+   * libsbml.BQM_IS_DERIVED_FROM
+   * libsbml.BQM_IS_INSTANCE_OF
+   * libsbml.BQM_HAS_INSTANCE
+   * ```
+   *
+   * Any other BioModels.net qualifier found in the model is considered
+   * unknown by libSBML and reported as
+   * libsbml.BQM_UNKNOWN.
+   *
+   * @return {ModelQualifierType_t} the model qualifier
+   * of this object or libsbml.BQM_UNKNOWN
+   * (the default).
+   */
   libsbml__idl__ModelQualifierType_t getModelQualifierType();
+
+  /**
+   * Sets the model qualifier type
+   * of this CVTerm object.
+   *
+   * @param {ModelQualifierType_t} type the model qualifier type.
+   *
+   * @note If the qualifier type of this object is not
+   * libsbml.MODEL_QUALIFIER, then the
+   * then the model qualifier typ
+   * will default to libsbml.BQM_UNKNOWN.
+   *
+   * @see getQualifierType()
+   */
   long setModelQualifierType(libsbml__idl__ModelQualifierType_t type);
 };
 
@@ -306,8 +464,6 @@ interface SBase {
 
   /**
    * Predicate returning true if this object's "id" attribute is set.
-   *
-   * @copydetails doc_id_attribute
    *
    * @return {boolean} true if the "id" attribute of this SBML object is
    * set, false otherwise.
@@ -602,7 +758,7 @@ interface SBase {
  *
  * * If a species reference's identifier is the subject of a RateRule,
  * the unit associated with the RateRule object's value should be
- * dimensionless/<em>time</em>, where <em>time</em> is the
+ * dimensionless/time, where time is the
  * model-wide unit of time set on the Model object.
  *
  * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_species_reference.html)
