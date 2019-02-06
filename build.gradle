@@ -100,6 +100,11 @@ class ConcatFiles extends DefaultTask {
 
 task combineIDL(type: ConcatFiles) {
   String idl_dir = Paths.get("interface","idl")
+  include Paths.get(idl_dir, "module_header.idl")
+  include Paths.get(idl_dir, "cvterm.idl")
+  include Paths.get(idl_dir, "sbase.idl")
+  include Paths.get(idl_dir, "species.idl")
+  include Paths.get(idl_dir, "unit.idl")
   include Paths.get(idl_dir, "core_interface.idl")
   if (enableLayout) {
     include Paths.get(idl_dir, "layout_interface.idl")
