@@ -60,7 +60,7 @@ enum libsbml__idl__ModelQualifierType_t {
  * using CVTerm objects.  The relation-resource pairs discussed in the
  * previous section are the "controlled vocabulary" terms that CVTerm is
  * designed to store and manipulate.  A set of RDF-based annotations attached
- * to a given SBML <code>&lt;annotation&gt;</code> element are read by
+ * to a given SBML <code>`<annotation>`</code> element are read by
  * RDFAnnotationParser and converted into a list of these CVTerm objects.
  * Each CVTerm object instance stores the following components of an
  * annotation:
@@ -72,14 +72,14 @@ enum libsbml__idl__ModelQualifierType_t {
  * (as far as the CVTerm class is concerned).  Qualifiers are used in
  * MIRIAM to indicate the nature of the relationship between the object
  * being annotated and the resource.  In CVTerm, the qualifiers can be
- * manipulated using the methods CVTerm::getQualifierType(),
- * CVTerm::setQualifierType(@if java int@endif), and related methods.
+ * manipulated using the methods CVTerm.getQualifierType(),
+ * CVTerm.setQualifierType(), and related methods.
  *
  * <li>The resource, represented by a URI (which, we must remind
  * developers, is not the same as a URL).  In the CVTerm class, the
  * resource component can be manipulated using the methods
- * CVTerm::addResource() and
- * CVTerm::removeResource().
+ * CVTerm.addResource() and
+ * CVTerm.removeResource().
  *
  * </ul>
  *
