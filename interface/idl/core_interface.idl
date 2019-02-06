@@ -1513,7 +1513,7 @@ Species implements SBase;
  * consists of the SI units and a small number of additional convenience
  * units.
  *
- * @if clike Until SBML Level2 Version3, there
+ * Until SBML Level2 Version3, there
  * existed a data type in the SBML specifications called UnitKind,
  * enumerating the possible SBML base units.  Although SBML Level2
  * Version3 removed this type from the language specification,
@@ -1527,31 +1527,6 @@ Species implements SBase;
  * their syntax.  The purpose of the change in the SBML specification was
  * simply to clean up an inconsistency about the contexts in which these
  * values were usable.)
- * @endif@if java In SBML Level2 Versions before
- * Version3, there existed an enumeration of units called
- * UnitKind.  In Version3, this enumeration was removed and the
- * identifier class UnitSId redefined to include the previous
- * UnitKind values as reserved symbols.  This change has no net effect on
- * permissible models, their representation or their syntax.  The purpose
- * of the change in the SBML specification was simply to clean up an
- * inconsistency about the contexts in which these values were usable.
- * However, libSBML maintains UnitKind in the form of of a set of static
- * integer constants whose names begin with the characters
- * UNIT_KIND_.  These constants are defined in the class
- * <a href="libsbmlConstants.html">libsbmlConstants</a>.
- * @endif@if python In SBML Level2 Versions before
- * Version3, there existed an enumeration of units called
- * UnitKind.  In Version3, this enumeration was removed and the
- * identifier class UnitSId redefined to include the previous
- * UnitKind values as reserved symbols.  This change has no net effect on
- * permissible models, their representation or their syntax.  The purpose
- * of the change in the SBML specification was simply to clean up an
- * inconsistency about the contexts in which these values were usable.
- * However, libSBML maintains UnitKind in the form of of a set of static
- * integer constants whose names begin with the characters
- * UNIT_KIND_.  These constants are defined in the class
- * @link libsbml libsbml@endlink.
- * @endif@~
  *
  * As a consequence of the fact that libSBML supports models in all Levels
  * and Versions of SBML, libSBML's set of UNIT_KIND_ values is a union
