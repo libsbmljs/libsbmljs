@@ -1,0 +1,424 @@
+enum libsbml__idl__UnitKind_t {
+  "libsbml::UNIT_KIND_AMPERE",
+  "libsbml::UNIT_KIND_AVOGADRO",
+  "libsbml::UNIT_KIND_BECQUEREL",
+  "libsbml::UNIT_KIND_CANDELA",
+  "libsbml::UNIT_KIND_CELSIUS",
+  "libsbml::UNIT_KIND_COULOMB",
+  "libsbml::UNIT_KIND_DIMENSIONLESS",
+  "libsbml::UNIT_KIND_FARAD",
+  "libsbml::UNIT_KIND_GRAM",
+  "libsbml::UNIT_KIND_GRAY",
+  "libsbml::UNIT_KIND_HENRY",
+  "libsbml::UNIT_KIND_HERTZ",
+  "libsbml::UNIT_KIND_ITEM",
+  "libsbml::UNIT_KIND_JOULE",
+  "libsbml::UNIT_KIND_KATAL",
+  "libsbml::UNIT_KIND_KELVIN",
+  "libsbml::UNIT_KIND_KILOGRAM",
+  "libsbml::UNIT_KIND_LITER",
+  "libsbml::UNIT_KIND_LITRE",
+  "libsbml::UNIT_KIND_LUMEN",
+  "libsbml::UNIT_KIND_LUX",
+  "libsbml::UNIT_KIND_METER",
+  "libsbml::UNIT_KIND_METRE",
+  "libsbml::UNIT_KIND_MOLE",
+  "libsbml::UNIT_KIND_NEWTON",
+  "libsbml::UNIT_KIND_OHM",
+  "libsbml::UNIT_KIND_PASCAL",
+  "libsbml::UNIT_KIND_RADIAN",
+  "libsbml::UNIT_KIND_SECOND",
+  "libsbml::UNIT_KIND_SIEMENS",
+  "libsbml::UNIT_KIND_SIEVERT",
+  "libsbml::UNIT_KIND_STERADIAN",
+  "libsbml::UNIT_KIND_TESLA",
+  "libsbml::UNIT_KIND_VOLT",
+  "libsbml::UNIT_KIND_WATT",
+  "libsbml::UNIT_KIND_WEBER",
+  "libsbml::UNIT_KIND_INVALID"
+};
+
+/**
+ * # A single unit referenced in an SBML <em>unit definition</em>.
+ * 
+ * The SBML unit definition facility uses two classes of objects,
+ * UnitDefinition and Unit.  The approach to defining units in SBML is
+ * compositional; for example, <em>meter second<sup> -2</sup></em> is
+ * constructed by combining a Unit object representing <em>meter</em> with
+ * another Unit object representing <em>second<sup> -2</sup></em>.
+ * The combination is wrapped inside a UnitDefinition, which provides for
+ * assigning an identifier and optional name to the combination.  The
+ * identifier can then be referenced from elsewhere in a model.  Thus, the
+ * UnitDefinition class is the container, and Unit instances are placed
+ * inside UnitDefinition instances.
+ *
+ * A Unit has four attributes named "kind", "exponent", "scale"
+ * and "multiplier".  It represents a (possibly transformed) reference to a
+ * base unit.  The attribute "kind" on Unit indicates the chosen base unit.
+ * Its value must be one of the text strings listed below; this list
+ * corresponds to SBML Level3:
+ *
+ * A few small differences exist between the Level3 list of base
+ * units and the list defined in other Level/Version combinations of SBML.
+ * Specifically, Levels of SBML before Level3 do not define
+ * avogadro; conversely, Level2 Version1 defines Celsius,
+ * and Level1 defines celsius, meter, and liter, none of
+ * which are available in Level3.  In libSBML, each of the predefined
+ * base unit names is represented by an enumeration value whose name begins with the characters
+ * UNIT_KIND_, discussed in a separate section below.
+ *
+ * The attribute named "exponent" on Unit represents an exponent on the
+ * unit.  In SBML Level2, the attribute is optional and has a default
+ * value of 1 (one); in SBML Level3, the attribute is mandatory
+ * and there is no default value.  A Unit also has an attribute
+ * called "scale"; its value must be an integer exponent for a power-of-ten
+ * multiplier used to set the scale of the unit.  For example, a unit
+ * having a "kind" value of gram and a "scale" value of -3 signifies
+ * 10<sup>-3</sup> * gram, or milligrams.  In SBML
+ * Level2, the attribute is optional and has a default value of 0
+ * (zero), because 10<sup> 0</sup> = 1; in SBML Level3, the attribute
+ * is mandatory and has no default value.  Lastly, the attribute named
+ * "multiplier" can be used to multiply the unit by a real-numbered factor;
+ * this enables the definition of units that are not power-of-ten multiples
+ * of SI units.  For instance, a multiplier of 0.3048 could be used to
+ * define foot as a measure of length in terms of a metre.  The
+ * "multiplier" attribute is optional in SBML Level2, where it has a
+ * default value of 1 (one); in SBML Level3, the attribute is
+ * mandatory and has no default value.
+ *
+ * # Unit identification codes
+ *
+ * As discussed above, SBML defines a set of base units which serves as the
+ * starting point for new unit definitions.  This set of base units
+ * consists of the SI units and a small number of additional convenience
+ * units.
+ *
+ * Until SBML Level2 Version3, there
+ * existed a data type in the SBML specifications called UnitKind,
+ * enumerating the possible SBML base units.  Although SBML Level2
+ * Version3 removed this type from the language specification,
+ * libSBML maintains the corresponding enumeration type UnitKind_t as a
+ * convenience and as a way to provide backward compatibility to previous
+ * SBML Level/Version specifications.  (The removal in SBML Level2
+ * Version3 of the enumeration UnitKind was also accompanied by
+ * the redefinition of the data type UnitSId to include the previous
+ * UnitKind values as reserved symbols in the UnitSId space.  This
+ * change has no net effect on permissible models, their representation or
+ * their syntax.  The purpose of the change in the SBML specification was
+ * simply to clean up an inconsistency about the contexts in which these
+ * values were usable.)
+ *
+ * As a consequence of the fact that libSBML supports models in all Levels
+ * and Versions of SBML, libSBML's set of UNIT_KIND_ values is a union
+ * of all the possible base unit names defined in the different SBML
+ * specifications.  However, not every base unit is allowed in every
+ * Level+Version combination of SBML.  Note in particular the following
+ * exceptions:
+ *
+ * * The alternate spelling "meter" is included in
+ * addition to the official SI spelling "metre".  This spelling is only
+ * permitted in SBML Level1 models.
+ *
+ * * The alternate spelling "liter" is included in addition to the
+ * official SI spelling "litre".  This spelling is only permitted in
+ * SBML Level1 models.
+ *
+ * * The unit "Celsius" is included because of its presence in
+ * specifications of SBML prior to SBML Level2 Version2.
+ *
+ * * The unit avogadro was introduced in SBML Level3, and
+ * is only permitted for use in SBML Level3 models.
+ *
+ */
+[Prefix="libsbml::"]
+interface Unit {
+  /**
+   * Returns the "kind" of Unit this is.
+   *
+   * @return {UnitKind_t} the value of the "kind" attribute of this Unit as a
+   * value from the UnitKind_t enumeration.
+   */
+  libsbml__idl__UnitKind_t getKind();
+
+  /**
+   * Sets the "kind" attribute value of this Unit.
+   *
+   * @param {UnitKind_t} kind a value from the UnitKind_t enumeration.
+   */
+  long setKind(libsbml__idl__UnitKind_t kind);
+
+  /**
+   * Predicate to test whether the "kind" attribute of this Unit is set.
+   *
+   * @return {boolean} true if the "kind" attribute of this Unit is set,
+   * false otherwise.
+   */
+  boolean isSetKind();
+
+  /**
+   * Unsets the "kind" attribute value of this Unit.
+   */
+  long unsetKind();
+
+  /**
+   * Returns the value of the "scale" attribute of this unit.
+   *
+   * @return the "scale" value of this Unit, as an integer
+   */
+  long getScale();
+
+  /**
+   * Sets the "scale" attribute value of this Unit.
+   *
+   * @param {number} value the integer to which the attribute "scale" should be set
+   */
+  long setScale(long value);
+
+  /**
+   * Predicate to test whether the "scale" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "scale" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetScale();
+
+  /**
+   * Sets the "multipler" attribute value of this Unit.
+   *
+   * @param {number} value the floating-point value to which the attribute
+   * "multiplier" should be set
+   */
+  long setMultiplier(double value);
+
+  /**
+   * Predicate to test whether the "multiplier" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "multiplier" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetMultiplier();
+
+  /**
+   * Unsets the "multipler" attribute value of this Unit.
+   */
+  long unsetMultiplier();
+
+  /**
+   * Initializes the fields of this Unit object to "typical" default
+   * values.
+   *
+   * The SBML Unit component has slightly different aspects and default
+   * attribute values in different SBML Levels and Versions.  This method
+   * sets the values to certain common defaults, based mostly on what they
+   * are in SBML Level&nbsp;2.  Specifically:
+   *
+   * * Sets attribute "exponent" to 1
+   * * Sets attribute "scale" to 0
+   * * Sets attribute "multiplier" to 1.0
+   *
+   *
+   * The "kind" attribute is left unchanged.
+   */
+  void initDefaults();
+
+  /**
+   * Returns the value of the "exponent" attribute of this unit.
+   *
+   * @return the "exponent" value of this Unit, as an integer
+   */
+  long getExponent();
+
+  /**
+   * Returns the value of the "exponent" attribute of this unit.
+   *
+   * @return the "exponent" value of this Unit, as a double
+   */
+  double getExponentAsDouble();
+
+  /**
+   * Sets the "exponent" attribute value of this Unit.
+   *
+   * @param {number} value the integer to which the attribute "exponent" should be set
+   */
+  long setExponent(double value);
+
+  /**
+   * Predicate to test whether the "exponent" attribute of this Unit
+   * is set.
+   *
+   * @return {boolean} true if the "exponent" attribute of this Unit is set,
+   * false otherwise
+   */
+  boolean isSetExponent();
+
+  /**
+   * Unsets the "exponent" attribute value of this Unit.
+   */
+  long unsetExponent ();
+
+  /**
+   * Returns the value of the "offset" attribute of this Unit.
+   *
+   * @return the "offset" value of this Unit, as a double
+   */
+  double getOffset();
+
+  /**
+   * Sets the "offset" attribute value of this Unit.
+   *
+   * @param {number} value the floating point value to which the attribute "offset"
+   * should set
+   */
+  long setOffset(double value);
+
+  /**
+   * Unsets the "offset" attribute value of this Unit.
+   */
+  long unsetOffset();
+
+  /**
+   * Predicate to test whether a given string is the name of a built-in SBML
+   * unit, depending on the SBML level, since new predefined units were added
+   * between level 2 versions 1 and 2, and then all predefined units were removed
+   * again in SBML Level 3.
+   *
+   * @param {string} name a string to be tested against the built-in unit names
+   * @param {number} level the level of SBML one is checking
+   *
+   * @return {boolean} true if name is one of "substance", "volume",
+   * or "time" and the level is 1; or if name is one of
+   * "substance", "volume", "area", "length", or "time" and
+   * the level is 2; false otherwise (including all values when
+   * level is 3).
+   *
+   * @static
+   */
+  static boolean isBuiltIn(DOMString name, unsigned long level);
+
+  /**
+   * Predicate returning true if two
+   * Unit objects are identical.
+   *
+   * Two Unit objects are considered to be identical if they match in
+   * all attributes.  (Contrast this to the method areEquivalent(), which compares Unit objects only with respect
+   * to certain attributes.)
+   *
+   * @param {Unit} unit1 the first Unit object to compare
+   * @param {Unit} unit2 the second Unit object to compare
+   *
+   * @return {boolean} true if all the attributes of unit1 are identical
+   * to the attributes of unit2, false otherwise
+   *
+   * @static
+   */
+  static boolean areIdentical(Unit unit1, Unit unit2);
+
+  /**
+   * Predicate returning true if
+   * Unit objects are equivalent.
+   *
+   * Two Unit objects are considered to be equivalent either if (1) both
+   * have a "kind" attribute value of dimensionless, or (2) their "kind",
+   * "exponent" and (for SBML Level&nbsp;2 Version&nbsp;1) "offset"
+   * attribute values are equal. (Contrast this to the method
+   * areIdentical(), which compares Unit objects with respect to all
+   * attributes, not just the "kind" and "exponent".)
+   *
+   * @param {Unit} unit1 the first Unit object to compare
+   * @param {Unit} unit2 the second Unit object to compare
+   *
+   * @return {boolean} true if the "kind" and "exponent" attributes of unit1 are
+   * identical to the kind and exponent attributes of unit2, or if the kind
+   * attributes of both are dimensionless; false otherwise.
+   *
+   * @static
+   */
+  static boolean areEquivalent(Unit unit1, Unit unit2);
+
+  /**
+   * Manipulates the attributes of the Unit to express the unit with the
+   * value of the scale attribute reduced to zero.
+   *
+   * For example, 1 millimetre can be expressed as a Unit with kind=
+   * "metre" multiplier="1" scale="-3" exponent="1". It can also be
+   * expressed as a Unit with kind="metre"
+   * multiplier=<code>"0.001"</code> scale="0" exponent="1".
+   *
+   * @param {Unit} unit the Unit object to manipulate
+   *
+   * @static
+   */
+  static long removeScale(Unit unit);
+
+  /**
+   * Merges two Unit objects with the same "kind" attribute value into a
+   * single Unit.
+   *
+   * For example, the following,
+   * ```
+   * <unit kind="metre" exponent="2"/>
+   * <unit kind="metre" exponent="1"/>
+   * ```
+   * would be merged to become
+   * ```
+    *<unit kind="metre" exponent="3"/>
+   * ```
+   *
+   * @param {Unit} unit1 the first Unit object; the result of the operation is
+   * left as a new version of this unit, modified in-place - not modified if
+   * the two units have different kinds
+   *
+   * @param {Unit} unit2 the second Unit object to merge with the first.
+   *
+   * @static
+   */
+  static void merge(Unit unit1, Unit unit2);
+
+  boolean isAmpere();
+  boolean isAvogadro();
+  boolean isBecquerel();
+  boolean isCandela();
+  boolean isCelsius();
+  boolean isCoulomb();
+  boolean isDimensionless();
+  boolean isFarad();
+  boolean isGram();
+  boolean isGray();
+  boolean isHenry();
+  boolean isHertz();
+  boolean isItem();
+  boolean isJoule();
+  boolean isKatal();
+  boolean isKelvin();
+  boolean isKilogram();
+  boolean isLitre();
+  boolean isLumen();
+  boolean isLux();
+  boolean isMetre();
+  boolean isMole();
+  boolean isNewton();
+  boolean isOhm();
+  boolean isPascal();
+  boolean isRadian();
+  boolean isSecond();
+  boolean isSiemens();
+  boolean isSievert();
+  boolean isSteradian();
+  boolean isTesla();
+  boolean isVolt();
+  boolean isWatt();
+  boolean isWeber();
+};
+
+Unit implements SBase;
+
+[Prefix="libsbml::"]
+interface UnitDefinition {
+  unsigned long getNumUnits();
+  Unit createUnit();
+  Unit getUnit(unsigned long n);
+};
+
+UnitDefinition implements SBase;

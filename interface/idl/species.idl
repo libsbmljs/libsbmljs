@@ -1,0 +1,728 @@
+/**
+ * # A reference to an SBML species in a reaction.
+ *
+ * The Reaction structure provides a way to express which species act as
+ * reactants and which species act as products in a reaction.  In a given
+ * reaction, references to those species acting as reactants and/or
+ * products are made using instances of SpeciesReference structures in a
+ * Reaction object's lists of reactants and products.
+ *
+ * A species can occur more than once in the lists of reactants and
+ * products of a given Reaction instance.  The effective stoichiometry for
+ * a species in a reaction is the sum of the stoichiometry values given on
+ * the SpeciesReference object in the list of products minus the sum of
+ * stoichiometry values given on the SpeciesReference objects in the list
+ * of reactants.  A positive value indicates the species is effectively a
+ * product and a negative value indicates the species is effectively a
+ * reactant.  SBML places no restrictions on the effective stoichiometry of
+ * a species in a reaction; for example, it can be zero.
+ *
+ * In SBML Level 3, the unit of measurement associated with the value of a
+ * species' stoichiometry is always considered to be dimensionless.
+ * This has the following implications:
+ * * When a species reference's identifier appears in mathematical
+ * formulas elsewhere in the model, the unit associated with that value is
+ * dimensionless.
+ *
+ * * The units of the "math" elements of AssignmentRule,
+ * InitialAssignment and EventAssignment objects setting the stoichiometry
+ * of the species reference should be dimensionless.
+ *
+ * * If a species reference's identifier is the subject of a RateRule,
+ * the unit associated with the RateRule object's value should be
+ * dimensionless/time, where time is the
+ * model-wide unit of time set on the Model object.
+ *
+ * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_species_reference.html)
+ */
+[Prefix="libsbml::"]
+interface SpeciesReference {
+  /**
+   * Get the value of the "species" attribute.
+   *
+   * @return {string} the value of the attribute "species" for this
+   * SpeciesReference
+   */
+  DOMString getSpecies();
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  long setSpecies(DOMString spec);
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  boolean isSetSpecies();
+
+  /**
+   * Get the value of the "constant" attribute.
+   *
+   * @return {boolean} the value of the "constant" attribute of this
+   * SpeciesReference.
+   */
+  boolean getConstant();
+
+  /**
+   * Sets the "constant" attribute of this SpeciesReference to the given boolean
+   * flag.
+   *
+   * @param {boolean} flag, the value for the "constant" attribute of this
+   * SpeciesReference instance.
+   */
+  long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "constant" attribute is set
+   *
+   * @return {boolean} true if the "constant" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  boolean isSetConstant();
+};
+
+SpeciesReference implements SBase;
+
+/**
+ * # A reference to an SBML modifier species.
+ *
+ * Sometimes a species appears in the kinetic rate formula of a reaction
+ * but is itself neither created nor destroyed in that reaction (for
+ * example, because it acts as a catalyst or inhibitor).  In SBML, all such
+ * species are simply called modifiers without regard to the detailed
+ * role of those species in the model.  The Reaction structure provides a
+ * way to express which species act as modifiers in a given reaction.  This
+ * is the purpose of the list of modifiers available in Reaction.  The list
+ * contains instances of ModifierSpeciesReference structures.
+ *
+ * The ModifierSpeciesReference structure inherits the mandatory attribute
+ * "species" and optional attributes "id" and "name" from the parent class
+ * SimpleSpeciesReference.  See the description of SimpleSpeciesReference
+ * for more information about these.
+ *
+ * The value of the "species" attribute must be the identifier of a species
+ * defined in the enclosing Model; this species is designated as a modifier
+ * for the current reaction.  A reaction may have any number of modifiers.
+ * It is permissible for a modifier species to appear simultaneously in the
+ * list of reactants and products of the same reaction where it is
+ * designated as a modifier, as well as to appear in the list of reactants,
+ * products and modifiers of other reactions in the model.
+ */
+[Prefix="libsbml::"]
+interface ModifierSpeciesReference {
+  /**
+   * Get the value of the "species" attribute.
+   *
+   * @return {string} the value of the attribute "species" for this
+   * SpeciesReference
+   */
+  DOMString getSpecies();
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  long setSpecies(DOMString spec);
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "species" attribute is set.
+   *
+   * @return {boolean} true if the "species" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  boolean isSetSpecies();
+};
+
+ModifierSpeciesReference implements SBase;
+
+/**
+ * # An SBML species - a pool of entities.
+ *
+ * A species in SBML refers to a pool of entities that (a) are
+ * considered indistinguishable from each other for the purposes of the
+ * model, (b) participate in reactions, and (c) are located in a specific
+ * compartment.  The SBML Species object class is intended to represent
+ * these pools.
+ *
+ * As with other major constructs in SBML, Species has a mandatory
+ * attribute, "id", used to give the species type an identifier in the
+ * model.  The identifier must be a text string conforming to the identifer
+ * syntax permitted in SBML.  Species also has an optional "name"
+ * attribute, of type string.  The "id" and "name" must be used
+ * according to the guidelines described in the SBML specifications.
+ *
+ * The required attribute "compartment" is used to identify the compartment
+ * in which the species is located.  The attribute's value must be the
+ * identifier of an existing Compartment object.  It is important to note
+ * that there is no default value for the "compartment" attribute on
+ * Species; every species in an SBML model must be assigned a compartment
+ * explicitly.  (This also implies that every model with one or more
+ * Species objects must define at least one Compartment object.)
+ *
+ *
+ * @section species-amounts The initial amount and concentration of a species
+ *
+ * The optional attributes "initialAmount" and "initialConcentration", both
+ * having a data type of double, can be used to set the initial
+ * quantity of the species in the compartment where the species is located.
+ * These attributes are mutually exclusive; i.e., only one can
+ * have a value on any given instance of a Species object.  Missing
+ * "initialAmount" and "initialConcentration" values implies that their
+ * values either are unknown, or to be obtained from an external source, or
+ * determined by an InitialAssignment or other SBML construct elsewhere in
+ * the model.
+ *
+ * A species' initial quantity in SBML is set by the "initialAmount" or
+ * "initialConcentration" attribute exactly once.  If the "constant"
+ * attribute is true, then the value of the species' quantity is fixed
+ * and cannot be changed except by an InitialAssignment.  These methods
+ * differ in that the "initialAmount" and "initialConcentration" attributes
+ * can only be used to set the species quantity to a literal floating-point
+ * number, whereas the use of an InitialAssignment object allows the value
+ * to be set using an arbitrary mathematical expression (which, thanks to
+ * MathML's expressiveness, may evaluate to a rational number).  If the
+ * species' "constant" attribute is false, the species' quantity value
+ * may be overridden by an InitialAssignment or changed by AssignmentRule
+ * or AlgebraicRule, and in addition, for t > 0, it may also be
+ * changed by a RateRule, Event objects, and as a result of being a
+ * reactant or product in one or more Reaction objects.  (However, some
+ * constructs are mutually exclusive; see the SBML specifications for the
+ * precise details.)  It is not an error to define "initialAmount" or
+ * "initialConcentration" on a species and also redefine the value using an
+ * InitialAssignment, but the "initialAmount" or "initialConcentration"
+ * setting in that case is ignored.  The SBML specifications provide
+ * additional information about the semantics of assignments, rules and
+ * values for simulation time t < 0.
+ *
+ * SBML Level 2 additionally stipulates that in cases where a species'
+ * compartment has a "spatialDimensions" value of 0 (zero), the species
+ * cannot have a value for "initialConcentration" because the concepts of
+ * concentration and density break down when a container has zero
+ * dimensions.
+ *
+ * @section species-units The units of a species' amount or concentration
+ *
+ * When the attribute "initialAmount" is set, the unit of measurement
+ * associated with the value of "initialAmount" is specified by the Species
+ * attribute "substanceUnits".  When the "initialConcentration" attribute
+ * is set, the unit of measurement associated with this concentration value
+ * is {unit of amount} divided by {unit of size}, where
+ * the {unit of amount} is specified by the Species
+ * "substanceUnits" attribute, and the {unit of size} is specified
+ * by the "units" attribute of the Compartment object in which the species
+ * is located.  Note that in either case, a unit of amount is
+ * involved and determined by the "substanceUnits" attribute.  Note
+ *  these two attributes alone do not determine the units of the
+ * species when the species identifier appears in a mathematical
+ * expression ; that aspect is determined by the attribute
+ * "hasOnlySubstanceUnits" discussed below.
+ *
+ * In SBML Level 3, if the "substanceUnits" attribute is not set on a
+ * given Species object instance, then the unit of amount for that
+ * species is inherited from the "substanceUnits" attribute on the
+ * enclosing Model object instance.  If that attribute on Model is not set
+ * either, then the unit associated with the species' quantity is
+ * undefined.
+ *
+ * In SBML Level 2, if the "substanceUnits" attribute is not set on a
+ * given Species object instance, then the unit of amount for that
+ * species is taken from the predefined SBML unit identifier
+ * "substance".  The value assigned to "substanceUnits" must be chosen from
+ * one of the following possibilities: one of the base unit identifiers
+ * defined in SBML, the built-in unit identifier "substance", or the
+ * identifier of a new unit defined in the list of unit definitions in the
+ * enclosing Model object.  The chosen units for "substanceUnits" must be
+ * be "dimensionless", "mole", "item", "kilogram", "gram",
+ * or units derived from these.
+ *
+ * As noted at the beginning of this section, simply setting
+ * "initialAmount" or "initialConcentration" alone does not determine
+ * whether a species identifier represents an amount or a concentration
+ * when it appears elsewhere in an SBML model.  The role of the attribute
+ * "hasOnlySubstanceUnits" is to indicate whether the units of the species,
+ * when the species identifier appears in mathematical formulas, are
+ * intended to be concentration or amount.  The attribute takes on a
+ * boolean value.  In SBML Level 3, the attribute has no default value
+ * and must always be set in a model; in SBML Level 2, it has a
+ * default value of false.
+ *
+ * The units of the species are used in the following ways:
+ *
+ * * When the species' identifier appears in a MathML formula, it
+ * represents the species' quantity, and the unit of measurement associated
+ * with the quantity is as described above.
+ *
+ * * The "math" elements of AssignmentRule, InitialAssignment and
+ * EventAssignment objects referring to this species should all have the
+ * same units as the unit of measurement associated with the species
+ * quantity.
+ *
+ * * In a RateRule object that defines the rate of change of the
+ * species' quantity, the unit associated with the rule's "math" element
+ * should be equal to the unit of the species' quantity divided by the
+ * model-wide unit of time; in other words, {unit of species
+ * quantity}/{unit of time}.
+ *
+ *
+ * # The "constant" and "boundaryCondition" attributes
+ *
+ * The Species object class has two boolean attributes named "constant" and
+ * "boundaryCondition", used to indicate whether and how the quantity of
+ * that species can vary during a simulation.  In SBML Level 2 they
+ * are optional; in SBML Level 3 they are mandatory.  The following
+ * table shows how to interpret the combined values of these attributes.
+ *
+ * By default, when a species is a product or reactant of one or more
+ * reactions, its quantity is determined by those reactions.  In SBML, it
+ * is possible to indicate that a given species' quantity is not
+ * determined by the set of reactions even when that species occurs as a
+ * product or reactant; i.e., the species is on the boundary of
+ * the reaction system, and its quantity is not determined by the
+ * reactions.  The boolean attribute "boundaryCondition" can be used to
+ * indicate this.  A value of false indicates that the species is
+ * part of the reaction system.  In SBML Level 2, the attribute has a
+ * default value of false, while in SBML Level 3, it has no
+ * default.
+ *
+ * The "constant" attribute indicates whether the species' quantity can be
+ * changed at all, regardless of whether by reactions, rules, or constructs
+ * other than InitialAssignment.  A value of false indicates that the
+ * species' quantity can be changed.  (This is also a common value because
+ * the purpose of most simulations is precisely to calculate changes in
+ * species quantities.)  In SBML Level 2, the attribute has a default
+ * value of false, while in SBML Level 3, it has no default.  Note
+ * that the initial quantity of a species can be set by an
+ * InitialAssignment irrespective of the value of the "constant" attribute.
+ *
+ * In practice, a "boundaryCondition" value of true means a differential
+ * equation derived from the reaction definitions should not be generated
+ * for the species.  However, the species' quantity may still be changed by
+ * AssignmentRule, RateRule, AlgebraicRule, Event, and InitialAssignment
+ * constructs if its "constant" attribute is false.  Conversely, if the
+ * species' "constant" attribute is true, then its value cannot be
+ * changed by anything except InitialAssignment.
+ *
+ * A species having "boundaryCondition"=false and "constant"=false
+ * can appear as a product and/or reactant of one or more reactions in the
+ * model.  If the species is a reactant or product of a reaction, it must
+ * not also appear as the target of any AssignmentRule or RateRule
+ * object in the model.  If instead the species has "boundaryCondition"=
+ * false and "constant"=true, then it cannot appear as a reactant or
+ * product, or as the target of any AssignmentRule, RateRule or
+ * EventAssignment object in the model.
+ *
+ * Finally, it is worth clarifying that while the constant and
+ * boundaryCondition attributes restrict whether and how the species
+ * amount changes, the same is not true of a species' concentration. In
+ * SBML, the concentration of a species is a quantity that depends on the
+ * size of the compartment in which it is located. A compartment's size
+ * may change, and therefore, so can the concentration of a species even
+ * if the amount of the species remains unchanged. A species' concentration
+ * may therefore vary even if the Species object's constant attribute is
+ * set to true in a model.
+ *
+ * # The conversionFactor attribute in SBML Level 3
+ *
+ * In SBML Level 3, Species has an additional optional attribute,
+ * "conversionFactor", that defines a conversion factor that applies to a
+ * particular species.  The value must be the identifier of a Parameter
+ * object instance defined in the model.  That Parameter object must be a
+ * constant, meaning its "constant" attribute must be set to true.
+ * If a given Species object definition defines a value for its
+ * "conversionFactor" attribute, it takes precedence over any factor
+ * defined by the Model object's "conversionFactor" attribute.
+ *
+ * The unit of measurement associated with a species' quantity can be
+ * different from the unit of extent of reactions in the model.  SBML
+ * Level 3 avoids implicit unit conversions by providing an explicit
+ * way to indicate any unit conversion that might be required.  The use of
+ * a conversion factor in computing the effects of reactions on a species'
+ * quantity is explained in detail in the SBML Level 3 specification
+ * document.  Because the value of the "conversionFactor" attribute is the
+ * identifier of a Parameter object, and because parameters can have units
+ * attached to them, the transformation from reaction extent units to
+ * species units can be completely specified using this approach.
+ *
+ * Note that the unit conversion factor is  only applied when
+ * calculating the effect of a reaction on a species .  It is not
+ * used in any rules or other SBML constructs that affect the species, and
+ * it is also not used when the value of the species is referenced in a
+ * mathematical expression.
+ *
+ *
+ * # The speciesType attribute in SBML Level 2 Versions 2-4
+ *
+ * In SBML Level 2 Versions 2-4, each species in a model
+ * may optionally be designated as belonging to a particular species type.
+ * The optional attribute "speciesType" is used to identify the species
+ * type of the chemical entities that make up the pool represented by the
+ * Species objects.  The attribute's value must be the identifier of an
+ * existing SpeciesType object in the model.  If the "speciesType"
+ * attribute is not present on a particular species definition, it means
+ * the pool contains chemical entities of a type unique to that pool; in
+ * effect, a virtual species type is assumed for that species, and no other
+ * species can belong to that species type.  The value of "speciesType"
+ * attributes on species have no effect on the numerical interpretation of
+ * a model; simulators and other numerical analysis software may ignore
+ * "speciesType" attributes.
+ *
+ * There can be only one species of a given species type in any given
+ * compartment of a model.  More specifically, for all Species objects
+ * having a value for the "speciesType" attribute, the pair
+ * ("speciesType" attribute value, "compartment" attribute value)
+ *
+ *
+ * must be unique across the set of all Species object in a model.
+ *
+ *
+ * # The spatialSizeUnits attribute in SBML Level 2 Versions 1-2
+ *
+ * In versions of SBML Level 2 before Version 3, the class
+ * Species included an attribute called "spatialSizeUnits", which allowed
+ * explicitly setting the units of size for initial concentration.  LibSBML
+ * retains this attribute for compatibility with older definitions of
+ * Level 2, but its use is strongly discouraged because many software
+ * tools do no properly interpret this unit declaration and it is
+ * incompatible with all SBML specifications after Level 2
+ * Version 3.
+ *
+ *
+ * @section species-math Additional considerations for interpreting the numerical value of a species
+ *
+ * Species are unique in SBML in that they have a kind of duality: a
+ * species identifier may stand for either substance amount (meaning, a
+ * count of the number of individual entities) or a concentration or
+ * density (meaning, amount divided by a compartment size).  The previous
+ * sections explain the meaning of a species identifier when it is
+ * referenced in a mathematical formula or in rules or other SBML
+ * constructs; however, it remains to specify what happens to a species
+ * when the compartment in which it is located changes in size.
+ *
+ * When a species definition has a "hasOnlySubstanceUnits" attribute value
+ * of false and the size of the compartment in which the species is
+ * located changes, the default in SBML is to assume that it is the
+ * concentration that must be updated to account for the size change.  This
+ * follows from the principle that, all other things held constant, if a
+ * compartment simply changes in size, the size change does not in itself
+ * cause an increase or decrease in the number of entities of any species
+ * in that compartment.  In a sense, the default is that the amount of
+ * a species is preserved across compartment size changes.  Upon such size
+ * changes, the value of the concentration or density must be recalculated
+ * from the simple relationship concentration = amount / size if
+ * the value of the concentration is needed (for example, if the species
+ * identifier appears in a mathematical formula or is otherwise referenced
+ * in an SBML construct).  There is one exception: if the species' quantity
+ * is determined by an AssignmentRule, RateRule, AlgebraicRule, or an
+ * EventAssignment and the species has a "hasOnlySubstanceUnits" attribute
+ * value of false, it means that the concentration is assigned
+ * by the rule or event; in that case, the amount must be
+ * calculated when the compartment size changes.  (Events also require
+ * additional care in this situation, because an event with multiple
+ * assignments could conceivably reassign both a species quantity and a
+ * compartment size simultaneously.  Please refer to the SBML
+ * specifications for the details.)
+ *
+ * Note that the above only matters if a species has a
+ * "hasOnlySubstanceUnits" attribute value of false, meaning that the
+ * species identifier refers to a concentration wherever the identifier
+ * appears in a mathematical formula.  If instead the attribute's value is
+ * true, then the identifier of the species always stands for
+ * an amount wherever it appears in a mathematical formula or is referenced
+ * by an SBML construct.  In that case, there is never a question about
+ * whether an assignment or event is meant to affect the amount or
+ * concentration: it is always the amount.
+ *
+ * A particularly confusing situation can occur when the species has
+ * "constant" attribute value of true in combination with a
+ * "hasOnlySubstanceUnits" attribute value of false.  Suppose this
+ * species is given a value for "initialConcentration".  Does a "constant"
+ * value of true mean that the concentration is held constant if the
+ * compartment size changes?  No; it is still the amount that is kept
+ * constant across a compartment size change.  The fact that the species
+ * was initialized using a concentration value is irrelevant.
+ */
+[Prefix="libsbml::"]
+interface Species {
+  /**
+   * Get the value of the "initialAmount" attribute.
+   *
+   * @return {number} the initialAmount of this Species, as a floating point number
+   */
+  double getInitialAmount();
+
+  /**
+   * Sets the "initialAmount" attribute of this Species and marks the field
+   * as set.
+   *
+   * This method also unsets the "initialConcentration" attribute.
+   *
+   * @param {number} value the value to which the "initialAmount" attribute should
+   * be set
+   */
+  long setInitialAmount(double value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "initialAmount" attribute is set.
+   *
+   * @return {boolean} true if the "initialAmount" attribute of this Species is
+   * set, false otherwise
+   *
+   * **Note:** In SBML Level 1, Species' "initialAmount" is required and
+   * therefore <em>should always be set</em>.  (However, in Level 1, the
+   * attribute has no default value either, so this method will not return
+   * true until a value has been assigned.)  In SBML Level 2,
+   * "initialAmount" is optional and as such may or may not be set.
+   */
+  boolean isSetInitialAmount();
+
+  /**
+   * Get the value of the "initialConcentration" attribute.
+   *
+   * @return {number} the initialConcentration of this Species, as a floating point
+   * number
+   *
+   * **Note:** The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
+  double getInitialConcentration();
+
+  /**
+   * Sets the "initialConcentration" attribute of this Species and marks
+   * the field as set.
+   *
+   * This method also unsets the "initialAmount" attribute.
+   *
+   * @param {number} value the value to which the "initialConcentration" attribute
+   * should be set
+   *
+   * **Note:** The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
+  long setInitialConcentration(double value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "initialConcentration" attribute is set.
+   *
+   * @return {boolean} true if the "initialConcentration" attribute of this Species is
+   * set, false otherwise
+   *
+   * **Note:** The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
+  boolean isSetInitialConcentration();
+
+  /**
+   * Get the value of the "hasOnlySubstanceUnits" attribute.
+   *
+   * @return {boolean} true if this Species' "hasOnlySubstanceUnits" attribute
+   * value is true, false otherwise
+   *
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
+  boolean getHasOnlySubstanceUnits();
+
+  /**
+   * Sets the "hasOnlySubstanceUnits" attribute of this Species object.
+   *
+   * @param {boolean} value boolean value for the "hasOnlySubstanceUnits" attribute
+   *
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
+  long setHasOnlySubstanceUnits(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "hasOnlySubstanceUnits" attribute is set.
+   *
+   * @return {boolean} true if the "hasOnlySubstanceUnits" attribute of this Species is
+   * set, false otherwise
+   *
+   * **Note:** The "hasOnlySubstanceUnits" attribute does not exist in SBML
+   * Level 1.
+   */
+  boolean isSetHasOnlySubstanceUnits();
+
+  /**
+   * Get the compartment in which this species is located.
+   *
+   * The compartment is designated by its identifier.
+   *
+   * @return {string} the value of the "compartment" attribute of this Species
+   * object, as a string.
+   */
+  DOMString getCompartment();
+
+  /**
+   * Sets the "compartment" attribute of this Species object.
+   *
+   * @param {string} sid the identifier of a Compartment object defined elsewhere
+   * in this Model
+   */
+  long setCompartment(DOMString comp);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "compartment" attribute is set.
+   *
+   * @return {boolean} true if the "compartment" attribute of this Species is
+   * set, false otherwise.
+   */
+  boolean isSetCompartment();
+
+  /**
+   * Get the value of the "units" attribute.
+   *
+   * @return {string} the units of this Species (L1 only)
+   */
+  DOMString getUnits();
+
+  /**
+   * (SBML Level 1 only) Sets the units of this Species object.
+   *
+   * @param {string} sname the identifier of the unit to use.
+  */
+  long setUnits(DOMString units);
+
+  /**
+   * Predicate returning true if
+   * this Species object's "units" attribute is set.
+   *
+   * @return {boolean} true if the "units" attribute of this Species is
+   * set, false otherwise
+   */
+  boolean isSetUnits();
+
+  /**
+   * Get the value of the "boundaryCondition" attribute.
+   *
+   * @return {boolean} true if this Species' "boundaryCondition" attribute value
+   * is true, false otherwise
+   */
+  boolean getBoundaryCondition();
+  long setBoundaryCondition(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "boundaryCondition" attribute is set.
+   *
+   * @return {boolean} true if the "boundaryCondition" attribute of this Species is
+   * set, false otherwise
+   */
+  boolean isSetBoundaryCondition();
+
+  /**
+   * Get the value of the "constant" attribute.
+   *
+   * @return {boolean} true if this Species's "constant" attribute value is
+   * true, false otherwise
+   *
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
+  boolean getConstant();
+
+  /**
+   * Sets the "constant" attribute of this Species object.
+   *
+   * @param {value} value a boolean value for the "constant" attribute
+   *
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
+  long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "constant" attribute is set.
+   *
+   * @return {boolean} true if the "constant" attribute of this Species is
+   * set, false otherwise
+   *
+   * **Note:** The attribute "constant" is only available in SBML Levels 2
+   * and 3.  It does not exist on Species in Level 1.
+   */
+  boolean isSetConstant();
+
+  /**
+   * Get the value of the "substanceUnits" attribute.
+   *
+   * @return {string} the value of the "substanceUnits" attribute of this Species,
+   * as a string.  An empty string indicates that no units have been
+   * assigned
+   *
+   * @see isSetSubstanceUnits()
+   * @see setSubstanceUnits()
+   */
+  DOMString getSubstanceUnits();
+
+  /**
+   * Sets the "substanceUnits" attribute of this Species object.
+   *
+   * @param {string} sid the identifier of the unit to use
+   */
+  long setSubstanceUnits(DOMString sid);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "substanceUnits" attribute is set.
+   *
+   * @return {boolean} true if the "substanceUnits" attribute of this Species is
+   * set, false otherwise
+   */
+  boolean isSetSubstanceUnits();
+
+  /**
+   * Get the value of the "conversionFactor" attribute.
+   *
+   * @return {string} the conversionFactor of this Species, as a string
+   *
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
+  DOMString getConversionFactor();
+
+  /**
+   * Sets the value of the "conversionFactor" attribute of this Species object.
+   *
+   * The string in sid is copied.
+   *
+   * @param {string} sid the new conversionFactor for the Species
+   *
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
+  long setConversionFactor(DOMString sid);
+
+  /**
+   * Predicate returning true if this
+   * Species object's "conversionFactor" attribute is set.
+   *
+   * @return {boolean} true if the "conversionFactor" attribute of this Species is
+   * set, false otherwise
+   *
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
+  boolean isSetConversionFactor();
+};
+
+Species implements SBase;
