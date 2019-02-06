@@ -12,23 +12,26 @@ export class {{ symbol }} {
 {{ member.getDocstring() }}
   {% if member.isStatic() %}static {% endif %}{{ member['identifier']}}() {}
 {% endfor %}
+
 }
 ''',
     enum=\
 '''{{ docstring }}
 const {{ symbol }} = {
 {% for value in values %}
-  {{ value }}: {{ loop.index0 }},
+  {{ value }}: {{ loop.index0 }}{{ "," if not loop.last }}
 {% endfor %}
 }
 ''',
     module=\
 '''{{ module_docstring }}
-{% for enum in enums %}
-{{ enum.render() }}
-{% endfor %}
+
 {% for class in classes %}
 {{ class }}
+{% endfor %}
+
+{% for enum in enums %}
+{{ enum.render() }}
 {% endfor %}
 ''',
 )))
@@ -157,8 +160,9 @@ class JSDocumentationGenerator:
 
     def parseInterface(self, interface):
         ''' Parse a WebIDL interface.'''
+        docstring_lines = self.parseDocstring(interface.location._lineno-3)
         i = Interface(interface.identifier.name,
-            self.parseDocstring(interface.location._lineno-3))
+            docstring_lines)
         for member in interface.members :
             if member.isMethod():
                 member.location.resolve()
