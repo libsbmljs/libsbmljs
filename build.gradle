@@ -438,7 +438,7 @@ task generateDocumentation(type:Exec) {
     "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
     "--shallow",
     "--format","html",
-    "--output",Paths.get("$buildDir","docs","libsbml_apidoc"),
+    "--output",Paths.get("$buildDir","docs","apidoc"),
     ] as String[]
   commandLine cmdlineArgs
 }

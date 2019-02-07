@@ -10,6 +10,7 @@
   *  unnecessary back-pointers (e.g. getModel on every object, creates a dangling pointer problem, very difficult to debug on the web)
   * deprecated methods like SBase.isSetId
   * Methods that encourage haphazard passing around of pointers like addUnit etc. which are more dangerous than usual in this environment. We have createUnit instead.
+  * ListOfX objects - these are not needed due to the fact that all objects accept getX methods with an index
 * Examples:
   * Basic reading
   * Async reading
