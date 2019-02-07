@@ -69,7 +69,7 @@
  * As with all other major SBML components, Parameter is derived from
  * SBase, and the methods defined on SBase are available on Parameter.
  *
- * @note The use of the term parameter in SBML sometimes leads to
+ * **Note:** The use of the term parameter in SBML sometimes leads to
  * confusion among readers who have a particular notion of what something
  * called "parameter" should be.  It has been the source of heated debate,
  * but despite this, no one has yet found an adequate replacement term that
@@ -99,16 +99,98 @@
  */
 [Prefix="libsbml::"]
 interface Parameter {
+  /**
+   * Gets the numerical value of this Parameter.
+   *
+   * @return {number} the value of the "value" attribute of this Parameter, as a
+   * number of type double.
+   *
+   * **Note:** It is crucial that callers not blindly call
+   * Parameter.getValue() without first using Parameter.isSetValue() to
+   * determine whether a value has ever been set.  Otherwise, the value
+   * return by Parameter::getValue() may not actually represent a value
+   * assigned to the parameter.  The reason is simply that the data type
+   * double in a program always has @em some value.  A separate test is
+   * needed to determine whether the value is a true model value, or
+   * uninitialized data in a computer's memory location.
+   */
   double getValue();
+
+  /**
+   * Sets the "value" attribute of this Parameter to the given double
+   * value and marks the attribute as set.
+   *
+   * @param {number} value a double, the value to assign
+   */
   long setValue(double value);
+
+  /**
+   * Predicate returning true if the
+   * "value" attribute of this Parameter is set.
+   *
+   * In SBML definitions after SBML Level 1 Version 1,
+   * parameter values are optional and have no defaults.  If a model read
+   * from a file does not contain a setting for the "value" attribute of a
+   * parameter, its value is considered unset; it does not default to any
+   * particular value.  Similarly, when a Parameter object is created in
+   * libSBML, it has no value until given a value.  The
+   * Parameter::isSetValue() method allows calling applications to
+   * determine whether a given parameter's value has ever been set.
+   *
+   * In SBML Level 1 Version 1, parameters are required to have
+   * values and therefore, the value of a Parameter <b>should always be
+   * set</b>.  In Level 1 Version 2 and beyond, the value is
+   * optional and as such, the "value" attribute may or may not be set.
+   *
+   * @return {boolean} true if the value of this Parameter is set,
+   * false otherwise.
+   */
   boolean isSetValue();
 
+  /**
+   * Predicate returning true if the
+   * "units" attribute of this Parameter is set.
+   *
+   * @return {boolean} true if the "units" attribute of this Parameter is
+   * set, false otherwise.
+   */
   boolean isSetUnits();
+
+  /**
+   * Gets the units defined for this Parameter.
+   *
+   * The value of an SBML parameter's "units" attribute establishes the
+   * unit of measurement associated with the parameter's value.
+   *
+   * @return {string} the value of the "units" attribute of this Parameter, as a
+   * string.  An empty string indicates that no units have been assigned.
+   */
   DOMString getUnits();
+
+  /**
+   * Sets the "units" attribute of this Parameter to a copy of the given
+   * units identifier units.
+   *
+   * @param {number} units a string, the identifier of the units to assign to this Parameter instance
+   */
   long setUnits(DOMString units);
 
   boolean getConstant();
+
+  /**
+   * Sets the "constant" attribute of this Parameter to the given boolean
+   * flag.
+   *
+   * @param {number} flag a boolean, the value for the "constant" attribute of this Parameter instance
+   */
   long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if the
+   * "constant" attribute of this Parameter is set.
+   *
+   * @return {boolean} true if the "constant" attribute of this Parameter is set, false otherwise
+   */
   boolean isSetConstant();
 };
 
