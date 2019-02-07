@@ -48,7 +48,6 @@ output_base = sys.argv[2]
 
 shared.try_delete(output_base + '.cpp')
 shared.try_delete(output_base + '.js')
-shared.try_delete(output_base + '_docstrings.js')
 
 p = WebIDL.Parser()
 input_text = open(input_file).read()
@@ -62,9 +61,6 @@ data = p.finish()
 interfaces = {}
 implements = {}
 enums = {}
-
-from js_documentation_generator import process_webidl
-process_webidl(input_text, output_base)
 
 for thing in data:
   if isinstance(thing, WebIDL.IDLInterface):

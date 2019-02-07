@@ -14,8 +14,15 @@ if ("${emscriptenDir}" == "null") {
 ext.webIDLBinderPath = Paths.get(project.rootDir.path,"emtools","webidl_binder.py").toString()
 def webIDLBinder = new File(webIDLBinderPath)
 if (!webIDLBinder.exists() || webIDLBinder.isDirectory()) {
-  throw new GradleException('Expected to find WebIDL binder at tools/webidl_binder.py, but it does not exist')
+  throw new GradleException('Expected to find WebIDL binder at emtools/webidl_binder.py, but it does not exist')
 }
+
+ext.jsDocumentationGeneratorPath = Paths.get(project.rootDir.path,"tools","js_documentation_generator.py").toString()
+def jsDocumentationGenerator = new File(jsDocumentationGeneratorPath)
+if (!jsDocumentationGenerator.exists() || jsDocumentationGenerator.isDirectory()) {
+  throw new GradleException('Expected to find js_documentation_generator.py at tools/js_documentation_generator.py, but it does not exist')
+}
+
 def emscriptenToolsPath = Paths.get(emscriptenDir,"tools").toString()
 def emscriptenToolsDir = new File(emscriptenToolsPath)
 if (!emscriptenToolsDir.exists() || !emscriptenToolsDir.isDirectory()) {
@@ -360,13 +367,28 @@ task emccCompileLibSBML(type:Exec) {
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
+generateDocstrings.doFirst {
+  mkdir Paths.get("$buildDir","docs").toString()
+}
+task generateDocstrings(type:Exec) {
+  workingDir Paths.get("$buildDir","docs").toString()
+
+  inputs.file(jsDocumentationGenerator.getAbsolutePath())
+
+  environment 'PYTHONPATH', emscriptenDir
+
+  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","interface","idl",'sbml_interface.idl').toString(), "--output", 'docstrings.js'
+}
+generateDocstrings.dependsOn(combineIDL)
+
 task combineDoc(type: ConcatFiles) {
-  include Paths.get("$buildDir","interface","idl","sbml_interface_docstrings.js").toString()
+  include Paths.get("$buildDir","docs","docstrings.js").toString()
   include Paths.get("docs","interface_extra_docs.js").toString()
-  target = file(Paths.get("$buildDir","docstrings.js"))
+  target = file(Paths.get("$buildDir","docs","merged_docstrings.js"))
 }
 combineDoc.dependsOn(combineCPP)
 combineDoc.dependsOn(generateIdlInterface)
+combineDoc.dependsOn(generateDocstrings)
 
 task generateDocumentation(type:Exec) {
   if (!documentationJSScriptFile.exists() || documentationJSScriptFile.isDirectory()) {
@@ -375,7 +397,7 @@ task generateDocumentation(type:Exec) {
   workingDir "${buildDir}"
   def cmdlineArgs = ["node",
     "${documentationJSScript}",
-    "build",Paths.get("$buildDir","docstrings.js").toString(),
+    "build",Paths.get("$buildDir","docs","merged_docstrings.js").toString(),
     "--project-name","libsbml.js",
     "--project-version","${libSbmlVersion}",
     "--project-description","WebAssembly/JavaScript bindings for libSBML",

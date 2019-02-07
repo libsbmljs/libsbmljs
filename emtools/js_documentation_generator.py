@@ -251,5 +251,20 @@ def process_webidl(input_text, output_base):
         thing.location.resolve()
         doc_gen.parseEnum(thing)
 
+    return doc_gen.render()
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--input',
+                        help='The input .idl file.')
+    parser.add_argument('--output',
+                        help='The output')
+
+    args = parser.parse_args()
+    print(args.accumulate(args.integers))
+    output = args.output
+
     with open(output_base + '_docstrings.js', 'w') as js_docstrings:
-        js_docstrings.write(doc_gen.render())
+        js_docstrings.write(process_webidl(input_text, output_base))
