@@ -367,17 +367,17 @@ task emccCompileLibSBML(type:Exec) {
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
-generateDocstrings.doFirst {
-  mkdir Paths.get("$buildDir","docs").toString()
-}
 task generateDocstrings(type:Exec) {
   workingDir Paths.get("$buildDir","docs").toString()
 
   inputs.file(jsDocumentationGenerator.getAbsolutePath())
 
-  environment 'PYTHONPATH', emscriptenDir
+  environment 'PYTHONPATH', [emscriptenDir, Paths.get(emscriptenDir, "third_party"), Paths.get(emscriptenDir, "third_party", "ply")].join(":")
 
   commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","interface","idl",'sbml_interface.idl').toString(), "--output", 'docstrings.js'
+}
+generateDocstrings.doFirst {
+  mkdir Paths.get("$buildDir","docs").toString()
 }
 generateDocstrings.dependsOn(combineIDL)
 

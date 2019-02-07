@@ -235,7 +235,7 @@ class JSDocumentationGenerator:
             enums = self.enums,
         )
 
-def process_webidl(input_text, output_base):
+def process_webidl(input_text):
     p = WebIDL.Parser()
     p.parse(input_text)
     data = p.finish()
@@ -263,8 +263,9 @@ if __name__ == '__main__':
                         help='The output')
 
     args = parser.parse_args()
-    print(args.accumulate(args.integers))
-    output = args.output
 
-    with open(output_base + '_docstrings.js', 'w') as js_docstrings:
-        js_docstrings.write(process_webidl(input_text, output_base))
+    with open(args.input, 'r') as f:
+        input_text = f.read()
+
+    with open(args.output, 'w') as js_docstrings:
+        js_docstrings.write(process_webidl(input_text))
