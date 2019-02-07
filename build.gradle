@@ -23,6 +23,12 @@ if (!jsDocumentationGenerator.exists() || jsDocumentationGenerator.isDirectory()
   throw new GradleException('Expected to find js_documentation_generator.py at tools/js_documentation_generator.py, but it does not exist')
 }
 
+ext.makeAstEnumPath = Paths.get(project.rootDir.path,"tools","make_ast_enum.py").toString()
+def makeAstEnum = new File(makeAstEnumPath)
+if (!makeAstEnum.exists() || makeAstEnum.isDirectory()) {
+  throw new GradleException('Expected to find make_ast_enum.py at tools/make_ast_enum.py, but it does not exist')
+}
+
 def emscriptenToolsPath = Paths.get(emscriptenDir,"tools").toString()
 def emscriptenToolsDir = new File(emscriptenToolsPath)
 if (!emscriptenToolsDir.exists() || !emscriptenToolsDir.isDirectory()) {
@@ -367,6 +373,32 @@ task emccCompileLibSBML(type:Exec) {
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
+
+// generate ast enum
+task generateAstEnum(type:Exec) {
+  workingDir Paths.get("$buildDir","docs").toString()
+
+  inputs.file(makeAstEnum.getAbsolutePath())
+
+  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
+}
+generateAstEnum.doFirst {
+  mkdir Paths.get("$buildDir","docs").toString()
+}
+
+
+// combine idl documentation
+task combineDoc(type: ConcatFiles) {
+  include Paths.get("$buildDir","interface","idl",'sbml_interface.idl').toString()
+  include Paths.get("$buildDir","docs","ast_enum.idl").toString()
+  target = file(Paths.get("$buildDir","docs","merged.idl"))
+}
+combineDoc.dependsOn(combineCPP)
+combineDoc.dependsOn(generateIdlInterface)
+combineDoc.dependsOn(generateAstEnum)
+
+
+// generate docstrings
 task generateDocstrings(type:Exec) {
   workingDir Paths.get("$buildDir","docs").toString()
 
@@ -374,21 +406,23 @@ task generateDocstrings(type:Exec) {
 
   environment 'PYTHONPATH', [emscriptenDir, Paths.get(emscriptenDir, "third_party"), Paths.get(emscriptenDir, "third_party", "ply")].join(":")
 
-  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","interface","idl",'sbml_interface.idl').toString(), "--output", 'docstrings.js'
-}
-generateDocstrings.doFirst {
-  mkdir Paths.get("$buildDir","docs").toString()
+  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","merged.idl","idl",'sbml_interface.idl').toString(), "--output", 'docstrings.js'
 }
 generateDocstrings.dependsOn(combineIDL)
+generateDocstrings.dependsOn(combineDocstrings)
 
-task combineDoc(type: ConcatFiles) {
+
+// combine all js docstrings
+task combineDocstrings(type: ConcatFiles) {
   include Paths.get("$buildDir","docs","docstrings.js").toString()
   include Paths.get("docs","interface_extra_docs.js").toString()
   target = file(Paths.get("$buildDir","docs","merged_docstrings.js"))
 }
-combineDoc.dependsOn(combineCPP)
-combineDoc.dependsOn(generateIdlInterface)
-combineDoc.dependsOn(generateDocstrings)
+combineDocstrings.dependsOn(combineCPP)
+combineDocstrings.dependsOn(generateIdlInterface)
+combineDocstrings.dependsOn(generateAstEnum)
+combineDocstrings.dependsOn(combineDoc)
+
 
 task generateDocumentation(type:Exec) {
   if (!documentationJSScriptFile.exists() || documentationJSScriptFile.isDirectory()) {
@@ -408,7 +442,7 @@ task generateDocumentation(type:Exec) {
     ] as String[]
   commandLine cmdlineArgs
 }
-generateDocumentation.dependsOn(combineDoc)
+generateDocumentation.dependsOn(combineDocstrings)
 
 
 // print configured settings
