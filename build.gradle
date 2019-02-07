@@ -380,7 +380,7 @@ task generateAstEnum(type:Exec) {
 
   inputs.file(makeAstEnum.getAbsolutePath())
 
-  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
+  commandLine 'python3', makeAstEnum.getAbsolutePath(), "--input", Paths.get("..","..","libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
 }
 generateAstEnum.doFirst {
   mkdir Paths.get("$buildDir","docs").toString()
@@ -389,12 +389,13 @@ generateAstEnum.doFirst {
 
 // combine idl documentation
 task combineDoc(type: ConcatFiles) {
-  include Paths.get("$buildDir","interface","idl",'sbml_interface.idl').toString()
+  include Paths.get("$buildDir","interface","idl","sbml_interface.idl").toString()
   include Paths.get("$buildDir","docs","ast_enum.idl").toString()
   target = file(Paths.get("$buildDir","docs","merged.idl"))
 }
 combineDoc.dependsOn(combineCPP)
-combineDoc.dependsOn(generateIdlInterface)
+combineDoc.dependsOn(combineIDL)
+// combineDoc.dependsOn(generateIdlInterface)
 combineDoc.dependsOn(generateAstEnum)
 
 
@@ -406,10 +407,9 @@ task generateDocstrings(type:Exec) {
 
   environment 'PYTHONPATH', [emscriptenDir, Paths.get(emscriptenDir, "third_party"), Paths.get(emscriptenDir, "third_party", "ply")].join(":")
 
-  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","merged.idl","idl",'sbml_interface.idl').toString(), "--output", 'docstrings.js'
+  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","docs","merged.idl").toString(), "--output", "docstrings.js"
 }
-generateDocstrings.dependsOn(combineIDL)
-generateDocstrings.dependsOn(combineDocstrings)
+generateDocstrings.dependsOn(combineDoc)
 
 
 // combine all js docstrings
@@ -418,10 +418,7 @@ task combineDocstrings(type: ConcatFiles) {
   include Paths.get("docs","interface_extra_docs.js").toString()
   target = file(Paths.get("$buildDir","docs","merged_docstrings.js"))
 }
-combineDocstrings.dependsOn(combineCPP)
-combineDocstrings.dependsOn(generateIdlInterface)
-combineDocstrings.dependsOn(generateAstEnum)
-combineDocstrings.dependsOn(combineDoc)
+combineDocstrings.dependsOn(generateDocstrings)
 
 
 task generateDocumentation(type:Exec) {
