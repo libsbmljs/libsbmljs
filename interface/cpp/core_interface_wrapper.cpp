@@ -19,6 +19,15 @@ LIBSBML_CPP_NAMESPACE_BEGIN
     }
   };
 
+  class UnitKindConstructor {
+  public:
+    UnitKindConstructor() {}
+
+    UnitKind_t fromName(const std::string& name) {
+      return UnitKind_forName(name.c_str());
+    }
+  };
+
 LIBSBML_CPP_NAMESPACE_END
 
 // Wrapper objects

@@ -1,6 +1,10 @@
 import libsbml from 'libsbml.js'
 
-describe("Writing test", function() {
+libsbml().then((libsbml) => {
+  const unit_ctor = libsbml.UnitKindConstructor()
+})
+
+describe("Unit test", function() {
   it('Tests writing of an SBML model', (done) => {
     libsbml().then((libsbml) => {
         // create new document
@@ -29,14 +33,20 @@ describe("Writing test", function() {
         molarity.setId('molarity')
         molarity.setName('molarity')
 
+        // we can't wrap global functions so use a helper class
+        // to construct units
+        const unit_ctor = libsbml.UnitKindConstructor()
+        done()
+
         const mole = molarity.createUnit()
-        mole.setKind(libsbml.UnitKind_forName('mole'))
+        mole.setKind(unit_ctor.fromName('mole'))
         mole.setExponent(1)
         mole.setMultiplier(1)
         mole.setScale(1)
 
         const litre = molarity.createUnit()
-        litre.setKind(libsbml.UnitKind_forName('litre'))
+        // litre.setKind(unit_ctor.fromName('litre')) // alternative
+        litre.setKind(libsbml.UNIT_KIND_LITRE)
         litre.setExponent(-1)
         litre.setMultiplier(1)
         litre.setScale(1)
@@ -54,7 +64,7 @@ describe("Writing test", function() {
         ud2.setId('ud2')
         ud2.setName('moles')
         const u = ud2.createUnit()
-        u.setKind(libsbml.UnitKind_forName('mole'))
+        u.setKind(unit_ctor.fromName('mole'))
         u.setExponent(1)
         u.setMultiplier(1)
         u.setScale(1)
