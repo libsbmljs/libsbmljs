@@ -9,7 +9,7 @@ This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScri
 * The `karma/tests` directory contains scripts for testing libsbml.js in your browser via [Karma](http://karma-runner.github.io/latest/index.html).
 * The `emtools` directory contains a patched version of the Emscripten WebIDL binder which enables wrapping the C++ `std::string` type (the original WebIDL binder could only wrap raw `char*` pointers).
 
-## Building
+## Building libsbml.js
 
 It is possible to build a copy of libsbml.js based on a libSBML source tree of your choosing (stable or experimental).
 
@@ -42,7 +42,7 @@ svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental lib
 
 1. Build libsbml.js:
 ```
-gradle
+gradle emccCompileLibSBML
 ```
 Optionally, you can specify which packages should be enabled/disabled on the command line:
 ```
@@ -60,13 +60,13 @@ What you will need before starting:
 
 How to run testing with Karma:
 
-1. First run
+1. Ensure the npm dependencies are installed:
 
 ```
 npm install
 ```
 
-1. Now you should be able to run the tests using
+1. You should be able to run the tests using
 
 ```
 ./node_modules/karma/bin/karma start
@@ -74,7 +74,30 @@ npm install
 
 The wrapper will be tested using Firefox. To test with other browsers, edit `karma.conf.js` and add the desired browsers.
 
+## Building the API documentation
+
+What you will need before starting:
+
+* Node (10.15.0 or later)
+
+1. Ensure the npm dependencies are installed:
+
+```
+npm install
+```
+
+1. Use the following command to build the documentation using documentationjs.
+
+```
+gradle generateDocumentation
+```
+
+1. The HTML documentation will be written to the `build/libsbml_apidoc` directory.
+
 ## FAQ
+
+* Are all classes and methods from the libSBML C++ library available in this wrapper.
+  * No. We have not included methods involving tasks which we believe to be irrelevant for most JavaScript applications such as: low-level XML node access, unnecessary back-pointers (e.g. getModel on every object), and methods that are deprecated or deal only with older SBML standards (e.g. SBase.isSetId).
 
 * Is compression support for SBML models built-in?
   * No. We have tried to minimize the size of the generated WASM binary by excluding non-essential components. You can easily compress your hosted SBML models using (HTTP compression)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression] without all of the downsides mentioned above.
