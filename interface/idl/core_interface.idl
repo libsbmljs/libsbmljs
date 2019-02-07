@@ -1,4 +1,4 @@
-enum libsbml__idl__ASTNodeType_t {
+enum libsbml__idl__ASTNodeType_tx {
     "libsbml::AST_PLUS"
   , "libsbml::AST_MINUS"
   , "libsbml::AST_TIMES"

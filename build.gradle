@@ -34,7 +34,6 @@ def emscriptenToolsDir = new File(emscriptenToolsPath)
 if (!emscriptenToolsDir.exists() || !emscriptenToolsDir.isDirectory()) {
   throw new GradleException('Expected to find the Emscripten tools directory $EMSCRIPTEN/tools, but it does not exist')
 }
-println emscriptenToolsPath
 
 ext.emconfigureCommand = Paths.get(emscriptenDir,"emconfigure").toString()
 def emconfigureFile = new File(emconfigureCommand)
@@ -111,9 +110,23 @@ class ConcatFiles extends DefaultTask {
 // ** Create IDL wrapper **
 
 
+// generate ast enum
+task generateAstEnum(type:Exec) {
+  workingDir Paths.get("$buildDir","docs").toString()
+
+  inputs.file(makeAstEnum.getAbsolutePath())
+
+  commandLine 'python3', makeAstEnum.getAbsolutePath(), "--input", Paths.get("..","..","libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
+}
+generateAstEnum.doFirst {
+  mkdir Paths.get("$buildDir","docs").toString()
+}
+
+
 task combineIDL(type: ConcatFiles) {
   String idl_dir = Paths.get("interface","idl")
   include Paths.get(idl_dir, "module_header.idl")
+  include Paths.get("$buildDir","docs","ast_enum.idl").toString()
   include Paths.get(idl_dir, "cvterm.idl")
   include Paths.get(idl_dir, "sbase.idl")
   include Paths.get(idl_dir, "species.idl")
@@ -139,6 +152,7 @@ task combineIDL(type: ConcatFiles) {
   }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
 }
+combineIDL.dependsOn(generateAstEnum)
 
 task combineCPP(type: ConcatFiles) {
   String cpp_dir = Paths.get("interface","cpp")
@@ -374,29 +388,16 @@ emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
 
-// generate ast enum
-task generateAstEnum(type:Exec) {
-  workingDir Paths.get("$buildDir","docs").toString()
-
-  inputs.file(makeAstEnum.getAbsolutePath())
-
-  commandLine 'python3', makeAstEnum.getAbsolutePath(), "--input", Paths.get("..","..","libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
-}
-generateAstEnum.doFirst {
-  mkdir Paths.get("$buildDir","docs").toString()
-}
-
-
-// combine idl documentation
-task combineDoc(type: ConcatFiles) {
-  include Paths.get("$buildDir","interface","idl","sbml_interface.idl").toString()
-  include Paths.get("$buildDir","docs","ast_enum.idl").toString()
-  target = file(Paths.get("$buildDir","docs","merged.idl"))
-}
-combineDoc.dependsOn(combineCPP)
-combineDoc.dependsOn(combineIDL)
-// combineDoc.dependsOn(generateIdlInterface)
-combineDoc.dependsOn(generateAstEnum)
+// // combine idl documentation
+// task combineDoc(type: ConcatFiles) {
+//   include Paths.get("$buildDir","docs","ast_enum.idl").toString()
+//   include Paths.get("$buildDir","interface","idl","sbml_interface.idl").toString()
+//   target = file(Paths.get("$buildDir","docs","merged.idl"))
+// }
+// combineDoc.dependsOn(combineCPP)
+// combineDoc.dependsOn(combineIDL)
+// // combineDoc.dependsOn(generateIdlInterface)
+// combineDoc.dependsOn(generateAstEnum)
 
 
 // generate docstrings
@@ -407,9 +408,10 @@ task generateDocstrings(type:Exec) {
 
   environment 'PYTHONPATH', [emscriptenDir, Paths.get(emscriptenDir, "third_party"), Paths.get(emscriptenDir, "third_party", "ply")].join(":")
 
-  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","docs","merged.idl").toString(), "--output", "docstrings.js"
+  commandLine 'python3', jsDocumentationGenerator.getAbsolutePath(), "--input", Paths.get("$buildDir","interface","idl","sbml_interface.idl").toString(), "--output", "docstrings.js"
 }
-generateDocstrings.dependsOn(combineDoc)
+generateDocstrings.dependsOn(combineIDL)
+// generateDocstrings.dependsOn(combineDoc)
 
 
 // combine all js docstrings
@@ -435,7 +437,7 @@ task generateDocumentation(type:Exec) {
     "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
     "--shallow",
     "--format","html",
-    "--output","libsbml_apidoc",
+    "--output",Paths.get("$buildDir","docs","libsbml_apidoc"),
     ] as String[]
   commandLine cmdlineArgs
 }
