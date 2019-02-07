@@ -35,8 +35,7 @@ describe("Unit test", function() {
 
         // we can't wrap global functions so use a helper class
         // to construct units
-        const unit_ctor = libsbml.UnitKindConstructor()
-        done()
+        const unit_ctor = new libsbml.UnitKindConstructor()
 
         const mole = molarity.createUnit()
         mole.setKind(unit_ctor.fromName('mole'))
