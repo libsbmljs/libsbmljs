@@ -1,0 +1,91 @@
+[Prefix="libsbml::"]
+interface Delay {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface Priority {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface EventAssignment {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] DOMString getVariable();
+    long setVariable(DOMString variable);
+    boolean isSetVariable();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+};
+
+[Prefix="libsbml::"]
+interface Trigger {
+    DOMString getId();
+    boolean setId(DOMString id);
+
+    DOMString getName();
+    long setName(DOMString name);
+    boolean isSetName();
+
+    [Const] ASTNode getMath();
+    long setMath(ASTNode math);
+    boolean isSetMath();
+
+    boolean getPersistent();
+    long setPersistent(boolean persistent);
+    boolean isSetPersistent();
+};
+
+[Prefix="libsbml::"]
+interface Event {
+  DOMString getId();
+  boolean setId(DOMString id);
+
+  DOMString getName();
+  long setName(DOMString name);
+  boolean isSetName();
+
+  Delay createDelay();
+  Delay getDelay();
+  long setDelay([Const] Delay delay);
+  boolean isSetDelay();
+
+  Priority createPriority();
+  long setPriority(Priority priority);
+  Priority getPriority();
+  boolean isSetPriority();
+
+  long setTrigger(Trigger trigger);
+  Trigger getTrigger();
+  boolean isSetTrigger();
+
+  EventAssignment createEventAssignment();
+  EventAssignment getEventAssignment(unsigned long n);
+  unsigned long getNumEventAssignments();
+};
