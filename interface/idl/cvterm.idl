@@ -102,11 +102,11 @@ interface CVTerm {
    *
    *
    * ```
-   * <rdf:Description rdf:about=&quot;#meta id</span">
+   * <rdf:Description rdf:about="#meta id</span">
    *   HISTORY
    *   <RELATION_ELEMENT>
    *     <rdf:Bag>
-   *       <rdf:li rdf:resource=&quot;resource URI</span" />
+   *       <rdf:li rdf:resource="resource URI</span" />
    *       ...
    *     </rdf:Bag>
    *   </RELATION_ELEMENT>

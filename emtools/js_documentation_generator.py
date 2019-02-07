@@ -21,7 +21,7 @@ const {{ symbol }} = {
 {% for value in values %}
   {{ value }}: {{ loop.index0 }}{{ "," if not loop.last }}
 {% endfor %}
-}
+};
 ''',
     module=\
 '''{{ module_docstring }}

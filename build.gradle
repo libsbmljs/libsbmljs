@@ -360,6 +360,13 @@ task emccCompileLibSBML(type:Exec) {
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
 
+task combineDoc(type: ConcatFiles) {
+  include Paths.get("$buildDir","interface","idl","sbml_interface_docstrings.js").toString()
+  include Paths.get("docs","interface_extra_docs.js").toString()
+  target = file(Paths.get("$buildDir","docstrings.js"))
+}
+combineDoc.dependsOn(combineCPP)
+combineDoc.dependsOn(generateIdlInterface)
 
 task generateDocumentation(type:Exec) {
   if (!documentationJSScriptFile.exists() || documentationJSScriptFile.isDirectory()) {
@@ -368,7 +375,7 @@ task generateDocumentation(type:Exec) {
   workingDir "${buildDir}"
   def cmdlineArgs = ["node",
     "${documentationJSScript}",
-    "build",Paths.get("interface","idl","sbml_interface_docstrings.js").toString(),
+    "build",Paths.get("$buildDir","docstrings.js").toString(),
     "--project-name","libsbml.js",
     "--project-version","${libSbmlVersion}",
     "--project-description","WebAssembly/JavaScript bindings for libSBML",
@@ -379,8 +386,7 @@ task generateDocumentation(type:Exec) {
     ] as String[]
   commandLine cmdlineArgs
 }
-generateDocumentation.dependsOn(combineCPP)
-generateDocumentation.dependsOn(generateIdlInterface)
+generateDocumentation.dependsOn(combineDoc)
 
 
 // print configured settings
