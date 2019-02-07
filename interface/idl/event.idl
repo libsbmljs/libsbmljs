@@ -1,3 +1,133 @@
+/**
+ * # A delay on the time of execution of an SBML event.
+ *
+ * An Event object defines when the event can occur, the variables that
+ * are affected by the event, and how the variables are affected.  The
+ * effect of the event can optionally be delayed after the occurrence of
+ * the condition which invokes it.  An event delay is defined using an
+ * object of class Delay.
+ *
+ * The object class Delay is derived from SBase and adds a single
+ * subelement called "math".  This subelement is used to hold MathML
+ * content.  The mathematical formula represented by "math" must evaluate
+ * to a numerical value.  It is used as the length of time between when the
+ * event is triggered and when the event's assignments are
+ * actually executed.  If no delay is present on a given Event, a time
+ * delay of zero is assumed.
+ *
+ * The expression in "math" must be evaluated at the time the event is
+ * triggered.  The expression must always evaluate to a nonnegative number
+ * (otherwise, a nonsensical situation could arise where an event is
+ * defined to execute before it is triggered!).
+ *
+ * ## The units of the mathematical expression in a Delay
+ *
+ * In SBML Level 2 versions before Version 4, the units of the
+ * numerical value computed by the Delay's "math" expression are
+ * required to be in units of time, or the model is considered to have a
+ * unit consistency error.  In Level 2 Version 4 as well as SBML
+ * Level 3, this requirement is relaxed; these
+ * specifications only stipulate that the units of the numerical value
+ * computed by a Delay instance's "math" expression should match the
+ * model's units of time (meaning the definition of the time units in
+ * the model).  LibSBML respects these requirements, and depending on
+ * whether an earlier Version of SBML Level 2 is in use, libSBML may
+ * or may not flag unit inconsistencies as errors or merely warnings.
+ *
+ * Note that units are not predefined or assumed for the contents
+ * of "math" in a Delay object; rather, they must be defined explicitly for
+ * each instance of a Delay object in a model.  This is an important point
+ * to bear in mind when literal numbers are used in delay expressions.  For
+ * example, the following Event instance would result in a warning logged
+ * by SBMLDocument::checkConsistency() about the fact that libSBML cannot
+ * verify the consistency of the units of the expression.  The reason is
+ * that the formula inside the "math" element does not have any declared
+ * units, whereas what is expected in this context is units of time:
+ *
+ * ```
+ * <model>
+ *     ...
+ *     <listOfEvents>
+ *         <event useValuesFromTriggerTime="true">
+ *             ...
+ *             <delay>
+ *                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+ *                     <cn> 1 </cn>
+ *                 </math>
+ *             </delay>
+ *             ...
+ *         </event>
+ *     </listOfEvents>
+ *     ...
+ * </model>
+ * ```
+ *
+ * The `<cn> 1 </cn>` within the mathematical formula
+ * of the delay above has no units declared.  To make the
+ * expression have the needed units of time, literal numbers should be
+ * avoided in favor of defining Parameter objects for each quantity, and
+ * declaring units for the Parameter values.  The following fragment of
+ * SBML illustrates this approach:
+ *
+ * ```
+ * <model>
+ *    ...
+ *    <listOfParameters>
+ *        <parameter id="transcriptionDelay" value="10" units="second"/>
+ *    </listOfParameters>
+ *    ...
+ *    <listOfEvents>
+ *        <event useValuesFromTriggerTime="true">
+ *            ...
+ *            <delay>
+ *                <math xmlns="http://www.w3.org/1998/Math/MathML">
+ *                    <ci> transcriptionDelay </ci>
+ *                </math>
+ *            </delay>
+ *            ...
+ *        </event>
+ *    </listOfEvents>
+ *    ...
+ * </model>
+ * ```
+ *
+ * In SBML Level 3, an alternative approach is available in the form
+ * of the units attribute, which SBML Level 3 allows to appear on
+ * MathML cn elements.  The value of this attribute can be used to
+ * indicate the unit of measurement to be associated with the number in the
+ * content of a cn element.  The attribute is named units but,
+ * because it appears inside MathML element (which is in the XML namespace
+ * for MathML and not the namespace for SBML), it must always be prefixed
+ * with an XML namespace prefix for an SBML Level 3
+ * namespace.  The following is an example of this approach:
+ *
+ * ```
+ * <model timeUnits="second" ...>
+ *    ...
+ *    <listOfEvents>
+ *        <event useValuesFromTriggerTime="true">
+ *            ...
+ *            <delay>
+ *                <math xmlns="http://www.w3.org/1998/Math/MathML"
+ *                      xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
+ *                    <cn sbml:units="second"> 10 </cn>
+ *                </math>
+ *            </delay>
+ *            ...
+ *        </event>
+ *    </listOfEvents>
+ *    ...
+ * </model>
+ * ```
+ *
+ * ## Restrictions relaxed in SBML Level 3 Version 2
+ *
+ * In SBML Level 3 Version 2, the requirement that a Delay
+ * have a "math" subelement was relaxed, making it optional.  In
+ * this case, the Delay remains undefined, and unless that information
+ * is provided in some other form (such as with an SBML Level 3
+ * package), the Event behaves as if it had no Delay.
+ */
 [Prefix="libsbml::"]
 interface Delay {
     DOMString getId();
