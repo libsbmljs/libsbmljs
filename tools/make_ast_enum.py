@@ -6,8 +6,7 @@ from jinja2 import Template, Environment, DictLoader
 jinja_env = Environment(loader=DictLoader(dict(
     enum_wrapper=\
 '''/**
- * # Abstract Syntax Tree (AST) representation of a
- * mathematical expression.
+ * # Abstract Syntax Tree (AST) representation of amathematical expression.
  *
  * Abstract Syntax Trees (ASTs) are a simple kind of data structure used in
  * libSBML for storing mathematical expressions.  The ASTNode is the
@@ -20,11 +19,11 @@ jinja_env = Environment(loader=DictLoader(dict(
  * in-memory representation for all mathematical formulas regardless of
  * their original format (which might be MathML or might be text strings).
  *
- * The ASTNodeType_t type contains all permitted AST nodes.
+ * The {@link ASTNodeType_t} type contains all permitted AST nodes.
  *
- * <h3><a class="anchor" name="math-convert">Converting between ASTs and text strings</a></h3>
+ * ## Converting between ASTs and text strings
  *
- * The text-string form of mathematical formulas handled by SBMLFormulaParser.parseL3Formula
+ * The text-string form of mathematical formulas handled by {@link SBMLFormulaParser#parseL3Formula}
  * are in a simple C-inspired infix notation.  A
  * formula in this text-string form can be handed to a program that
  * understands SBML mathematical expressions, or used as part
@@ -56,9 +55,7 @@ jinja_env = Environment(loader=DictLoader(dict(
  * All of the MathML functions are recognized; this set is larger than the
  * functions defined in SBML Level 1.  In the subset of functions that
  * overlap between MathML and SBML Level 1, there exist a few
- * differences.  The following table summarizes the differences between the
- * predefined functions in SBML Level 1 and the MathML equivalents in
- * SBML Levels 2 and  3:
+ * differences.
  *
  * For constructing ASTs use SBMLFormulaParser.parseL3Formula.
  */

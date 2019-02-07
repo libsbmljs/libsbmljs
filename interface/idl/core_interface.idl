@@ -280,7 +280,20 @@ KineticLaw implements SBase;
 [Prefix="libsbml::"]
 interface SBMLFormulaParser {
   void SBMLFormulaParser();
+  /**
+   * Parses a SBML Level 3 formula. Invokes the C++ method SBML_parseL3Formula.
+   *
+   * @param {string} formula a string of the Level 3 formula to parse
+   * @return {ASTNode} the root AST node of the formula
+   */
   ASTNode parseL3Formula(DOMString formula);
+
+  /**
+   * Parses a SBML Level 1 formula. Invokes the C++ method SBML_parseFormula.
+   *
+   * @param {string} formula a string of the Level 1 formula to parse
+   * @return {ASTNode} the root AST node of the formula
+   */
   ASTNode parseFormula(DOMString formula);
 };
 
