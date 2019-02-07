@@ -441,7 +441,7 @@ UnitDefinition implements SBase;
  * See the [libSBML C++ docs for UnitKind_forName](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_unit_kind_8c.html#aa8f09d91a2a76941730c23c5999cdd8d).
  *
  * @example
- * libsbml.UnitKindConstructor().fromName('mole') // returns libsbml.UNIT_KIND_MOLE
+ * new libsbml.UnitKindConstructor().fromName('mole') // returns libsbml.UNIT_KIND_MOLE
  *
  */
 [Prefix="libsbml::"]
