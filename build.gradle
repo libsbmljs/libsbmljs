@@ -131,6 +131,7 @@ task combineIDL(type: ConcatFiles) {
   include Paths.get(idl_dir, "sbase.idl")
   include Paths.get(idl_dir, "species.idl")
   include Paths.get(idl_dir, "unit.idl")
+  include Paths.get(idl_dir, "ast.idl")
   include Paths.get(idl_dir, "core_interface.idl")
   if (enableLayout) {
     include Paths.get(idl_dir, "layout_interface.idl")

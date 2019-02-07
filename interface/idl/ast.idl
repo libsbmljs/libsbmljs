@@ -1,0 +1,535 @@
+/**
+ * # Abstract Syntax Tree (AST) representation of amathematical expression.
+ *
+ * Abstract Syntax Trees (ASTs) are a simple kind of data structure used in
+ * libSBML for storing mathematical expressions.  The ASTNode is the
+ * cornerstone of libSBML's AST representation.  An AST "node" represents the
+ * most basic, indivisible part of a mathematical formula and come in many
+ * types.  For instance, there are node types to represent numbers (with
+ * subtypes to distinguish integer, real, and rational numbers), names
+ * (e.g., constants or variables), simple mathematical operators, logical
+ * or relational operators and functions. LibSBML ASTs provide a canonical,
+ * in-memory representation for all mathematical formulas regardless of
+ * their original format (which might be MathML or might be text strings).
+ *
+ * The {@link ASTNodeType_t} type contains all permitted AST nodes.
+ *
+ * ## Converting between ASTs and text strings
+ *
+ * The text-string form of mathematical formulas handled by {@link SBMLFormulaParser#parseL3Formula}
+ * are in a simple C-inspired infix notation.  A
+ * formula in this text-string form can be handed to a program that
+ * understands SBML mathematical expressions, or used as part
+ * of a translation system.
+ *
+ * The formula strings may contain operators, function calls, symbols, and
+ * white space characters.  The allowable white space characters are tab
+ * and space.  The following are illustrative examples of formulas
+ * expressed in the syntax:
+ *
+ * ```
+ * 0.10 * k4^2
+ * (vm * s1)/(km + s1)
+ * ```
+ *
+ * The [libSBML documentation](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_l3_parser_8cpp.html#a58e584e7c21801b34d79fed7a7c05ac8) shows the precedence rules in this syntax.
+ *
+ * A program parsing a formula in an SBML model should assume that names
+ * appearing in the formula are the identifiers of Species, Parameter,
+ * Compartment, FunctionDefinition, Reaction (in SBML Levels 2
+ * and 3), or SpeciesReference (in SBML Level 3 only) objects
+ * defined in a model.  When a function call is involved, the syntax
+ * consists of a function identifier, followed by optional white space,
+ * followed by an opening parenthesis, followed by a sequence of zero or
+ * more arguments separated by commas (with each comma optionally preceded
+ * and/or followed by zero or more white space characters), followed by a
+ * closing parenthesis.  There is an almost one-to-one mapping between the
+ * list of predefined functions available, and those defined in MathML.
+ * All of the MathML functions are recognized; this set is larger than the
+ * functions defined in SBML Level 1.  In the subset of functions that
+ * overlap between MathML and SBML Level 1, there exist a few
+ * differences.
+ *
+ * For constructing ASTs use SBMLFormulaParser.parseL3Formula.
+ */
+[Prefix="libsbml::"]
+interface ASTNode {
+  /**
+   * Returns the number of children of a given node.
+   *
+   * @return the number of children of the node, or 0 is it has no children.
+   */
+  long getNumChildren();
+
+  /**
+   * Gets a child of this node according to its index number.
+   *
+   * @param {number} n the index of the child to get
+   *
+   * @return {ASTNode} the nth child of this ASTNode or NULL if this node has no nth
+   * child
+   */
+  ASTNode getChild(long i);
+
+  /**
+   * Gets the left child of this node.
+   *
+   * @return {ASTNode} the left child of this ASTNode
+   */
+  ASTNode getLeftChild();
+
+  /**
+   * Gets the right child of this node.
+   *
+   * @return {ASTNode} the right child of this ASTNode, or NULL if this node has no
+   * right child
+   */
+  ASTNode getRightChild();
+
+  /**
+   * Gets the type of this ASTNode.  The value returned is one of the
+   * enumeration values such as AST_LAMBDA, AST_PLUS,
+   * etc.
+   *
+   * @return {ASTNodeType_t} the type of this ASTNode
+   */
+  libsbml__idl__ASTNodeType_t getType();
+
+
+  /**
+   * Gets the value of this node as an integer.
+   *
+   * This function should be called only when getType() == `AST_INTEGER`.
+   *
+   * @return {number} the value of this ASTNode as an integer.
+   */
+  long getInteger();
+
+
+  /**
+   * Gets the real-numbered value of this node.  This function
+   * should be called only when
+   * @if clike isReal()@else ASTNode::isReal()@endif@~
+   * `== true`.
+   *
+   * This function performs the necessary arithmetic if the node type is
+   * AST_REAL_E (<em>mantissa *
+   * 10<sup> exponent</sup>) or AST_RATIONAL (<em>numerator / denominator).
+   *
+   * @return {number} the value of this ASTNode as a real (double)
+   */
+  double getReal ();
+
+
+  /**
+   * Gets the mantissa value of this node.  This function should be called
+   * only when @if clike getType()@else ASTNode::getType()@endif@~
+   * returns AST_REAL_E
+   * or AST_REAL.
+   * If @if clike getType()@else ASTNode::getType()@endif@~
+   * returns AST_REAL,
+   * this method is identical to
+   * @if clike getReal()@else ASTNode::getReal()@endif.
+   *
+   * @return {number} the value of the mantissa of this ASTNode.
+   */
+  double getMantissa ();
+
+
+  /**
+   * Gets the exponent value of this ASTNode.  This function should be
+   * called only when
+   * @if clike getType()@else ASTNode::getType()@endif@~
+   * returns AST_REAL_E
+   * or AST_REAL.
+   *
+   * @return {number} the value of the exponent of this ASTNode
+   */
+  long getExponent ();
+
+
+  /**
+   * Returns the numerical value of this ASTNode.
+   *
+   * @return the numerical value of this ASTNode, or NaN if this
+   * is not a type of node that has a numerical value.
+   *
+   * **Note:** This function will return a numerical value (as a double) for
+   * any ASTNode_t that represents a number, a constant such as
+   * AST_CONSTANT_PI,
+   * AST_CONSTANT_E, or
+   * AST_NAME_AVOGADRO, or
+   * 1 for nodes of type
+   * AST_CONSTANT_TRUE and 0 for nodes of type
+   * AST_CONSTANT_FALSE. It does not evaluate
+   * the node in any way so, for example, it will not return the value of
+   * a named ASTNode_t or attempt to evaluate a function.
+   * This includes a node representing time i.e. nodes
+   * of type AST_NAME_TIME.
+   */
+  double getValue ();
+
+  /**
+   * Gets the precedence of this node in the infix math syntax of SBML
+   * Level 1.
+   *
+   * @return {number} an integer indicating the precedence of this ASTNode
+   */
+  long getPrecedence ();
+
+
+  /**
+   * Returns true (non-zero) if this node is the special
+   * symbol avogadro.  The predicate returns false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is the special symbol avogadro
+   */
+  boolean isAvogadro ();
+
+
+  /**
+   * Returns true (non-zero) if this node has a boolean type
+   * (a logical operator, a relational operator, or the constants true
+   * or false).
+   *
+   * @return {boolean} true if this ASTNode is a boolean, false otherwise
+   */
+  boolean isBoolean ();
+
+
+  /**
+   * Returns true (non-zero) if this node returns a boolean type
+   * or false (zero) otherwise.
+   *
+   * This function looks at the whole ASTNode rather than just the top
+   * level of the ASTNode. Thus it will consider return values from
+   * piecewise statements.  In addition, if this ASTNode uses a function
+   * call, the return value of the functionDefinition will be determined.
+   * Note that this is only possible where the ASTNode can trace its parent
+   * Model, that is, the ASTNode must represent the math element of some
+   * SBML object that has already been added to an instance of an SBMLDocument.
+   *
+   * @return {boolean} true if this ASTNode returns a boolean, false otherwise
+   */
+  boolean returnsBoolean (Model model);
+
+
+  /**
+   * Returns true (non-zero) if this node represents a MathML
+   * constant (e.g., true, Pi).
+   *
+   * @return {boolean} true if this ASTNode is a MathML constant, false otherwise.
+   *
+   * **Note:** this function will also return true for AST_NAME_AVOGADRO in SBML Level 3.
+   */
+  boolean isConstant ();
+
+
+
+  /**
+  * Returns true (non-zero) if this node represents a MathML
+  * ci element representing a value not a function (e.g., true, Pi).
+  *
+  * @return {boolean} true if this ASTNode is a MathML ci element, false otherwise.
+  */
+  boolean isCiNumber();
+
+
+  /**
+  * Returns true (non-zero) if this node represents a MathML
+  * constant with numeric value(e.g., Pi).
+  *
+  * @return {boolean} true if this ASTNode is a MathML constant, false otherwise
+  *
+  * **Note:** this function will also return true for AST_NAME_AVOGADRO in SBML Level 3.
+  */
+  boolean isConstantNumber();
+
+  /**
+  * Returns true (non-zero) if this node represents a MathML
+  * csymbol representing a function.
+  *
+  * @return {boolean} true if this ASTNode is a MathML csymbol function, false otherwise
+  */
+  boolean isCSymbolFunction();
+
+  /**
+   * Returns true (non-zero) if this node represents a
+   * MathML function (e.g., `abs()`), or an SBML Level 1
+   * function, or a user-defined function.
+   *
+   * @return {boolean} true if this ASTNode is a function, false otherwise
+   */
+  boolean isFunction ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents
+   * the special IEEE 754 value infinity, false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is the special IEEE 754 value infinity,
+   * false otherwise
+   */
+  boolean isInfinity ();
+
+
+  /**
+   * Returns true (non-zero) if this node contains an
+   * integer value, false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is of type AST_INTEGER, false otherwise
+   */
+  boolean isInteger ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a MathML
+   * `<lambda>`, false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is of type AST_LAMBDA, false otherwise
+   */
+  boolean isLambda ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents a
+   * log10 function, false (zero) otherwise.  More precisely, this
+   * predicate returns true if the node type is AST_FUNCTION_LOG with two
+   * children, the first of which is an AST_INTEGER equal to 10.
+   *
+   * @return {boolean} true if the given ASTNode represents a log10() function,
+   * false otherwise
+   *
+   */
+  boolean isLog10 ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a MathML
+   * logical operator (i.e., and, or, not, xor).
+   *
+   * @return {boolean} true if this ASTNode is a MathML logical operator
+   */
+  boolean isLogical ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a user-defined
+   * variable name in SBML L1, L2 (MathML), or the special symbols time
+   * or avogadro.  The predicate returns false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is a user-defined variable name in SBML
+   * L1, L2 (MathML) or the special symbols delay or time.
+   */
+  boolean isName ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents the
+   * special IEEE 754 value "not a number" (NaN), false (zero)
+   * otherwise.
+   *
+   * @return {boolean} true if this ASTNode is the special IEEE 754 NaN.
+   */
+  boolean isNaN ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents the
+   * special IEEE 754 value "negative infinity", false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is the special IEEE 754 value negative
+   * infinity, false otherwise.
+   */
+  boolean isNegInfinity ();
+
+
+  /**
+   * Returns true (non-zero) if this node contains a number,
+   * false (zero) otherwise.  This is functionally equivalent to the
+   * following code:
+   *
+   * ```
+   * isInteger() || isReal()
+   * ```
+   *
+   * @return {boolean} true if this ASTNode is a number, false otherwise
+   */
+  boolean isNumber ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a mathematical
+   * operator, meaning, `+`, `-`, `*`,
+   * `/` or `^` (power).
+   *
+   * @return {boolean} true if this ASTNode is an operator
+   */
+  boolean isOperator ();
+
+
+  /**
+   * Returns true (non-zero) if this node is the MathML
+   * `<piecewise>` construct, false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is a MathML piecewise function
+   */
+  boolean isPiecewise ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents a rational
+   * number, false (zero) otherwise.
+   *
+   * @return {boolean} true if this ASTNode is of type AST_RATIONAL
+   */
+  boolean isRational ();
+
+
+  /**
+   * Returns true (non-zero) if this node can represent a
+   * real number, false (zero) otherwise.
+   *
+   * More precisely, this node must be of one of the following types: AST_REAL, AST_REAL_E or AST_RATIONAL.
+   *
+   * @return {boolean} true if the value of this ASTNode can represented as a real
+   * number, false otherwise
+   */
+  boolean isReal ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a MathML
+   * relational operator, meaning `==`, `>=`,
+   * `>`, `<`, and `!=`.
+   *
+   * @return {boolean} true if this ASTNode is a MathML relational operator,
+   * false otherwise
+   */
+  boolean isRelational ();
+
+
+  /**
+   * Returns true (non-zero) if this node represents a
+   * square root function, false (zero) otherwise.
+   *
+   * More precisely, the node type must be AST_FUNCTION_ROOT with two
+   * children, the first of which is an AST_INTEGER node having value equal to 2.
+   *
+   * @return {boolean} true if the given ASTNode represents a sqrt() function,
+   * false otherwise
+   */
+  boolean isSqrt ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a unary minus
+   * operator, false (zero) otherwise.
+   *
+   * A node is defined as a unary minus node if it is of type AST_MINUS and has exactly one child.
+   *
+   * For numbers, unary minus nodes can be "collapsed" by negating the
+   * number.
+   *
+   * @return {boolean} true if this ASTNode is a unary minus, false otherwise
+   *
+   */
+  boolean isUMinus ();
+
+
+  /**
+   * Returns true (non-zero) if this node is a unary plus
+   * operator, false (zero) otherwise.  A node is defined as a unary
+   * minus node if it is of type AST_MINUS and has exactly one child.
+   *
+   * @return {boolean} true if this ASTNode is a unary plus, false otherwise.
+   */
+  boolean isUPlus ();
+
+
+  /**
+   * Sets the value of this ASTNode to the given real (double) and sets
+   * the node type to AST_REAL.
+   *
+   * This is functionally equivalent to:
+   *
+   * ```
+   * setValue(value, 0);
+   * ```
+   *
+   * @param {number} value the double format number to which this node's value
+   * should be set
+   */
+  long setValue (double value);
+
+
+  /**
+  * Returns true (non-zero) if this node represents a
+  * MathML user-defined function.
+  *
+  * @return {boolean} true if this ASTNode is a user-defined function, false otherwise
+  */
+  boolean isUserFunction();
+
+  /**
+   * Returns true (non-zero) if this node has the attribute
+   * `sbml:units`.
+   *
+   * @return true if this ASTNode has units associated with it, false otherwise
+   *
+   *  **Note:** The `sbml:units` attribute is only available in SBML
+   * Level 3.  It may not be used in Levels 1-2 of SBML.
+   */
+  boolean isSetUnits();
+
+  /**
+   * Gets the units of this ASTNode.
+   *
+   * @return the units of this ASTNode
+   *
+   *  **Note:** The `sbml:units` attribute is only available in SBML
+   * Level 3.  It may not be used in Levels 1-2 of SBML.
+   */
+  DOMString getUnits();
+
+  /**
+   * Sets the units of this ASTNode to units.
+   *
+   * The units will be set @em only if this ASTNode object represents a
+   * MathML `<cn>` element, i.e., represents a number.
+   * Callers may use isNumber()
+   * to inquire whether the node is of that type.
+   *
+   * @param {string} units a string representing the unit identifier
+   *
+   *  **Note:** The `sbml:units` attribute is only available in SBML
+   * Level 3.  It may not be used in Levels 1-2 of SBML.
+   */
+  long setUnits(DOMString units);
+
+  /**
+   * Gets the value of this node as a string.
+   *
+   * This function may be called on nodes that (1) are not operators, i.e.,
+   * nodes for which isOperator() returns false, and (2) are not numbers,
+   * i.e., isNumber() returns
+   * false.
+   *
+   * @return {string} the value of this ASTNode as a string
+   */
+  ByteString getName();
+
+  /**
+   * Sets the value of this ASTNode to the given name.
+   *
+   * As a side-effect, this ASTNode object's type will be reset to
+   * AST_NAME if (and only
+   * if) the ASTNode was previously an operator (`isOperator()== true`),
+   * number (`isNumber()== true`), or unknown.
+   * This allows names to be set for AST_FUNCTION nodes and the like.
+   *
+   * @param {string} name the string containing the name to which this node's value
+   * should be set
+   */
+  long setName(ByteString name);
+};

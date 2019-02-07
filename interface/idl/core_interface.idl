@@ -1,19 +1,4 @@
 [Prefix="libsbml::"]
-interface ASTNode {
-  long getNumChildren();
-  ASTNode getChild(long i);
-
-  libsbml__idl__ASTNodeType_t getType();
-
-  boolean isSetUnits();
-  DOMString getUnits();
-  long setUnits(DOMString units);
-
-  ByteString getName();
-  long setName(ByteString name);
-};
-
-[Prefix="libsbml::"]
 interface Parameter {
   double getValue();
   long setValue(double value);
