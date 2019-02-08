@@ -130,77 +130,70 @@
  */
 [Prefix="libsbml::"]
 interface Delay {
-    DOMString getId();
-    boolean setId(DOMString id);
+  /**
+   * Get the mathematical formula for the delay and return it
+   * as an AST.
+   *
+   * @return {ASTNode} the math of this Delay, or NULL if the math is not set
+   */
+  [Const] ASTNode getMath();
 
-    DOMString getName();
-    long setName(DOMString name);
-    boolean isSetName();
+  /**
+   * Sets the delay expression of this Delay instance to a copy of the given
+   * ASTNode.
+   *
+   * @param {ASTNode} math an ASTNode representing a formula tree
+   */
+  long setMath(ASTNode math);
 
-    [Const] ASTNode getMath();
-    long setMath(ASTNode math);
-    boolean isSetMath();
+  /**
+   * Predicate to test whether the formula for this delay is set.
+   *
+   * @return {boolean} true if the formula (meaning the math subelement) of
+   * this Delay is set, false otherwise
+   */
+  boolean isSetMath();
 };
+
+Delay implements SBase;
 
 [Prefix="libsbml::"]
 interface Priority {
-    DOMString getId();
-    boolean setId(DOMString id);
-
-    DOMString getName();
-    long setName(DOMString name);
-    boolean isSetName();
-
-    [Const] ASTNode getMath();
-    long setMath(ASTNode math);
-    boolean isSetMath();
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
 };
+
+Priority implements SBase;
 
 [Prefix="libsbml::"]
 interface EventAssignment {
-    DOMString getId();
-    boolean setId(DOMString id);
+  [Const] DOMString getVariable();
+  long setVariable(DOMString variable);
+  boolean isSetVariable();
 
-    DOMString getName();
-    long setName(DOMString name);
-    boolean isSetName();
-
-    [Const] DOMString getVariable();
-    long setVariable(DOMString variable);
-    boolean isSetVariable();
-
-    [Const] ASTNode getMath();
-    long setMath(ASTNode math);
-    boolean isSetMath();
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
 };
+
+EventAssignment implements SBase;
 
 [Prefix="libsbml::"]
 interface Trigger {
-    DOMString getId();
-    boolean setId(DOMString id);
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
 
-    DOMString getName();
-    long setName(DOMString name);
-    boolean isSetName();
-
-    [Const] ASTNode getMath();
-    long setMath(ASTNode math);
-    boolean isSetMath();
-
-    boolean getPersistent();
-    long setPersistent(boolean persistent);
-    boolean isSetPersistent();
+  boolean getPersistent();
+  long setPersistent(boolean persistent);
+  boolean isSetPersistent();
 };
+
+Trigger implements SBase;
 
 [Prefix="libsbml::"]
 interface Event {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-  boolean isSetName();
-
   Delay createDelay();
   Delay getDelay();
   long setDelay([Const] Delay delay);
@@ -219,3 +212,5 @@ interface Event {
   EventAssignment getEventAssignment(unsigned long n);
   unsigned long getNumEventAssignments();
 };
+
+Event implements SBase;

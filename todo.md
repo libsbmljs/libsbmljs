@@ -17,4 +17,5 @@
   * Basic writing
   * writing CV & SBO terms
   * writing Fancy math and units?
+  * writing events
   * Packages

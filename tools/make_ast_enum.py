@@ -70,7 +70,7 @@ jinja_env.trim_blocks = True
 jinja_env.lstrip_blocks = True
 
 def get_enum_values(lines):
-    ast_re = re.compile(r'^[\s]*,?[\s]*(AST_[\w]+)([\s*]=[\s]*[\d]+)?([\s]*/\*.*)?$')
+    ast_re = re.compile(r'^[\s]*,?[\s]*(AST_[\w]+)([\s]*=[\s]*[\d]+)?([\s]*/\*.*)?$')
 
     lines = input_text.splitlines()
     for line in lines:
