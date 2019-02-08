@@ -1,0 +1,89 @@
+/**
+ * # A user-defined function in an SBML model.
+ *
+ * The FunctionDefinition structure associates an identifier with a
+ * function definition.  This identifier can then be used as the function
+ * called in subsequent MathML content elsewhere in an SBML model.
+ *
+ * FunctionDefinition has one required attribute, "id", to give the
+ * function a unique identifier by which other parts of an SBML model
+ * definition can refer to it.  A FunctionDefinition instance can also have
+ * an optional "name" attribute of type string.  Identifiers and names
+ * must be used according to the guidelines described in the %SBML
+ * specification (e.g., Section 3.3 in the Level 2 Version 4
+ * specification).
+ *
+ * FunctionDefinition has a "math" subelement containing a MathML
+ * expression defining the function body.  In SBML Level 2 and SBML
+ * Level 3 Version 1, that "math" subelement is required;
+ * in SBML Level 3 Version 2, this restriction was relaxed,
+ * making the "math" subelement optional.  The content of this element can
+ * only be a MathML "lambda" element.  The "lambda" element must begin with
+ * zero or more "bvar" elements, followed by any other of the elements in
+ * the MathML subset allowed in SBML Level 2 except "lambda" (i.e., a
+ * "lambda" element cannot contain another "lambda" element).  This is the
+ * only place in SBML where a "lambda" element can be used.  The function
+ * defined by a FunctionDefinition is only available for use in other
+ * MathML elements that follow the FunctionDefinition definition in the
+ * model.  (These restrictions prevent recursive and mutually-recursive
+ * functions from being expressed.)
+ *
+ * A further restriction on the content of "math" is that it cannot contain
+ * references to variables other than the variables declared to the
+ * "lambda" itself.  That is, the contents of MathML "ci" elements inside
+ * the body of the "lambda" can only be the variables declared by its
+ * "bvar" elements, or the identifiers of other FunctionDefinition
+ * instances in the model.  This means must be written so that all
+ * variables or parameters used in the MathML content are passed to them
+ * via their function parameters.  In SBML Level 2, this restriction
+ * applies also to the MathML csymbol elements for time and
+ * delay; in SBML Level 3, it additionally applies to the csymbol
+ * element for avogadro.
+ *
+ * In SBML Level 3 Version 2, if no math element is present in
+ * the FunctionDefinition, the function has no mathematical meaning
+ * defined in SBML Level 3 Core. This situation may arise when models
+ * are incomplete, or when additional meanings are provided by an SBML
+ * Level 3 package.
+ *
+ * **Note:** Function definitions (also informally known as user-defined
+ * functions) were introduced in SBML Level 2.  They have purposefully
+ * limited capabilities.  A function cannot reference parameters or other
+ * model quantities outside of itself; values must be passed as parameters
+ * to the function.  Moreover, recursive and mutually-recursive functions
+ * are not permitted.  The purpose of these limitations is to balance power
+ * against complexity of implementation.  With the restrictions as they
+ * are, function definitions could be implemented as textual
+ * substitutions---they are simply macros.  Software implementations
+ * therefore do not need the full function-definition machinery typically
+ * associated with programming languages.
+ *
+ * Another important point to note is FunctionDefinition does not
+ * have a separate attribute for defining the units of the value returned
+ * by the function.  The units associated with the function's return value,
+ * when the function is called from within MathML expressions elsewhere in
+ * SBML, are simply the overall units of the expression in
+ * FunctionDefinition's "math" subelement when applied to the arguments
+ * supplied in the call to the function.  Ascertaining these units requires
+ * performing dimensional analysis on the expression.  (Readers may wonder
+ * why there is no attribute.  The reason is that having a separate
+ * attribute for declaring the units would not only be redundant, but also
+ * lead to the potential for having conflicting information.  In the case
+ * of a conflict between the declared units and those of the value actually
+ * returned by the function, the only logical resolution rule would be to
+ * assume that the correct units are those of the expression anyway.)
+ */
+[Prefix="libsbml::"]
+interface FunctionDefinition {
+  unsigned long getNumArguments();
+  [Const] ASTNode getArgument(unsigned long n);
+
+  [Const] ASTNode getBody();
+  boolean isSetBody();
+
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+};
+
+FunctionDefinition implements SBase;

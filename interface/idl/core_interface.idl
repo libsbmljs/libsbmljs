@@ -1,24 +1,4 @@
 [Prefix="libsbml::"]
-interface FunctionDefinition {
-  DOMString getId();
-  boolean setId(DOMString id);
-
-  DOMString getName();
-  long setName(DOMString name);
-  boolean isSetName();
-
-  unsigned long getNumArguments();
-  [Const] ASTNode getArgument(unsigned long n);
-
-  [Const] ASTNode getBody();
-  boolean isSetBody();
-
-  [Const] ASTNode getMath();
-  long setMath(ASTNode math);
-  boolean isSetMath();
-};
-
-[Prefix="libsbml::"]
 interface LocalParameter {
   double getValue();
   long setValue(double value);
