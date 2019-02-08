@@ -110,7 +110,7 @@ interface Parameter {
    * determine whether a value has ever been set.  Otherwise, the value
    * return by Parameter::getValue() may not actually represent a value
    * assigned to the parameter.  The reason is simply that the data type
-   * double in a program always has @em some value.  A separate test is
+   * double in a program always has some value.  A separate test is
    * needed to determine whether the value is a true model value, or
    * uninitialized data in a computer's memory location.
    */
@@ -195,3 +195,81 @@ interface Parameter {
 };
 
 Parameter implements SBase;
+
+/**
+ * # A parameter inside an SBML reaction definition.
+ *
+ * LocalParameter has been introduced in SBML Level 3 to serve as the
+ * object class for parameter definitions that are intended to be local to
+ * a Reaction.  Objects of class LocalParameter never appear at the Model
+ * level; they are always contained within ListOfLocalParameters lists
+ * which are in turn contained within KineticLaw objects.
+ *
+ * Like its global Parameter counterpart, the LocalParameter object class
+ * is used to define a symbol associated with a value; this symbol can then
+ * be used in a model's mathematical formulas (and specifically, for
+ * LocalParameter, reaction rate formulas).  Unlike Parameter, the
+ * LocalParameter class does not have a "constant" attribute: local
+ * parameters within reactions are always constant.
+ *
+ * LocalParameter has one required attribute, "id", to give the
+ * parameter a unique identifier by which other parts of an SBML model
+ * definition can refer to it.  A parameter can also have an optional
+ * "name" attribute of type string.  Identifiers and names must be used
+ * according to the guidelines described in the SBML specifications.
+ *
+ * The optional attribute "value" determines the value (of type double)
+ * assigned to the parameter.  A missing value for "value" implies that
+ * the value either is unknown, or to be obtained from an external source,
+ * or determined by an initial assignment.  The unit of measurement
+ * associated with the value of the parameter can be specified using the
+ * optional attribute "units".  Here we only mention briefly some notable
+ * points about the possible unit choices, but readers are urged to consult
+ * the SBML specification documents for more information:
+ *
+ * * In SBML Level 3, there are no constraints on the units that
+ * can be assigned to parameters in a model; there are also no units to
+ * inherit from the enclosing Model object.
+ *
+ * * In SBML Level 2, the value assigned to the parameter's "units"
+ * attribute must be chosen from one of the following possibilities: one of
+ * the base unit identifiers defined in SBML; one of the built-in unit
+ * identifiers "substance", "time", "volume", "area" or
+ * "length"; or the identifier of a new unit defined in the list of unit
+ * definitions in the enclosing Model structure.  There are no constraints
+ * on the units that can be chosen from these sets.  There are no default
+ * units for local parameters.
+ *
+ * As with all other major SBML components, LocalParameter is derived from
+ * SBase, and the methods defined on SBase are available on LocalParameter.
+ *
+ * In SBML Level 3 Version 2, the scope of the LocalParameter
+ * was expanded slightly to officially encompass the entire Reaction
+ * instead of just the KineticLaw in which it appears.  This has no
+ * effect on models using only SBML Level 3 Core constructs,
+ * but has the potential to allow SBML Level 3 Packages to
+ * include elements in a Reaction that could reference a
+ * LocalParameter from that Reaction's KineticLaw.  It also means that
+ * no LocalParameter may have the same "id" as a referenced Species
+ * in any SimpleSpeciesReference in that Reaction.
+ *
+ * **Note:** libsbml.js does not contain implementations of
+ * isSetConstant(), setConstant(), and getConstant()) for LocalParameter
+ * objects because these methods are only relevant to the parent class Parameter.
+ */
+[Prefix="libsbml::"]
+interface LocalParameter {
+  double getValue();
+  long setValue(double value);
+  boolean isSetValue();
+
+  boolean isSetUnits();
+  DOMString getUnits();
+  long setUnits(DOMString units);
+
+  /*boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();*/
+};
+
+LocalParameter implements SBase;

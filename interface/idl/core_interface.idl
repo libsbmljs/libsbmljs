@@ -1,21 +1,4 @@
 [Prefix="libsbml::"]
-interface LocalParameter {
-  double getValue();
-  long setValue(double value);
-  boolean isSetValue();
-
-  boolean isSetUnits();
-  DOMString getUnits();
-  long setUnits(DOMString units);
-
-  boolean getConstant();
-  long setConstant(boolean value);
-  boolean isSetConstant();
-};
-
-LocalParameter implements SBase;
-
-[Prefix="libsbml::"]
 interface KineticLaw {
   [Const] ASTNode getMath();
   long setMath(ASTNode math);
