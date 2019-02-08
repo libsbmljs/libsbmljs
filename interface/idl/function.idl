@@ -75,14 +75,73 @@
  */
 [Prefix="libsbml::"]
 interface FunctionDefinition {
+  /**
+   * Get the number of arguments (bound variables) taken by this
+   * FunctionDefinition.
+   *
+   * @return {number} the number of arguments (bound variables) that must be passed
+   * to this FunctionDefinition.
+   */
   unsigned long getNumArguments();
+
+  /**
+   * Get the `n`th argument to this function.
+   *
+   * Callers should first find out the number of arguments to the function
+   * by calling getNumArguments().
+   *
+   * @param {number} n an integer index for the argument sought.
+   *
+   * @return {ASTNode} the nth argument (bound variable) passed to this
+   * FunctionDefinition.
+   * If the index n is invalid, NULL is returned.
+   *
+   * See {@link FunctionDefinition#getNumArguments}
+   */
   [Const] ASTNode getArgument(unsigned long n);
 
+  /**
+   * Get the mathematical expression that is the body of this
+   * FunctionDefinition object.
+   *
+   * @return {ASTNode} the body of this FunctionDefinition as an Abstract Syntax
+   * Tree, or NULL if no body is defined.
+   */
   [Const] ASTNode getBody();
+
+  /**
+   * Predicate returning true if the body of this
+   * FunctionDefinition has set.
+   *
+   * @return {boolean} true if the body of this FunctionDefinition is
+   * set, false otherwise.
+   */
   boolean isSetBody();
 
+  /**
+   * Get the mathematical formula of this FunctionDefinition.
+   *
+   * @return {ASTNode} the value of the "math" subelement of this
+   * FunctionDefinition, or NULL if the math is not set.
+   */
   [Const] ASTNode getMath();
+
+  /**
+   * Sets the "math" subelement of this FunctionDefinition to the Abstract
+   * Syntax Tree given in math.
+   *
+   * @param {ASTNode} math an AST containing the mathematical expression to
+   * be used as the formula for this FunctionDefinition
+   */
   long setMath(ASTNode math);
+
+  /**
+   * Predicate returning true if this
+   * FunctionDefinition's "math" subelement contains a value.
+   *
+   * @return {boolean} true if the "math" for this FunctionDefinition is set,
+   * false otherwise.
+   */
   boolean isSetMath();
 };
 
