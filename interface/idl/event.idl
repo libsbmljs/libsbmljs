@@ -661,12 +661,62 @@ EventAssignment implements SBase;
  */
 [Prefix="libsbml::"]
 interface Trigger {
+  /**
+   * Get the mathematical formula for the trigger and return it
+   * as an AST.
+   *
+   * @return {ASTNode} the math of this Trigger, or NULL if the math is not set
+   */
   [Const] ASTNode getMath();
+
+  /**
+   * Sets the trigger expression of this Trigger instance to a copy of the given
+   * ASTNode.
+   *
+   * @param {number} math an ASTNode representing a formula tree
+   */
   long setMath(ASTNode math);
+
+  /**
+   * Predicate to test whether the math for this trigger is set.
+   *
+   * @return {boolean} true if the formula (meaning the "math" subelement) of
+   * this Trigger is set, false otherwise
+   */
   boolean isSetMath();
 
+  /**
+   * (SBML Level 3 only) Get the value of the "persistent" attribute
+   * of this Trigger.
+   *
+   * @return {boolean} the value stored as the "persistent" attribute value
+   * in this Trigger
+   *
+   * @note The attribute "persistent" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   boolean getPersistent();
+
+  /**
+   * (SBML Level 3 only) Sets the "persistent" attribute of this Trigger instance.
+   *
+   * @param {boolean} persistent a boolean representing the persistent value to be set
+   *
+   * @note The attribute "persistent" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   long setPersistent(boolean persistent);
+
+  /**
+   * (SBML Level 3 only) Predicate to test whether the "persistent"
+   * attribute for this trigger is set.
+   *
+   * @return {boolean} true if the persistent attribute of
+   * this Trigger is set, false otherwise
+   *
+   * @note The attribute "persistent" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   boolean isSetPersistent();
 };
 
