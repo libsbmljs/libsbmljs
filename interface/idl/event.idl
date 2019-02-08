@@ -722,6 +722,213 @@ interface Trigger {
 
 Trigger implements SBase;
 
+/**
+ * # A discontinuous SBML event.
+ *
+ * An SBML Event object defines when the event can occur, the variables
+ * that are affected by it, how the variables are affected, and the event's
+ * relationship to other events.  The effect of the event can optionally be
+ * delayed after the occurrence of the condition which invokes it.
+ *
+ * The operation of Event is divided into two phases (even when the event
+ * is not delayed): one when the event is triggered, and the other when
+ * the event is executed.  Trigger objects define the conditions for
+ * triggering an event, Delay objects define when the event is actually
+ * executed, EventAssignment objects define the effects of executing the
+ * event, and (in SBML Level 3) Priority objects influence the order
+ * of EventAssignment performance in cases of simultaneous events.  Please
+ * consult the descriptions of Trigger, Delay, EventAssignment and Priority
+ * for more information.
+ *
+ * ## SBML Level/Version differences
+ *
+ * ## SBML Level 2
+ *
+ * In SBML Level 2 versions before Version 4, the semantics of
+ * Event time delays were defined such that the expressions in the event's
+ * assignments were always evaluated at the time the event was
+ * triggered.  This definition made it difficult to define an event
+ * whose assignment formulas were meant to be evaluated at the time the
+ * event was executed (i.e., after the time period defined
+ * by the value of the Delay element, or after any other simultaneous
+ * event may have been executed and changed the model state).
+ * In SBML Level 2 Version 4 and in
+ * Level 3, the attribute "useValuesFromTriggerTime" on Event was added
+ * to allow a model to indicate the time at which the event's assignments
+ * are to be calculated, whether at the moment the event is triggered (if
+ * the value of the attribute is true), or at the moment of execution
+ * (if "useValuesFromTriggerTime"=false).  If the event has a delay,
+ * the "useValuesFromTriggerTime" is likely to make a significant difference
+ * in the values used in the assignment, but the possibility of simultaneous
+ * events mean that even zero-delay events can have different results
+ * depending on the value of this attribute.
+ *
+ * The definition of Event in SBML Level 2 Versions 1 and 2 includes
+ * an additional attribute called "timeUnits", which allowed the time units
+ * of the Delay to be set explicitly.  Later Versions of SBML Level 2
+ * as well as SBML Level 3 do not define this attribute.  LibSBML
+ * supports this attribute for compatibility with previous versions of SBML
+ * Level 2; however, if a model in SBML Level 3 or Level 2
+ * Versions 3&ndash;4 format sets the attribute, the
+ * consistency-checking method SBMLDocument::checkConsistency() will report
+ * an error.
+ *
+ * The attribute "useValuesFromTriggerTime" was introduced in SBML
+ * Level 2 Version 4.  Models defined in prior Versions of SBML
+ * Level 2 cannot use this attribute, and
+ * SBMLDocument::checkConsistency() will report an error if they do.
+ *
+ * ## SBML Level 3
+ *
+ * SBML Level 3 introduces several changes to the structure and components
+ * of Events compared to SBML Level 2.  These changes fall into two
+ * main categories: changes to what is optional or required, and additions
+ * of new attributes and elements.
+ *
+ * * The attribute "useValuesFromTriggerTime" on Event is mandatory (it
+ * was optional in Level 2 and had a default value of true);
+ * * Event's "listOfEventAssignments" element (of class
+ * ListOfEventAssignments) is optional (it was mandatory in Level 2);
+ * * Event's "priority" element (of class Priority) is new in
+ * Level 3; and
+ * * The Trigger object gains new mandatory attributes (described as part
+ * of the definition of Trigger).
+ * * In SBML Level 3 Version 2, the Trigger object became
+ * optional.  An Event with no Trigger will simply not fire.
+ *
+ *
+ * The changes to the attributes of Event are described below; the changes
+ * to Trigger and Priority are described in their respective sections.
+ *
+ * ## Semantics of events in SBML Level 3 Version 1
+ *
+ * The detailed semantics of events are described in the specification
+ * documents for each SBML Level/Version.  Here we include the description
+ * from the SBML Level 1 Version 1.
+ * Any transition of a Trigger object's "math" formula from the value
+ * false to true will cause the enclosing Event object to
+ * trigger.  Such a transition is not possible at the very start
+ * of a simulation (i.e., at time t = 0) unless the Trigger
+ * object's "initialValue" attribute has a value of false; this defines
+ * the value of the trigger formula to be false immediately prior to the
+ * start of simulation, thereby giving it the potential to change in value
+ * from false to true when the formula is evaluated at t =
+ * 0.  If "initialValue"=true, then the trigger expression cannot
+ * transition from false to true at t = 0 but may do so at
+ * some time t > 0.
+ *
+ * Consider an Event object definition E with delay d in
+ * which the Trigger object's "math" formula makes a transition in value
+ * from false to true at times t<sub>1</sub> and
+ * t<sub>2</sub>.  The EventAssignment within the Event object
+ * will have effect at t<sub>1</sub> + d and
+ * t<sub>2</sub> + d irrespective of the relative times of
+ * t<sub>1</sub> and t<sub>2</sub>.  For example, events
+ * can "overlap" so that t<sub>1</sub> < t<sub>2</sub> <
+ * t<sub>1</sub> + d still causes an event assignments to occur at
+ * t<sub>1</sub> + d and t<sub>2</sub> + d.
+ *
+ * It is entirely possible for two events to be executed simultaneously,
+ * and it is possible for events to trigger other events (i.e., an event
+ * assignment can cause an event to trigger).  This leads to several
+ * points:
+ *
+ *
+ * * A software package should retest all event triggers after executing
+ * an event assignment in order to account for the possibility that the
+ * assignment causes another event trigger to transition from false to
+ * true.  This check should be made after each individual Event object's
+ * execution, even when several events are to be executed simultaneously.
+ *
+ * * Any Event object whose Trigger "persistent" attribute has the value
+ * false must have its trigger expression reevaluated continuously
+ * between when the event is triggered and when it is executed.  If
+ * its trigger expression ever evaluates to false, it must be removed
+ * from the queue of events pending execution and treated as any other
+ * event whose trigger expression evaluates to false.
+ *
+ * * Although the precise time at which events are executed is not
+ * resolved beyond the given execution point in simulated time, it is
+ * assumed that the order in which the events occur is resolved.
+ * This order can be significant in determining the overall outcome of a
+ * given simulation.  When an event X triggers another
+ * event Y and event Y has zero delay, then event
+ * Y is added to the existing set of simultaneous events that are
+ * pending execution.  Events X and Y form a
+ * cascade of events at the same point in simulation time.  An event such
+ * as Y may have a special priority if it contains a Priority
+ * subobject.
+ *
+ * * All events in a model are open to being in a cascade.  The position
+ * of an event in the event queue does not affect whether it can be in the
+ * cascade: event Y can be triggered whether it is before or after
+ * X in the queue of events pending execution.  A cascade of
+ * events can be potentially infinite (never terminate); when this occurs a
+ * simulator should indicate this has occurred---it is incorrect for a
+ * simulator to break a cascade arbitrarily and continue the simulation
+ * without at least indicating that the infinite cascade occurred.
+ *
+ * * Simultaneous events having no defined priorities are executed in an
+ * undefined order.  This does not mean that the behavior of the simulation
+ * is completely undefined; merely that the order of execution of
+ * these particular events is undefined.  A given simulator may use any
+ * algorithm to choose an order as long as every event is executed exactly
+ * once.
+ *
+ * * Events with defined priorities are executed in the order implied by
+ * their Priority "math" formula values, with events having higher
+ * priorities being executed ahead of events with lower priorities, and
+ * events with identical priorities being executed in a random order with
+ * respect to one another (as determined at run-time by some random
+ * algorithm equivalent to coin-flipping).  Newly-triggered events that are
+ * to be executed immediately (i.e., if they define no delays) should be
+ * inserted into the queue of events pending execution according to their
+ * priorities: events with higher priority values value must be inserted
+ * ahead of events with lower priority values and after any pending events
+ * with even higher priorities, and inserted randomly among pending events
+ * with the same priority values.  Events without Priority objects must be
+ * inserted into the queue in some fashion, but the algorithm used to place
+ * it in the queue is undefined.  Similarly, there is no restriction on the
+ * order of a newly-inserted event with a defined Priority with respect to
+ * any other pending Event without a defined Priority.
+ *
+ * * A model variable that is the target of one or more event
+ * assignments can change more than once when simultaneous events are
+ * processed at some time point t.  The model's behavior (output)
+ * for such a variable is the value of the variable at the end of
+ * processing all the simultaneous events at time t.
+ *
+ *
+ *
+ * ## Restrictions relaxed in SBML Level 3 Version 2
+ *
+ * In SBML Level 3 Version 2, several restrictions were lifted
+ * that have the potential to affect the semantics of an Event:
+ *
+ * * The Trigger subobject of an Event is optional.  If missing,
+ * an Event is never triggered, unless an alternate triggering
+ * scheme is introduced by an SBML Level 3 package.
+ *
+ * * The "math" subelements of an Event Trigger, Delay, Priority,
+ * and EventAssignment are all optional.  If any of these elements lack
+ * a "math" subelement, and that information is not supplied in an SBML
+ * Level 3 package, it is mathematically equivalent to the Trigger,
+ * Delay, Priority, or EventAssignment not being present at all.
+ *
+ * * The ListOfEventAssignments may be empty, which is mathematically
+ * equivalent to the Event not having a ListOfEventAssignments at all.
+ *
+ * * Any "math" subelement may return a Boolean or a numeric value
+ * in any context.  If a numeric value is used in a Boolean context,
+ * a "0" is interpreted as false, and all other values are
+ * interpreted as true.  If a Boolean value is used in a numeric
+ * context, a true is interpreted as a 1, and a false is
+ * interpreted as a 0.  This means (for example) that a Trigger value
+ * that changes from 0.0 to anything else is equivalent to changing
+ * from false to true.
+ *
+ * See {@link Trigger}, {@link Priority}, {@link Delay}, {@link EventAssignment}
+ */
 [Prefix="libsbml::"]
 interface Event {
   Delay createDelay();
