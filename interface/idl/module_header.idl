@@ -1,6 +1,22 @@
 /**
+ * # libsbml.js
+ *
  * A WebAssembly / JavaScript wrapper for the [libSBML C++ library](http://sbml.org/Software/libSBML).
+ *
+ * Unlike most JavaScript modules,
+ * this module and associated WebAssembly file are loaded asynchronously
+ * by the browser, so you can not begin using it immediately after importing it.
+ * Instead, the module returns a promise-like object with a `then()` method,
+ * which is invoked with the module itself when it is fully loaded.
+ * This is a standard convention for all Emscripten modules.
+ *
  * @module libsbml
+ *
+ * @example
+ * import libsbml from 'libsbml.js'
+ * // the module isn't usable yet - wait for it to load
+ * libsbml().then((libsbml) => {
+ *   // now it is safe to use the module
+ *   const doc = new libsbml.SBMLDocument(3,2)
+ * })
  */
-
-
