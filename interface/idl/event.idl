@@ -554,6 +554,111 @@ interface EventAssignment {
 
 EventAssignment implements SBase;
 
+/**
+ * # The trigger expression for an SBML event.
+ *
+ * An Event object defines when the event can occur, the variables that are
+ * affected by the event, and how the variables are affected.  The Trigger
+ * construct in SBML is used to define a mathematical expression that
+ * determines when an Event is triggered.
+ *
+ * A Trigger object in SBML Level 2 and Level 3 contains one
+ * subelement named "math" containing a MathML expression.  The expression
+ * is evaluated as a value of type boolean.  The exact moment at which
+ * the expression evaluates to true is the time point when the Event is
+ * triggered.  In SBML Level 3, Trigger has additional attributes
+ * that must be assigned values; they are discussed in a separate section
+ * below.
+ *
+ * In SBML Level 2 and SBML Level 3 Version 1, the "math"
+ * subelement is required, and it must evaluate to a boolean expression.
+ * In SBML Level 3 Version 2, those restrictions are relaxed:
+ * the "math" element is optional, and numeric values are allowed in
+ * Boolean contexts (a '0' is interpreted as false, and all other
+ * values are interpreted as true).  If a Trigger with no "math"
+ * is present in an Event, that Event will never trigger, unless that
+ * missing information is included in an SBML Level 3 package.
+ *
+ * An event only triggers when its Trigger expression makes the
+ * transition in value from false to true.  The event will also
+ * trigger at any subsequent time points when the trigger makes this
+ * transition; in other words, an event can be triggered multiple times
+ * during a simulation if its trigger condition makes the transition from
+ * false to true more than once.  In SBML Level 3, the behavior
+ * at the very start of simulation (i.e., at t = 0, where
+ * t stands for time) is determined in part by the boolean flag
+ * "initialValue".  This and other additional features introduced in SBML
+ * Level 3 are discussed further below.
+ *
+ * ## Version differences
+ *
+ * SBML Level 3 Version 1 introduces two required attributes
+ * on the Trigger object: "persistent" and "initialValue".  The rest of
+ * this introduction describes these two attributes.
+ *
+ * ## The "persistent" attribute on Trigger
+ *
+ * In the interval between when an Event object triggers (i.e.,
+ * its Trigger object expression transitions in value from false to
+ * true) and when its assignments are to be executed, conditions
+ * in the model may change such that the trigger expression transitions
+ * back from true to false.  Should the event's assignments still be
+ * made if this happens?  Answering this question is the purpose of the
+ * "persistent" attribute on Trigger.
+ *
+ * If the boolean attribute "persistent" has a value of true, then once
+ * the event is triggered, all of its assignments are always performed when
+ * the time of execution is reached.  The name persistent is meant to
+ * evoke the idea that the trigger expression does not have to be
+ * re-checked after it triggers if "persistent"=true.  Conversely, if
+ * the attribute value is false, then the trigger expression is not
+ * assumed to persist: if the expression transitions in value back to
+ * false at any time between when the event triggered and when it is to be
+ * executed, the event is no longer considered to have triggered and its
+ * assignments are not executed.  (If the trigger expression transitions
+ * once more to true after that point, then the event is triggered, but
+ * this then constitutes a whole new event trigger-and-execute sequence.)
+ *
+ * The "persistent" attribute can be especially useful when Event objects
+ * contain Delay objects, but it is relevant even in a model without delays
+ * if the model contains two or more events.  As explained in the
+ * introduction to this section, the operation of all events in SBML
+ * (delayed or not) is conceptually divided into two phases,
+ * triggering and execution; however, unless events have
+ * priorities associated with them, SBML does not mandate a particular
+ * ordering of event execution in the case of simultaneous events.  Models
+ * with multiple events can lead to situations where the execution of one
+ * event affects another event's trigger expression value.  If that other
+ * event has "persistent"=false, and its trigger expression evaluates to
+ * false before it is to be executed, the event must not be executed
+ * after all.
+ *
+ * ## The "initialValue" attribute on Trigger
+ *
+ * As mentioned above, an event triggers when the mathematical
+ * expression in its Trigger object transitions in value from false to
+ * true.  An unanswered question concerns what happens at the start of a
+ * simulation: can event triggers make this transition at t = 0,
+ * where t stands for time?
+ *
+ * In order to determine whether an event may trigger at t = 0, it
+ * is necessary to know what value the Trigger object's "math" expression
+ * had immediately prior to t = 0.  This starting value of the
+ * trigger expression is determined by the value of the boolean attribute
+ * "initialValue".  A value of true means the trigger expression is
+ * taken to have the value true immediately prior to t = 0.  In
+ * that case, the trigger cannot transition in value from false to
+ * true at the moment simulation begins (because it has the value true
+ * both before and after t = 0), and can only make the transition
+ * from false to true sometime after t = 0.  (To do
+ * that, it would also first have to transition to false before it could
+ * make the transition from false back to true.)  Conversely, if
+ * "initialValue"=false, then the trigger expression is assumed to start
+ * with the value false, and therefore may trigger at t = 0 if
+ * the expression evaluates to true at that moment.
+ *
+ * See {@link Event}, {@link Delay}, {@link EventAssignment}
+ */
 [Prefix="libsbml::"]
 interface Trigger {
   [Const] ASTNode getMath();
