@@ -289,8 +289,28 @@ Delay implements SBase;
  */
 [Prefix="libsbml::"]
 interface Priority {
+  /**
+   * Get the mathematical formula for the priority and return it
+   * as an AST.
+   *
+   * @return {ASTNode} the math of this Priority, or NULL if the math is not set
+   */
   [Const] ASTNode getMath();
+
+  /**
+   * Sets the math expression of this Priority instance to a copy of the given
+   * ASTNode.
+   *
+   * @param {ASTNode} math an ASTNode representing a formula tree
+   */
   long setMath(ASTNode math);
+
+  /**
+   * Predicate to test whether the formula for this delay is set.
+   *
+   * @return {boolean} true if the formula (meaning the math subelement) of
+   * this Priority is set, false otherwise
+   */
   boolean isSetMath();
 };
 
