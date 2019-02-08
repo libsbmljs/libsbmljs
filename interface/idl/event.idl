@@ -692,7 +692,7 @@ interface Trigger {
    * @return {boolean} the value stored as the "persistent" attribute value
    * in this Trigger
    *
-   * @note The attribute "persistent" is available in SBML Level 3,
+   * **Note:** The attribute "persistent" is available in SBML Level 3,
    * but is not present in lower Levels of SBML.
    */
   boolean getPersistent();
@@ -702,7 +702,7 @@ interface Trigger {
    *
    * @param {boolean} persistent a boolean representing the persistent value to be set
    *
-   * @note The attribute "persistent" is available in SBML Level 3,
+   * **Note:** The attribute "persistent" is available in SBML Level 3,
    * but is not present in lower Levels of SBML.
    */
   long setPersistent(boolean persistent);
@@ -714,7 +714,7 @@ interface Trigger {
    * @return {boolean} true if the persistent attribute of
    * this Trigger is set, false otherwise
    *
-   * @note The attribute "persistent" is available in SBML Level 3,
+   * **Note:** The attribute "persistent" is available in SBML Level 3,
    * but is not present in lower Levels of SBML.
    */
   boolean isSetPersistent();
@@ -931,23 +931,215 @@ Trigger implements SBase;
  */
 [Prefix="libsbml::"]
 interface Event {
+  /**
+   * Creates a new, empty Delay, adds it to this Event and
+   * returns the Delay.
+   *
+   * @return {Delay} the newly created Delay object instance
+   */
   Delay createDelay();
+
+  /**
+   * Get the assignment delay portion of this Event, if there is one.
+   *
+   * @return {Delay} the delay of this Event if one is defined, or NULL if none
+   * is defined.
+   */
   Delay getDelay();
+
+  /**
+   * Sets the delay definition of this Event to a copy of the given Delay
+   * object instance.
+   *
+   * @param {Delay} delay the Delay object instance to use
+   */
   long setDelay([Const] Delay delay);
+
+  /**
+   * Predicate for testing whether the delay for this Event is set.
+   *
+   * @return {boolean} true if the delay of this Event is set, false
+   * otherwise.
+   */
   boolean isSetDelay();
 
+  /**
+   * Unsets the Delay of this Event.
+   */
+  long unsetDelay();
+
+
+  /**
+   * (SBML Level 3 only) Creates a new, empty Priority, adds it to this
+   * Event and returns the Priority.
+   *
+   * @return the newly created Priority object instance, or NULL if the SBML
+   * level and version used for this Event does not define Priority children
+   *
+   * **Note:** The element "priority" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   Priority createPriority();
-  long setPriority(Priority priority);
+  /**
+   * (SBML Level 3 only) Get the event priority portion of this
+   * Event.
+   *
+   * @return {Priority} the Priority object of this Event, or NULL if the Priority
+   * has not been set
+   *
+   * **Note:** The element "priority" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   Priority getPriority();
+
+  /**
+   * (SBML Level 3 only) Sets the priority definition of this Event
+   * to a copy of the given Priority object instance.
+   *
+   * @param {Priority} priority the Priority object instance to use
+   *
+   * **Note:** The element "priority" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  long setPriority(Priority priority);
+
+  /**
+   * (SBML Level 3 only) Predicate for testing whether the priority
+   * for this Event is set.
+   *
+   * @return {boolean} true if the priority of this Event is set, false
+   * otherwise
+   *
+   * **Note:** The element "priority" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
   boolean isSetPriority();
 
-  long setTrigger(Trigger trigger);
+  /**
+   * (SBML Level 3 only) Unsets the Priority of this Event.
+   *
+   * **Note:** The element "priority" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  long unsetPriority();
+
+
+  /**
+   * Creates a new, empty Trigger, adds it to this Event and
+   * returns the Trigger.
+   *
+   * @return {Trigger} the newly created Trigger object instance
+   */
+  Trigger createTrigger();
+
+  /**
+   * Get the event trigger portion of this Event.
+   *
+   * @return {Trigger} the Trigger object of this Event
+   */
   Trigger getTrigger();
+
+  /**
+   * Sets the trigger definition of this Event to a copy of the given
+   * Trigger object instance.
+   *
+   * @param {Trigger} trigger the Trigger object instance to use
+   */
+  long setTrigger(Trigger trigger);
+
+  /**
+   * Predicate for testing whether the trigger for this Event is set.
+   *
+   * @return {boolean} true if the trigger of this Event is set, false
+   * otherwise
+   */
   boolean isSetTrigger();
 
+
+  /**
+   * Unsets the Trigger of this Event.
+   */
+  long unsetTrigger();
+
+  /**
+   * Creates a new, empty EventAssignment, adds it to this Event's list of
+   * event assignments and returns the EventAssignment.
+   *
+   * @return {EventAssignment} the newly created EventAssignment object instance
+   */
   EventAssignment createEventAssignment();
+
+  /**
+   * Return a specific EventAssignment object of this Event.
+   *
+   * @param {number} n an integer, the index of the EventAssignment object to return.
+   *
+   * @return {EventAssignment} the `n`th EventAssignment of this Event.
+   */
   EventAssignment getEventAssignment(unsigned long n);
+
+  /**
+   * Returns the number of EventAssignment objects attached to this
+   * Event.
+   *
+   * @return {number} the number of EventAssignments in this Event
+   */
   unsigned long getNumEventAssignments();
+
+  /**
+   * Get the value of the "timeUnits" attribute of this Event, if it has one.
+   *
+   * @return {string} the value of the attribute "timeUnits" as a string
+   */
+  DOMString getTimeUnits();
+
+  /**
+   * Sets the "timeUnits" attribute of this Event to a copy of sid.
+   *
+   * @param {string} sid the identifier of the time units to use
+   */
+  long setTimeUnits (DOMString sid);
+
+  /**
+   * Predicate for testing whether the "timeUnits" attribute of this Event
+   * is set.
+   *
+   * @return {boolean} true if the "timeUnits" attribute of this Event is
+   * set, false otherwise
+   */
+  boolean isSetTimeUnits();
+
+  /**
+   * Unsets the "timeUnits" attribute of this Event.
+   */
+  long unsetTimeUnits();
+
+  /**
+   * Get the value of the "useValuesFromTriggerTime" attribute of this Event.
+   *
+   * @return {boolean} the value of the attribute "useValuesFromTriggerTime" as a boolean
+   */
+  boolean getUseValuesFromTriggerTime();
+
+  /**
+   * Sets the "useValuesFromTriggerTime" attribute of this Event to a value.
+   *
+   * @param {boolean} value the value of useValuesFromTriggerTime to use
+   */
+  long setUseValuesFromTriggerTime(boolean value);
+
+  /**
+   * Predicate for testing whether the "useValuesFromTriggerTime" attribute of this Event
+   * is set.
+   *
+   * @return {boolean} true if the "useValuesFromTriggerTime" attribute of this Event is
+   * set, false otherwise
+   *
+   * **Note:** In SBML Level 2, this attribute is optional and has a default value of
+   * true, whereas in Level 3, this optional is mandatory and
+   * has no default value.
+   */
+  boolean isSetUseValuesFromTriggerTime();
 };
 
 Event implements SBase;
