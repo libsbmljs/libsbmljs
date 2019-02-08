@@ -259,13 +259,95 @@ Parameter implements SBase;
  */
 [Prefix="libsbml::"]
 interface LocalParameter {
+  /**
+   * Gets the numerical value of this LocalParameter.
+   *
+   * @return {number} the value of the "value" attribute of this LocalParameter, as a
+   * number of type double.
+   *
+   * **Note:** It is crucial that callers not blindly call
+   * LocalParameter.getValue() without first using LocalParameter.isSetValue() to
+   * determine whether a value has ever been set.  Otherwise, the value
+   * return by LocalParameter::getValue() may not actually represent a value
+   * assigned to the LocalParameter.  The reason is simply that the data type
+   * double in a program always has some value.  A separate test is
+   * needed to determine whether the value is a true model value, or
+   * uninitialized data in a computer's memory location.
+   */
   double getValue();
+
+  /**
+   * Sets the "value" attribute of this LocalParameter to the given double
+   * value and marks the attribute as set.
+   *
+   * @param {number} value a double, the value to assign
+   */
   long setValue(double value);
+
+
+  /**
+   * Predicate returning true if the
+   * "value" attribute of this LocalParameter is set.
+   *
+   * In SBML definitions after SBML Level 1 Version 1,
+   * LocalParameter values are optional and have no defaults.  If a model read
+   * from a file does not contain a setting for the "value" attribute of a
+   * LocalParameter, its value is considered unset; it does not default to any
+   * particular value.  Similarly, when a LocalParameter object is created in
+   * libSBML, it has no value until given a value.  The
+   * LocalParameter::isSetValue() method allows calling applications to
+   * determine whether a given LocalParameter's value has ever been set.
+   *
+   * In SBML Level 1 Version 1, LocalParameters are required to have
+   * values and therefore, the value of a LocalParameter <b>should always be
+   * set</b>.  In Level 1 Version 2 and beyond, the value is
+   * optional and as such, the "value" attribute may or may not be set.
+   *
+   * @return {boolean} true if the value of this LocalParameter is set,
+   * false otherwise.
+   */
   boolean isSetValue();
 
+  /**
+   * Predicate returning true if the
+   * "units" attribute of this LocalParameter is set.
+   *
+   * @return {boolean} true if the "units" attribute of this LocalParameter is
+   * set, false otherwise.
+   */
   boolean isSetUnits();
+  /**
+   * Gets the units defined for this LocalParameter.
+   *
+   * The value of an SBML LocalParameter's "units" attribute establishes the
+   * unit of measurement associated with the LocalParameter's value.
+   *
+   * @return {string} the value of the "units" attribute of this LocalParameter, as a
+   * string.  An empty string indicates that no units have been assigned.
+   */
   DOMString getUnits();
+
+  /**
+   * Sets the "units" attribute of this LocalParameter to a copy of the given
+   * units identifier units.
+   *
+   * @param {number} units a string, the identifier of the units to assign to this LocalParameter instance
+   */
   long setUnits(DOMString units);
+
+  /**
+   * Constructs and returns a UnitDefinition that corresponds to the units
+   * of this LocalParameter's value.
+   *
+   * @return {UnitDefinition} a UnitDefinition that expresses the units of this
+   * LocalParameter, or NULL if one cannot be constructed.
+   *
+   * **Note:** The libSBML system for unit analysis depends on the model as a
+   * whole.  In cases where the LocalParameter object has not yet been
+   * added to a model, or the model itself is incomplete, unit analysis is
+   * not possible, and consequently this method will return NULL.
+   */
+  UnitDefinition getDerivedUnitDefinition();
 
   /*boolean getConstant();
   long setConstant(boolean value);
