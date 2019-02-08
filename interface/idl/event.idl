@@ -493,12 +493,61 @@ Priority implements SBase;
  */
 [Prefix="libsbml::"]
 interface EventAssignment {
+  /**
+   * Get the value of this EventAssignment's "variable" attribute.
+   *
+   * @return {string} the identifier stored in the "variable" attribute of this
+   * EventAssignment
+   */
   [Const] DOMString getVariable();
+
+  /**
+   * Sets the attribute "variable" of this EventAssignment to a copy of
+   * the given identifier string.
+   *
+   * @param {string} sid the identifier of an element defined in this model that
+   * can vary over time
+   */
   long setVariable(DOMString variable);
+
+  /**
+   * Predicate for testing whether the attribute "variable" of this
+   * EventAssignment is set.
+   *
+   * @return {boolean} true if the "variable" attribute of this EventAssignment
+   * is set, false otherwise.
+   */
   boolean isSetVariable();
 
+  /**
+   * Unsets the attribute "variable" of this EventAssignment
+   */
+  long unsetVariable();
+
+  /**
+   * Get the mathematical expression in this EventAssignment's "math"
+   * subelement.
+   *
+   * @return {ASTNode} the top ASTNode of an abstract syntax tree representing the
+   * mathematical formula in this EventAssignment, or NULL if the math is not set.
+   */
   [Const] ASTNode getMath();
+  /**
+   * Sets the "math" subelement of this EventAssignment to a copy of the
+   * given ASTNode.
+   *
+   * @param {ASTNode} math an ASTNode that will be copied and stored as the
+   * mathematical formula for this EventAssignment.
+   */
   long setMath(ASTNode math);
+
+  /**
+   * Predicate for testing whether the "math" subelement of this
+   * EventAssignment is set.
+   *
+   * @return {boolean} true if this EventAssignment has a "math" subelement,
+   * false otherwise.
+   */
   boolean isSetMath();
 };
 
