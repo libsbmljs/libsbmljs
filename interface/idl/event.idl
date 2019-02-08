@@ -532,6 +532,7 @@ interface EventAssignment {
    * mathematical formula in this EventAssignment, or NULL if the math is not set.
    */
   [Const] ASTNode getMath();
+
   /**
    * Sets the "math" subelement of this EventAssignment to a copy of the
    * given ASTNode.
