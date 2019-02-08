@@ -632,7 +632,7 @@ interface UnitDefinition {
    * Returns the number of Unit objects contained within this
    * UnitDefinition.
    *
-   * @return an integer representing the number of Units in this UnitDefinition
+   * @return {number} an integer representing the number of Units in this UnitDefinition
    */
   unsigned long getNumUnits();
 
@@ -656,7 +656,7 @@ interface UnitDefinition {
    *
    * @param {number} n an integer, the index of the Unit to be returned
    *
-   * @return the nth Unit of this UnitDefinition; If the index n is invalid, NULL is returned
+   * @return {Unit} the nth Unit of this UnitDefinition; If the index n is invalid, NULL is returned
    */
   Unit getUnit(unsigned long n);
 };
