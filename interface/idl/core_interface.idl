@@ -31,35 +31,6 @@ interface SBMLFormulaParser {
 };
 
 [Prefix="libsbml::"]
-interface Reaction {
-  long getNumReactants();
-  long getNumProducts();
-  long getNumModifiers();
-
-  SpeciesReference getReactant(long i);
-  SpeciesReference getProduct(long i);
-  ModifierSpeciesReference getModifier(long i);
-
-  long addReactant(SpeciesReference sr);
-  long addProduct(SpeciesReference sr);
-  long addModifier(ModifierSpeciesReference sr);
-
-  SpeciesReference createReactant();
-  SpeciesReference createProduct();
-  ModifierSpeciesReference createModifier();
-
-  KineticLaw createKineticLaw();
-  KineticLaw getKineticLaw();
-  boolean isSetKineticLaw();
-
-  boolean getReversible();
-  long setReversible(boolean value);
-  boolean isSetReversible();
-};
-
-Reaction implements SBase;
-
-[Prefix="libsbml::"]
 interface Compartment {
   boolean getConstant();
   long setConstant(boolean value);

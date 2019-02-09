@@ -256,3 +256,422 @@ interface KineticLaw {
 };
 
 KineticLaw implements SBase;
+
+
+/**
+ * # An SBML reaction between species in an SBML model.
+ *
+ * A reaction represents any transformation, transport or binding
+ * process, typically a chemical reaction, that can change the quantity of
+ * one or more species.  In SBML, a reaction is defined primarily in terms
+ * of the participating reactants and products (and their corresponding
+ * stoichiometries), along with optional modifier species, an optional rate
+ * at which the reaction takes place, and optional parameters.
+ *
+ * As with other major objects in SBML, Reaction has a mandatory attribute,
+ * "id", used to give the reaction an identifier.  The identifier
+ * must be a text string conforming to the identifer syntax permitted in
+ * SBML.  In SBML Level 2 and Level 3, the reaction "id"
+ * identifier can be used in mathematical formulas elsewhere in an SBML
+ * model to represent the rate of that reaction; this usage is explained
+ * below.  Reaction also has an optional "name" attribute, of type
+ * string.  The "id" and "name" must be used according to the guidelines
+ * described in the SBML specification.
+ *
+ * The species participating as reactants, products, and/or modifiers in a
+ * reaction are declared using lists of SpeciesReference and/or
+ * ModifierSpeciesReference instances stored in subelements
+ * "listOfReactants", "listOfProducts" and "listOfModifiers".  Certain
+ * restrictions are placed on the appearance of species in reaction
+ * definitions:
+ *
+ * * The ability of a species to appear as a reactant or product of any
+ * reaction in a model is governed by certain flags in that species'
+ * definition; see the definition of Species for more information.
+ *
+ * * Any species appearing in the mathematical formula of the subelement
+ * "kineticLaw" (described below) of a Reaction must be declared in at
+ * least one of that Reaction's lists of reactants, products, and/or
+ * modifiers.  Put another way, it is an error for a reaction's kinetic law
+ * formula to refer to species that have not been declared for that
+ * reaction.
+ *
+ * * For SBML Levels 1, 2, and SBML Level 3 Version 1, a
+ * reaction definition can contain an empty list of reactants
+ * <em>or</em> an empty list of products, but it must have at least one
+ * reactant or product; in other words, a reaction without any reactant or
+ * product species is not permitted.  (This restriction does not apply to
+ * modifier species, which remain optional in all cases.)  In SBML
+ * Level 3 Version 2, this requirement was dropped, allowing
+ * the creation of reactions with neither reactants nor products.
+ *
+ *
+ * A reaction can contain up to one KineticLaw object in a subelement named
+ * "kineticLaw".  It defines the speed at which the process defined by the
+ * reaction takes place.  The description of KineticLaw provides more
+ * details about its use.  Note that although the inclusion of a KineticLaw
+ * object in an instance of a Reaction component is optional, there is no
+ * useful default that can be substituted in place of a missing rate
+ * expression in a reaction.  Moreover, a reaction's rate cannot be defined
+ * in any other way in SBML---InitialAssignment, AssignmentRule,
+ * RateRule, AlgebraicRule, Event, and other constructs in SBML cannot be
+ * used to set the reaction rate separately.  Nevertheless, for some
+ * modeling applications, reactions without any defined rate can be
+ * perfectly acceptable.
+ *
+ * Reaction also has a boolean attribute named "reversible" for indicating
+ * whether the reaction is reversible.  This attribute is optional in SBML
+ * Level 2, with a default of true; it is mandatory in SBML
+ * Level 3 (with no default value).  To say that a reaction is @em
+ * reversible is to say it can proceed in either the forward or the reverse
+ * direction.  Although the reversibility of a reaction can sometimes be
+ * deduced by inspecting its rate expression, this is not always the case,
+ * especially for complicated expressions.  Moreover, the need in SBML to
+ * allow rate expressions (i.e., KineticLaw) to be optional leads to the
+ * need for a separate flag indicating reversibility.  Note that labeling a
+ * reaction as irreversible is an assertion that the reaction always
+ * proceeds in the given forward direction.  (Why else would it be flagged
+ * as irreversible?)  This implies the rate expression in the KineticLaw
+ * always has a non-negative value during simulations.  Software tools
+ * could provide a means of optionally testing that this condition holds.
+ * The presence of reversibility information in two places (i.e., the rate
+ * expression and the "reversible" attribute on Reaction) leaves open the
+ * possibility that a model could contain contradictory information, but
+ * the creation of such a model would be an error on the part of the
+ * software generating it.
+ *
+ * The Reaction object class has another boolean attribute called "fast".
+ * This attribute is optional in SBML Level 2, with a default of
+ * false; it is mandatory in SBML Level 3 (with no default value).
+ * In SBML Level 3 Version 2, a value of true for the "fast"
+ * attribute is deprecated in favor of all reactions having a "fast" value
+ * of false.  It
+ * is used to indicate that a reaction occurs on a vastly faster time scale
+ * than others in a system.  Readers are directed to the SBML Level 2
+ * Version 4 specification, which provides more detail about the
+ * conditions under which a reaction can be considered to be fast in this
+ * sense.  SBML Level 1
+ * and Level 2 Version 1 incorrectly claimed that software tools
+ * could ignore this attribute if they did not implement support for the
+ * corresponding concept; however, further research in SBML has revealed
+ * that this is not true, and "fast" <em>cannot be ignored</em> if it is
+ * set to true.  SBML Level 2 Versions 2&ndash;4 therefore
+ * stipulate that if a model has any reactions with "fast" set to true,
+ * a software tool must be able to respect the attribute or else indicate
+ * to the user that it does not have the capacity to do so.  Analysis
+ * software cannot ignore the value of the "fast" attribute because doing
+ * so may lead to different results as compared to a software system that
+ * <em>does</em> make use of "fast".
+ *
+ * In SBML Level 3, the Reaction object has an
+ * additional optional attribute named "compartment", whose value must be
+ * the identifier of a compartment defined in the enclosing Model object.
+ * The "compartment" attribute can be used to indicate the compartment in
+ * which the reaction is assumed to take place.  If the attribute is
+ * present, its value must be the identifier of a Compartment object
+ * defined in the enclosing Model object.  Similar to the "reversible"
+ * attribute, the value of the "compartment" attribute has no direct impact
+ * on the construction of mathematical equations for the SBML model.  When
+ * a kinetic law is given for a reaction, the compartment location may
+ * already be implicit in the kinetic law (although this cannot always be
+ * guaranteed).  Nevertheless, software tools may find the "compartment"
+ * attribute value useful for such purposes as analyzing the structure of
+ * the model, guiding the modeler in constructing correct rate formulas,
+ * and visualization purposes.
+ *
+ * Readers are urged to read the SBML specification for more details about
+ * the proper use of Reaction.
+ */
+[Prefix="libsbml::"]
+interface Reaction {
+  /**
+   * Returns the number of reactant species in this Reaction.
+   *
+   * @return {number} the number of reactants in this Reaction.
+   */
+  long getNumReactants();
+
+  /**
+   * Returns the number of product species in this Reaction.
+   *
+   * @return {number} the number of products in this Reaction.
+   */
+  long getNumProducts();
+
+  /**
+   * Returns the number of modifier species in this Reaction.
+   *
+   * @return {number} the number of modifiers in this Reaction.
+   */
+  long getNumModifiers();
+
+  /**
+   * Returns the nth reactant species (as a SpeciesReference object)
+   * in the list of reactants in this Reaction.
+   *
+   * Callers should first call getNumReactants() to find out how many
+   * reactants there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the reactant sought
+   *
+   * @return {SpeciesReference} the nth reactant (as a SpeciesReference object) of this
+   * Reaction.
+   * If the index n is invalid, NULL is returned.
+   */
+  SpeciesReference getReactant(long i);
+
+  /**
+   * Returns the nth product species (as a SpeciesReference object)
+   * in the list of products in this Reaction.
+   *
+   * Callers should first call getNumProducts() to find out how many
+   * products there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the product sought
+   *
+   * @return {SpeciesReference} the nth product (as a SpeciesReference object) of this
+   * Reaction.
+   * If the index n is invalid, NULL is returned.
+   */
+  SpeciesReference getProduct(long i);
+
+  /**
+   * Returns the nth modifier species (as a ModifierSpeciesReference object)
+   * in the list of modifiers of this Reaction.
+   *
+   * Callers should first call getNumModifiers() to find out how many
+   * modifiers there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the modifier species sought.
+   *
+   * @return {ModifierSpeciesReference} the nth modifier (as a ModifierSpeciesReference object) of
+   * this Reaction.
+   * If the index n is invalid, NULL is returned.
+   */
+  ModifierSpeciesReference getModifier(long i);
+
+  /**
+   * Adds a given SpeciesReference object as a reactant in this Reaction.
+   *
+   * The SpeciesReference instance in sr is copied.
+   *
+   * @param {SpeciesReference} sr a SpeciesReference object referring to a Species in the
+   * enclosing Model.
+   *
+   * See {@link Reaction#createReactant}
+   */
+  long addReactant(SpeciesReference sr);
+
+  /**
+   * Adds a given SpeciesReference object as a product in this Reaction.
+   *
+   * The SpeciesReference instance in sr is copied.
+   *
+   * @param {SpeciesReference} sr a SpeciesReference object referring to a Species in the
+   * enclosing Model
+   *
+   * See {@link Reaction#createProduct}
+   */
+  long addProduct(SpeciesReference sr);
+
+  /**
+   * Adds a given ModifierSpeciesReference object as a product in this
+   * Reaction.
+   *
+   * The ModifierSpeciesReference instance in msr is copied.
+   *
+   * @param {addModifier} msr a ModifierSpeciesReference object referring to a Species in
+   * the enclosing Model
+   *
+   * See {@link Reaction#createModifier}
+   */
+  long addModifier(ModifierSpeciesReference msr);
+
+  /**
+   * Creates a new SpeciesReference, adds it to this Reaction's list of
+   * reactants, and returns it.
+   *
+   * @return {SpeciesReference} a new SpeciesReference object.
+   */
+  SpeciesReference createReactant();
+
+  /**
+   * Creates a new SpeciesReference, adds it to this Reaction's list of
+   * products, and returns it.
+   *
+   * @return {SpeciesReference} a new SpeciesReference object.
+   */
+  SpeciesReference createProduct();
+
+  /**
+   * Creates a new ModifierSpeciesReference, adds it to this Reaction's
+   * list of modifiers and returns it.
+   *
+   * @return {ModifierSpeciesReference} a new ModifierSpeciesReference object.
+   */
+  ModifierSpeciesReference createModifier();
+
+  /**
+   * Removes the nth reactant species (SpeciesReference object) in the list of
+   * reactants in this Reaction and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   * The caller should first call getNumReactants() to find out how many
+   * reactants there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the reactant SpeciesReference object to remove
+   *
+   * @return {SpeciesReference} the removed reactant SpeciesReference object, or NULL if the
+   * given index is out of range.
+   */
+  SpeciesReference removeReactant (unsigned long n);
+
+  /**
+   * Removes the nth product species (SpeciesReference object) in the list of
+   * products in this Reaction and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   * The caller should first call getNumProducts() to find out how many
+   * products there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the product SpeciesReference object to remove
+   *
+   * @return {SpeciesReference} the removed product SpeciesReference object, or NULL if the
+   * given index is out of range.
+   */
+  SpeciesReference removeProduct (unsigned long n);
+
+  /**
+   * Removes the nth modifier species (ModifierSpeciesReference object) in
+   * the list of  modifiers in this Reaction and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   * The caller should first call getNumModifiers() to find out how many
+   * modifiers there are, to avoid using an invalid index number.
+   *
+   * @param {number} n the index of the ModifierSpeciesReference object to remove.
+   *
+   * @return {ModifierSpeciesReference} the removed ModifierSpeciesReference object, or NULL if the
+   * given index is out of range.
+   */
+  ModifierSpeciesReference removeModifier (unsigned long n);
+
+  /**
+   * Creates a new KineticLaw object, installs it as this Reaction's
+   * "kineticLaw" subelement, and returns it.
+   *
+   * If this Reaction had a previous KineticLaw, it will be destroyed.
+   *
+   * @return {KineticLaw} the new KineticLaw object.
+   */
+  KineticLaw createKineticLaw();
+
+  /**
+   * Returns the KineticLaw object contained in this Reaction.
+   *
+   * @return {KineticLaw} the KineticLaw instance.
+   */
+  KineticLaw getKineticLaw();
+
+  /**
+   * Sets the "kineticLaw" subelement of this Reaction to a copy of the
+   * given KineticLaw object.
+   *
+   * @param {KineticLaw} kl the KineticLaw object to use
+  */
+  long setKineticLaw ([Const] KineticLaw kl);
+
+  /**
+   * Predicate returning true if this
+   * Reaction contains a kinetic law object.
+   *
+   * @return {boolean} true if a KineticLaw is present in this Reaction,, false
+   * otherwise.
+   */
+  boolean isSetKineticLaw();
+
+  /**
+   * Unsets the "kineticLaw" subelement of this Reaction.
+   */
+  long unsetKineticLaw();
+
+  /**
+   * Returns the value of the "reversible" attribute on the Reaction as a
+   * boolean value.
+   *
+   * @return {boolean} the reversibility status of this Reaction.
+   */
+  boolean getReversible();
+
+  /**
+   * Sets the value of the "reversible" attribute of this Reaction.
+   *
+   * @param {boolean} value the value of the "reversible" attribute
+   */
+  long setReversible(boolean value);
+
+
+  /**
+   * Predicate returning true if this
+   * Reaction's "reversible" attribute is set.
+   *
+   * @return {boolean} true if the "reversible" attribute of this Reaction is
+   * set, false otherwise.
+   */
+  boolean isSetReversible();
+
+  /**
+   * Unsets the value of the "reversible" attribute of this Reaction.
+   */
+  long unsetReversible();
+
+
+  /**
+   * (SBML Level 3 only) Returns the value of the "compartment"
+   * attribute on the Reaction.
+   *
+   * @return {string} the compartment of this Reaction.
+   *
+   * @note The "compartment" attribute is available in SBML Level 3,
+   * but is not present on Reaction in lower Levels of
+   * SBML.
+   */
+  DOMString getCompartment();
+
+  /**
+   * Sets the value of the "compartment" attribute of this Reaction.
+   *
+   * The string sid is copied.
+   *
+   * @param {string} sid the string to use as the compartment of this Reaction.
+   *
+   * @note The "compartment" attribute is available in SBML
+   * Level 3, but is not present on Reaction in
+   * lower Levels of SBML.
+   */
+  long setCompartment(DOMString sid);
+
+  /**
+   * Predicate returning true if this
+   * Reaction's "compartment" attribute is set.
+   *
+   * @return {boolean} true if the "compartment" attribute of this Reaction is
+   * set, false otherwise.
+   *
+   * @note The "compartment" attribute is available in SBML
+   * Level 3, but is not present on Reaction in
+   * lower Levels of SBML.
+   */
+  boolean isSetCompartment();
+
+  /**
+   * Unsets the value of the "compartment" attribute of this Reaction.
+   *
+   * @note The "compartment" attribute is available in SBML
+   * Level 3, but is not present on Reaction in
+   * lower Levels of SBML.
+   */
+  long unsetCompartment();
+};
+
+Reaction implements SBase;
