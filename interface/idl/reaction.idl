@@ -1,0 +1,258 @@
+/**
+ * # The rate expression for an SBML reaction.
+ *
+ * An object of class KineticLaw is used to describe the rate at which the
+ * process defined by a given Reaction takes place.  KineticLaw has
+ * subelements called "math" (for MathML content) and "listOfParameters"
+ * (of class ListOfParameters), in addition to the attributes and
+ * subelements it inherits from SBase.
+ *
+ * KineticLaw's "math" subelement for holding a MathML formula (required
+ * through SBML Level 3 Version 1, but optional as of SBML
+ * Level 3 Version 2) defines the
+ * rate of the reaction.  The formula may refer to other entities in a
+ * model as well as local parameter definitions within the scope of the
+ * Reaction (see below).  It is important to keep in mind, however, that
+ * the only Species identifiers that can be used in this formula are those
+ * declared in the lists of reactants, products and modifiers in the
+ * Reaction structure.  (In other words, before a species can be referenced
+ * in the KineticLaw, it must be declared in one of those lists.)
+ *
+ * KineticLaw provides a way to define local parameters whose
+ * identifiers can be used in the "math" formula of that KineticLaw
+ * instance.  Prior to SBML Level 3, these parameter definitions are
+ * stored inside a "listOfParameters" subelement containing Parameter
+ * objects; in SBML Level 3, this is achieved using a specialized
+ * object class called LocalParameter and the containing subelement is
+ * called "listOfLocalParameters".  In both cases, the parameters so
+ * defined are only visible within the KineticLaw (or, as of SBML
+ * Level 3 Version 2, only visible within the parent Reaction);
+ * they cannot be accessed
+ * outside.  A local parameter within one reaction is not visible from
+ * within another reaction, nor is it visible to any other construct
+ * outside of the KineticLaw in which it is defined.  In addition, another
+ * important feature is that if such a Parameter (or in Level 3,
+ * LocalParameter) object has the same identifier as another object in the
+ * scope of the enclosing Model, the definition inside the KineticLaw takes
+ * precedence.  In other words, within the KineticLaw's "math" formula,
+ * references to local parameter identifiers shadow any identical
+ * global identifiers.
+ *
+ * The values of local parameters defined within KineticLaw objects cannot
+ * change.  In SBML Level 3, this quality is built into the
+ * LocalParameter construct.  In Level 2, where the same kind of
+ * Parameter object class is used as for global parameters, the Parameter
+ * objects' "constant" attribute must always have a value of true
+ * (either explicitly or left to its default value).
+ *
+ *
+ * ## A warning about identifier shadowing
+ *
+ * A common misconception is that different classes of objects (e.g.,
+ * species, compartments, parameters) in SBML have different identifier
+ * scopes.  They do not.  The implication is that if a KineticLaw's local
+ * parameter definition uses an identifier identical to any other
+ * identifier defined in the model outside the KineticLaw, even if the
+ * other identifier does not belong to a parameter type of object, the
+ * local parameter's identifier takes precedence within that KineticLaw's
+ * "math" formula.  It is not an error in SBML for identifiers to shadow
+ * each other this way, but can lead to confusing and subtle errors.
+ *
+ *
+ * ## SBML Level/Version differences
+ *
+ * In SBML Level 2 Version 1, the SBML specification
+ * included two additional attributes on KineticLaw called "substanceUnits"
+ * and "timeUnits".  They were removed beginning with SBML Level 2
+ * Version 2 because further research determined they introduced many
+ * problems.  The most significant problem was that their use could easily
+ * lead to the creation of valid models whose reactions nevertheless could
+ * not be integrated into a system of equations without outside knowledge
+ * for converting the quantities used.  Examination of real-life models
+ * revealed that a common reason for using "substanceUnits" on KineticLaw
+ * was to set the units of all reactions to the same set of substance
+ * units, something that is better achieved by using UnitDefinition to
+ * redefine "substance" for the whole Model.
+ *
+ * As mentioned above, in SBML Level 2 Versions 2&ndash;4, local
+ * parameters are of class Parameter.  In SBML Level 3, the class of
+ * object is LocalParameter.
+ *
+ * In SBML Level 3 Version 2, the scope of the LocalParameter
+ * was expanded to the entire Reaction, instead of just the KineticLaw.
+ * This introduced a single new restriction: an L3v2 LocalParameter may
+ * not now shadow the id of any Species referenced by a SpeciesReference
+ * in the same Reaction.  Other than that, there is no difference in any
+ * core construct.  However, packages may take advantage of this new scope by
+ * adding elements to the Reaction that may now reference a LocalParameter
+ * defined in the same Reaction.
+ */
+[Prefix="libsbml::"]
+interface KineticLaw {
+  /**
+   * Returns the mathematical formula for this KineticLaw object and return
+   * it as as an AST.
+   *
+   * This is fundamentally equivalent to {@link KineticLaw#getFormula}.
+   * The latter is provided principally for compatibility compatibility
+   * with SBML Level 1, which represented mathematical formulas in
+   * text-string form.
+   *
+   * @return {ASTNode} the root node of the mathematical formula,
+   * or NULL if the math is not set.
+   */
+  [Const] ASTNode getMath();
+
+  /**
+   * Sets the mathematical expression of this KineticLaw instance to a copy
+   * of the given ASTNode.
+   *
+   * This is fundamentally identical to {@link KineticLaw#setFormula}.
+   * The latter is provided principally for compatibility compatibility with
+   * SBML Level 1, which represented mathematical formulas in text-string
+   * form.
+   *
+   * @param {ASTNode} math an ASTNode representing a formula tree
+   */
+  long setMath(ASTNode math);
+
+  /**
+   * Predicate returning true if this Kinetic Law's "math" subelement is set.
+   *
+   * @return {boolean} true if the formula (meaning the math subelement) of
+   * this KineticLaw is set, false otherwise.
+   */
+  boolean isSetMath();
+
+  /**
+   * Returns the number of parameters in this KineticLaw instance.
+   *
+   * @return {number} the number of Parameters in this KineticLaw.
+   */
+  unsigned long getNumLocalParameters();
+
+  /**
+   * Creates a new LocalParameter object, adds it to this KineticLaw's list
+   * of local parameters, and returns the LocalParameter object created.
+   *
+   * @return {LocalParameter} a new LocalParameter object instance.
+   */
+  LocalParameter createLocalParameter();
+
+  /**
+   * Returns the nth LocalParameter object in the list of local parameters in
+   * this KineticLaw instance.
+   *
+   * @param {number} n the index of the LocalParameter object sought
+   *
+   * @return {LocalParameter} the nth LocalParameter of this KineticLaw.
+   * If the index n is invalid, NULL is returned.
+   */
+  LocalParameter getLocalParameter(unsigned long n);
+
+  /**
+   * Removes the nth LocalParameter object in the list of local parameters
+   * in this KineticLaw instance and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   *
+   * @param {number} n the index of the LocalParameter object to remove
+   *
+   * @return {LocalParameter} the LocalParameter object removed.  As mentioned above,
+   * the caller owns the returned item. NULL is returned if the given index
+   * is out of range.
+   */
+  LocalParameter removeLocalParameter (unsigned long n);
+
+  /**
+   * Returns the number of local parameters in this KineticLaw instance.
+   *
+   * @return {number} the number of LocalParameters in this KineticLaw.
+   */
+  unsigned long getNumParameters();
+
+  /**
+   * Creates a new Parameter object, adds it to this KineticLaw's list of
+   * parameters, and returns the Parameter object created.
+   *
+   * @return {Parameter} a new Parameter object instance.
+   */
+  Parameter createParameter();
+
+  /**
+   * Returns the nth Parameter object in the list of parameters in
+   * this KineticLaw instance.
+   *
+   * @param {number} n the index of the Parameter object sought
+   *
+   * @return {Parameter} the nth Parameter of this KineticLaw.
+   * If the index n is invalid, NULL is returned.
+   */
+  Parameter getParameter(unsigned long n);
+
+  /**
+   * Removes the nth Parameter object in the list of parameters
+   * in this KineticLaw instance and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Parameter object to remove
+   *
+   * @return {Parameter} the Parameter object removed.  As mentioned above,
+   * the caller owns the returned item. NULL is returned if the given index
+   * is out of range.
+   */
+  Parameter removeParameter (unsigned long n);
+
+  /**
+   * Returns the mathematical formula for this KineticLaw object and return
+   * it as as a text string.
+   *
+   * This is fundamentally equivalent to
+   * {@link KineticLaw#getMath}.
+   * This variant is provided principally for compatibility compatibility
+   * with SBML Level 1.
+   *
+   * @return {string} a string representing the formula of this KineticLaw.
+   */
+  DOMString getFormula();
+
+  /**
+   * Sets the mathematical expression of this KineticLaw instance to the
+   * given formula.
+   *
+   * The given formula string is copied.  Internally, libSBML stores the
+   * mathematical expression as an ASTNode.
+   *
+   * @param {number} formula the mathematical expression to use, represented in
+   * text-string form
+   */
+  long setFormula(DOMString formula);
+
+  /**
+   * Calculates and returns a UnitDefinition that expresses the units of
+   * measurement assumed for the "math" expression of this KineticLaw.
+   *
+   * @return {UnitDefinition} a UnitDefinition that expresses the units of the math
+   * expression of this KineticLaw, or NULL if one cannot be constructed.
+   */
+  UnitDefinition getDerivedUnitDefinition();
+
+
+  /**
+   * Predicate returning true if the math expression of this KineticLaw
+   * contains parameters/numbers with undeclared units.
+   *
+   * @return {boolean} true if the math expression of this KineticLaw
+   * includes parameters/numbers
+   * with undeclared units, false otherwise.
+   *
+   * **Note:** A return value of true indicates that the UnitDefinition
+   * returned by
+   * getDerivedUnitDefinition
+   * may not accurately represent the units of the expression.
+   */
+  boolean containsUndeclaredUnits();
+};
+
+KineticLaw implements SBase;
