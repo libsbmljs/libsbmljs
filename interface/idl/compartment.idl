@@ -300,7 +300,7 @@
  * by the model-wide unit of <em>time</em>.  (In other words, {<em>unit of
  * compartment size</em>}/{<em>unit of time</em>}.)
  *
- * ## comp-other Other aspects of Compartment
+ * ## Other aspects of Compartment
  *
  * In SBML Level 1 and Level 2, Compartment has an optional
  * attribute named "outside", whose value can be the identifier of another
@@ -332,21 +332,165 @@
  */
 [Prefix="libsbml::"]
 interface Compartment {
+  /**
+   * Get the value of the "constant" attribute of this Compartment object.
+   *
+   * @return true if this Compartment object's size is flagged as being
+   * constant, false otherwise.
+   */
   boolean getConstant();
+
+  /**
+   * Sets the value of the "constant" attribute of this Compartment object.
+   *
+   * @param value a boolean indicating whether the size/volume of this
+   * compartment should be considered constant (true) or variable
+   * (false).
+   */
   long setConstant(boolean value);
+
+  /**
+   * Predicate returning true if this Compartment object's "constant"
+   * attribute is set.
+   *
+   * @return {boolean} true if the "constant" attribute of this Compartment object is
+   * set, false otherwise.
+   */
   boolean isSetConstant();
 
+  /**
+   * Get the size of this Compartment object.
+   *
+   * @return {number} the value of the "size" attribute ("volume" in Level 1) of
+   * this Compartment object as a floating-point number.
+   *
+   *  **Note:** This method is identical to
+   * {@link Compartment#getVolume}
+   */
   double getSize();
+
+  /**
+   * Sets the "size" attribute (or "volume" in SBML Level 1) of this
+   * Compartment object.
+   *
+   * @param value a double representing the size of this compartment
+   * instance in whatever units are in effect for the compartment.
+   *
+   *  **Note:** This method is identical to {@link Compartment#setVolume}.
+   */
   long setSize(double val);
+
+  /**
+   * Predicate returning true if this Compartment object's "size"
+   * attribute is set.
+   *
+   * This method is similar but not identical to
+   * {@link Compartment#isSetVolume}.  The latter
+   * should be used in the context of SBML Level 1 models instead of
+   * isSetSize
+   * because isSetVolume
+   * performs extra processing to take into account the difference in
+   * default values between SBML Levels 1 and 2.
+   *
+   * @return {boolean} true if the "size" attribute ("volume" in Level 2) of
+   * this Compartment object is set, false otherwise.
+   */
   boolean isSetSize();
 
+  /**
+   * Get the volume of this Compartment object.
+   *
+   * @return {number} the value of the "volume" attribute ("size" in Level 2) of
+   * this Compartment object, as a floating-point number.
+   *
+   *  **Note:** This method is identical to {@link Compartment#getSize}
+   */
   double getVolume();
+
+  /**
+   * Sets the "volume" attribute (or "size" in SBML Level 2) of this
+   * Compartment object.
+   *
+   * This method is identical to
+   * {@link Compartment#setSize}
+   * and is provided for compatibility between SBML Level 1 and
+   * higher Levels of SBML.
+   *
+   * @param {number} value a double representing the volume of this compartment
+   * instance in whatever units are in effect for the compartment
+   */
   long setVolume(double val);
+
+  /**
+   * Predicate returning true if this Compartment object's "volume"
+   * attribute is set.
+   *
+   * This method is similar but not identical to
+   * {@link Compartment#isSetSize}.  The latter
+   * should not be used in the context of SBML Level 1 models because the
+   * present method performs extra processing to take into account
+   * the difference in default values between SBML Levels 1 and 2.
+   *
+   * @return {boolean} true if the "volume" attribute ("size" in Level 2 and
+   * above) of this Compartment object is set, false otherwise.
+   */
   boolean isSetVolume();
 
+  /**
+   * Get the units of this Compartment object's size.
+   *
+   * The value of an SBML compartment's "units" attribute establishes the
+   * unit of measurement associated with the compartment's size.
+   *
+   * @return {string} the value of the "units" attribute of this Compartment object,
+   * as a string.  An empty string indicates that no units have been assigned
+   * to the value of the size.
+   */
   DOMString getUnits();
+
+  /**
+   * Sets the "units" attribute of this Compartment object.
+   *
+   * @param {string} sid the identifier of the defined units to use; If sid is
+   * NULL, then this method will return
+   * LIBSBML_INVALID_ATTRIBUTE_VALUE.
+   */
   long setUnits(DOMString units);
+
+  /**
+   * Predicate returning true if this Compartment object's "units"
+   * attribute is set.
+   *
+   * @return {boolean} true if the "units" attribute of this Compartment object is
+   * set, false otherwise.
+   */
   boolean isSetUnits();
+
+
+  /**
+   * Get the number of spatial dimensions of this Compartment object.
+   *
+   * @return {number} the value of the "spatialDimensions" attribute of this
+   * Compartment object as an unsigned integer.
+   */
+  unsigned long getSpatialDimensions ();
+
+  /**
+   * Sets the "spatialDimensions" attribute of this Compartment object.
+   *
+   * @param {number} value an unsigned integer indicating the number of dimensions
+   * of this compartment
+   */
+  long setSpatialDimensions (unsigned long value);
+
+  /**
+   * Predicate returning true if this Compartment object's
+   * "spatialDimensions" attribute is set.
+   *
+   * @return {boolean} true if the "spatialDimensions" attribute of this
+   * Compartment object is set, false otherwise.
+   */
+  boolean isSetSpatialDimensions ();
 };
 
 Compartment implements SBase;
