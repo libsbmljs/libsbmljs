@@ -57,7 +57,7 @@ interface ASTNode {
   /**
    * Returns the number of children of a given node.
    *
-   * @return the number of children of the node, or 0 is it has no children.
+   * @return {number} the number of children of the node, or 0 is it has no children.
    */
   long getNumChildren();
 
