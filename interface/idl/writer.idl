@@ -1,0 +1,85 @@
+// different name req'd b/c libsbml version did not have consistent usage of types
+/**
+ * # Text-string SBML writer.
+ *
+ * The SBMLWriter class is the converse of SBMLReader, and provides the
+ * main interface for serializing SBML models into XML and writing the
+ * result to an output stream or to files and text strings.  The methods
+ * for writing SBML all take an SBMLDocument object and a destination.
+ * They return a boolean or integer value to indicate success or failure.
+ *
+ * ## Support for writing compressed files
+ *
+ * The libsbml.js wrapper does not include library-level compression support.
+ * Users who wish to utilize compressed models on the web should consider
+ * [HTTP compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression).
+ *
+ */
+[Prefix="libsbml::"]
+interface SBMLWriter {
+  /**
+   * Creates a new SBMLWriter.
+   *
+   * The libSBML SBMLWriter objects offer methods for writing SBML in
+   * XML form to files and text strings.
+   */
+  void SBMLWriter();
+
+  // BUG in Emscripten: memory may not be freed
+  /**
+   * Writes the given SBML document to an in-memory string and returns a
+   * pointer to it.
+   *
+   * @param {string} d the SBML document to be written
+   *
+   * @return {string} the string on success and 0 if one of the underlying parser
+   * components fail.
+   */
+  ByteString writeSBMLToString(SBMLDocument d);
+
+  /**
+   * Sets the version of this program, i.e., the program that is about to
+   * write out the SBMLDocument.
+   *
+   * If the program version and name are set, the
+   * following XML comment, intended for human consumption, will be written
+   * at the beginning of the document:
+   *
+   * ```
+   * <!-- Created by <program name> version <program version>
+   * on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
+   * ```
+   *
+   * If the program version and name are not set at some point before
+   * calling the writeSBML() methods, no such comment is written out.
+   *
+   * @param {string} version the version of this program (where "this program"
+   * refers to program in which libSBML is embedded, not libSBML itself
+   *
+   * See {@link SBMLWriter#setProgramName}
+   */
+  long setProgramVersion (DOMString version);
+
+  /**
+   * Sets the name of this program, i.e., the program that is about to
+   * write out the SBMLDocument.
+   *
+   * If the program name and version are set, the
+   * following XML comment, intended for human consumption, will be written
+   * at the beginning of the XML document:
+   *
+   * ```
+   * <!-- Created by <program name> version <program version>
+   * on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
+   * ```
+   *
+   * If the program name and version are not set at some point before
+   * calling the writeSBML() methods, no such comment is written out.
+   *
+   * @param {string} name the name of this program (where "this program" refers to
+   * program in which libSBML is embedded, not libSBML itself
+   *
+   * See {@link SBMLWriter#setProgramVersion}
+   */
+  long setProgramName (DOMString name);
+};

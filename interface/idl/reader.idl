@@ -14,7 +14,7 @@
  *
  * The libsbml.js wrapper does not include library-level compression support.
  * Users who wish to utilize compressed models on the web should consider
- * (HTTP compression)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression].
+ * [HTTP compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression).
  */
 [Prefix="libsbml::"]
 interface SBMLReader {

@@ -61,14 +61,6 @@ enum libsbml__idl__SBMLErrorCategory_t {
   "libsbml::LIBSBML_CAT_SBML_COMPATIBILITY"
 };
 
-// different name req'd b/c libsbml version did not have consistent usage of types
-[Prefix="libsbml::"]
-interface SBMLWriter {
-  void SBMLWriter();
-  // BUG in Emscripten: memory may not be freed
-  ByteString writeSBMLToString(SBMLDocument doc);
-};
-
 [Prefix="libsbmljs::"]
 interface Capabilities {
   void Capabilities();
