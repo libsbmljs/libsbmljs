@@ -31,27 +31,6 @@ interface SBMLFormulaParser {
 };
 
 [Prefix="libsbml::"]
-interface Compartment {
-  boolean getConstant();
-  long setConstant(boolean value);
-  boolean isSetConstant();
-
-  double getSize();
-  long setSize(double val);
-  boolean isSetSize();
-
-  double getVolume();
-  long setVolume(double val);
-  boolean isSetVolume();
-
-  DOMString getUnits();
-  long setUnits(DOMString units);
-  boolean isSetUnits();
-};
-
-Compartment implements SBase;
-
-[Prefix="libsbml::"]
 interface Rule {
   boolean isRate();
   boolean isAssignment();

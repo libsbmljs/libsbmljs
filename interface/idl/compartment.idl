@@ -1,0 +1,352 @@
+/**
+ * # An SBML compartment, where species are located.
+ *
+ * A compartment in SBML represents a bounded space in which species are
+ * located.  Compartments do not necessarily have to correspond to actual
+ * structures inside or outside of a biological cell.
+ *
+ * It is important to note that although compartments are optional in the
+ * overall definition of Model, every species in an SBML model must be
+ * located in a compartment.  This in turn means that if a model defines
+ * any species, the model must also define at least one compartment.  The
+ * reason is simply that species represent physical things, and therefore
+ * must exist somewhere.  Compartments represent the somewhere.
+ *
+ * Compartment has one required attribute, "id", to give the compartment a
+ * unique identifier by which other parts of an SBML model definition can
+ * refer to it.  A compartment can also have an optional "name" attribute
+ * of type string.  Identifiers and names must be used according to the
+ * guidelines described in the SBML specifications.
+ *
+ * Compartment also has an optional attribute "spatialDimensions" that is
+ * used to indicate the number of spatial dimensions possessed by the
+ * compartment.  Most modeling scenarios involve compartments with integer
+ * values of "spatialDimensions" of 3 (i.e., a three-dimensional
+ * compartment, which is to say, a volume), or 2 (a two-dimensional
+ * compartment, a surface), or 1 (a one-dimensional compartment, a
+ * line).  In SBML Level 3, the type of this attribute is double,
+ * there are no restrictions on the permitted values of the
+ * "spatialDimensions" attribute, and there are no default values.  In SBML
+ * Level 2, the value must be a positive integer, and the default
+ * value is 3; the permissible values in SBML Level 2 are 3,
+ * 2, 1, and 0 (for a point).
+ *
+ * Another optional attribute on Compartment is "size", representing the
+ * initial total size of that compartment in the model.  The "size" attribute
+ * must be a floating-point value and may represent a volume (if the
+ * compartment is a three-dimensional one), or an area (if the compartment is
+ * two-dimensional), or a length (if the compartment is one-dimensional).
+ * There is no default value of compartment size in SBML Level 2 or
+ * Level 3.  In particular, a missing "size" value <em>does not imply
+ * that the compartment size is 1</em>.  (This is unlike the definition of
+ * compartment "volume" in SBML Level 1.)  When the compartment's
+ * "spatialDimensions" attribute does not have a value of 0, a missing
+ * value of "size" for a given compartment signifies that the value either is
+ * unknown, or to be obtained from an external source, or determined by an
+ * InitialAssignment, AssignmentRule, AlgebraicRule or RateRule
+ * object elsewhere in the model.  In SBML
+ * Level 2, there are additional special requirements on the values of
+ * "size"; we discuss them in a separate section
+ * below.
+ *
+ * The units associated with a compartment's "size" attribute value may be
+ * set using the optional attribute "units".  The rules for setting and
+ * using compartment size units differ between SBML Level 2 and
+ * Level 3, and are discussed separately below.
+ *
+ * Finally, the Compartment attribute named "constant" is used to
+ * indicate whether the compartment's size stays constant after simulation
+ * begins.  A value of true indicates the compartment's "size" cannot be
+ * changed by any other construct except InitialAssignment; a value of
+ * false indicates the compartment's "size" can be changed by other
+ * constructs in SBML.  In SBML Level 2, there is an additional
+ * explicit restriction that if "spatialDimensions"="0", the value
+ * cannot be changed by InitialAssignment either.  Further, in
+ * Level 2, "constant" is optional, and has a default value of true.  In SBML
+ * Level 3, there is no default value for the "constant" attribute,
+ * and it is required.
+ *
+ *
+ * ## Additional considerations in SBML Level 2
+ *
+ * In SBML Level 2, the default units of compartment size, and the kinds
+ * of units allowed as values of the attribute "units", interact with the
+ * number of spatial dimensions of the compartment.  The value of the "units"
+ * attribute of a Compartment object must
+ * be one of the base units (see Unit), or the predefined unit identifiers
+ * volume, area, length or dimensionless, or a new unit defined by a
+ * UnitDefinition objectin the enclosing
+ * Model, subject to the restrictions detailed in the following table:
+ *
+ * <table border="0"
+ *        style="padding-bottom: 0.5em">
+ * <caption class="top-caption">Restrictions on values permitted for
+ * compartment size and units attributes.</caption>
+ *  <tr>
+ *      <th align="left" valign="bottom">
+ *        Value of<br>spatialDimensions
+ *      </th>
+ *      <th align="left" valign="bottom">
+ *        size<br>allowed?
+ *      </th>
+ *      <th align="left" valign="bottom">
+ *        units<br>allowed?
+ *      </th>
+ *      <th align="left" valign="bottom">
+ * 	  Allowable kinds of units
+ *      </th>
+ *      <th align="left" valign="bottom">
+ * 	  Default value of attribute units
+ *      </th>
+ *  </tr>
+ *  <tr>
+ *      <td>3</td>
+ *      <td>yes</td>
+ *      <td>yes</td>
+ *      <td>units of volume, or dimensionless</td>
+ *      <td>volume</td>
+ *  </tr>
+ *  <tr>
+ *      <td>2</td>
+ *      <td>yes</td>
+ *      <td>yes</td>
+ *      <td>units of area, or dimensionless</td>
+ *      <td>area</td>
+ *  </tr>
+ *  <tr>
+ *      <td>1</td>
+ *      <td>yes</td>
+ *      <td>yes</td>
+ *      <td>units of length, or dimensionless</td>
+ *      <td>length</td>
+ *  </tr>
+ *  <tr>
+ *      <td>0</td>
+ *      <td>no</td>
+ *      <td>no</td>
+ *      <td>(no units allowed)</td>
+ *      <td></td>
+ *  </tr>
+ *  </tr>
+ * </table>
+ *
+ * In SBML Level 2, the units of the compartment size, as defined by the
+ * "units" attribute or (if "units" is not set) the default value listed in
+ * the table above, are used in the following ways when the compartment has
+ * a "spatialDimensions" value greater than 0:
+ *
+ * * The value of the "units" attribute is used as the units of the
+ * compartment identifier when the identifier appears as a numerical
+ * quantity in a mathematical formula expressed in MathML.
+ *
+ * * The math element of an AssignmentRule or InitialAssignment
+ * referring to this compartment must (in Level 2 Versions 1-3)
+ * or should (in Level 2 Version 4) have identical units.
+ *
+ * * In RateRule objects that set the rate of change of the compartment's
+ * size, the units of the rule's math element must (in Level 2
+ * Versions 1&ndash;3) or should (in Level 2 Version 4) be identical to the
+ * compartment's units (whether defined by the "units" attribute or by taking the
+ * default value from the Model) divided by the default time units.
+ * (In other words, the units for the rate of change of compartment size
+ * are <em>compartment size</em>/<em>time</em> units.
+ *
+ * * When a Species is to be treated in terms of concentrations or
+ * density, the units of the spatial size portion of the concentration
+ * value (i.e., the denominator in the units formula substance/
+ * size) are those indicated by the value of the "units" attribute on the
+ * compartment in which the species is located.
+ *
+ *
+ * Compartments with "spatialDimensions"=0 require special treatment in
+ * this framework.  As implied above, the "size" attribute must not have a
+ * value on an SBML Level 2 Compartment
+ * objectif the "spatialDimensions"
+ * attribute has a value of 0.  An additional related restriction is that
+ * the "constant" attribute must default to or be set to true if the value
+ * of the "spatialDimensions" attribute is 0, because a zero-dimensional
+ * compartment cannot ever have a size.
+ *
+ * If a compartment has no size or dimensional units, how should such a
+ * compartment's identifier be interpreted when it appears in mathematical
+ * formulas?  The answer is that such a compartment's identifier should not
+ * appear in mathematical formulas in the first place---it has no
+ * value, and its value cannot change.  Note also that a zero-dimensional
+ * compartment is a point, and species located at points can only be
+ * described in terms of amounts, not spatially-dependent measures such as
+ * concentration.  Since SBML KineticLaw formulas are already in terms of
+ * substance/time and not (say) concentration/time, volume
+ * or other factors in principle are not needed for species located in
+ * zero-dimensional compartments.
+ *
+ * Finally, in SBML Level 2 Versions 2&ndash;4, each compartment in a
+ * model may optionally be designated as belonging to a particular
+ * compartment type.  The optional attribute "compartmentType" is used
+ * identify the compartment type represented by the Compartment structure.
+ * The "compartmentType" attribute's value must be the identifier of a
+ * CompartmentType instance defined in the model.  If the "compartmentType"
+ * attribute is not present on a particular compartment definition, a
+ * unique virtual compartment type is assumed for that compartment, and no
+ * other compartment can belong to that compartment type.  The values of
+ * "compartmentType" attributes on compartments have no effect on the
+ * numerical interpretation of a model.  Simulators and other numerical
+ * analysis software may ignore "compartmentType" attributes.  The
+ * "compartmentType" attribute and the CompartmentType
+ * class of objects are
+ * not present in SBML Level 3 Core nor in SBML Level 1.
+ *
+ *
+ * ## Additional considerations in SBML Level 3
+ *
+ * One difference between SBML Level 3 and lower Levels of SBML is
+ * that there are no restrictions on the permissible values of the
+ * "spatialDimensions" attribute, and there is no default value defined for
+ * the attribute.  The value of "spatialDimensions" does not have to be an
+ * integer, either; this is to allow for the possibility of representing
+ * structures with fractal dimensions.
+ *
+ * The number of spatial dimensions possessed by a compartment cannot enter
+ * into mathematical formulas, and therefore cannot directly alter the
+ * numerical interpretation of a model.  However, the value of
+ * "spatialDimensions" does affect the interpretation of the units
+ * associated with a compartment's size.  Specifically, the value of
+ * "spatialDimensions" is used to select among the Model attributes
+ * "volumeUnits", "areaUnits" and "lengthUnits" when a Compartment
+ * object does not define a value for its
+ * "units" attribute.
+ *
+ * The "units" attribute may be left unspecified for a given compartment in a
+ * model; in that case, the compartment inherits the unit of measurement
+ * specified by one of the attributes on the enclosing Model
+ * objectinstance.  The applicable
+ * attribute on Model depends on the value of the compartment's
+ * "spatialDimensions" attribute; the relationship is shown in the table
+ * below.  If the Model objectdoes not
+ * define the relevant attribute ("volumeUnits", "areaUnits" or
+ * "lengthUnits") for a given "spatialDimensions" value, the unit associated
+ * with that Compartment object's size is
+ * undefined.  If a given Compartment's "units" are left unset and
+ * the "spatialDimensions" either has a value other than 1, 2, or
+ * 3 or is left unset itself (as it has no default value),
+ * then no unit can be chosen from among the Model's "volumeUnits",
+ * "areaUnits" or "lengthUnits" attributes (even if the Model instance
+ * provides values for those attributes), because there is no basis to select
+ * between them.
+ * Leaving the units of compartments' sizes undefined in an SBML model does
+ * not render the model invalid; however, as a matter of best practice, we
+ * strongly recommend that all models specify the units of measurement for
+ * all compartment sizes.
+ *
+ * <table border="0" class="centered text-table width80 normal-font alt-row-colors"
+ *        style="padding-bottom: 0.5em">
+ * <caption class="top-caption">Interpretation of the Compartment "units" attribute.</caption>
+ *  <tr>
+ *      <th align="left" valign="bottom">
+ *        Value of attribute<br>"spatialDimensions"
+ *      </th>
+ *      <th align="left" valign="bottom">
+ *        Attribute of Model used<br>for inheriting the unit
+ *      </th>
+ *      <th align="left" valign="bottom">
+ *        Recommended candidate units
+ *      </th>
+ *  </tr>
+ *  <tr>
+ *      <td>3</td>
+ *      <td>&quot;volumeUnits&quot;</td>
+ *      <td>units of volume, or dimensionless</td>
+ *  </tr>
+ *  <tr>
+ *      <td>2</td>
+ *      <td>&quot;areaUnits&quot;</td>
+ *      <td>units of area, or dimensionless</td>
+ *  </tr>
+ *  <tr>
+ *      <td>1</td>
+ *      <td>&quot;lengthUnits&quot;</td>
+ *      <td>units of length, or dimensionless</td>
+ *  </tr>
+ *  <tr>
+ *      <td><em>other</em></td>
+ *      <td><em>no units inherited</em></td>
+ *      <td><em>no specific recommendations</em></td>
+ *  </tr>
+ *  </tr>
+ * </table>
+ *
+ * The unit of measurement associated with a compartment's size, as defined
+ * by the "units" attribute or (if "units" is not set) the inherited value
+ * from Model according to the table above, is used in the following ways:
+ *
+ * * When the identifier of the compartment appears as a numerical
+ * quantity in a mathematical formula expressed in MathML, it represents
+ * the size of the compartment, and the unit associated with the size is
+ * the value of the "units" attribute.
+ *
+ * * When a Species is to be treated in terms of concentrations or
+ * density, the unit associated with the spatial size portion of the
+ * concentration value (i.e., the denominator in the formula
+ * <em>amount</em>/<em>size</em>) is specified by the value of the "units"
+ * attribute on the compartment in which the species is located.
+ *
+ * * The "math" elements of AssignmentRule, InitialAssignment and
+ * EventAssignment objects setting the
+ * value of the compartment size should all have the same units as the unit
+ * associated with the compartment's size.
+ *
+ * * In a RateRule objectthat defines a
+ * rate of change for a compartment's size, the unit of the rule's "math"
+ * element should be identical to the compartment's "units" attribute divided
+ * by the model-wide unit of <em>time</em>.  (In other words, {<em>unit of
+ * compartment size</em>}/{<em>unit of time</em>}.)
+ *
+ * ## comp-other Other aspects of Compartment
+ *
+ * In SBML Level 1 and Level 2, Compartment has an optional
+ * attribute named "outside", whose value can be the identifier of another
+ * Compartment objectdefined in the
+ * enclosing Model object.  Doing so means
+ * that the other compartment contains it or is outside of it.  This enables
+ * the representation of simple topological relationships between
+ * compartments, for those simulation systems that can make use of the
+ * information (e.g., for drawing simple diagrams of compartments).  It is
+ * worth noting that in SBML, there is no relationship between compartment
+ * sizes when compartment positioning is expressed using the "outside"
+ * attribute.  The size of a given compartment does not in any sense include
+ * the sizes of other compartments having it as the value of their "outside"
+ * attributes.  In other words, if a compartment B has the identifier of
+ * compartment A as its "outside" attribute value, the size of A does
+ * not include the size of B.  The compartment sizes are separate.
+ *
+ * In Level 2, there are two restrictions on the "outside" attribute.
+ * First, because a compartment with "spatialDimensions" of 0 has no
+ * size, such a compartment cannot act as the container of any other
+ * compartment except compartments that also have
+ * "spatialDimensions" values of 0.  Second, the directed graph formed
+ * by representing Compartment structures as vertexes and the "outside"
+ * attribute values as edges must be acyclic.  The latter condition is
+ * imposed to prevent a compartment from being contained inside itself.  In
+ * the absence of a value for "outside", compartment definitions in SBML
+ * Level 2 do not have any implied spatial relationships between each
+ * other.
+ */
+[Prefix="libsbml::"]
+interface Compartment {
+  boolean getConstant();
+  long setConstant(boolean value);
+  boolean isSetConstant();
+
+  double getSize();
+  long setSize(double val);
+  boolean isSetSize();
+
+  double getVolume();
+  long setVolume(double val);
+  boolean isSetVolume();
+
+  DOMString getUnits();
+  long setUnits(DOMString units);
+  boolean isSetUnits();
+};
+
+Compartment implements SBase;

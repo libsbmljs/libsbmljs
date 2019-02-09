@@ -136,6 +136,7 @@ task combineIDL(type: ConcatFiles) {
   include Paths.get(idl_dir, "event.idl")
   include Paths.get(idl_dir, "function.idl")
   include Paths.get(idl_dir, "reaction.idl")
+  include Paths.get(idl_dir, "compartment.idl")
   include Paths.get(idl_dir, "core_interface.idl")
   if (enableLayout) {
     include Paths.get(idl_dir, "layout_interface.idl")
