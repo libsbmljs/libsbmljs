@@ -71,8 +71,7 @@
  * support different use-cases, but they also have different implications
  * for the overall model structure.
  *
- * In general, the recommended approach is to use the `create
- * Object()` methods.  These
+ * In general, the recommended approach is to use the `createObject()` methods.  These
  * methods both create an object and link it to the parent in one step.
  * Here is an example:
  *
