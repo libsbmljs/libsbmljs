@@ -13,7 +13,7 @@
  * @module libsbml
  *
  * @example
- * import libsbml from 'libsbml.js'
+ * import libsbml from 'libsbml_experimental'
  * // the module isn't usable yet - wait for it to load
  * libsbml().then((libsbml) => {
  *   // now it is safe to use the module
