@@ -218,11 +218,143 @@ interface Rule {
 
 Rule implements SBase;
 
+/**
+ * # An SBML assignment rule representing x = f(Y).
+ *
+ * The rule type AssignmentRule is derived from the parent class Rule.  It
+ * is used to express equations that set the values of variables.  The
+ * left-hand side (the attribute named "variable") of an assignment rule
+ * must refer to the identifier of a Species, SpeciesReference (in SBML
+ * Level3), Compartment, or global Parameter
+ * object in the model (but not a
+ * Reaction).  In SBML Level3 Version2, it may also refer to
+ * the SId of an element defined in an SBML Level3 package with
+ * mathematical meaning and the ability to be assigned.
+ * The entity identified must have its "constant" attribute set
+ * to false.  The effects of an assignment rule construct are in general
+ * terms the same, but differ in the precise details depending on the type of
+ * SBML component being set:
+ *
+ *
+ * * In the case of a species, an SBML assignment rule sets the
+ * referenced species' quantity (whether a "concentration" or "amount") to
+ * the value determined by the formula in the MathML subelement "math".
+ * The unit associated with the value produced by the "math" formula
+ * should (in SBML Level2 Version4 and in SBML Level3) or must (in
+ * SBML releases prior to Level2 version4) be equal to the unit
+ * associated with the species' quantity.  Restrictions: There
+ * must not be both an AssignmentRule "variable" attribute and a
+ * SpeciesReference "species" attribute having the same value in a model,
+ * unless the referenced Species object has
+ * its "boundaryCondition" attribute set to true.  In other words, an
+ * assignment rule cannot be defined for a species that is created or
+ * destroyed in a reaction unless that species is defined as a boundary
+ * condition in the model.
+ *
+ * * (For SBML Level3 only) In the case of a species
+ * reference, an assignment rule sets the stoichiometry of the
+ * referenced reactant or product to the value determined by the formula in
+ * "math".  The unit associated with the value produced by the "math"
+ * formula should be consistent with the unit "dimensionless", because
+ * reactant and product stoichiometries in reactions are dimensionless
+ * quantities.
+ *
+ * * In the case of a compartment, an SBML assignment rule sets
+ * the referenced compartment's size to the value determined by the formula
+ * in the "math" subelement of the AssignmentRule
+ * object.  The overall units of the
+ * formula in "math" should (in SBML Level2 Version4 and in
+ * SBML Level3) or must (in SBML releases prior to Level2
+ * version4) be the same as the units of the size of the compartment.
+ *
+ * * In the case of a parameter, an assignment rule sets the
+ * referenced parameter's value to that determined by the formula in the
+ * "math" subelement of the AssignmentRule
+ * object.  The overall units of the
+ * formula in the "math" subelement should (in SBML Level2
+ * Version4 and in SBML Level3) or must (in SBML releases
+ * prior to Level2 version4) be the same as the units defined for
+ * the parameter.
+ *
+ * * (For SBML Level3 Version2 only) In the case of
+ * an object from an SBML Level3 package, an AssignmentRule sets
+ * the referenced object's value (as defined by that package) to the
+ * value of the formula in math. The unit of measurement associated
+ * with the value produced by the formula should be the same as that
+ * object's units attribute value (if it has such an attribute), or be
+ * equal to the units of model components of that type (if objects of
+ * that class are defined by the package as having the same units).
+ *
+ *
+ *
+ * In SBML Level2 and Level3 Version1, the "math"
+ * subelement of the AssignmentRule is required.  In SBML Level3
+ * Version2, this rule is relaxed, and the subelement is
+ * optional.  If an AssignmentRule with no "math" child is present
+ * in the model, the value of its referenced "variable" is
+ * undefined.  This may represent a situation where the model itself
+ * is unfinished, or the missing information may be provided by an
+ * SBML Level3 package.
+ *
+ * If the variable attribute of an AssignmentRule object references an
+ * object in an SBML namespace not understood by the interpreter reading
+ * a given SBML document (that is, if the object is defined by an SBML
+ * Level3 package that the software does not support), the assignment
+ * rule must be ignored--the object's value will not need to be set, as the
+ * interpreter could not understand that package. If an interpreter cannot
+ * establish whether a referenced object is missing from the model or
+ * instead is defined in an SBML namespace not understood by the interpreter,
+ * it may produce a warning to the user. (The latter situation may only
+ * arise if an SBML package is present in the SBML document with a
+ * package:required attribute of "true".)
+ *
+ * In the context of a simulation, assignment rules are in effect at all
+ * times, t < 0.  For purposes of evaluating
+ * expressions that involve the delay "csymbol" (see the SBML
+ * Level2 specification), assignment rules are considered to apply
+ * also at t > 0.  Please consult the relevant
+ * SBML specification for additional information about the semantics of
+ * assignments, rules, and entity values for simulation time t
+ * > 0.
+ *
+ * A model must not contain more than one AssignmentRule or RateRule
+ * object having the same value of
+ * "variable"; in other words, in the set of all assignment rules and rate
+ * rules in an SBML model, each variable appearing in the left-hand sides can
+ * only appear once.  This simply follows from the fact that an indeterminate
+ * system would result if a model contained more than one assignment rule for
+ * the same variable or both an assignment rule and a rate rule for the same
+ * variable.
+ *
+ * Similarly, a model must also not contain both an AssignmentRule
+ * and an InitialAssignment definition for the same variable, because both
+ * kinds of constructs apply prior to and at the start of simulation time,
+ * i.e., t > 0.  If a model contained both an
+ * initial assignment and an assignment rule for the same variable, an
+ * indeterminate system would result.
+ *
+ * The value calculated by an AssignmentRule
+ * object overrides the value assigned to
+ * the given symbol by the model component defining that symbol.  For
+ * example, if a Compartment object's
+ * "size" attribute value is set in its definition, and the model also
+ * contains an AssignmentRule object
+ * having that compartment's "id" as its "variable" value, then the "size"
+ * assigned in the Compartment object
+ * definition is ignored and the value assigned based on the computation
+ * defined in the AssignmentRule.  This does not mean that a
+ * definition for a given symbol can be omitted if there is an AssignmentRule
+ * object involving it.  For example,
+ * there must be a Parameter object
+ * definition for a given parameter if there is an AssignmentRule definition
+ * for that parameter.  It is only a question of which value definition takes
+ * precedence.
+ */
 [Prefix="libsbml::"]
 interface AssignmentRule {
-  DOMString getVariable();
+  /*DOMString getVariable();
   long setVariable(DOMString id);
-  boolean isSetVariable();
+  boolean isSetVariable();*/
 
   /*[Const] ASTNode getMath();*/
   /*long setMath(ASTNode math);*/
@@ -231,27 +363,193 @@ interface AssignmentRule {
 
 AssignmentRule implements Rule;
 
+/**
+ * # An SBML rate rule representing dx/dt = f(<b>Y</b>).
+ *
+ * The rule type RateRule is derived from the parent class Rule.  It is
+ * used to express equations that determine the rates of change of
+ * variables.  The left-hand side (the "variable" attribute) can refer to
+ * the identifier of a species, compartment, or parameter (but not a
+ * reaction).  The entity identified must have its "constant" attribute set
+ * to false.  The effects of a RateRule are in general terms the same,
+ * but differ in the precise details depending on which variable is being
+ * set:
+ *
+ *  * In the case of a species, a RateRule sets the rate of
+ * change of the species' quantity (concentration or amount of
+ * substance) to the value determined by the formula in the "math"
+ * subelement of the RateRule object.  The overall units of the formula in
+ * "math" should (in SBML Level2 Version4 and in SBML Level3) or
+ * must (in SBML releases prior to Level2 version4) be equal to
+ * the unit of species quantity divided by the model-wide unit of
+ * time.  Restrictions: There must not be both a RateRule
+ * "variable" attribute and a SpeciesReference "species" attribute having
+ * the same value, unless that species has its "boundaryCondition"
+ * attribute is set to true.  This means a rate rule cannot be defined
+ * for a species that is created or destroyed in a reaction, unless that
+ * species is defined as a boundary condition in the model.
+ *
+ * * (For SBML Level3 only) In the case of a species
+ * reference, a RateRule sets the rate of change of the stoichiometry
+ * of the referenced reactant or product to the value determined by the
+ * formula in "math".  The unit associated with the value produced by the
+ * "math" formula should be consistent with the unit "dimensionless"
+ * divided by the model-wide unit of time.
+ *
+ * * In the case of a compartment, a RateRule sets the rate of
+ * change of the compartment's size to the value determined by the formula
+ * in the "math" subelement of the RateRule object.  The overall units of
+ * the formula should (in SBML Level2 Version4 and in SBML
+ * Level3) or must (in SBML releases prior to Level2
+ * version4) be the units of the compartment's size divided
+ * by the model-wide unit of time.
+ *
+ * * In the case of a parameter, a RateRule sets the rate of
+ * change of the parameter's value to that determined by the formula in the
+ * "math" subelement of the RateRule object.  The overall units of the
+ * formula should (in SBML Level2 Version4 and in SBML
+ * Level3) or must (in SBML releases prior to Level2
+ * version4) be the Parameter object's "unit" attribute value divided
+ * by the model-wide unit of time.
+ *
+ * * (For SBML Level3 Version2 only) In the case of
+ * an object from an SBML Level3 package, a RateRule sets the rate
+ * of change of the referenced object's value (as defined by that package)
+ * to the value of the formula in "math".  The unit of measurement associated
+ * with the value produced by the formula should be the same as that object's
+ * units attribute value (if it has such an attribute) divided by the
+ * model-wide unit of time, or be equal to the units of model components
+ * of that type (if objects of that class are defined by the package as having
+ * the same units) divided by the model-wide unit of time.
+ *
+ *
+ * In SBML Level2 and Level3 Version1, the "math"
+ * subelement of the RateRule is required.  In SBML Level3
+ * Version2, this rule is relaxed, and the subelement is
+ * optional.  If a RateRule with no "math" child is present in the model,
+ * the rate at which its referenced "variable" changes over time is
+ * undefined.  This may represent a situation where the model itself
+ * is unfinished, or the missing information may be provided by an
+ * SBML Level3 package.
+ *
+ * If the variable attribute of a RateRule object references an object in
+ * an SBML namespace that is not understood by the interpreter reading a
+ * given SBML document (that is, if the object is defined by an SBML
+ * Level3 package that the software does not support), the rate rule
+ * must be ignored--the object's value will not need to be set, as the
+ * interpreter could not understand that package. If an interpreter cannot
+ * establish whether a referenced object is missing from the model or
+ * instead is defined in an SBML namespace not understood by the interpreter,
+ * it may produce a warning to the user. (The latter situation may only
+ * arise if an SBML package is present in the SBML document with a
+ * package:required attribute of "true".)
+ *
+ * In the context of a simulation, rate rules are in effect for simulation
+ * time t &gt; 0.  Please consult the relevant SBML
+ * specification for additional information about the semantics of
+ * assignments, rules, and entity values for simulation time t
+ * < 0.
+ *
+ * As mentioned in the description of AssignmentRule, a model must not
+ * contain more than one RateRule or AssignmentRule object having the same
+ * value of "variable"; in other words, in the set of all assignment rules
+ * and rate rules in an SBML model, each variable appearing in the
+ * left-hand sides can only appear once.  This simply follows from the fact
+ * that an indeterminate system would result if a model contained more than
+ * one assignment rule for the same variable or both an assignment rule and
+ * a rate rule for the same variable.
+ */
 [Prefix="libsbml::"]
 interface RateRule {
-  DOMString getVariable();
+  /*DOMString getVariable();
   long setVariable(DOMString id);
   boolean isSetVariable();
 
   [Const] ASTNode getMath();
   long setMath(ASTNode math);
-  boolean isSetMath();
+  boolean isSetMath();*/
 };
 
 RateRule implements Rule;
 
+/**
+ * # An SBML algebraic rule representing 0 = f(W).
+ *
+ * The rule type AlgebraicRule is derived from the parent class Rule.  It
+ * is used to express equations that are neither assignments of model
+ * variables nor rates of change.  AlgebraicRule does not add any
+ * attributes to the basic Rule; its role is simply to distinguish this
+ * case from the other cases.
+ *
+ * In the context of a simulation, algebraic rules are in effect at all
+ * times, t < 0.  For purposes of evaluating
+ * expressions that involve the delay "csymbol" (see the SBML
+ * specification), algebraic rules are considered to apply also at
+ * t > 0.  Please consult the relevant SBML
+ * specification for additional information about the semantics of
+ * assignments, rules, and entity values for simulation time t
+ * > 0.
+ *
+ * An SBML model must not be overdetermined.  The ability to define
+ * arbitrary algebraic expressions in an SBML model introduces the
+ * possibility that a model is mathematically overdetermined by the overall
+ * system of equations constructed from its rules, reactions and events.
+ * Therefore, if an algebraic rule is introduced in a model, for at least
+ * one of the entities referenced in the rule's "math" element the value of
+ * that entity must not be completely determined by other constructs in the
+ * model.  This means that at least this entity must not have the attribute
+ * "constant"=true and there must also not be a rate rule or assignment
+ * rule for it.  Furthermore, if the entity is a Species object, its value
+ * must not be determined by reactions, which means that it must either
+ * have the attribute "boundaryCondition"=true or else not be involved
+ * in any reaction at all.  These restrictions are explained in more detail
+ * in the SBML specification documents.
+ *
+ * In SBML Levels 2 and 3, Reaction object identifiers can be
+ * referenced in the "math" expression of an algebraic rule, but reaction
+ * rates can never be determined by algebraic rules.  This is true
+ * even when a reaction does not contain a KineticLaw
+ * object.  (In such cases of missing
+ * kinetic law definitions, the model is valid but incomplete; the rates of
+ * reactions lacking kinetic laws are simply undefined, and not determined by
+ * the algebraic rule.)
+ *
+ * In SBML Level2 and Level3 Version1, the "math"
+ * subelement of the AlgebraicRule is required.  In SBML Level3
+ * Version2, this rule is relaxed, and the subelement is
+ * optional.  If an AlgebraicRule with no "math" child is present
+ * in the model, no additional mathematical constraints on the model are
+ * added by the rule.  This may represent a situation where the model itself
+ * is unfinished, or the missing information may be provided by an
+ * SBML Level3 package.
+ *
+ * Finally, any symbol that appears as the target of a rateOf csymbol
+ * (AST_FUNCTION_RATE_OF, introduced in
+ * SBML Level3 Version2) may
+ * not be determined by an AlgebraicRule. This is because the rateOf
+ * csymbol is defined as applying only to symbols whose rates of change
+ * are easily determinable.
+ *
+ * Users should note that these rules about what symbols may not be
+ * determined by an AlgebraicRule may be used to discover what symbol
+ * is being determined by an AlgebraicRule. If three symbols appear in
+ * the math element of an AlgebraicRule, the first of which is flagged
+ * constant=true, and the second of which appears as the target of a
+ * rateOf csymbol, one may conclude that the AlgebraicRule must be used
+ * to determine the value of the third symbol. This is, in fact, a
+ * principle use (outside of validation) of the constant attribute: its
+ * use in allowing software to properly identify the dependent variable
+ * in an AlgebraicRule.
+ */
 [Prefix="libsbml::"]
 interface AlgebraicRule {
-  [Const] ASTNode getMath();
+  /*[Const] ASTNode getMath();
   long setMath(ASTNode math);
-  boolean isSetMath();
+  boolean isSetMath();*/
 };
 
 AlgebraicRule implements Rule;
+
 
 [Prefix="libsbmljs::"]
 interface RuleSwitch {
