@@ -82,40 +82,34 @@
  * from a file or data stream.  The following list summarizes the possible
  * scenarios.
  *
- * <em>Scenario 1: Creating a model from scratch</em>.  Before writing out
+ * *Scenario 1: Creating a model from scratch*.  Before writing out
  * the model,
  *
- * @li Call SBMLDocument::checkInternalConsistency(), then inquire about
+ * * Call SBMLDocument::checkInternalConsistency(), then inquire about
  * the results by calling SBMLDocument::getNumErrors()
  *
- * @li Call @if java SBMLDocument::setConsistencyChecks(int categ, boolean
- * onoff) @else SBMLDocument::setConsistencyChecks() @endif@~ to configure
+ * * Call {@link SBMLDocument#setConsistencyChecks} to configure
  * which checks will be performed by SBMLDocument::checkConsistency()
  *
- * @li Call SBMLDocument::checkConsistency(), then inquire about the results by
+ * * Call SBMLDocument::checkConsistency(), then inquire about the results by
  * calling SBMLDocument::getNumErrors()
  *
- * <em>Scenario 2: Reading a model from a file or data stream.</em> After
+ * *Scenario 2: Reading a model from a file or data stream.* After
  * reading the model,
  *
- * @li Basic consistency checks will have been performed automatically by
+ * * Basic consistency checks will have been performed automatically by
  * libSBML upon reading the content, so you only need to inquire about the
  * results by using SBMLDocument::getNumErrors()
  *
- * @li Call @if java SBMLDocument::setConsistencyChecks(int categ, boolean
- * onoff) @else SBMLDocument::setConsistencyChecks() @endif@~ to configure
- * which checks are performed by SBMLDocument::checkConsistency()
+ * * Call {@link SBMLDocument#setConsistencyChecks} to configure
+ * which checks are performed by {@link SBMLDocument#checkConsistency}
  *
- * @li Call SBMLDocument::checkConsistency(), then inquire about the results
- * by calling SBMLDocument::getNumErrors()
- *
- * @if clike An example of using the consistency-checking
- * and validation facilities is provided in this manual in the
- * section @ref libsbml-example. @endif@~
+ * * Call {@link SBMLDocument#checkConsistency}, then inquire about the results
+ * by calling {@link SBMLDocument#getNumErrors}
  *
  * It should be noted that as of SBML Level 3 Version 2, the Model
  * became an optional child of SBMLDocument, instead of being required.  This
- * means that one can no longer use SBMLDocument::getModel() as a cheap method
+ * means that one can no longer use {@link SBMLDocument#getModel} as a cheap method
  * of checking if an SBML document was read in properly: the more robust
  * getError methods detailed above must be used instead.
  *
@@ -130,7 +124,7 @@
  * can be translated downward as well, if they do not use constructs
  * specific to more advanced Levels of SBML.
  *
- * Calling setLevelAndVersion will not @em necessarily lead
+ * Calling setLevelAndVersion will not necessarily lead
  * to a successful conversion.  The method will return a boolean value
  * to indicate success or failure.  Callers must check the error log (see
  * next section) attached to the SBMLDocument object after calling
@@ -142,13 +136,13 @@
  * assessment of whether there is sufficient compatibility to make a
  * translation possible:
  *
- * {@link SBMLDocument#checkL1Compatibility()},
- * {@link SBMLDocument#checkL2v1Compatibility()},
- * {@link SBMLDocument#checkL2v2Compatibility()},
- * {@link SBMLDocument#checkL2v3Compatibility()},
- * {@link SBMLDocument#checkL2v4Compatibility()},
- * {@link SBMLDocument#checkL2v5Compatibility()}, and
- * {@link SBMLDocument#checkL3v1Compatibility()}.
+ * * {@link SBMLDocument#checkL1Compatibility()}
+ * * {@link SBMLDocument#checkL2v1Compatibility()}
+ * * {@link SBMLDocument#checkL2v2Compatibility()}
+ * * {@link SBMLDocument#checkL2v3Compatibility()}
+ * * {@link SBMLDocument#checkL2v4Compatibility()}
+ * * {@link SBMLDocument#checkL2v5Compatibility()}
+ * * {@link SBMLDocument#checkL3v1Compatibility()}
  *
  * Some changes between Versions of SBML Level 2 may lead to
  * unexpected behaviors when attempting conversions in either direction.
@@ -247,13 +241,13 @@ interface SBMLDocument {
    * Before calling this method, callers may check compatibility directly
    * using any of the methods:
    *
-   * {@link SBMLDocument#checkL1Compatibility}
-   * {@link SBMLDocument#checkL2v1Compatibility}
-   * {@link SBMLDocument#checkL2v2Compatibility}
-   * {@link SBMLDocument#checkL2v3Compatibility}
-   * {@link SBMLDocument#checkL2v4Compatibility}
-   * {@link SBMLDocument#checkL2v5Compatibility}
-   * {@link SBMLDocument#checkL3v1Compatibility}
+   * * {@link SBMLDocument#checkL1Compatibility}
+   * * {@link SBMLDocument#checkL2v1Compatibility}
+   * * {@link SBMLDocument#checkL2v2Compatibility}
+   * * {@link SBMLDocument#checkL2v3Compatibility}
+   * * {@link SBMLDocument#checkL2v4Compatibility}
+   * * {@link SBMLDocument#checkL2v5Compatibility}
+   * * {@link SBMLDocument#checkL3v1Compatibility}
    *
    * The valid combinations of SBML Level and Version as of this release
    * of libSBML are the following:
@@ -294,7 +288,7 @@ interface SBMLDocument {
    * successfully set to the requested values (which may have required
    * conversion of the model), false otherwise.
    *
-   * **Note:** Calling this method will not @em necessarily lead to a successful
+   * **Note:** Calling this method will not necessarily lead to a successful
    * conversion.  If the conversion fails, it will be logged in the error
    * list associated with this SBMLDocument.  Callers should consult
    * getNumErrors() to find out if the conversion succeeded without
