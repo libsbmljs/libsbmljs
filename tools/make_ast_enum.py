@@ -57,7 +57,7 @@ jinja_env = Environment(loader=DictLoader(dict(
  * overlap between MathML and SBML Level 1, there exist a few
  * differences.
  *
- * For constructing ASTs use SBMLFormulaParser.parseL3Formula.
+ * For constructing ASTs use {@link SBMLFormulaParser#parseL3Formula}.
  */
 enum libsbml__idl__ASTNodeType_t {{ symbol }} {
 {% for value in enum_values %}
