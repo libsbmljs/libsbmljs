@@ -381,6 +381,8 @@ KineticLaw implements SBase;
  *
  * Readers are urged to read the SBML specification for more details about
  * the proper use of Reaction.
+ *
+ * See the [libSBML C++ docs for this class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_reaction.html)
  */
 [Prefix="libsbml::"]
 interface Reaction {
