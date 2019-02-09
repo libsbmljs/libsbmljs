@@ -2,8 +2,8 @@
  * # A helper class for parsing Level 3 formulae
  *
  * libSBML uses the global function SBML_parseL3Formula
- * for parsing formulae, but this wrapper only exposes
- * types. This helper class can be used in lieu of SBML_parseL3Formula.
+ * for parsing formulae, but libsbml.js only exposes
+ * C++ types, not functions. This helper class can be used in lieu of SBML_parseL3Formula.
  *
  * See the [libSBML C++ docs for SBML_parseL3Formula](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_l3_parser_8cpp.html#a58e584e7c21801b34d79fed7a7c05ac8).
  *
