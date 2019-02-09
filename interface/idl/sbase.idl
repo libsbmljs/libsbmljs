@@ -467,3 +467,67 @@ interface SBase {
    */
   long disablePackage(DOMString pkgURI, DOMString pkgPrefix);
 };
+
+/**
+ * # Base class for extending SBML objects in packages.
+ *
+ * This class of objects is defined by libSBML only and has no direct equivalent
+ * in terms of SBML components. This class is not prescribed by the SBML specifications,
+ * although it is used to implement features defined in SBML.
+ *
+ * The SBasePlugin class is libSBML's base class for extensions of core SBML component
+ * objects. SBasePlugin defines basic virtual methods for reading/writing/checking additional
+ * attributes and/or subobjects; these methods should be overridden by subclasses to
+ * implement the necessary features of an extended SBML object.
+ */
+[Prefix="libsbml::"]
+interface SBasePlugin {
+  /**
+   * Returns the short-form name of the package to which this plugin object belongs.
+   *
+   * @return {string} the short-form package name (or nickname) of the SBML package implemented by this package extension.
+   */
+  DOMString getPackageName();
+
+  /**
+   * Returns the XML namespace prefix of the package to which this plugin object belongs.
+   *
+   * @return {string} the XML namespace prefix of the SBML Level 3 package implemented by this libSBML package extension.
+   */
+  DOMString getPrefix();
+
+  /**
+   * Returns the XML namespace URI for the package to which this object belongs.
+   *
+   * In the XML representation of an SBML document, XML namespaces are used to identify the
+   * origin of each XML construct used. XML namespaces are identified by their unique
+   * resource identifiers (URIs). The core SBML specifications stipulate the namespaces
+   * that must be used for core SBML constructs; for example, all XML elements that
+   * belong to SBML Level 3 Version 1 Core must be placed in the XML namespace identified
+   * by the URI "http://www.sbml.org/sbml/level3/version1/core". Individual SBML Level 3
+   * packages define their own XML namespaces; for example, all elements belonging to the
+   * SBML Level 3 Layout Version 1 package must be placed in the XML namespace
+   * "http://www.sbml.org/sbml/level3/version1/layout/version1/".
+   *
+   * This method first looks into the SBMLNamespaces object possessed by the parent
+   * SBMLDocument object of the current object. If this cannot be found, this method
+   * returns the result of getElementNamespace().
+   *
+   * @return {string} a string, the URI of the XML namespace to which this object belongs.
+   */
+  DOMString getURI();
+
+  /**
+   * Returns the Version within the SBML Level of the package extension of this plugin object.
+   *
+   * @return {number} the SBML Version.
+   */
+  unsigned long getVersion();
+
+  /**
+   * Returns the SBML Level of the package extension of this plugin object.
+   *
+   * @return {number} the SBML Level.
+   */
+  unsigned long getLevel();
+};

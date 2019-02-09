@@ -41,20 +41,6 @@ interface SBMLErrorLog {
 //   DOMString toString();
 };
 
-[Prefix="libsbml::"]
-interface SBasePlugin {
-  // TODO: doc
-  DOMString getPackageName();
-
-  // TODO: doc
-  DOMString getPrefix();
-
-  // TODO: doc
-  DOMString getURI();
-  unsigned long getVersion();
-  unsigned long getLevel();
-};
-
 enum libsbml__idl__SBMLErrorCategory_t {
   "libsbml::LIBSBML_CAT_SBML",
   "libsbml::LIBSBML_CAT_SBML_L1_COMPAT",
