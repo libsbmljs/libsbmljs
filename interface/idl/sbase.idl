@@ -368,4 +368,102 @@ interface SBase {
    * If the index n is invalid, NULL is returned.
    */
   CVTerm getCVTerm(unsigned long n);
+
+  /**
+   * Returns the number of plug-in objects (extenstion interfaces) for SBML
+   * Level 3 package extensions known.
+   *
+   * @return {number} the number of plug-in objects (extension interfaces) of
+   * package extensions known by this instance of libSBML.
+   */
+  unsigned long getNumPlugins();
+
+  /**
+   * Returns the nth plug-in object (extension interface) for an SBML Level&nbsp;3
+   * package extension.
+   * The returned plug-in will be the appropriate type of plugin requested:
+   * calling Model.getPlugin("fbc") will return an FbcModelPlugin; calling
+   * Parameter.getPlugin("comp") will return CompSBasePlugin, etc.
+   *
+   * If no such plugin exists, NULL is returned.
+   *
+   * @param {number} n the index of the plug-in to return
+   *
+   * @return {SBasePlugin} the nth plug-in object (the libSBML extension interface) of a
+   * package extension.
+   * If the index n is invalid, NULL is returned.
+   */
+  SBasePlugin getPlugin(unsigned long n);
+//   SBasePlugin getPlugin(DOMString name);
+
+  /**
+   * Enables or disables the given SBML Level 3 package on this object.
+   *
+   * This method enables the specified package on this object and other
+   * objects connected by child-parent links in the same SBMLDocument object.
+   * This method is the converse of
+   * {@link SBase#disablePackage}.
+   *
+   * @param {string} pkgURI the URI of the package
+   *
+   * @param {string} pkgPrefix the XML prefix of the package
+   *
+   * @param {boolean} flag whether to enable (true) or disable (false) the package
+   */
+  long enablePackage(DOMString pkgURI, DOMString pkgPrefix, boolean flag);
+
+
+  /**
+   * Disables the given SBML Level&nbsp;3 package on this object.
+   *
+   * This method disables the specified package on this object
+   * and other objects connected by child-parent links in the same
+   * SBMLDocument object.
+   *
+   * An example of when this may be useful is during construction of model
+   * components when mixing existing and new models.  Suppose your
+   * application read an SBML document containing a model that used the SBML
+   * Hierarchical Model Composition ("comp") package, and
+   * extracted parts of that model in order to construct a new model in
+   * memory.  The new, in-memory model will not accept a component drawn from
+   * an other SBMLDocument with different package namespace declarations.
+   * You could reconstruct the same namespaces in the in-memory model first,
+   * but as a shortcut, you could also disable the package namespace on the
+   * object being added.  Here is a code example to help clarify this:
+   *
+   * ```javascript
+   * libsbml().then((libsbml) => {
+   *   // We read in an SBML L3V1 model that uses the 'comp'
+   *   // package namespace.
+   *   const doc = new libsbml.SBMLReader().readSBMLFromString("...sbml with comp elements...")
+   *
+   *   // We extract one of the species from the model.
+   *   const s1 = doc.getModel().getSpecies(0)
+   *
+   *   // We construct a new model.  This model does not use the
+   *   // 'comp' package.
+   *   const newModel = new libsbml.Model(3,1)
+   *
+   *   // The following will fail with an error, because addSpecies()
+   *   // will first check that the parent of the given object has
+   *   // namespaces declared, and will discover that s1 does but
+   *   // newModel does not.
+   *
+   *   // newModel.addSpecies(s1)
+   *
+   *   // However, if we disable the 'comp' package on s1, then
+   *   // the call to addSpecies will work.
+   *
+   *   s1.disablePackage("http://www.sbml.org/sbml/level3/version1/comp/version1", "comp")
+   *   newModel.addSpecies(s1)
+   * })
+   * ```
+   *
+   * @param {string} pkgURI the URI of the package
+   *
+   * @param {string} pkgPrefix the XML prefix of the package
+   *
+   * See {@link SBase#enablePackage}
+   */
+  long disablePackage(DOMString pkgURI, DOMString pkgPrefix);
 };
