@@ -1,0 +1,263 @@
+/**
+ * # Parent class for SBML rules in libSBML.
+ *
+ * In SBML, rules provide additional ways to define the values of
+ * variables in a model, their relationships, and the dynamical behaviors
+ * of those variables.  They enable encoding relationships that cannot be
+ * expressed using Reaction nor InitialAssignment objects alone.
+ *
+ * The libSBML implementation of rules mirrors the SBML Level 3
+ * definition (which is in turn is very similar to the
+ * Level 2 Version 4 definition), with Rule being the parent
+ * class of three subclasses as explained below.  The Rule class itself
+ * cannot be instantiated by user programs and has no constructor; only the
+ * subclasses AssignmentRule, AlgebraicRule and RateRule can be
+ * instantiated directly.
+ */
+[Prefix="libsbml::"]
+interface Rule {
+  /**
+   * Predicate returning true if this Rule is a RateRule (SBML
+   * Levels 2&ndash;3) or has a "type" attribute value of "rate"
+   * (SBML Level 1).
+   *
+   * @return {boolean} true if this Rule is a RateRule (Level 2) or has
+   * type "rate" (Level 1), false otherwise.
+   */
+  boolean isRate();
+
+  /**
+   * Predicate returning true if this Rule is an AssignmentRule.
+   *
+   * @return {boolean} true if this Rule is an AssignmentRule, false otherwise.
+   */
+  boolean isAssignment();
+
+  /**
+   * Predicate returning true if this Rule is an AlgebraicRule.
+   *
+   * @return {boolean} true if this Rule is an AlgebraicRule, false otherwise.
+   */
+  boolean isAlgebraic();
+
+  /**
+   * Predicate returning true if this Rule is an AssignmentRule (SBML
+   * Levels 2&ndash;3) or has a "type" attribute value of "scalar"
+   * (SBML Level 1).
+   *
+   * @return {boolean} true if this Rule is an AssignmentRule (Level 2) or has
+   * type "scalar" (Level 1), false otherwise.
+   */
+  boolean isScalar ();
+
+  /**
+   * Predicate returning true if this Rule is a SpeciesConcentrationRule
+   * or equivalent.
+   *
+   * This libSBML method works for SBML Level 1 models (where there is
+   * such a thing as an explicit SpeciesConcentrationRule), as well as
+   * other Levels of SBML.  For Levels above Level 1, this method
+   * checks the symbol being affected by the rule, and returns true if
+   * the symbol is the identifier of a Species object defined in the model.
+   *
+   * @return {boolean} true if this Rule is a SpeciesConcentrationRule, false
+   * otherwise.
+   */
+  boolean isSpeciesConcentration ();
+
+  /**
+   * Get the mathematical formula of this Rule as an ASTNode tree.
+   *
+   * @return {ASTNode} the value of the "math" subelement of this Rule,
+   * or NULL if the math is not set.
+   *
+   *  **Note:** The subelement "math" is present in SBML Levels 2
+   * and 3.  In SBML Level 1, the equivalent construct is the
+   * attribute named "formula".  LibSBML provides a unified interface to
+   * the underlying math expression and this method can be used for models
+   * of all Levels of SBML.
+   */
+  [Const] ASTNode getMath ();
+
+  /**
+   * Predicate returning true if this Rule's mathematical expression is
+   * set.
+   *
+   * This method is equivalent to isSetFormula().
+   *
+   * @return {boolean} true if the formula (or equivalently the math) for this
+   * Rule is set, false otherwise.
+   *
+   *  **Note:** The subelement "math" is present in SBML Levels 2
+   * and 3.  In SBML Level 1, the equivalent construct is the
+   * attribute named "formula".  LibSBML provides a unified interface to
+   * the underlying math expression and this method can be used for models
+   * of all Levels of SBML.
+   */
+  boolean isSetMath ();
+
+  /**
+   * Returns the mathematical expression of this Rule in text-string form.
+   *
+   * The text string is produced by {@link SBMLFormulaParser#parseL3Formula}; please consult
+   * the documentation for that function to find out more about the format
+   * of the text-string formula.
+   *
+   * @return {DOMString} the formula text string for this Rule.
+   */
+  DOMString getFormula();
+
+  /**
+   * Sets the "math" subelement of this Rule to an expression in text-string
+   * form.
+   *
+   * This is equivalent to setMath(const ASTNode* math).  The provision of
+   * using text-string formulas is retained for easier SBML Level 1
+   * compatibility.  The formula is converted to an ASTNode internally.
+   *
+   * @param {string} formula a mathematical formula in text-string form
+   *
+   *  **Note:** The attribute "formula" is specific to SBML Level 1; in
+   * higher Levels of SBML, it has been replaced with a subelement named
+   * "math".  However, libSBML provides a unified interface to the
+   * underlying math expression and this method can be used for models
+   * of all Levels of SBML.
+   */
+  long setFormula(DOMString formula);
+
+  /**
+   * Predicate returning true if this Rule's mathematical expression is
+   * set.
+   *
+   * This method is equivalent to isSetMath().  This version is present for
+   * easier compatibility with SBML Level 1, in which mathematical
+   * formulas were written in text-string form.
+   *
+   * @return {boolean} true if the mathematical formula for this Rule is
+   * set, false otherwise.
+   *
+   *  **Note:** The attribute "formula" is specific to SBML Level 1; in
+   * higher Levels of SBML, it has been replaced with a subelement named
+   * "math".  However, libSBML provides a unified interface to the
+   * underlying math expression and this method can be used for models
+   * of all Levels of SBML.
+   */
+  boolean isSetFormula ();
+
+  /**
+   * Get the value of the "variable" attribute of this Rule object.
+   *
+   * The "variable" attribute of a Rule indicates the element which
+   * the results of the "math" are to be applied.  An AlgebraicRule has
+   * no "variable", and will always return an empty string.
+   *
+   * @return {string} the identifier string stored as the "variable" attribute value
+   * in this Rule, or NULL if this object is an AlgebraicRule object, or if
+   * the attribute is unset.
+   */
+  DOMString getVariable ();
+
+  /**
+   * Sets the "variable" attribute value of this Rule object.
+   *
+   * @param {string} sid the identifier of a Compartment, Species or Parameter
+   * elsewhere in the enclosing Model object
+   */
+  long setVariable (DOMString sid);
+
+  /**
+   * Predicate returning true if this Rule's "variable" attribute is set.
+   *
+   * @return {boolean} true if the "variable" attribute value of this Rule is
+   * set, false otherwise.
+   */
+  boolean isSetVariable ();
+
+  /**
+   * Unsets the value of the "variable" attribute of this Rule object.
+   */
+  long unsetVariable ();
+
+  /**
+   * Calculates and returns a UnitDefinition that expresses the units of
+   * measurement assumed for the "math" expression of this Rule.
+   *
+   * @return {UnitDefinition} a UnitDefinition that expresses the units of the math
+   * expression of this Rule, or NULL if one cannot be constructed.
+   */
+  UnitDefinition getDerivedUnitDefinition();
+
+  /**
+   * Predicate returning true if the math expression of this Rule contains
+   * parameters/numbers with undeclared units.
+   *
+   * @return {boolean} true if the math expression of this Rule includes
+   * parameters/numbers with undeclared units, false otherwise.
+   *
+   *  **Note:** A return value of true indicates that the UnitDefinition
+   * returned by getDerivedUnitDefinition() may not accurately represent
+   * the units of the expression.
+   */
+  boolean containsUndeclaredUnits();
+
+  /**
+   * Predicate returning true if this Rule is an ParameterRule or
+   * equivalent.
+   *
+   * This libSBML method works for SBML Level 1 models (where there is
+   * such a thing as an explicit ParameterRule), as well as other Levels of
+   * SBML.  For Levels above Level 1, this method checks the symbol
+   * being affected by the rule, and returns true if the symbol is the
+   * identifier of a Parameter object defined in the model.
+   *
+   * @return {boolean} true if this Rule is a ParameterRule, false
+   * otherwise.
+   */
+  boolean isParameter();
+};
+
+Rule implements SBase;
+
+[Prefix="libsbml::"]
+interface AssignmentRule {
+  DOMString getVariable();
+  long setVariable(DOMString id);
+  boolean isSetVariable();
+
+  /*[Const] ASTNode getMath();*/
+  /*long setMath(ASTNode math);*/
+  /*boolean isSetMath();*/
+};
+
+AssignmentRule implements Rule;
+
+[Prefix="libsbml::"]
+interface RateRule {
+  DOMString getVariable();
+  long setVariable(DOMString id);
+  boolean isSetVariable();
+
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+};
+
+RateRule implements Rule;
+
+[Prefix="libsbml::"]
+interface AlgebraicRule {
+  [Const] ASTNode getMath();
+  long setMath(ASTNode math);
+  boolean isSetMath();
+};
+
+AlgebraicRule implements Rule;
+
+[Prefix="libsbmljs::"]
+interface RuleSwitch {
+  void RuleSwitch();
+
+  AssignmentRule castToAssignmentRule(Rule r);
+  RateRule castToRateRule(Rule r);
+  AlgebraicRule castToAlgebraicRule(Rule r);
+};
