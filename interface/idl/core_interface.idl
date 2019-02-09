@@ -61,12 +61,6 @@ enum libsbml__idl__SBMLErrorCategory_t {
   "libsbml::LIBSBML_CAT_SBML_COMPATIBILITY"
 };
 
-[Prefix="libsbml::"]
-interface SBMLReader {
-  void SBMLReader();
-  SBMLDocument readSBMLFromString(DOMString sbmlstr);
-};
-
 // different name req'd b/c libsbml version did not have consistent usage of types
 [Prefix="libsbml::"]
 interface SBMLWriter {
