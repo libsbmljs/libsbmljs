@@ -117,7 +117,7 @@ describe("Asynchronous reading from URL", function() {
   it('loads SBML asynchronously using an XHR', (done) => {
     libsbml().then((libsbml) => {
       const reader = new libsbml.SBMLReader()
-      libsbml.readSBMLFromURL('base/karma/models/decayModel.xml').then((doc) => {
+      libsbml.readSBMLFromURL('base/karma/models/decay-model.xml').then((doc) => {
         // read with no errors
         expect(doc.getNumErrors()).toEqual(0)
 

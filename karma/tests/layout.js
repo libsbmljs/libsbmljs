@@ -2,17 +2,11 @@ describe("Layout test", function() {
   it('Tests reading layout info', (done) => {
     libsbml().then((libsbml) => {
       const reader = new libsbml.SBMLReader()
-      libsbml.readSBMLFromURL('base/karma/models/decayModel.xml').then((doc) => {
+      libsbml.readSBMLFromURL('base/karma/models/layout-glycolysis.xml').then((doc) => {
         // read with no errors
         expect(doc.getNumErrors()).toEqual(0)
-        console.log('doc.getNumErrors()',doc.getNumErrors())
-        doc.errors.forEach(function(x) {
-          console.log(x.getMessage())
-        })
-
 
         // check reactions
-        console.log('doc.getModel().getNumReactions()',doc.getModel().getNumReactions())
         expect(doc.getModel().reactions.length).toEqual(11)
 
         // check plugins
