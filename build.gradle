@@ -160,7 +160,7 @@ task combineIDL(type: ConcatFiles) {
   if (enableLayout) {
     include Paths.get(idl_dir, "layout", "curve.idl")
     include Paths.get(idl_dir, "layout", "layout.idl")
-    include Paths.get(idl_dir, "layout", "layout_interface.idl")
+    include Paths.get(idl_dir, "layout", "extension.idl")
   }
   if (enableRender) {
     include Paths.get(idl_dir, "render", "render_interface.idl")
