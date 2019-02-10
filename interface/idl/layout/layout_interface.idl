@@ -1,3 +1,18 @@
+/**
+ * # Spatial dimensions of a 2D or 3D shape.
+ *
+ * A dimension is specified via the required attributes width, height, and an
+ * optional attribute depth, all of which are of type double. If the
+ * attribute depth is not specified, the object is a two dimensional object.
+ * The width attribute of Dimensions specifies the size of the object in the
+ * direction of the positive x axis, the height attribute specifies the size
+ * of the object along the positive y axis and the depth attribute specifies
+ * the size of the object along the positive z axis. All sizes for Dimensions
+ * objects are positive values, and so the attributes are not allowed to take
+ * negative values.  The Dimensions class also has an optional attribute id
+ * of type SId. While not used in the &ldquo;layout&rdquo; package, it can be
+ * used by programs to refer to the elements.
+ */
 [Prefix="libsbml::"]
 interface Dimensions {
   void Dimensions(LayoutPkgNamespaces ns, double w, double h, double d);
@@ -11,12 +26,20 @@ interface Dimensions {
   double getDepth();
 };
 
+Dimensions implements SBase;
+
+/**
+ * # Representation of a point.
+ *
+ * A point is specified via the required attributes 'x', 'y' and an optional
+ * attribute 'z', all of which are of type double. If the attribute z is not
+ * specified, the object is a two dimensional object.  The Point class also
+ * has an optional attribute id of type SId. While not used in the
+ * "layout" package, it can be used by programs to refer to the
+ * elements.
+ */
 [Prefix="libsbml::"]
 interface Point {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
   void setX(double x);
   void setY(double y);
   void setZ(double z);
@@ -32,12 +55,13 @@ interface Point {
   double getZOffset();
 };
 
+Point implements SBase;
+
+/**
+ * # A bounding box for an item in a diagram.
+ */
 [Prefix="libsbml::"]
 interface BoundingBox {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
   Dimensions getDimensions();
   void setDimensions(Dimensions b);
 
@@ -53,26 +77,53 @@ interface BoundingBox {
   double z();
 };
 
+BoundingBox implements SBase;
+
+/**
+ * # Base class of objects that store layouts.
+ *
+ * All the more specific layout elements (CompartmentGlyph, GeneralGlyph,
+ * SpeciesGlyph, ReactionGlyph, ReferenceGlyph, TextGlyph, and
+ * SpeciesReferenceGlyph) are derived from the class GraphicalObject. Each
+ * object of class GraphicalObject has a mandatory BoundingBox, which
+ * specifies the position and the size of the object.  While GraphicalObject
+ * is the base class for most elements in the &ldquo;layout&rdquo; package,
+ * it is not an abstract class. It can be instantiated when used in the
+ * listOfAdditionalGraphicalObjects to describe additional elements and
+ * relationships. Since it only describes a BoundingBox, programs are
+ * encouraged to add Annotation objects that describe program-specific
+ * graphical information.
+ */
 [Prefix="libsbml::"]
 interface GraphicalObject {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
 };
 
+GraphicalObject implements SBase;
+
+/**
+ * # A glyph for an SBML compartment.
+ */
 [Prefix="libsbml::"]
 interface CompartmentGlyph {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
 };
 
+CompartmentGlyph implements SBase;
+
+/**
+ * # A glyph for miscellaneous items.
+ *
+ * The GeneralGlyph is used to facilitate the representation of elements
+ * other than Compartment, Species and Reaction and thus can be used for the
+ * display of relationships of Rule or elements defined by other SBML
+ * packages. It closely follows the structure of the ReactionGlyph.
+ * GeneralGlyph is defined to have an optional attribute reference as well as
+ * the elements curve, listOfReferenceGlyphs and listOfSubGlyphs.
+ */
 [Prefix="libsbml::"]
 interface GeneralGlyph {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
 };
+
+GeneralGlyph implements SBase;
 
 /**
  * # Representation of a line.
@@ -96,12 +147,22 @@ interface LineSegment {
   void setEnd(Point p);
 };
 
+LineSegment implements SBase;
+
+/**
+ * # A Cubic B&eacute;zier smooth curve.
+ *
+ * In order to be able to represent smooth curves the &ldquo;layout&rdquo;
+ * package defines the class CubicBezier. It represents a Bezier curve, and
+ * is readily available in most graphics APIs.  The class CubicBezier is
+ * derived from LineSegment. It consists of four elements: the two inherited
+ * elements 'start' and 'end', which specify the starting point and the
+ * endpoint of the cubic bezier curve, and two elements 'basePoint1' and
+ * 'basePoint2', which specify the two additional base points that are needed
+ * to describe a cubic bezier curve.
+ */
 [Prefix="libsbml::"]
 interface CubicBezier {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
   Point getStart();
   void setStart(Point p);
 
@@ -115,12 +176,26 @@ interface CubicBezier {
   void setBasePoint2(Point p);
 };
 
+CubicBezier implements SBase;
+
+/**
+ * # A glyph for an SBML reaction.
+ *
+ * Analogous to how a Reaction object has to at least have one reactant or
+ * product, the ReactionGlyph has to at least have one SpeciesReferenceGlyph
+ * stored in the ListOfSpeciesReferenceGlyphs. Figure 12 on the following
+ * page provides the UML diagram for the class definition.  The ReactionGlyph
+ * inherits from GraphicalObject. In addition to the attributes inherited
+ * from GraphicalObject, the ReactionGlyph is described by an attribute
+ * reaction, a Curve element and a listOfSpeciesReferenceGlyphs element.  The
+ * Curve describes the center section of a ReactionGlyph. The center section
+ * is frequently used by tools to separate the point where substrates arcs
+ * come together, from the point where product arcs split off. The Curve is
+ * optional, and when not present the dimensions of the inherited BoundingBox
+ * describes the center section, by storing its position and dimension.
+ */
 [Prefix="libsbml::"]
 interface ReactionGlyph {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
   DOMString getReactionId();
   void setReactionId(DOMString t);
   boolean isSetReactionId();
@@ -132,20 +207,49 @@ interface ReactionGlyph {
   SpeciesReferenceGlyph getSpeciesReferenceGlyph(unsigned long n);
 };
 
+ReactionGlyph implements SBase;
+
+/**
+ * # A glyph for an SBML species.
+ *
+ * In addition to the attributes it inherits from GraphicalObject, the
+ * SpeciesGlyph object has an optional 'species' attribute.
+ */
 [Prefix="libsbml::"]
 interface SpeciesGlyph {
   BoundingBox getBoundingBox();
   void setBoundingBox(BoundingBox b);
-
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
 
   DOMString getSpeciesId();
   void setSpeciesId(DOMString t);
   boolean isSetSpeciesId();
 };
 
+SpeciesGlyph implements SBase;
+
+/**
+ * # A curve connecting elements in a diagram.
+ *
+ * The Curve class describes how to connect elements in a diagram defined
+ * with the use of the &ldquo;layout&rdquo; package. A curve is fully
+ * specified by a mandatory listOfCurveSegments element and is used in four
+ * places in the &ldquo;layout&rdquo; package:
+ *
+ * * SpeciesReferenceGlyph: Here it describes a curve from/to the center
+ * piece of the parent ReactionGlyph to/from the SpeciesGlyph it represents.
+ *
+ * * ReactionGlyph: Here it describes a curve for the center piece of a
+ * reaction.
+ *
+ * * ReferenceGlyph: Here it describes a curve from/to the center piece of
+ * the parent GeneralGlyph to/from the glyph it represents.
+ *
+ * * GeneralGlyph: Here it describes a curve for the center piece of an
+ * additional relationship.
+ *
+ * In the text above, the term 'center piece' refers to either the Curve
+ * element of a ReactionGlyph, or its BoundingBox.
+ */
 [Prefix="libsbml::"]
 interface Curve {
   CubicBezier createCubicBezier();
@@ -155,12 +259,22 @@ interface Curve {
   LineSegment getCurveSegment(unsigned long n);
 };
 
+Curve implements SBase;
+
+/**
+ * # A glyph for an SBML <em>species reference</em>.
+ *
+ * The %SpeciesReferenceGlyph element describes the graphical connection
+ * between a SpeciesGlyph and a ReactionGlyph (which would be an arrow or
+ * some curve in most cases). A SpeciesReferenceGlyph inherits from
+ * GraphicalObject, and adds a mandatory attribute 'speciesGlyph' and two
+ * optional attributes 'speciesReference' and 'role'. Optionally, the
+ * SpeciesReferenceGlyph also has a child element 'curve'.
+ *
+ * If the curve is specified, it overrides the inherited bounding box.
+ */
 [Prefix="libsbml::"]
 interface SpeciesReferenceGlyph {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
   BoundingBox getBoundingBox();
   void setBoundingBox(BoundingBox b);
 
@@ -171,6 +285,15 @@ interface SpeciesReferenceGlyph {
   boolean isSetCurve();
 };
 
+SpeciesReferenceGlyph implements SBase;
+
+/**
+ * # A glyph for a text label.
+ *
+ * The TextGlyph class describes the position and dimension of text labels
+ * in the &ldquo;layout&rdquo; package.  It inherits from GraphicalObject and
+ * adds the attributes graphicalObject, text and originOfText.
+ */
 [Prefix="libsbml::"]
 interface TextGlyph {
   BoundingBox getBoundingBox();
@@ -181,11 +304,16 @@ interface TextGlyph {
   boolean isSetText();
 };
 
+TextGlyph implements SBase;
+
 [Prefix="libsbml::"]
 interface ListOfLayouts {
   SBasePlugin getPlugin(DOMString name);
 };
 
+/**
+ * Plugin subclass for the layout extension.
+ */
 [Prefix="libsbml::"]
 interface LayoutModelPlugin {
   Layout createLayout();
@@ -208,6 +336,9 @@ interface LayoutCaster {
   LayoutModelPlugin castToLayoutPlugin(SBasePlugin p);
 };
 
+/**
+ * The layout extension.
+ */
 [Prefix="libsbml::"]
 interface LayoutExtension {
 };
