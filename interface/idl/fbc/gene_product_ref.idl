@@ -1,2 +1,18 @@
+/**
+ * # Reference to a gene product of a reaction
+ *
+ * GeneProductRef encodes a references to a GeneProduct object declared in a
+ * ListOfGeneProducts attached to the enclosing Model object.  GeneProductRef
+ * is derived from the FbcAssociation class.
+ *
+ * GeneProductRef objects are used to construct the content of
+ * GeneProductAssociation objects.  As described more fully in the
+ * documentation of the latter, a GeneProductAssociation is a container that
+ * may contain either (i) a single GeneProductRef or (ii) a logical
+ * expression built up with FbcAnd and FbcOr and ultimately containing two
+ * or more GeneProductRef objects.
+ */
 [Prefix="libsbml::"]
-interface GeneProductRef {};
+interface GeneProductRef {
+
+};

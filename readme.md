@@ -1,17 +1,17 @@
-# libsbml.js
+# libsbmljs
 
-This repository hosts the build scripts for libsbml.js, a WebAssembly / JavaScript wrapper for the [libSBML](http://sbml.org/Software/libSBML) C++ library. This repository does not contain libsbml.js itself, but rather the interface wrapper and build scripts used to generate it. It is possible to build a custom libsbml.js against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17.x and may not be valid for older/newer versions).
+This repository hosts the build scripts for libsbmljs, a WebAssembly / JavaScript wrapper for the [libSBML](http://sbml.org/Software/libSBML) C++ library. This repository does not contain libsbmljs itself, but rather the interface wrapper and build scripts used to generate it. It is possible to build a custom libsbmljs against any libsbml release or checkout (but note that the wrapper is designed for libSBML 5.17.x and may not be valid for older/newer versions).
 
 ## Project Structure
 
 * The `interface/idl` directory contains all IDL wrapper code.
   * The `cpp` and `js` subdirectories in the `interface` directory contain additional C++ and JavaScript helper methods.
-* The `karma/tests` directory contains scripts for testing libsbml.js in your browser via [Karma](http://karma-runner.github.io/latest/index.html).
+* The `karma/tests` directory contains scripts for testing libsbmljs in your browser via [Karma](http://karma-runner.github.io/latest/index.html).
 * The `emtools` directory contains a patched version of the Emscripten WebIDL binder which enables wrapping the C++ `std::string` type (the original WebIDL binder could only wrap raw `char*` pointers).
 
-## Building libsbml.js
+## Building libsbmljs
 
-It is possible to build a copy of libsbml.js based on a libSBML source tree of your choosing (stable or experimental).
+It is possible to build a copy of libsbmljs based on a libSBML source tree of your choosing (stable or experimental).
 
 What you will need before starting:
 
@@ -40,7 +40,7 @@ tar -xf expat-2.2.6.tar.bz2 -C expat --strip-components=1
 svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental libsbml
 ```
 
-1. Build libsbml.js:
+1. Build libsbmljs:
 ```
 gradle emccCompileLibSBML
 ```
@@ -51,8 +51,8 @@ gradle -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=tr
 
 ## Testing with Karma
 
-The libsbml.js wrapper can be tested in the browser using [Karma](http://karma-runner.github.io/latest/index.html).
-You must first build libsbml.js from source as described above.
+The libsbmljs wrapper can be tested in the browser using [Karma](http://karma-runner.github.io/latest/index.html).
+You must first build libsbmljs from source as described above.
 
 What you will need before starting:
 
@@ -74,7 +74,7 @@ npm install
 
 The wrapper will be tested using Firefox. To test with other browsers, edit `karma.conf.js` and add the desired browsers.
 
-## Building the API documentation
+## Building the API Documentation
 
 What you will need before starting:
 
@@ -93,6 +93,72 @@ gradle generateDocumentation
 ```
 
 1. The HTML documentation will be written to the `build/libsbml_apidoc` directory.
+
+## How to Wrap an SBML Extension Package
+
+We provide wrappers for accepted "core" libSBML packages like "fbc" and "comp".
+The procedure for adding wrappers for experimental packages is as follows:
+
+* Ensure your `libsbml` directory contains or points to the source tree of the "experimental" branch:
+
+```
+svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental libsbml
+```
+
+* The `interface/idl` directory contains wrappers for the respective SBML packages. Create a new subdirectory containing your package name.
+
+* Write the IDL interface code for all the classes you would like to wrap. Each class is wrapped with a IDL `interface` block. Try to have one class per .idl file.
+Our documentation engine is [documentation.js](https://documentation.js.org/).
+
+```
+/**
+ * Document the class using documentation.js syntax.
+ * The documentation can usually be copied from libSBML,
+ * Replace or remove Doxygen-specific tags like @c, @p, @note.
+ */
+[Prefix="libsbml::"]
+interface MyClassName {
+  /**
+   * Methods should also be documented using documentation.js syntax.
+   *
+   * @param {number} n a parameter - IDL uses long to represent the C++ int type
+   *
+   * @return {string} the return value - DOMStrings are wrap the C++ std::string type
+   * (this is different from vanilla Emscripten which can only wrap char*)
+   */
+  DOMString getSomeStringAttr(unsigned long n);
+};
+```
+
+* Add your IDL files to the Gradle `combineIDL` task in `build.gradle`.
+
+```
+task combineIDL(type: ConcatFiles) {
+  ...
+  if (enableMyPkg) {
+    include Paths.get(idl_dir, "mypkg", "file1.idl")
+    include Paths.get(idl_dir, "mypkg", "file2.idl")
+    ...
+  }
+  ...
+}
+```
+
+* Make sure the variable `ext.enableMyPkg` is set to true somewhere in the `build.gradle` file. We suggest setting it as follows:
+
+```
+ext.enableMyPkg = findProperty('enableMyPkg') || true
+```
+
+* Build libsbmljs as above. Also consider adding tests for your package to the karma/tests directory (and add those files to the `combineTests` task).
+
+## Contribution Guidelines
+
+We welcome useful contributions, especially wrappers for libSBML experimental packages.
+In order to ensure your contribution satisfies the goals of the project, please adhere
+to the following:
+
+*
 
 ## FAQ
 

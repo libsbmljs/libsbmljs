@@ -133,6 +133,7 @@ generateAstEnum.doFirst {
   mkdir Paths.get("$buildDir","docs").toString()
 }
 
+// ** Merge IDL files
 
 task combineIDL(type: ConcatFiles) {
   String idl_dir = Paths.get("interface","idl")
@@ -473,7 +474,7 @@ task generateDocumentation(type:Exec) {
 }
 generateDocumentation.dependsOn(combineDocstrings)
 
-
+// TODO: glob files
 task combineTests(type: ConcatFiles) {
   String tests_dir = Paths.get("karma","tests")
   include Paths.get(tests_dir, "header.js")
