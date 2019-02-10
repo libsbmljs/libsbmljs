@@ -175,18 +175,76 @@ Point implements SBase;
  */
 [Prefix="libsbml::"]
 interface BoundingBox {
+  /**
+   * Returns the dimensions of the BoundingBox as const reference to a
+   * Dimensions object.
+   *
+   * @return the Dimensions representing the dimensions.
+   */
   Dimensions getDimensions();
+
+  /**
+   * Sets the dimensions to a copy of the Dimensions object given.
+   *
+   * @param {Dimensions} d the Dimensions to use
+   */
   void setDimensions(Dimensions b);
 
+  /**
+   * Returns the position of the BoundingBox as const reference to a Point
+   * object.
+   *
+   * @return {Point} the Point representing the position.
+   */
   Point getPosition();
+
+  /**
+   * Sets the position to a copy of the Point object given.
+   *
+   * @param {Point} p the Point to use as the position
+   */
   void setPosition(Point b);
 
+  /**
+   * Set x offset of the bounding box.
+   *
+   * @param {number} x the double value to set the x offset to
+   */
   void setX(double x);
+
+  /**
+   * Set y offset of the bounding box.
+   *
+   * @param {number} y the double value to set the y offset to
+   */
   void setY(double y);
+
+  /**
+   * Set z offset of the bounding box.
+   *
+   * @param {number} z the double value to set the z offset to
+   */
   void setZ(double z);
 
+  /**
+   * Get the x offset of the bounding box.
+   *
+   * @return {number} the double value of the x offset.
+   */
   double x();
+
+  /**
+   * Get the y offset of the bounding box.
+   *
+   * @return {number} the double value of the y offset.
+   */
   double y();
+
+  /**
+   * Get the z offset of the bounding box.
+   *
+   * @return {number} the double value of the z offset.
+   */
   double z();
 };
 
@@ -395,12 +453,38 @@ interface ListOfLayouts {
  */
 [Prefix="libsbml::"]
 interface LayoutModelPlugin {
+  /**
+   * Creates a new layout object and adds it to the list of layout objects
+   * and returns it.
+   *
+   * @return {Layout} a new layout object
+   */
   Layout createLayout();
 
   // NOTE: libSBML signedness is inconsistent here
+  /**
+   * Returns the number of layout objects.
+   *
+   * @return {number} the number of layout objects.
+   */
   long getNumLayouts();
+
+  /**
+   * Returns the layout object that belongs to the given index. If the
+   * index is invalid, @c NULL is returned.
+   *
+   * @param {number} index the index of list of layout objects
+   *
+   * @return {Layout} the Layout object that belongs to the given index. NULL
+   * is returned if the index is invalid.
+   */
   Layout getLayout(unsigned long n);
 
+  /**
+   * Returns the ListOfLayouts object for this Model.
+   *
+   * @return {ListOfLayouts} the ListOfLayouts object for this Model.
+   */
   ListOfLayouts getListOfLayouts();
 };
 
