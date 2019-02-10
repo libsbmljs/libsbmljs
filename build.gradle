@@ -79,7 +79,7 @@ ext.withEmrun = findProperty('withEmrun') || false
 // optional libsbml packages
 ext.enableLayout = findProperty('enableLayout') || true
 ext.enableRender = findProperty('enableRender') || true
-ext.enableFBC = findProperty('enableFBC') || false
+ext.enableFBC = findProperty('enableFBC') || true
 ext.enableMulti = findProperty('enableMulti') || false
 ext.enableQual = findProperty('enableQual') || false
 ext.enableComp = findProperty('enableComp') || false
@@ -191,9 +191,9 @@ task combineCPP(type: ConcatFiles) {
   if (enableRender) {
     include Paths.get(cpp_dir, "render_interface_wrapper.cpp")
   }
-  if (enableFBC) {
-    include Paths.get(cpp_dir, "fbc_interface_wrapper.cpp")
-  }
+  // if (enableFBC) {
+  //   include Paths.get(cpp_dir, "fbc_interface_wrapper.cpp")
+  // }
   if (enableMulti) {
     include Paths.get(cpp_dir, "multi_interface_wrapper.cpp")
   }

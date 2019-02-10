@@ -1,3 +1,12 @@
+[Prefix="libsbml::"]
+interface FluxBound {};
+
+[Prefix="libsbml::"]
+interface Objective {};
+
+[Prefix="libsbml::"]
+interface GeneProduct {};
+
 /**
  * # Extension of Model.
  *
@@ -176,7 +185,7 @@ interface FbcModelPlugin {
   /**
    * Get an Objective from the ListOfObjectives.
    *
-   * @param n {number} the index number of the Objective to get
+   * @param {number} n the index number of the Objective to get
    *
    * @return {Objective} the nth Objective in the ListOfObjectives within this FbcModelPlugin.
    * If the index n is invalid, NULL is returned.
@@ -304,7 +313,7 @@ interface FbcModelPlugin {
   GeneProduct removeGeneProduct(unsigned long n);
 };
 
-FbcModelPlugin implemens SBase;
+FbcModelPlugin implements SBase;
 
 /**
  * # Base extension class for the "fbc" package.
@@ -339,4 +348,4 @@ interface FbcExtension {
   static DOMString getXmlnsL3V1V2();
 };
 
-FbcExtension implemens SBase;
+FbcExtension implements SBase;
