@@ -267,6 +267,19 @@ BoundingBox implements SBase;
  */
 [Prefix="libsbml::"]
 interface GraphicalObject {
+  /**
+   * Returns the bounding box for the GraphicalObject.
+   *
+   * @return {BoundingBox}
+   */
+  BoundingBox getBoundingBox();
+
+  /**
+   * Sets the boundingbox for the GraphicalObject.
+   *
+   * @param {BoundingBox} bb The bounding box
+   */
+  void setBoundingBox(BoundingBox bb);
 };
 
 GraphicalObject implements SBase;
@@ -334,9 +347,6 @@ interface ReactionGlyph {
    */
   boolean isSetReactionId();
 
-  BoundingBox getBoundingBox();
-  void setBoundingBox(BoundingBox b);
-
   /**
    * Returns the number of species reference glyph objects.
    */
@@ -388,9 +398,6 @@ ReactionGlyph implements SBase;
  */
 [Prefix="libsbml::"]
 interface SpeciesGlyph {
-  BoundingBox getBoundingBox();
-  void setBoundingBox(BoundingBox b);
-
   /**
    * Returns the id of the associated species object.
    *
@@ -414,7 +421,7 @@ interface SpeciesGlyph {
   boolean isSetSpeciesId();
 };
 
-SpeciesGlyph implements SBase;
+SpeciesGlyph implements GraphicalObject;
 
 /**
  * # A glyph for an SBML <em>species reference</em>.
@@ -430,9 +437,6 @@ SpeciesGlyph implements SBase;
  */
 [Prefix="libsbml::"]
 interface SpeciesReferenceGlyph {
-  BoundingBox getBoundingBox();
-  void setBoundingBox(BoundingBox b);
-
   /**
    * Creates a new CubicBezier object, adds it to the end of the list of
    * curve segment objects of the curve and returns a reference to the
@@ -466,7 +470,7 @@ interface SpeciesReferenceGlyph {
   boolean isSetCurve();
 };
 
-SpeciesReferenceGlyph implements SBase;
+SpeciesReferenceGlyph implements GraphicalObject;
 
 /**
  * # A glyph for a text label.
@@ -485,7 +489,7 @@ interface TextGlyph {
   boolean isSetText();
 };
 
-TextGlyph implements SBase;
+TextGlyph implements GraphicalObject;
 
 [Prefix="libsbml::"]
 interface ListOfLayouts {
