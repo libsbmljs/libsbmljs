@@ -1,8 +1,7 @@
 /**
- * @class FbcAnd
- * @sbmlbrief{fbc} An "and" relationship for gene products
+ * # An "and" relationship for gene products
  *
- * FbcAnd class is used in Version 2 of the SBML Level&nbsp;3 @ref fbc
+ * FbcAnd class is used in Version 2 of the SBML Level 3 fbc
  * ("fbc") package to represent an "and" relationship between two
  * or more child FbcAssociation objects.  In other words, it indicates that
  * all of the child objects are included.  Note that since the FbcAssociation
