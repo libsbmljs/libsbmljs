@@ -1,0 +1,2 @@
+[Prefix="libsbml::"]
+interface FbcAnd {};

@@ -1,15 +1,3 @@
-[Prefix="libsbml::"]
-interface FbcAssociation {};
-
-[Prefix="libsbml::"]
-interface FbcAnd {};
-
-[Prefix="libsbml::"]
-interface FbcOr {};
-
-[Prefix="libsbml::"]
-interface GeneProductRef {};
-
 /**
  * # Association between gene products and reactions
  *
