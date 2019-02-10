@@ -401,7 +401,7 @@ SpeciesGlyph implements SBase;
 /**
  * # A glyph for an SBML <em>species reference</em>.
  *
- * The %SpeciesReferenceGlyph element describes the graphical connection
+ * The SpeciesReferenceGlyph element describes the graphical connection
  * between a SpeciesGlyph and a ReactionGlyph (which would be an arrow or
  * some curve in most cases). A SpeciesReferenceGlyph inherits from
  * GraphicalObject, and adds a mandatory attribute 'speciesGlyph' and two
@@ -415,10 +415,36 @@ interface SpeciesReferenceGlyph {
   BoundingBox getBoundingBox();
   void setBoundingBox(BoundingBox b);
 
+  /**
+   * Creates a new CubicBezier object, adds it to the end of the list of
+   * curve segment objects of the curve and returns a reference to the
+   * newly created object.
+   *
+   * @return {CubicBezier}
+   */
   CubicBezier createCubicBezier();
+
+  /**
+   * Creates a new LineSegment object, adds it to the end of the list of
+   * curve segment objects of the curve and returns a reference to the
+   * newly created object.
+   *
+   * @return {LineSegment}
+   */
   LineSegment createLineSegment();
 
+  /**
+   * Returns the curve object for the species reference glyph
+   *
+   * @return {Curve}
+   */
   Curve getCurve();
+
+  /**
+   * Returns true if the curve consists of one or more segments.
+   *
+   * @return {boolean}
+   */
   boolean isSetCurve();
 };
 
