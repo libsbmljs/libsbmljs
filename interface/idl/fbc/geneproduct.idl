@@ -1,0 +1,88 @@
+/**
+ * # Association of a gene product with a Reaction
+ *
+ * In the SBML Level&nbsp;3 @ref fbc (&ldquo;fbc&rdquo;) package
+ * representation format, a GeneProduct object represents a single gene or
+ * implied gene product.  The gene or gene product is identified using the
+ * required attribute "label", which is a text string.  (This attribute is
+ * separate from the usual SBML "id" attribute, which is used to
+ * cross-reference entities within an SBML model.)  A GeneProduct object can
+ * also possess an optional "associatedSpecies" attribute; if this a
+ * attribute is defined, it should have a value of type `SIdRef`
+ * and be the identifier of a Species object defined in the enclosing Model.
+ * An "associatedSpecies", if it exists, is interpreted to be a species
+ * associated with the gene or gene product that is represented by the
+ * GeneProduct object.
+ */
+[Prefix="libsbml::"]
+interface GeneProduct {
+  /**
+   * Returns the value of the "label" attribute of this GeneProduct.
+   *
+   * @return {string} the value of the "label" attribute of this GeneProduct as a
+   * string.
+   */
+  DOMString getLabel();
+
+
+  /**
+   * Returns the value of the "associatedSpecies" attribute of this
+   * GeneProduct.
+   *
+   * @return {string} the value of the "associatedSpecies" attribute of this
+   * GeneProduct as a string.
+   */
+  DOMString getAssociatedSpecies();
+
+
+  /**
+   * Predicate returning @c true if this GeneProduct's "label" attribute is
+   * set.
+   *
+   * @return {boolean} @c true if this GeneProduct's "label" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  boolean isSetLabel();
+
+
+  /**
+   * Predicate returning @c true if this GeneProduct's "associatedSpecies"
+   * attribute is set.
+   *
+   * @return {boolean} @c true if this GeneProduct's "associatedSpecies" attribute has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetAssociatedSpecies();
+
+
+  /**
+   * Sets the value of the "label" attribute of this GeneProduct.
+   *
+   * @param {string} label the value of the "label" attribute to be
+   * set
+   */
+  long setLabel(DOMString label);
+
+
+  /**
+   * Sets the value of the "associatedSpecies" attribute of this GeneProduct.
+   *
+   * @param {string} associatedSpecies the value of the
+   * "associatedSpecies" attribute to be set
+   */
+  long setAssociatedSpecies(DOMString associatedSpecies);
+
+
+  /**
+   * Unsets the value of the "label" attribute of this GeneProduct.
+   */
+  long unsetLabel();
+
+
+  /**
+   * Unsets the value of the "associatedSpecies" attribute of this
+   * GeneProduct.
+   */
+  long unsetAssociatedSpecies();
+
+};
