@@ -15,14 +15,57 @@
  */
 [Prefix="libsbml::"]
 interface Dimensions {
+  /**
+   * Creates a new Dimensions object with the given sizes.
+   *
+   * @param {LayoutPkgNamespaces} the namespace
+   * @param {number} w width
+   * @param {number} h height
+   * @param {number} d depth
+   */
   void Dimensions(LayoutPkgNamespaces ns, double w, double h, double d);
 
+  /**
+   * Sets the width to the given value.
+   *
+   * @param {number} w the width to use
+   */
   void setWidth(double val);
+
+  /**
+   * Sets the height to the given value.
+   *
+   * @param h {number} the height to use
+   */
   void setHeight(double val);
+
+  /**
+   * Sets the depth to the given value.  This will set
+   * the depth to be 'explicitly set'.
+   *
+   * @param {number} d the depth to use
+   */
   void setDepth(double val);
 
+  /**
+   * Returns the width.
+   *
+   * @return {number} the width attribute as a double.
+   */
   double getWidth();
+
+  /**
+   * Returns the height.
+   *
+   * @return {number} the height attribute as a double.
+   */
   double getHeight();
+
+  /**
+   * Returns the depth.
+   *
+   * @return {number} the depth attribute as a double.
+   */
   double getDepth();
 };
 
