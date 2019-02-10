@@ -50,7 +50,7 @@ Object.defineProperty(Model.prototype, "species", {
 
 Model.prototype["findSpecies"] = function(id) {
   for(var i=0; i<this.getNumSpecies(); i++) {
-    if(this.getSpecies(i).getId() == id) {
+    if(this.getSpecies(i).getId() === id) {
       return this.getSpecies(i);
     }
   }
@@ -59,7 +59,7 @@ Model.prototype["findSpecies"] = function(id) {
 
 Model.prototype["findPlugin"] = function(name) {
   for(var i=0; i<this.getNumPlugins(); i++) {
-    if(this.getPlugin(i).getPackageName() == name) {
+    if(this.getPlugin(i).getPackageName() === name) {
       return this.getPlugin(i);
     }
   }
@@ -68,7 +68,7 @@ Model.prototype["findPlugin"] = function(name) {
 
 Model.prototype["hasPlugin"] = function(name) {
   for(var i=0; i<this.getNumPlugins(); i++) {
-    if(this.getPlugin(i).getPackageName() == name) {
+    if(this.getPlugin(i).getPackageName() === name) {
       return true;
     }
   }
