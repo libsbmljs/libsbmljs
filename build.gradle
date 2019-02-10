@@ -177,6 +177,7 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "fbc", "geneproduct.idl")
     include Paths.get(idl_dir, "fbc", "gene_product_association.idl")
     include Paths.get(idl_dir, "fbc", "gene_product_ref.idl")
+    include Paths.get(idl_dir, "fbc", "species_plugin.idl")
     include Paths.get(idl_dir, "fbc", "reaction_plugin.idl")
     include Paths.get(idl_dir, "fbc", "model_plugin.idl")
     include Paths.get(idl_dir, "fbc", "extension.idl")
