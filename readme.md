@@ -150,7 +150,7 @@ task combineIDL(type: ConcatFiles) {
 ext.enableMyPkg = findProperty('enableMyPkg') || true
 ```
 
-* Build libsbmljs as above. Also consider adding tests for your package to the karma/tests directory (and add those files to the `combineTests` task).
+* Run `gradle --rerun-tasks combineIDL` and build libsbmljs as above. Also consider adding tests for your package to the karma/tests directory (and add those files to the `combineTests` task).
 
 ## Contribution Guidelines
 
