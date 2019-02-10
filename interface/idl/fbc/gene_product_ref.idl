@@ -14,5 +14,35 @@
  */
 [Prefix="libsbml::"]
 interface GeneProductRef {
+  /**
+   * Returns the value of the "geneProduct" attribute of this GeneProductRef.
+   *
+   * @return {string} the value of the "geneProduct" attribute of this GeneProductRef as a string.
+   */
+  DOMString getGeneProduct() const;
 
+  /**
+  * Converts this FbcAssociation object into an infix string representation.
+  *
+  * @return {string} the association as infix string.
+  */
+  DOMString toInfix(boolean usingId);
+
+
+  /**
+   * Predicate returning true if this GeneProductRef's "geneProduct"
+   * attribute is set.
+   *
+   * @return {boolean} true if this GeneProductRef's "geneProduct" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetGeneProduct();
+
+
+  /**
+   * Sets the value of the "geneProduct" attribute of this GeneProductRef.
+   *
+   * @param {string} geneProduct the value of the "geneProduct" attribute to be set
+   */
+  long setGeneProduct(DOMString geneProduct);
 };
