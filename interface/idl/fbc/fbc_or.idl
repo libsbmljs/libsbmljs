@@ -1,2 +1,88 @@
+/**
+ * @class FbcOr
+ * @sbmlbrief{fbc} An "or" relationship for gene products
+ *
+ * FbcOr class is used in Version 2 of the SBML Level 3 fbc
+ * ("fbc") package to represent an "or" relationship between two
+ * or more child FbcAssociation objects.  In other words, it indicates that
+ * only one of the child objects are included.  Note that since the
+ * FbcAssociation class is the parent class of GeneProductRef, FbcAnd, and
+ * FbcOr, a given FbcOr can potentially include nested "and"/"or"
+ * combinations of gene products.
+ */
 [Prefix="libsbml::"]
-interface FbcOr {};
+interface FbcOr {
+  /**
+   * Get a Association from the ListOfFbcAssociations.
+   *
+   * @param {number} n the index number of the Association to get
+   *
+   * @return {FbcAssociation} the nth Association in the ListOfFbcAssociations within this FbcOr.
+   * If the index  n is invalid,  NULL is returned.
+   */
+  FbcAssociation getAssociation(unsigned long n);
+
+
+  /**
+   * Adds a copy the given FbcAssociation to this FbcOr.
+   *
+   * @param {FbcAssociation} fa the FbcAssociation object to add
+   */
+  long addAssociation(FbcAssociation fa);
+
+
+  /**
+   * Get the number of FbcAssociation objects in this FbcOr.
+   *
+   * @return {number} the number of FbcAssociation objects in this FbcOr.
+   */
+  unsigned long getNumAssociations();
+
+
+  /**
+  * Converts this FbcAssociation object into an infix string representation.
+  *
+  * @param {boolean} usingId
+  *
+  * @return the association as infix string.
+  */
+  DOMString toInfix(boolean usingId);
+
+  /**
+   * Creates a new FbcAnd object, adds it to this FbcOr's
+   * ListOfFbcAssociations and returns the FbcAnd object created.
+   *
+   * @return {FbcAnd} a new FbcAnd object instance.
+   */
+  FbcAnd createAnd();
+
+
+  /**
+   * Creates a new FbcOr object, adds it to this FbcOr's
+   * ListOfFbcAssociations and returns the FbcOr object created.
+   *
+   * @return {FbcOr} a new FbcOr object instance.
+   */
+  FbcOr createOr();
+
+
+  /**
+   * Creates a new GeneProductRef object, adds it to this FbcOr's
+   * ListOfFbcAssociations and returns the GeneProductRef object created.
+   *
+   * @return {GeneProductRef} a new GeneProductRef object instance.
+   */
+  GeneProductRef createGeneProductRef();
+
+
+  /**
+   * Removes the nth Association from the ListOfFbcAssociations within this FbcOr
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {FbcAssociation} n the index of the Association to remove
+   */
+  FbcAssociation removeAssociation(unsigned long n);
+
+};
