@@ -80,11 +80,11 @@ interface FluxBound {
 
 
   /**
-   * Predicate returning @c true if this FluxBound's "reaction" attribute is
+   * Predicate returning true if this FluxBound's "reaction" attribute is
    * set.
    *
-   * @return @c true if this FluxBound object's "reaction" attribute has been
-   * set, otherwise @c false is returned.
+   * @return true if this FluxBound object's "reaction" attribute has been
+   * set, otherwise false is returned.
    */
   boolean isSetReaction ();
 
@@ -118,11 +118,11 @@ interface FluxBound {
 
 
   /**
-   * Predicate returning @c true if this FluxBound's "operation" attribute is
+   * Predicate returning true if this FluxBound's "operation" attribute is
    * set.
    *
-   * @return {boolean} @c true if this FluxBound object's "operation" attribute has been set,
-   * otherwise @c false is returned.
+   * @return {boolean} true if this FluxBound object's "operation" attribute has been set,
+   * otherwise false is returned.
    */
   boolean isSetOperation ();
 
