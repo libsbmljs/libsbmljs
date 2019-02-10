@@ -173,49 +173,6 @@ interface TextGlyph {
 };
 
 [Prefix="libsbml::"]
-interface Layout {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
-  Dimensions getDimensions();
-  void setDimensions(Dimensions b);
-
-  GraphicalObject createAdditionalGraphicalObject();
-  CompartmentGlyph createCompartmentGlyph();
-  CubicBezier createCubicBezier();
-  GeneralGlyph createGeneralGlyph();
-  LineSegment createLineSegment();
-  ReactionGlyph createReactionGlyph();
-  SpeciesGlyph createSpeciesGlyph();
-  SpeciesReferenceGlyph createSpeciesReferenceGlyph();
-  TextGlyph createTextGlyph();
-
-  unsigned long getNumAdditionalGraphicalObjects();
-  unsigned long getNumCompartmentGlyphs();
-  unsigned long getNumGeneralGlyphs();
-  unsigned long getNumReactionGlyphs();
-  unsigned long getNumSpeciesGlyphs();
-  unsigned long getNumTextGlyphs();
-
-  GraphicalObject getAdditionalGraphicalObject(unsigned long n);
-  CompartmentGlyph getCompartmentGlyph(unsigned long n);
-  GeneralGlyph getGeneralGlyph(unsigned long n);
-  ReactionGlyph getReactionGlyph(unsigned long n);
-  SpeciesGlyph getSpeciesGlyph(unsigned long n);
-  TextGlyph getTextGlyph(unsigned long n);
-
-  GraphicalObject removeAdditionalGraphicalObject(unsigned long n);
-  CompartmentGlyph removeCompartmentGlyph(unsigned long n);
-  ReactionGlyph removeReactionGlyph(unsigned long n);
-  SpeciesGlyph removeSpeciesGlyph(unsigned long n);
-  SpeciesReferenceGlyph removeSpeciesReferenceGlyph(DOMString id);
-  TextGlyph removeTextGlyph(unsigned long n);
-
-  SBasePlugin getPlugin(DOMString name);
-};
-
-[Prefix="libsbml::"]
 interface ListOfLayouts {
   SBasePlugin getPlugin(DOMString name);
 };

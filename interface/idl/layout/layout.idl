@@ -1,0 +1,198 @@
+/**
+ * # The layout of a diagram of an SBML model.
+ *
+ * The Layout class stores layout information for some or all elements of the
+ * SBML model as well as additional objects that need not be connected to the
+ * model. The Layout has two attributes: id and name. Additionally, a
+ * Dimensions element specifies the size of the layout.  The actual layout
+ * elements are contained in several lists, namely: a
+ * ListOfCompartmentGlyphs, a ListOfSpeciesGlyphs, a ListOfReactionGlyphs, a
+ * ListOfTextGlyphs, and a ListOfAdditionalGraphicalObjects. Each of these
+ * lists can only occur once, and, if present, are not allowed to be empty.
+ */
+[Prefix="libsbml::"]
+interface Layout {
+  /**
+   * Returns the dimensions of the layout.
+   */
+  Dimensions getDimensions();
+
+  /**
+   * Sets the dimensions of the layout.
+   */
+  void setDimensions(Dimensions b);
+
+  /**
+   * Creates a GraphicalObject object, adds it to the end of the additional
+   * graphical objects list and returns a pointer to the newly created
+   * object.
+   */
+  GraphicalObject createAdditionalGraphicalObject();
+
+  /**
+   * Creates a CompartmentGlyph object, adds it to the end of the
+   * compartment glyph objects list and returns a pointer to the newly
+   * created object.
+   */
+  CompartmentGlyph createCompartmentGlyph();
+
+  /**
+   * Creates a new CubicBezier for the Curve object of the last
+   * ReactionGlyph or the last SpeciesReferenceGlyph in the last
+   * ReactionGlyph and adds it to its list of SpeciesReferenceGlyph
+   * objects.  A pointer to the newly created object is returned.
+   */
+  CubicBezier createCubicBezier();
+
+  /**
+   * Creates a GeneralGlyph object, adds it to the end of the additional
+   * objects list and returns a reference to the newly created object.
+   */
+  GeneralGlyph createGeneralGlyph();
+
+  /**
+   * Creates a new LineSegment for the Curve object of the last
+   * ReactionGlyph or the last SpeciesReferenceGlyph in the last
+   * ReactionGlyph and adds it to its list of SpeciesReferenceGlyph
+   * objects.  A pointer to the newly created object is returned.
+   */
+  LineSegment createLineSegment();
+
+  /**
+   * Creates a ReactionGlyph object, adds it to the end of the reaction
+   * glyph objects list and returns a pointer to the newly created
+   * object.
+   */
+  ReactionGlyph createReactionGlyph();
+
+  /**
+   * Creates a SpeciesGlyph object, adds it to the end of the species glyph
+   * objects list and returns a pointer to the newly created object.
+   */
+  SpeciesGlyph createSpeciesGlyph();
+
+  /**
+   * Creates a new SpeciesReferenceGlyph for the last ReactionGlyph and
+   * adds it to its list of SpeciesReferenceGlyph objects.  A pointer to
+   * the newly created object is returned.
+   */
+  SpeciesReferenceGlyph createSpeciesReferenceGlyph();
+
+  /**
+   * Creates a TextGlyph object, adds it to the end of the text glyph
+   * objects list and returns a pointer to the newly created object.
+   */
+  TextGlyph createTextGlyph();
+
+  /**
+   * Returns the number of additional graphical objects for the layout.
+   */
+  unsigned long getNumAdditionalGraphicalObjects();
+
+  /**
+   * Returns the number of compartment glyphs for the layout.
+   */
+  unsigned long getNumCompartmentGlyphs();
+
+  /**
+   * Returns the number of general glyphs for the layout.
+   */
+  unsigned long getNumGeneralGlyphs();
+
+  /**
+   * Returns the number of reaction glyphs for the layout.
+   */
+  unsigned long getNumReactionGlyphs();
+
+  /**
+   * Returns the number of species glyphs for the layout.
+   */
+  unsigned long getNumSpeciesGlyphs();
+
+  /**
+   * Returns the number of text glyphs for the layout.
+   */
+  unsigned long getNumTextGlyphs();
+
+  /**
+   * Returns the additional graphical object that has the given @p id, or @c NULL
+   * if no graphical object has the id.
+   */
+  GraphicalObject getAdditionalGraphicalObject(unsigned long n);
+
+  /**
+   * Returns the compartment glyph that has the given @p id, or @c NULL if no
+   * compartment glyph has the id.
+   */
+  CompartmentGlyph getCompartmentGlyph(unsigned long n);
+
+  /**
+   * Returns the general glyph that has the given @p id, or @c NULL
+   * if no graphical object has the id.
+   */
+  GeneralGlyph getGeneralGlyph(unsigned long n);
+
+  /**
+   * Returns the reaction glyph that has the given @p id, or @c NULL if no
+   * reaction glyph has the id.
+   */
+  ReactionGlyph getReactionGlyph(unsigned long n);
+
+  /**
+   * Returns the species glyph that has the given @p id, or @c NULL if no species
+   * glyph has the id.
+   */
+  SpeciesGlyph getSpeciesGlyph(unsigned long n);
+
+  /**
+   * Returns the text glyph that has the given @p id, or @c NULL if no text glyph
+   * has the id.
+   */
+  TextGlyph getTextGlyph(unsigned long n);
+
+  /**
+   * Removes the graphical object with the given index from the layout.
+   * A pointer to the graphical object that was removed is returned.
+   * If no graphical object has been removed, @c NULL is returned.
+   */
+  GraphicalObject removeAdditionalGraphicalObject(unsigned long n);
+
+  /**
+   * Removes the compartment glyph with the given index from the layout.
+   * A pointer to the compartment glyph that was removed is returned.
+   * If no compartment glyph has been removed, @c NULL is returned.
+   */
+  CompartmentGlyph removeCompartmentGlyph(unsigned long n);
+
+  /**
+   * Removes the reaction glyph with the given index from the layout.
+   * A pointer to the reaction glyph that was removed is returned.
+   * If no reaction glyph has been removed, @c NULL is returned.
+   */
+  ReactionGlyph removeReactionGlyph(unsigned long n);
+
+  /**
+   * Removes the species glyph with the given index from the layout.
+   * A pointer to the species glyph that was removed is returned.
+   * If no species glyph has been removed, @c NULL is returned.
+   */
+  SpeciesGlyph removeSpeciesGlyph(unsigned long n);
+
+  /**
+   * Remove the species reference glyph with the given @p id.
+   * A pointer to the removed species reference glyph is returned.
+   * If no species reference glyph has been removed, @c NULL is returned.
+   */
+  SpeciesReferenceGlyph removeSpeciesReferenceGlyph(DOMString id);
+
+  /**
+   * Remove the text glyph with the given @p id.
+   * A pointer to the removed text glyph is returned.
+   * If no text glyph has been removed, @c NULL is returned.
+   */
+  TextGlyph removeTextGlyph(unsigned long n);
+
+  SBasePlugin getPlugin(DOMString name);
+};
+
+Layout implements SBase;
