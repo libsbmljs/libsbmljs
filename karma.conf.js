@@ -34,6 +34,7 @@ module.exports = function(config) {
     ],
 
     webpack: {
+      mode: 'development',
       resolve: {
         modules: ['build','node_modules']
       },
@@ -48,6 +49,7 @@ module.exports = function(config) {
           },
         ]
       },
+      devtool: 'inline-source-map',
       plugins: [
         new webpack.IgnorePlugin(/^fs$/)
       ]
@@ -64,7 +66,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'build/tests/index.js': ['webpack']
+      'build/tests/index.js': ['webpack', 'sourcemap']
     },
 
     // test results reporter to use
@@ -101,6 +103,7 @@ module.exports = function(config) {
       // ('karma-mocha'),
       // ('karma-chrome-launcher')
       ('karma-firefox-launcher'),
+      ('karma-sourcemap-loader'),
     ]
   });
 };
