@@ -54,7 +54,7 @@ module.exports = function(config) {
     },
 
     proxies: {
-      '/base/karma/tests/libsbml.wasm': '/base/build/libsbml.wasm'
+      '/base/build/tests/libsbml.wasm': '/base/build/libsbml.wasm'
     },
 
     // list of files to exclude
