@@ -92,7 +92,7 @@ interface FluxBound {
   /**
    * Sets the value of the "reaction" attribute of this FluxBound object.
    */
-  long setReaction (const DOMString reaction);
+  long setReaction (DOMString reaction);
 
 
   /**
@@ -114,7 +114,7 @@ interface FluxBound {
    *
    * @return {FluxBoundOperation_t} the value of the "operation" attribute of this FluxBound object.
    */
-  FluxBoundOperation_t getFluxBoundOperation ();
+  libsbml__idl__FluxBoundOperation_t getFluxBoundOperation ();
 
 
   /**
@@ -129,14 +129,10 @@ interface FluxBound {
 
   /**
    * Sets the value of the "operation" attribute of this FluxBound object.
+   *
+   * @param {FluxBoundOperation_t} operation
    */
-  long setOperation (const DOMString operation);
-
-
-  /**
-   * Sets the value of the "operation" attribute of this FluxBound object.
-   */
-  long setOperation (FluxBoundOperation_t operation);
+  long setOperation (libsbml__idl__FluxBoundOperation_t operation);
 
 
   /**
