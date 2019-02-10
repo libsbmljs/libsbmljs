@@ -256,15 +256,68 @@ GeneralGlyph implements SBase;
  */
 [Prefix="libsbml::"]
 interface ReactionGlyph {
+  /**
+   * Returns the id of the associated reaction.
+   *
+   * @return {string}
+   */
   DOMString getReactionId();
-  void setReactionId(DOMString t);
+
+  /**
+   * Sets the id of the associated reaction.
+   *
+   * @param {string} id
+   */
+  long setReactionId(DOMString id);
+
+  /**
+   * Returns {boolean} true if the id of the associated reaction is not the empty
+   * string.
+   */
   boolean isSetReactionId();
 
   BoundingBox getBoundingBox();
   void setBoundingBox(BoundingBox b);
 
+  /**
+   * Returns the number of species reference glyph objects.
+   */
   unsigned long getNumSpeciesReferenceGlyphs();
+
+  /**
+   * Returns the species reference glyph with the given @p index.
+   * If the index is invalid, @c NULL is returned.
+   *
+   * @return {SpeciesReferenceGlyph}
+   */
   SpeciesReferenceGlyph getSpeciesReferenceGlyph(unsigned long n);
+
+  /**
+   * Creates a new SpeciesReferenceGlyph object, adds it to the end of the
+   * list of species reference objects and returns a reference to the newly
+   * created object.
+   *
+   * @return {SpeciesReferenceGlyph}
+   */
+  SpeciesReferenceGlyph createSpeciesReferenceGlyph();
+
+  /**
+   * Creates a new LineSegment object, adds it to the end of the list of
+   * curve segment objects of the curve and returns a reference to the
+   * newly created object.
+   *
+   * @return {LineSegment}
+   */
+  LineSegment createLineSegment();
+
+  /**
+   * Creates a new CubicBezier object, adds it to the end of the list of
+   * curve segment objects of the curve and returns a reference to the
+   * newly created object.
+   *
+   * @return {CubicBezier}
+   */
+   CubicBezier createCubicBezier();
 };
 
 ReactionGlyph implements SBase;
