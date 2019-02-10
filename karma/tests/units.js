@@ -1,9 +1,3 @@
-import libsbml from 'libsbml.js'
-
-libsbml().then((libsbml) => {
-  const unit_ctor = libsbml.UnitKindConstructor()
-})
-
 describe("Unit test", function() {
   it('Tests writing of an SBML model', (done) => {
     libsbml().then((libsbml) => {

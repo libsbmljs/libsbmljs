@@ -469,6 +469,19 @@ task generateDocumentation(type:Exec) {
 generateDocumentation.dependsOn(combineDocstrings)
 
 
+task combineTests(type: ConcatFiles) {
+  String tests_dir = Paths.get("karma","tests")
+  include Paths.get(tests_dir, "header.js")
+  include Paths.get(tests_dir, "reading.js")
+  include Paths.get(tests_dir, "writing.js")
+  include Paths.get(tests_dir, "units.js")
+  target = file(Paths.get("$buildDir","tests","index.js"))
+}
+combineTests.doFirst {
+  mkdir Paths.get("$buildDir","tests").toString()
+}
+
+
 // print configured settings
 println "libsbml.js build configuration"
 println " -- expat version $expatVersion"

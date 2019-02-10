@@ -1,5 +1,3 @@
-import libsbml from 'libsbml.js'
-
 describe("Writing test", function() {
   it('Tests writing of an SBML model', (done) => {
     libsbml().then((libsbml) => {

@@ -30,7 +30,7 @@ module.exports = function(config) {
     files: [
       {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
       {pattern: 'karma/models/*.xml', watched: false, served: true, included: false},
-      'karma/tests/*.js'
+      'build/tests/index.js'
     ],
 
     webpack: {
@@ -64,7 +64,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'karma/tests/index.js': ['webpack']
+      'build/tests/index.js': ['webpack']
     },
 
     // test results reporter to use

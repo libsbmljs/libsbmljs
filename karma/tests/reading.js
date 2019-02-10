@@ -1,5 +1,3 @@
-import libsbml from 'libsbml.js'
-
 describe("Synchronous reading from inline string", function() {
   it("loads SBML from an inline string", (done) => {
     libsbml().then((libsbml) => {
