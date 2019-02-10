@@ -166,7 +166,7 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "render", "render_interface.idl")
   }
   if (enableFBC) {
-    include Paths.get(idl_dir, "fbc_interface.idl")
+    include Paths.get(idl_dir, "fbc", "extension.idl")
   }
   if (enableMulti) {
     include Paths.get(idl_dir, "multi_interface.idl")
