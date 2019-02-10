@@ -40,18 +40,88 @@ Dimensions implements SBase;
  */
 [Prefix="libsbml::"]
 interface Point {
+  /**
+   * Sets the x offset.
+   *
+   * @param {number} x
+   */
   void setX(double x);
+
+  /**
+   * Sets the y offset.
+   *
+   * @param {number} y
+   */
   void setY(double y);
+
+  /**
+   * Sets the z offset.
+   *
+   * @param {number} z
+   */
   void setZ(double z);
+
+  /**
+   * Sets the x offset.
+   *
+   * @param {number} x
+   */
   void setXOffset(double x);
+
+  /**
+   * Sets the y offset.
+   *
+   * @param {number} y
+   */
   void setYOffset(double y);
+
+  /**
+   * Sets the z offset.
+   *
+   * @param {number} y
+   */
   void setZOffset(double z);
 
+  /**
+   * Returns the x offset.
+   *
+   * @return {number}
+   */
   double x();
+
+  /**
+   * Returns the y offset.
+   *
+   * @return {number}
+   */
   double y();
+
+  /**
+   * Returns the z offset.
+   *
+   * @return {number}
+   */
   double z();
+
+  /**
+   * Returns the x offset.
+   *
+   * @return {number}
+   */
   double getXOffset();
+
+  /**
+   * Returns the y offset.
+   *
+   * @return {number}
+   */
   double getYOffset();
+
+  /**
+   * Returns the z offset.
+   *
+   * @return {number}
+   */
   double getZOffset();
 };
 
