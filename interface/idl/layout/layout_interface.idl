@@ -481,11 +481,25 @@ SpeciesReferenceGlyph implements GraphicalObject;
  */
 [Prefix="libsbml::"]
 interface TextGlyph {
-  BoundingBox getBoundingBox();
-  void setBoundingBox(BoundingBox b);
-
+  /**
+   * Returns the text to be displayed by the text glyph.
+   *
+   * @return {string}
+   */
   DOMString getText();
+
+  /**
+   * Sets the text to be displayed by the text glyph.
+   *
+   * @param {string} t
+   */
   void setText(DOMString t);
+
+  /**
+   * Returns true if the text is not the empty string.
+   *
+   * @return {boolean}
+   */
   boolean isSetText();
 };
 
