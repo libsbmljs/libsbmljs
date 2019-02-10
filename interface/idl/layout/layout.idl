@@ -14,6 +14,8 @@
 interface Layout {
   /**
    * Returns the dimensions of the layout.
+   *
+   * @return {Dimensions}
    */
   Dimensions getDimensions();
 
@@ -26,6 +28,8 @@ interface Layout {
    * Creates a GraphicalObject object, adds it to the end of the additional
    * graphical objects list and returns a pointer to the newly created
    * object.
+   *
+   * @return {GraphicalObject}
    */
   GraphicalObject createAdditionalGraphicalObject();
 
@@ -33,6 +37,8 @@ interface Layout {
    * Creates a CompartmentGlyph object, adds it to the end of the
    * compartment glyph objects list and returns a pointer to the newly
    * created object.
+   *
+   * @return {CompartmentGlyph}
    */
   CompartmentGlyph createCompartmentGlyph();
 
@@ -41,12 +47,16 @@ interface Layout {
    * ReactionGlyph or the last SpeciesReferenceGlyph in the last
    * ReactionGlyph and adds it to its list of SpeciesReferenceGlyph
    * objects.  A pointer to the newly created object is returned.
+   *
+   * @return {CubicBezier}
    */
   CubicBezier createCubicBezier();
 
   /**
    * Creates a GeneralGlyph object, adds it to the end of the additional
    * objects list and returns a reference to the newly created object.
+   *
+   * @return {GeneralGlyph}
    */
   GeneralGlyph createGeneralGlyph();
 
@@ -55,6 +65,8 @@ interface Layout {
    * ReactionGlyph or the last SpeciesReferenceGlyph in the last
    * ReactionGlyph and adds it to its list of SpeciesReferenceGlyph
    * objects.  A pointer to the newly created object is returned.
+   *
+   * @return {LineSegment}
    */
   LineSegment createLineSegment();
 
@@ -62,12 +74,16 @@ interface Layout {
    * Creates a ReactionGlyph object, adds it to the end of the reaction
    * glyph objects list and returns a pointer to the newly created
    * object.
+   *
+   * @return {ReactionGlyph}
    */
   ReactionGlyph createReactionGlyph();
 
   /**
    * Creates a SpeciesGlyph object, adds it to the end of the species glyph
    * objects list and returns a pointer to the newly created object.
+   *
+   * @return {SpeciesGlyph}
    */
   SpeciesGlyph createSpeciesGlyph();
 
@@ -81,31 +97,43 @@ interface Layout {
   /**
    * Creates a TextGlyph object, adds it to the end of the text glyph
    * objects list and returns a pointer to the newly created object.
+   *
+   * @return {TextGlyph}
    */
   TextGlyph createTextGlyph();
 
   /**
    * Returns the number of additional graphical objects for the layout.
+   *
+   * @return {number}
    */
   unsigned long getNumAdditionalGraphicalObjects();
 
   /**
    * Returns the number of compartment glyphs for the layout.
+   *
+   * @return {number}
    */
   unsigned long getNumCompartmentGlyphs();
 
   /**
    * Returns the number of general glyphs for the layout.
+   *
+   * @return {number}
    */
   unsigned long getNumGeneralGlyphs();
 
   /**
    * Returns the number of reaction glyphs for the layout.
+   *
+   * @return {number}
    */
   unsigned long getNumReactionGlyphs();
 
   /**
    * Returns the number of species glyphs for the layout.
+   *
+   * @return {number}
    */
   unsigned long getNumSpeciesGlyphs();
 
@@ -115,80 +143,124 @@ interface Layout {
   unsigned long getNumTextGlyphs();
 
   /**
-   * Returns the additional graphical object that has the given @p id, or @c NULL
+   * Returns the additional graphical object that has the given id, or NULL
    * if no graphical object has the id.
+   *
+   * @param {number} n
+   *
+   * @return {GraphicalObject}
    */
   GraphicalObject getAdditionalGraphicalObject(unsigned long n);
 
   /**
-   * Returns the compartment glyph that has the given @p id, or @c NULL if no
+   * Returns the compartment glyph that has the given id, or NULL if no
    * compartment glyph has the id.
+   *
+   * @param {number} n
+   *
+   * @return {CompartmentGlyph}
    */
   CompartmentGlyph getCompartmentGlyph(unsigned long n);
 
   /**
-   * Returns the general glyph that has the given @p id, or @c NULL
+   * Returns the general glyph that has the given id, or NULL
    * if no graphical object has the id.
+   *
+   * @param {number} n
+   *
+   * @return {GeneralGlyph}
    */
   GeneralGlyph getGeneralGlyph(unsigned long n);
 
   /**
-   * Returns the reaction glyph that has the given @p id, or @c NULL if no
+   * Returns the reaction glyph that has the given id, or NULL if no
    * reaction glyph has the id.
+   *
+   * @param {number} n
+   *
+   * @return {ReactionGlyph}
    */
   ReactionGlyph getReactionGlyph(unsigned long n);
 
   /**
-   * Returns the species glyph that has the given @p id, or @c NULL if no species
+   * Returns the species glyph that has the given id, or NULL if no species
    * glyph has the id.
+   *
+   * @return {SpeciesGlyph}
    */
   SpeciesGlyph getSpeciesGlyph(unsigned long n);
 
   /**
-   * Returns the text glyph that has the given @p id, or @c NULL if no text glyph
+   * Returns the text glyph that has the given id, or NULL if no text glyph
    * has the id.
+   *
+   * @param {number} n
+   *
+   * @return {TextGlyph}
    */
   TextGlyph getTextGlyph(unsigned long n);
 
   /**
    * Removes the graphical object with the given index from the layout.
    * A pointer to the graphical object that was removed is returned.
-   * If no graphical object has been removed, @c NULL is returned.
+   * If no graphical object has been removed, NULL is returned.
+   *
+   * @param {number} n
+   *
+   * @return {GraphicalObject}
    */
   GraphicalObject removeAdditionalGraphicalObject(unsigned long n);
 
   /**
    * Removes the compartment glyph with the given index from the layout.
    * A pointer to the compartment glyph that was removed is returned.
-   * If no compartment glyph has been removed, @c NULL is returned.
+   * If no compartment glyph has been removed, NULL is returned.
+   *
+   * @param {number} n
+   *
+   * @return {CompartmentGlyph}
    */
   CompartmentGlyph removeCompartmentGlyph(unsigned long n);
 
   /**
    * Removes the reaction glyph with the given index from the layout.
    * A pointer to the reaction glyph that was removed is returned.
-   * If no reaction glyph has been removed, @c NULL is returned.
+   * If no reaction glyph has been removed, NULL is returned.
+   *
+   * @param {number} n
+   *
+   * @return {ReactionGlyph}
    */
   ReactionGlyph removeReactionGlyph(unsigned long n);
 
   /**
    * Removes the species glyph with the given index from the layout.
    * A pointer to the species glyph that was removed is returned.
-   * If no species glyph has been removed, @c NULL is returned.
+   * If no species glyph has been removed, NULL is returned.
+   *
+   * @return {SpeciesGlyph}
    */
   SpeciesGlyph removeSpeciesGlyph(unsigned long n);
 
   /**
-   * Remove the species reference glyph with the given @p id.
+   * Remove the species reference glyph with the given id.
    * A pointer to the removed species reference glyph is returned.
-   * If no species reference glyph has been removed, @c NULL is returned.
+   * If no species reference glyph has been removed, NULL is returned.
+   *
+   * @param {string} id
+   *
+   * @return {SpeciesReferenceGlyph}
    */
   SpeciesReferenceGlyph removeSpeciesReferenceGlyph(DOMString id);
 
   /**
-   * Remove the text glyph with the given @p id.
+   * Remove the text glyph with the given id.
    * A pointer to the removed text glyph is returned.
-   * If no text glyph has been removed, @c NULL is returned.
+   * If no text glyph has been removed, NULL is returned.
+   *
+   * @param {number} n
+   *
+   * @return {TextGlyph}
    */
   TextGlyph removeTextGlyph(unsigned long n);
 
