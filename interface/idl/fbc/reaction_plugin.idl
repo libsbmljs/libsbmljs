@@ -1,0 +1,120 @@
+/**
+ * # Extension of Reaction by the "fbc" package.
+ *
+ * The FbcReactionPlugin class inherits from the SBasePlugin class, and
+ * codifies the extentions to the Reaction class defined in the @ref fbc
+ * package ("fbc").  This extention allows the modeler to define
+ * (in Version 2 of the "fbc" package) an upper and lower
+ * flux bound, with the 'upperFluxBound' and 'lowerFluxBound' attributes,
+ * as well as a way to reference any GeneProduct associated with
+ * this Reaction, through the GeneProductAssociation child.
+ *
+ * @note In Version 1 of "fbc", the FluxBound element is
+ * used instead of the 'upperFluxBound' and 'lowerFluxBound' attributes.
+ * There is no equivalent of the GeneProductAssociation, which was added
+ * in Version 2.
+ */
+[Prefix="libsbml::"]
+longerface FbcReactionPlugin {
+  /**
+   * Returns the GeneProductAssociation from this FbcReactionPlugin object.
+   *
+   * @return {GeneProductAssociation} the GeneProductAssociation from object in this FbcReactionPlugin object.
+   */
+  GeneProductAssociation getGeneProductAssociation ();
+
+
+  /**
+   * Predicate returning true if this FbcReactionPlugin's
+   * "GeneProductAssociation" element has been set.
+   *
+   * @return {boolean} true if the "GeneProductAssociation" element has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetGeneProductAssociation();
+
+
+  /**
+   * Sets the GeneProductAssociation element in this FbcReactionPlugin object.
+   *
+   * @param {GeneProductAssociation} geneProductAssociation the geneProductAssociation to be set
+   */
+  long setGeneProductAssociation (GeneProductAssociation geneProductAssociation);
+
+
+  /**
+   * Creates a new GeneProductAssociation object and adds it to the FbcReactionPlugin object.
+   *
+   * @return the newly created GeneProductAssociation object.
+   */
+  GeneProductAssociation createGeneProductAssociation ();
+
+
+  /**
+   * Returns the value of the "lowerFluxBound" attribute of this FbcReactionPlugin.
+   *
+   * @return the value of the "lowerFluxBound" attribute of this FbcReactionPlugin as a string.
+   */
+  DOMString getLowerFluxBound();
+
+
+  /**
+   * Returns the value of the "upperFluxBound" attribute of this FbcReactionPlugin.
+   *
+   * @return the value of the "upperFluxBound" attribute of this FbcReactionPlugin as a string.
+   */
+  DOMString getUpperFluxBound();
+
+
+  /**
+   * Predicate returning true if this FbcReactionPlugin's "lowerFluxBound"
+   * attribute is set.
+   *
+   * @return {boolean} true if this FbcReactionPlugin's "lowerFluxBound" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetLowerFluxBound() const;
+
+
+  /**
+   * Predicate returning true if this FbcReactionPlugin's "upperFluxBound"
+   * attribute is set.
+   *
+   * @return {boolean} true if this FbcReactionPlugin's "upperFluxBound" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetUpperFluxBound() const;
+
+
+  /**
+   * Sets the value of the "lowerFluxBound" attribute of this FbcReactionPlugin.
+   *
+   * @param {string} lowerFluxBound the value of the "lowerFluxBound" attribute to be set
+   */
+  long setLowerFluxBound(DOMString lowerFluxBound);
+
+
+  /**
+   * Sets the value of the "upperFluxBound" attribute of this FbcReactionPlugin.
+   *
+   * @param {string} upperFluxBound the value of the "upperFluxBound" attribute to be set
+   */
+  long setUpperFluxBound(DOMString upperFluxBound);
+
+
+  /**
+   * Unsets the value of the "lowerFluxBound" attribute of this FbcReactionPlugin.
+   */
+  long unsetLowerFluxBound();
+
+
+  /**
+   * Unsets the value of the "upperFluxBound" attribute of this FbcReactionPlugin.
+   */
+  long unsetUpperFluxBound();
+
+  /**
+   * Unsets the the "geneProduct" element of this FbcReactionPlugin.
+   */
+  long unsetGeneProductAssociation();
+};
