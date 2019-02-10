@@ -126,59 +126,6 @@ interface GeneralGlyph {
 GeneralGlyph implements SBase;
 
 /**
- * # Representation of a line.
- *
- * The LineSegment class consists of the mandatory attribute xsi:type and two
- * child elements of type Point. One is called 'start' and represents the
- * starting point of the line, the other is called 'end' and represents the
- * endpoint of the line.  The LineSegment class is also the base class for
- * CubicBezier, which represent curved lines instead of straight ones.
- */
-[Prefix="libsbml::"]
-interface LineSegment {
-  DOMString getId();
-  void setId(DOMString t);
-  boolean isSetId();
-
-  Point getStart();
-  void setStart(Point p);
-
-  Point getEnd();
-  void setEnd(Point p);
-};
-
-LineSegment implements SBase;
-
-/**
- * # A Cubic B&eacute;zier smooth curve.
- *
- * In order to be able to represent smooth curves the &ldquo;layout&rdquo;
- * package defines the class CubicBezier. It represents a Bezier curve, and
- * is readily available in most graphics APIs.  The class CubicBezier is
- * derived from LineSegment. It consists of four elements: the two inherited
- * elements 'start' and 'end', which specify the starting point and the
- * endpoint of the cubic bezier curve, and two elements 'basePoint1' and
- * 'basePoint2', which specify the two additional base points that are needed
- * to describe a cubic bezier curve.
- */
-[Prefix="libsbml::"]
-interface CubicBezier {
-  Point getStart();
-  void setStart(Point p);
-
-  Point getEnd();
-  void setEnd(Point p);
-
-  Point getBasePoint1();
-  void setBasePoint1(Point p);
-
-  Point getBasePoint2();
-  void setBasePoint2(Point p);
-};
-
-CubicBezier implements SBase;
-
-/**
  * # A glyph for an SBML reaction.
  *
  * Analogous to how a Reaction object has to at least have one reactant or
@@ -226,40 +173,6 @@ interface SpeciesGlyph {
 };
 
 SpeciesGlyph implements SBase;
-
-/**
- * # A curve connecting elements in a diagram.
- *
- * The Curve class describes how to connect elements in a diagram defined
- * with the use of the &ldquo;layout&rdquo; package. A curve is fully
- * specified by a mandatory listOfCurveSegments element and is used in four
- * places in the &ldquo;layout&rdquo; package:
- *
- * * SpeciesReferenceGlyph: Here it describes a curve from/to the center
- * piece of the parent ReactionGlyph to/from the SpeciesGlyph it represents.
- *
- * * ReactionGlyph: Here it describes a curve for the center piece of a
- * reaction.
- *
- * * ReferenceGlyph: Here it describes a curve from/to the center piece of
- * the parent GeneralGlyph to/from the glyph it represents.
- *
- * * GeneralGlyph: Here it describes a curve for the center piece of an
- * additional relationship.
- *
- * In the text above, the term 'center piece' refers to either the Curve
- * element of a ReactionGlyph, or its BoundingBox.
- */
-[Prefix="libsbml::"]
-interface Curve {
-  CubicBezier createCubicBezier();
-  LineSegment createLineSegment();
-
-  unsigned long getNumCurveSegments();
-  LineSegment getCurveSegment(unsigned long n);
-};
-
-Curve implements SBase;
 
 /**
  * # A glyph for an SBML <em>species reference</em>.

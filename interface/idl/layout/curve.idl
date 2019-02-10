@@ -1,0 +1,157 @@
+/**
+ * # Representation of a line.
+ *
+ * The LineSegment class consists of the mandatory attribute xsi:type and two
+ * child elements of type Point. One is called 'start' and represents the
+ * starting point of the line, the other is called 'end' and represents the
+ * endpoint of the line.  The LineSegment class is also the base class for
+ * CubicBezier, which represent curved lines instead of straight ones.
+ */
+[Prefix="libsbml::"]
+interface LineSegment {
+  /**
+   * Returns the start point of the line.
+   *
+   * @return {Point}
+   */
+  Point getStart();
+
+  /**
+   * Initializes the start point with a copy of the given Point object.
+   *
+   * @param {Point}
+   */
+  void setStart(Point p);
+
+  /**
+   * Returns the end point of the line.
+   *
+   * @return {Point}
+   */
+  Point getEnd();
+
+  /**
+   * Initializes the end point with a copy of the given Point object.
+   *
+   * @param {Point}
+   */
+  void setEnd(Point p);
+};
+
+LineSegment implements SBase;
+
+/**
+ * # A Cubic B&eacute;zier smooth curve.
+ *
+ * In order to be able to represent smooth curves the &ldquo;layout&rdquo;
+ * package defines the class CubicBezier. It represents a Bezier curve, and
+ * is readily available in most graphics APIs.  The class CubicBezier is
+ * derived from LineSegment. It consists of four elements: the two inherited
+ * elements 'start' and 'end', which specify the starting point and the
+ * endpoint of the cubic bezier curve, and two elements 'basePoint1' and
+ * 'basePoint2', which specify the two additional base points that are needed
+ * to describe a cubic bezier curve.
+ */
+[Prefix="libsbml::"]
+interface CubicBezier {
+  /**
+   * Returns the first base point of the curve (the one closer to the
+   * starting point).
+   *
+   * @return {Point} the Point child "basePoint1".  Will always return an
+   * actual object: if previously unset, the Point will exist, but
+   * have no set attributes nor children.
+   */
+  Point getBasePoint1();
+
+  /**
+   * Initializes first base point with a copy of the given point.
+   *
+   * @param {Point} p the Point to use as "basePoint1" (creates a copy)
+   */
+  void setBasePoint1(Point p);
+
+  /**
+   * Returns the second base point of the curve (the one closer to the end
+   * point).
+   *
+   * @return {Point} the Point child "basePoint2".  Will always return an
+   * actual object: if previously unset, the Point will exist, but
+   * have no set attributes nor children.
+   */
+  Point getBasePoint2();
+
+  /**
+   * Initializes second base point with a copy of the given point.
+   *
+   * @param {Point} p the Point to use as "basePoint2" (creates a copy)
+   */
+  void setBasePoint2(Point p);
+};
+
+CubicBezier implements LineSegment;
+
+/**
+ * # A curve connecting elements in a diagram.
+ *
+ * The Curve class describes how to connect elements in a diagram defined
+ * with the use of the &ldquo;layout&rdquo; package. A curve is fully
+ * specified by a mandatory listOfCurveSegments element and is used in four
+ * places in the &ldquo;layout&rdquo; package:
+ *
+ * * SpeciesReferenceGlyph: Here it describes a curve from/to the center
+ * piece of the parent ReactionGlyph to/from the SpeciesGlyph it represents.
+ *
+ * * ReactionGlyph: Here it describes a curve for the center piece of a
+ * reaction.
+ *
+ * * ReferenceGlyph: Here it describes a curve from/to the center piece of
+ * the parent GeneralGlyph to/from the glyph it represents.
+ *
+ * * GeneralGlyph: Here it describes a curve for the center piece of an
+ * additional relationship.
+ *
+ * In the text above, the term 'center piece' refers to either the Curve
+ * element of a ReactionGlyph, or its BoundingBox.
+ */
+[Prefix="libsbml::"]
+interface Curve {
+  /**
+   * Creates a new CubicBezier and adds it to the end of the list.  A
+   * reference to the new CubicBezier object is returned.
+   *
+   * @return {CubicBezier} the CubicBezier created as a new child "curveSegment" of
+   * this Curve.
+   */
+  CubicBezier createCubicBezier();
+
+  /**
+   * Creates a new LineSegment and adds it to the end of the list.  A
+   * reference to the new LineSegment object is returned.
+   *
+   * @return {LineSegment} the LineSegment created as a new child "curveSegment"
+   * of this Curve.
+   */
+  LineSegment createLineSegment();
+
+  /**
+   * Returns the number of curve segments.
+   *
+   * @return {number} the number of "curveSegment" children of this Curve.
+   */
+  unsigned long getNumCurveSegments();
+
+  /**
+   * Returns a pointer to the curve segment with the given index.
+   * If the index is invalid, @c NULL is returned.
+   *
+   * @param {number} index the index value of the curve segment to return
+   *
+   * @return {LineSegment} the LineSegment representing the child "curveSegment"
+   * with the appropriate @p index, or @c NULL if no such LineSegment
+   * exists.
+   */
+  LineSegment getCurveSegment(unsigned long n);
+};
+
+Curve implements SBase;
