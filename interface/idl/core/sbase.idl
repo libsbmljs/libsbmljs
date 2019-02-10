@@ -381,11 +381,13 @@ interface SBase {
   /**
    * Returns the nth plug-in object (extension interface) for an SBML Level&nbsp;3
    * package extension.
-   * The returned plug-in will be the appropriate type of plugin requested:
-   * calling Model.getPlugin("fbc") will return an FbcModelPlugin; calling
-   * Parameter.getPlugin("comp") will return CompSBasePlugin, etc.
    *
    * If no such plugin exists, NULL is returned.
+   *
+   * **Note:** To get a plugin corresponding to a given id, use the
+   * findPlugin method. Calling Model.findPlugin("fbc") will return an FbcModelPlugin; calling
+   * Parameter.findPlugin("comp") will return CompSBasePlugin, etc.
+   * However, these instances must be cast to the derived type using {@link castObject}
    *
    * @param {number} n the index of the plug-in to return
    *
