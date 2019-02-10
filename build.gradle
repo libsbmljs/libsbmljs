@@ -168,6 +168,7 @@ task combineIDL(type: ConcatFiles) {
   if (enableFBC) {
     include Paths.get(idl_dir, "fbc", "fluxbound.idl")
     include Paths.get(idl_dir, "fbc", "objective.idl")
+    include Paths.get(idl_dir, "fbc", "geneproduct.idl")
     include Paths.get(idl_dir, "fbc", "extension.idl")
   }
   if (enableMulti) {

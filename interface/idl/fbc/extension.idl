@@ -1,6 +1,3 @@
-[Prefix="libsbml::"]
-interface GeneProduct {};
-
 /**
  * # Extension of Model.
  *
