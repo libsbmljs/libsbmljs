@@ -79,3 +79,5 @@ interface FbcAssociation {
   DOMString toInfix(boolean usingId);
 
 };
+
+FbcAssociation implements SBase;

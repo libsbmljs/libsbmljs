@@ -147,7 +147,7 @@ task combineIDL(type: ConcatFiles) {
 * Make sure the variable `ext.enableMyPkg` is set to true somewhere in the `build.gradle` file. We suggest setting it as follows:
 
 ```
-ext.enableMyPkg = findProperty('enableMyPkg') || true
+ext.enableMyPkg = findProperty('enableMyPkg') || isExperimentalBranch
 ```
 
 * Run `gradle --rerun-tasks combineIDL` and build libsbmljs as above. Also consider adding tests for your package to the karma/tests directory (and add those files to the `combineTests` task).

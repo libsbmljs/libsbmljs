@@ -19,7 +19,7 @@ interface GeneProductRef {
    *
    * @return {string} the value of the "geneProduct" attribute of this GeneProductRef as a string.
    */
-  DOMString getGeneProduct() const;
+  DOMString getGeneProduct();
 
   /**
   * Converts this FbcAssociation object into an infix string representation.
@@ -46,3 +46,5 @@ interface GeneProductRef {
    */
   long setGeneProduct(DOMString geneProduct);
 };
+
+GeneProductRef implements SBase;

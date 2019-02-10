@@ -85,3 +85,5 @@ interface FbcAnd {
   FbcAssociation removeAssociation(unsigned long n);
 
 };
+
+FbcAnd implements SBase;
