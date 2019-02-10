@@ -21,7 +21,8 @@ describe("Layout test", function() {
         expect(doc.getModel().hasPlugin('layout')).toEqual(true)
         const plugin = doc.getModel().findPlugin('layout')
         expect(plugin.getPackageName()).toEqual('layout')
-        const layoutplugin = plugin.asLayout()
+        // const layoutplugin = plugin.asLayout()
+        const layoutplugin = libsbml.castObject(plugin, libsbml.LayoutModelPlugin)
         expect(layoutplugin.layouts.length).toEqual(1)
 
         const layout = layoutplugin.layouts[0]
