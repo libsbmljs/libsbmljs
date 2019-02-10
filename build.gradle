@@ -29,6 +29,17 @@ if (!makeAstEnum.exists() || makeAstEnum.isDirectory()) {
   throw new GradleException('Expected to find make_ast_enum.py at tools/make_ast_enum.py, but it does not exist')
 }
 
+ext.astHeaderPath = Paths.get("libsbml","src","sbml","math","ASTNodeType.h").toString()
+def astHeader = new File(astHeaderPath)
+if (!astHeader.exists() || astHeader.isDirectory()) {
+  ext.astHeaderPath = Paths.get("libsbml","src","sbml","math","ASTTypes.h").toString()
+  println astHeaderPath
+  astHeader = new File(astHeaderPath)
+  if (!astHeader.exists() || astHeader.isDirectory()) {
+    throw new GradleException('Expected to find ASTNodeType.h in libsbml/src/sbml/math, but it does not exist')
+  }
+}
+
 def emscriptenToolsPath = Paths.get(emscriptenDir,"tools").toString()
 def emscriptenToolsDir = new File(emscriptenToolsPath)
 if (!emscriptenToolsDir.exists() || !emscriptenToolsDir.isDirectory()) {
@@ -116,7 +127,7 @@ task generateAstEnum(type:Exec) {
 
   inputs.file(makeAstEnum.getAbsolutePath())
 
-  commandLine 'python3', makeAstEnum.getAbsolutePath(), "--input", Paths.get("..","..","libsbml","src","sbml","math","ASTNodeType.h").toString(), "--output", 'ast_enum.idl'
+  commandLine 'python3', makeAstEnum.getAbsolutePath(), "--input", astHeader.getAbsolutePath(), "--output", 'ast_enum.idl'
 }
 generateAstEnum.doFirst {
   mkdir Paths.get("$buildDir","docs").toString()

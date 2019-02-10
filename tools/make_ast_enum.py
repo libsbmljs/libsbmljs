@@ -71,11 +71,12 @@ jinja_env.lstrip_blocks = True
 
 def get_enum_values(lines):
     ast_re = re.compile(r'^[\s]*,?[\s]*(AST_[\w]+)([\s]*=[\s]*[\d]+)?([\s]*/\*.*)?$')
+    ast_typecode_re = re.compile(r'^[\s]*,?[\s]*(AST_TYPECODE_[\w]+)([\s]*=[\s]*[\d]+)?([\s]*/\*.*)?$')
 
     lines = input_text.splitlines()
     for line in lines:
         m = ast_re.match(line)
-        if m is not None:
+        if m is not None and ast_typecode_re.match(line) is None:
             yield m.group(1)
 
 def process_ast_enum(input_text):
