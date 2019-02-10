@@ -1,7 +1,4 @@
 [Prefix="libsbml::"]
-interface FluxBound {};
-
-[Prefix="libsbml::"]
 interface GeneProduct {};
 
 /**

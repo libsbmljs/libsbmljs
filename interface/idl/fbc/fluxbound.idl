@@ -1,0 +1,73 @@
+/**
+ * # Possible values for the FluxBound 'operation' attribute.
+ *
+ * The possible legal values are less than or equal to, greater than or
+ * equal to, or equal to.  The two options "FLUXBOUND_OPERATION_LESS" and "
+ * FLUXBOUND_OPERATION_GREATER" are not legal values for the FluxBound 'operation' attribute,
+ * but are provided to allow backwards compatibility with an earlier
+ * version of the draft specification.
+ */
+enum libsbml__idl__FluxBoundOperation_t {
+  "libsbml::FLUXBOUND_OPERATION_LESS_EQUAL",
+  "libsbml::FLUXBOUND_OPERATION_GREATER_EQUAL",
+  "libsbml::FLUXBOUND_OPERATION_LESS",
+  "libsbml::FLUXBOUND_OPERATION_GREATER",
+  "libsbml::FLUXBOUND_OPERATION_EQUAL",
+  "libsbml::FLUXBOUND_OPERATION_UNKNOWN"
+};
+
+/**
+ * # Max or min value for a reaction flux.
+ *
+ * The FluxBound class of objects is used in Version 1 of the SBML
+ * Level 3 fbc ("fbc") package to express a single
+ * (in)equality that provides the maximum or minimum value that a reaction
+ * flux can obtain at steady state.  (This same information is encoded
+ * differently in Version 2 of "fbc"; see the
+ * "upperFluxBound" and "lowerFluxBound" attributes on FbcReactionPlugin.)
+ *
+ * ## Attributes on FluxBound
+ *
+ * In addition to the common optional attributes "id" and "name", FluxBound
+ * takes three required attributes: "reaction", "operation" and "value".
+ * These three attributes define the meaning of the FluxBound, and are
+ * interpreted using the following expression:
+ *
+ * *reaction*   *operator*   *value*
+ *
+ * The "reaction" attribute takes a value of `SIdRef`.  The value
+ * must be the identifier of a Reaction object defined within the enclosing
+ * model.
+ *
+ * The "operation" attribute takes a value from
+ * {@link FluxBoundOperation_t} representing
+ * different mathematical inequalities. Possible values for "operation" include
+ * `greaterEqual`, `equal`, and others.
+ *
+ * The "value" attribute takes a numerical value of type `double`,
+ * and represents the value of the flux bound.  The permitted values include
+ * positive infinity (`INF`) and negative infinity
+ * (`-INF`).
+ *
+ * The following is an example of a set of flux bounds encoded in this form; it
+ * also demonstrates the use of ListOfFluxBounds.
+ *
+ * ```
+ * <fbc:listOfFluxBounds>
+ *     <fbc:fluxBound fbc:id="R1b" fbc:reaction="R1" fbc:operation="greaterEqual" fbc:value="1.2"/>
+ *     <fbc:fluxBound fbc:id="R2b" fbc:reaction="R2" fbc:operation="lessEqual" fbc:value="-1.2"/>
+ *     <fbc:fluxBound fbc:id="R3b" fbc:reaction="R3" fbc:operation="greaterEqual" fbc:value="-INF"/>
+ *     <fbc:fluxBound fbc:id="R4b" fbc:reaction="R4" fbc:operation="lessEqual" fbc:value="INF"/>
+ *     <fbc:fluxBound fbc:id="R5b" fbc:reaction="R5" fbc:operation="equal" fbc:value="1"/>
+ * </fbc:listOfFluxBounds>
+ * ```
+ *
+ * **Note:** This class is only defined for Version 1 of the
+ * "fbc" package specification.  It was replaced in
+ * Version 2 by a Parameter referenced by the "upperFluxBound" or
+ * "lowerFluxBound" attributes on an FbcReactionPlugin.  FluxBound is
+ * therefore not used for Version 2 "fbc" models.
+ *
+ */
+[Prefix="libsbml::"]
+interface FluxBound {};
