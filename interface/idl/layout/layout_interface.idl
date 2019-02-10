@@ -391,8 +391,26 @@ interface SpeciesGlyph {
   BoundingBox getBoundingBox();
   void setBoundingBox(BoundingBox b);
 
+  /**
+   * Returns the id of the associated species object.
+   *
+   * @return {string}
+   */
   DOMString getSpeciesId();
-  void setSpeciesId(DOMString t);
+
+  /**
+   * Sets the id of the associated species object.
+   *
+   * @param {string} id
+   */
+  void setSpeciesId(DOMString id);
+
+  /**
+   * Returns true if the id of the associated species object is not the
+   * empty string.
+   *
+   * @return {boolean}
+   */
   boolean isSetSpeciesId();
 };
 
