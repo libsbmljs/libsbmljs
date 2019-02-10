@@ -566,8 +566,30 @@ interface LayoutCaster {
  */
 [Prefix="libsbml::"]
 interface LayoutExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 2 version
+   * of the package implemented by this libSBML Extension.
+   *
+   * Unique among the SBML Level 3 packages, the Layout package existed
+   * and was in widespread use prior to the introduction of SBML
+   * Level 3.  The Layout package was used as model annotations in SBML
+   * Level 2.  This method returns the SBML annotation XML namespace
+   * used for Level 2.
+   *
+   * @return {string} the XML namespace as a string.
+   */
+  static DOMString getXmlnsL2();
+
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package
+   * implemented by this libSBML extension.
+   *
+   * @return {string} the XML namespace as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
 };
 
+// not needed
 [Prefix="libsbmljs::"]
 interface LayoutExtensionWrapper {
   void LayoutExtensionWrapper();
@@ -575,6 +597,7 @@ interface LayoutExtensionWrapper {
   DOMString getXmlnsL3V1V1();
 };
 
+// not needed
 [Prefix="libsbmljs::"]
 interface CurveCaster {
   void CurveCaster();
