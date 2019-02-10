@@ -15,7 +15,7 @@
  * in Version 2.
  */
 [Prefix="libsbml::"]
-longerface FbcReactionPlugin {
+interface FbcReactionPlugin {
   /**
    * Returns the GeneProductAssociation from this FbcReactionPlugin object.
    *
@@ -73,7 +73,7 @@ longerface FbcReactionPlugin {
    * @return {boolean} true if this FbcReactionPlugin's "lowerFluxBound" attribute has been set,
    * otherwise false is returned.
    */
-  boolean isSetLowerFluxBound() const;
+  boolean isSetLowerFluxBound();
 
 
   /**
@@ -83,7 +83,7 @@ longerface FbcReactionPlugin {
    * @return {boolean} true if this FbcReactionPlugin's "upperFluxBound" attribute has been set,
    * otherwise false is returned.
    */
-  boolean isSetUpperFluxBound() const;
+  boolean isSetUpperFluxBound();
 
 
   /**

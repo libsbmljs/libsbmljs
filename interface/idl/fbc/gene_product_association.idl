@@ -1,0 +1,133 @@
+[Prefix="libsbml::"]
+interface FbcAssociation {};
+
+[Prefix="libsbml::"]
+interface FbcAnd {};
+
+[Prefix="libsbml::"]
+interface FbcOr {};
+
+[Prefix="libsbml::"]
+interface GeneProductRef {};
+
+/**
+ * # Association between gene products and reactions
+ *
+ * In Version 2 of the SBML Level 3 fbc ("fbc")
+ * package specification, GeneProductAssociation is a class derived from
+ * SBase used to associate one more genes or gene products with reactions.
+ * GeneProductAssociation objects are essentially containers, with one such
+ * container optionally attached as a subelement to a Reaction object in a
+ * model.  The container can contain one of three kinds of objects, all of
+ * which are subclasses of the libSBML parent class FbcAssociation.  (Note
+ * that this class is named *Association* in the "fbc"
+ * Version 2 specification, but in libSBML is named FbcAssociation to
+ * avoid a name conflict with an existing class.)
+ *
+ * One of the kinds of FbcAssociation subclasses that can appear in a
+ * GeneProductAssociation is GeneProductRef.  This class of objects
+ * references a GeneProduct declared in a ListOfGeneProducts attached to the
+ * enclosing Model object.  In the "fbc" approach, when more than
+ * one gene (or gene product) is present in an association, they are written
+ * as logical expressions using Boolean logical operators *and* and
+ * *or* through the classes (in libSBML) FbcAnd and FbcOr.  (In the
+ * "fbc" Version 2 specification, these are simply named
+ * *And* and *Or*, respectively.) The FbcAnd and FbcOr objects
+ * in turn can contain either GeneProductRef objects or other FbcAnd and/or
+ * FbcOr objects.
+ *
+ * Here is a concrete example of what the XML representation of a simple
+ * *or* relationship might look like:
+ * <reaction id = "R_ABTA" ... rest of Reaction declaration elided for this example ...>
+ *  <fbc:geneProductAssociation fbc:id="ga_16">
+ *   <fbc:or>
+ *    <fbc:geneProductRef fbc:geneProduct="g_b2662"/>
+ *    <fbc:geneProductRef fbc:geneProduct="g_b1302"/>
+ *   </fbc:or>
+ *  </fbc:geneProductAssociation>
+ * </reaction>
+ */
+[Prefix="libsbml::"]
+interface GeneProductAssociation {
+/**
+   * Returns the "association" element of this GeneProductAssociation.
+   *
+   * @return {FbcAssociation} the "association" element of this GeneProductAssociation.
+   */
+  FbcAssociation getAssociation();
+
+
+  /**
+   * Creates a new "association" and sets it for this GeneProductAssociation.
+   *
+   * @return {FbcAnd} the FbcAnd created.
+   */
+  FbcAnd createAnd();
+
+
+  /**
+   * Creates a new "association" and sets it for this GeneProductAssociation.
+   *
+   * @return {FbcOr}
+   */
+  FbcOr createOr();
+
+
+  /**
+   * Creates a new "association" and sets it for this GeneProductAssociation.
+   *
+   * @return {GeneProductRef}
+   */
+  GeneProductRef createGeneProductRef();
+
+
+  /**
+   * Predicate returning true if this GeneProductAssociation's
+   * "association" element is set.
+   *
+   * @return {boolean} true if this GeneProductAssociation's "association" element has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetAssociation();
+
+
+  /**
+   * Sets the "association" element of this GeneProductAssociation.
+   *
+   * @param {FbcAssociation} association FbcAssociation to be set
+   */
+  long setAssociation(FbcAssociation association);
+
+  /**
+  * Sets the "association" element of this GeneProductAssociation.
+  *
+  * This is a helper method that allows a user to set the
+  * GeneProductAssociation via a string such as "a1 AND b1 OR
+  * C2" and have the method work out the correct XML structure.
+  *
+  * @param {boolean} usingId If true, this method assumes that the infix
+  * string association uses the identifiers of GeneProduct objects.  If
+  * false (the default), the method assumes that the string uses the label
+  * attributes of GeneProduct objects
+  *
+  * @param {boolean} addMissingGP If true (the default), then while
+  * parsing the infix string in association, any identifiers or labels
+  * (depending on usingId) found in the expression that do not correspond
+  * to an existing GeneProduct object will result in the addition of that
+  * GeneProduct.  If false, this method will not add a GeneProduct in
+  * that circumstance
+  */
+  long setAssociation(DOMString association, boolean usingId, boolean addMissingGP);
+
+
+  /**
+   * Unsets the value of the "name" attribute of this GeneProductAssociation.
+   */
+  long unsetName();
+
+
+  /**
+   * Unsets the "association" element of this GeneProductAssociation.
+   */
+  long unsetAssociation();
+};
