@@ -148,3 +148,5 @@ interface FluxBound {
   double getValue ();
 
 };
+
+FluxBound implements SBase;
