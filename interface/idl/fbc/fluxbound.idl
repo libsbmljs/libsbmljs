@@ -70,4 +70,85 @@ enum libsbml__idl__FluxBoundOperation_t {
  *
  */
 [Prefix="libsbml::"]
-interface FluxBound {};
+interface FluxBound {
+  /**
+   * Returns the value of the "reaction" attribute of this FluxBound object.
+   *
+   * @return the value of the "reaction" attribute of this FluxBound object.
+   */
+  DOMString getReaction ();
+
+
+  /**
+   * Predicate returning @c true if this FluxBound's "reaction" attribute is
+   * set.
+   *
+   * @return @c true if this FluxBound object's "reaction" attribute has been
+   * set, otherwise @c false is returned.
+   */
+  boolean isSetReaction ();
+
+
+  /**
+   * Sets the value of the "reaction" attribute of this FluxBound object.
+   */
+  long setReaction (const DOMString reaction);
+
+
+  /**
+   * Unsets the value of the "reaction" attribute of this FluxBound object.
+   */
+  long unsetReaction ();
+
+
+  /**
+   * Returns the value of the "operation" attribute of this FluxBound object.
+   *
+   * @return {string} the value of the "operation" attribute of this FluxBound object.
+   */
+  DOMString getOperation ();
+
+
+  /**
+   * Returns the value of the "operation" attribute of this FluxBound object.
+   *
+   * @return {FluxBoundOperation_t} the value of the "operation" attribute of this FluxBound object.
+   */
+  FluxBoundOperation_t getFluxBoundOperation ();
+
+
+  /**
+   * Predicate returning @c true if this FluxBound's "operation" attribute is
+   * set.
+   *
+   * @return {boolean} @c true if this FluxBound object's "operation" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  boolean isSetOperation ();
+
+
+  /**
+   * Sets the value of the "operation" attribute of this FluxBound object.
+   */
+  long setOperation (const DOMString operation);
+
+
+  /**
+   * Sets the value of the "operation" attribute of this FluxBound object.
+   */
+  long setOperation (FluxBoundOperation_t operation);
+
+
+  /**
+   * Unsets the value of the "operation" attribute of this FluxBound object.
+   */
+  long unsetOperation ();
+
+  /**
+   * Returns the value of the "value" attribute of this FluxBound object.
+   *
+   * @return {number} the value of the "value" attribute of this FluxBound object.
+   */
+  double getValue ();
+
+};
