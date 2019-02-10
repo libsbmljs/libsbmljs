@@ -2,9 +2,6 @@
 interface FluxBound {};
 
 [Prefix="libsbml::"]
-interface Objective {};
-
-[Prefix="libsbml::"]
 interface GeneProduct {};
 
 /**
