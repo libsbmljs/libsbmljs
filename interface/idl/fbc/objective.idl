@@ -4,7 +4,7 @@
  * An integral component in a complete description of a steady-state model is
  * the so-called objective function, which generally consists of a
  * linear combination of model variables (fluxes) and a sense (direction). In
- * the SBML Level&nbsp;3 fbc ("fbc") package, this concept
+ * the SBML Level 3 fbc ("fbc") package, this concept
  * is succinctly captured in the Objective class.  An Objective object
  * includes a list of flux objectives, each in the form of a FluxObjective
  * object.
@@ -22,7 +22,7 @@
  * FluxObjective takes in the enclosing Objective.  Its unit of measurement
  * is `dimensionless`.  The meaning of these two attributes
  * together is given by the formula coefficient &times;
- * reaction-flux.  Since reactions in SBML Level&nbsp;3 are in units of
+ * reaction-flux.  Since reactions in SBML Level 3 are in units of
  * extent, the units of a flux objective are thus extent per
  * time.
  *
@@ -52,7 +52,7 @@ interface Objective {
   /**
    * Returns the value of the "coefficient" attribute of this FluxObjective.
    *
-   * @return {double} the value of the "coefficient" attribute of this FluxObjective
+   * @return {number} the value of the "coefficient" attribute of this FluxObjective
    * as a double.
    */
   double getCoefficient();
@@ -81,7 +81,7 @@ interface Objective {
   /**
    * Sets the value of the "reaction" attribute of this FluxObjective.
    *
-   * @param {string} reaction the value of the "reaction" attribute to be set.
+   * @param {string} reaction the value of the "reaction" attribute to be set
    */
   long setReaction(DOMString reaction);
 
@@ -89,7 +89,7 @@ interface Objective {
   /**
    * Sets the value of the "coefficient" attribute of this FluxObjective.
    *
-   * @param coefficient the value of the "coefficient" attribute to be set.
+   * @param {number} coefficient the value of the "coefficient" attribute to be set
    */
   long setCoefficient(double coefficient);
 
