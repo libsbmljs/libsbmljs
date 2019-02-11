@@ -1,109 +1,89 @@
 /**
- * # An objective function for a flux.
+ * # An objective function.
  *
  * An integral component in a complete description of a steady-state model is
- * the so-called objective function, which generally consists of a
+ * the so-called *objective function*, which generally consists of a
  * linear combination of model variables (fluxes) and a sense (direction). In
- * the SBML Level 3 fbc ("fbc") package, this concept
- * is succinctly captured in the Objective class.  An Objective object
- * includes a list of flux objectives, each in the form of a FluxObjective
- * object.
+ * the SBML Level&nbsp;3 fbc ("fbc") package, this concept
+ * is succinctly captured in the Objective class.
  *
- * The FluxObjective class is a relatively simple container for a model
- * variable weighted by a signed linear coefficient.  In addition to the
- * common SBML object attributes of "id" and "name" (both of which are
- * optional), it adds two required attributes: "reaction" and "coefficient".
+ * The Objective class is derived from the normal SBML SBase class and
+ * inherits the "metaid" and "sboTerm" attributes, as well as the
+ * subcomponents for Annotation and Notes.  To these, the Objective class
+ * adds an optional attribute named "type".  The type attribute can take one
+ * of two literal values: "maximize" or "minimize".  The values
+ * represent the sense of the optimality constraint for the FBC model.
  *
- * The "reaction" attribute must have a value of type `SIdRef`,
- * and its value is restricted to the identifier of a Reaction object in the
- * model.  The "reaction" attribute identifiers the reaction to which the
- * FluxObjective applies.  The "coefficient" attribute must have a value of
- * type `double`, and refers to the coefficient that this
- * FluxObjective takes in the enclosing Objective.  Its unit of measurement
- * is `dimensionless`.  The meaning of these two attributes
- * together is given by the formula coefficient times;
- * reaction-flux.  Since reactions in SBML Level 3 are in units of
- * extent, the units of a flux objective are thus extent per
- * time.
+ * The "fbc" package allows for the definition of multiple model
+ * objectives, with one being designated as active.  The active objective is
+ * indicated using the attribute "activeObjective" on the ListOfObjectives
+ * object. Here is an example of the XML encoding of a model with a list of
+ * objective functions:
  *
- * The following example illustrates the use of these attributes:
- *
- * ```
  * <fbc:listOfObjectives fbc:activeObjective="obj1">
  *  <fbc:objective fbc:id="obj1" fbc:type="maximize">
  *   <fbc:listOfFluxObjectives>
- *    <fbc:fluxObjective fbc:reaction="R1" fbc:coefficient="1"/>
- *    <fbc:fluxObjective fbc:reaction="R2" fbc:coefficient="2"/>
+ *    <fbc:fluxObjective fbc:reaction="R101" fbc:coefficient="1"/>
+ *   </fbc:listOfFluxObjectives>
+ *  </fbc:objective>
+ *  <fbc:objective fbc:id="obj2" fbc:type="minimize">
+ *   <fbc:listOfFluxObjectives>
+ *    <fbc:fluxObjective fbc:reaction="R102" fbc:coefficient="-2.5"/>
+ *    <fbc:fluxObjective fbc:reaction="R103" fbc:coefficient="1"/>
  *   </fbc:listOfFluxObjectives>
  *  </fbc:objective>
  * </fbc:listOfObjectives>
- * ```
  */
 [Prefix="libsbml::"]
 interface Objective {
   /**
-   * Returns the value of the "reaction" attribute of this FluxObjective.
+  * Get a FluxObjective from the ListOfFluxObjectives.
+  *
+  * @param {number} n the index number of the FluxObjective to get
+  *
+  * @return {FluxObjective} the nth FluxObjective in the ListOfFluxObjectives within this
+  * Objective.
+  * If the index n is invalid, NULL is returned.
+  */
+  FluxObjective getFluxObjective(unsigned long n);
+
+
+  /**
+   * Adds a copy the given FluxObjective to this Objective.
    *
-   * @return {string} the value of the "reaction" attribute of this FluxObjective as a
-   * string.
+   * @param {FluxObjective} fo the FluxObjective object to add
    */
-  DOMString getReaction();
+  long addFluxObjective(FluxObjective fo);
+
 
   /**
-   * Returns the value of the "coefficient" attribute of this FluxObjective.
+   * Get the number of FluxObjective objects in this Objective.
    *
-   * @return {number} the value of the "coefficient" attribute of this FluxObjective
-   * as a double.
+   * @return the number of FluxObjective objects in this Objective.
    */
-  double getCoefficient();
+  unsigned long getNumFluxObjectives();
 
 
   /**
-   * Predicate returning true if this FluxObjective's "reaction" attribute
-   * is set.
+   * Creates a new FluxObjective object.
    *
-   * @return {boolean} true if this FluxObjective's "reaction" attribute has been set,
-   * otherwise false is returned.
-   */
-  boolean isSetReaction();
-
-
-  /**
-   * Predicate returning true if this FluxObjective's "coefficient"
-   * attribute is set.
+   * This method creates the FluxObjective object, adds it to this Objective
+   * object's ListOfFluxObjectives, and returns the FluxObjective object
+   * created.
    *
-   * @return {boolean} true if this FluxObjective's "coefficient" attribute has been
-   * set, otherwise false is returned.
+   * @return {FluxObjective} a new FluxObjective object instance.
    */
-  boolean isSetCoefficient();
+  FluxObjective createFluxObjective();
 
 
   /**
-   * Sets the value of the "reaction" attribute of this FluxObjective.
+   * Removes the nth FluxObjective from the ListOfFluxObjectives.
    *
-   * @param {string} reaction the value of the "reaction" attribute to be set
-   */
-  long setReaction(DOMString reaction);
-
-
-  /**
-   * Sets the value of the "coefficient" attribute of this FluxObjective.
+   * The caller owns the returned item and is responsible for deleting it.
    *
-   * @param {number} coefficient the value of the "coefficient" attribute to be set
+   * @param {number} n the index of the FluxObjective to remove
    */
-  long setCoefficient(double coefficient);
-
-
-  /**
-   * Unsets the value of the "reaction" attribute of this FluxObjective.
-   */
-  long unsetReaction();
-
-
-  /**
-   * Unsets the value of the "coefficient" attribute of this FluxObjective.
-   */
-  long unsetCoefficient();
+  FluxObjective removeFluxObjective(unsigned long n);
 };
 
 Objective implements SBase;

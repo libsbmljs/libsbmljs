@@ -144,6 +144,20 @@ task combineIDL(type: ConcatFiles) {
 }
 ```
 
+* Create a C++ wrapper source file `interface/cpp/mypkg_interface_wrapper.cpp`. At a minimum, this file must include the required headers for your package (usually named MyPkgExtensionTypes.h). You can also include additional C++ helper code in here if needed.
+
+* Add your C++ source file to the `combineCPP` task in `build.gradle`:
+
+```
+task combineCPP(type: ConcatFiles) {
+  ...
+  if (enableMyPkg) {
+    include Paths.get(cpp_dir, "mypkg_interface_wrapper.cpp")
+  }
+  ...
+}
+```
+
 * Make sure the variable `ext.enableMyPkg` is set to true somewhere in the `build.gradle` file. We suggest setting it as follows:
 
 ```

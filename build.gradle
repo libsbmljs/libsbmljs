@@ -171,6 +171,7 @@ task combineIDL(type: ConcatFiles) {
   if (enableFBC) {
     include Paths.get(idl_dir, "fbc", "fluxbound.idl")
     include Paths.get(idl_dir, "fbc", "objective.idl")
+    include Paths.get(idl_dir, "fbc", "flux_objective.idl")
     include Paths.get(idl_dir, "fbc", "fbc_and.idl")
     include Paths.get(idl_dir, "fbc", "fbc_or.idl")
     include Paths.get(idl_dir, "fbc", "fbc_association.idl")
@@ -203,6 +204,7 @@ task combineCPP(type: ConcatFiles) {
     include Paths.get(cpp_dir, "render_interface_wrapper.cpp")
   }
   if (enableFBC) {
+    include Paths.get(cpp_dir, "fbc_interface_wrapper.cpp")
   }
   if (enableMulti) {
   }
@@ -485,6 +487,7 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "writing.js")
   include Paths.get(tests_dir, "units.js")
   include Paths.get(tests_dir, "layout.js")
+  include Paths.get(tests_dir, "fbc-example.js")
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {

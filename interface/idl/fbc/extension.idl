@@ -30,5 +30,3 @@ interface FbcExtension {
    */
   static DOMString getXmlnsL3V1V2();
 };
-
-FbcExtension implements SBase;

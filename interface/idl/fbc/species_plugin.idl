@@ -121,4 +121,4 @@ interface FbcSpeciesPlugin {
   long unsetChemicalFormula();
 };
 
-FbcSpeciesPlugin implements SBase;
+FbcSpeciesPlugin implements SBasePlugin;

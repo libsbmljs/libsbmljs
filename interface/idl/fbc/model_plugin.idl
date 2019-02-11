@@ -304,4 +304,4 @@ interface FbcModelPlugin {
   GeneProduct removeGeneProduct(unsigned long n);
 };
 
-FbcModelPlugin implements SBase;
+FbcModelPlugin implements SBasePlugin;

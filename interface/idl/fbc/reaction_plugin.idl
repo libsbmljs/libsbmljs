@@ -119,4 +119,4 @@ interface FbcReactionPlugin {
   long unsetGeneProductAssociation();
 };
 
-FbcReactionPlugin implements SBase;
+FbcReactionPlugin implements SBasePlugin;
