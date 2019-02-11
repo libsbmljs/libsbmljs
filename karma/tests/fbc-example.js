@@ -246,27 +246,54 @@ describe("Writing test", function() {
 
           const plugin = doc.getModel().findPlugin('fbc')
           expect(plugin.getPackageName()).toEqual('fbc')
-          const fbc_plugin = libsbml.castObject(plugin, libsbml.FbcModelPlugin)
+          const fbc_model_plugin = libsbml.castObject(plugin, libsbml.FbcModelPlugin)
+          fbc_model_plugin.setStrict(false)
 
-          const bound= fbc_plugin.createFluxBound()
+          const bound= fbc_model_plugin.createFluxBound()
           bound.setId("bound1")
           bound.setReaction("J0")
           bound.setOperation("equal")
           bound.setValue(10)
 
-          const objective = fbc_plugin.createObjective()
+          const objective = fbc_model_plugin.createObjective()
           objective.setId("obj1")
           objective.setType(libsbml.OBJECTIVE_TYPE_MAXIMIZE)
 
           // mark obj1 as active objective
-          fbc_plugin.setActiveObjectiveId("obj1")
+          fbc_model_plugin.setActiveObjectiveId("obj1")
           const fluxObjective = objective.createFluxObjective()
           fluxObjective.setReaction("J8")
           fluxObjective.setCoefficient(1)
 
           const writer = new libsbml.SBMLWriter()
           const serializedSBML = writer.writeSBMLToString(doc)
-          console.log(serializedSBML)
+
+          // make sure the expected tags are there
+          expect(serializedSBML).toContain('fbc:listOfObjectives')
+          expect(serializedSBML).toContain('fbc:objective')
+          expect(serializedSBML).toContain('fbc:listOfFluxObjectives')
+          expect(serializedSBML).toContain('fbc:fluxObjective')
+
+          const reader = new libsbml.SBMLReader()
+
+          const doc_after = reader.readSBMLFromString(serializedSBML)
+
+          // console.log(doc_after.getError(0).getMessage())
+          expect(doc_after.getNumErrors()).toEqual(0)
+          expect(doc_after.isPackageEnabled('fbc')).toEqual(true)
+
+          const model_after = doc_after.getModel()
+
+          const plugin_after = doc.getModel().findPlugin('fbc')
+          expect(plugin_after.getPackageName()).toEqual('fbc')
+          const fbc_model_plugin_after = libsbml.castObject(plugin_after, libsbml.FbcModelPlugin)
+
+          expect(fbc_model_plugin_after.getNumObjectives()).toEqual(1)
+
+          expect(fbc_model_plugin_after.getObjective(0).getType()).toBe('maximize')
+          expect(fbc_model_plugin_after.getObjective(0).getNumFluxObjectives()).toEqual(1)
+
+          expect(fbc_model_plugin_after.getObjective(0).getFluxObjective().getReaction()).toBe('J8')
 
           libsbml.destroy(doc)
         } catch(error) {
