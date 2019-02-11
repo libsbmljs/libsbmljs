@@ -1,0 +1,142 @@
+/**
+ * # Extension of SBMLDocument.
+ *
+ * The CompSBMLDocumentPlugin class inherits from the SBMLDocumentPlugin
+ * class, and codifies the extensions to the SBMLDocument class defined in
+ * the SBML Level 3 comp ("comp") package.  This
+ * extension allows multiple Model objects to be defined in a single
+ * SBMLDocument, stored in an optional child ListOfModelDefinitions object,
+ * as well as define references to Model objects in other files, stored in
+ * the optional child ListOfExternalModelDefinitions object.  These model
+ * definitions, if present, allow Submodel objects to reference other Models
+ * to instantiate.
+ *
+ * The presence of any ModelDefinition or ExternalModelDefinition in an
+ * SBMLDocument does not change the default Model in the file.  If a
+ * SBMLDocument is submitted somewhere to be simulated, it is still the
+ * "model" child of the "sbml" element
+ * that should be simulated.
+ *
+ * In addition, as all packages do, the CompSBMLDocumentPlugin defines a
+ * required flag named "required", which indicates whether
+ * "comp" constructs can be used to change the core mathematics of the
+ * "model" child of the "sbml" element.
+ * Because they can, this attribute must be set true.
+ */
+[Prefix="libsbml::"]
+interface CompSBMLDocumentPlugin {
+  /**
+   * Returns the ModelDefinition with the given index.
+   *
+   * @param {number} n the index number of the ModelDefinition to get.
+   *
+   * @return {ModelDefinition} the nth ModelDefinition in the ListOfModelDefinitions.  If the
+   * index is invalid, NULL is returned.
+   */
+  ModelDefinition getModelDefinition (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given ModelDefinition object to the
+   * ListOfModelDefinitions.
+   *
+   * @param {ModelDefinition} modelDefinition the ModelDefinition object to be added to the
+   * ListOfModelDefinitions.  Fails if the added ModelDefinition is NULL,
+   * does not match the level/version/package of the parent object, or cannot
+   * be added to the list of replaced elements
+   */
+  long addModelDefinition (ModelDefinition modelDefinition);
+
+
+  /**
+   * Returns the number of ModelDefinition objects for this SBMLDocumentPlugin.
+   *
+   * @return the number of ModelDefinition objects.
+   */
+  unsigned long getNumModelDefinitions ();
+
+
+  /**
+   * Creates a ModelDefinition object, adds it to the end of the
+   * ModelDefinition objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {ModelDefinition} a newly created ModelDefinition object.
+   */
+  ModelDefinition createModelDefinition ();
+
+
+  /**
+   * Removes the ModelDefinition with the given index from the CompSBMLDocumentPlugin.
+   *
+   * A pointer to the ModelDefinition that was removed is returned.
+   * If no ModelDefinition has been removed, NULL is returned.
+   *
+   * @param {number} index the index of the ModelDefinition object to remove
+   *
+   * @return {ModelDefinition} the ModelDefinition object removed.  As mentioned above,
+   * the caller owns the returned object. NULL is returned if
+   * the given index is out of range.
+   */
+  ModelDefinition removeModelDefinition(unsigned long index);
+
+
+  /**
+   * Returns the ExternalModelDefinition with the given index.
+   *
+   * @param {number} n the index number of the ExternalModelDefinition to get.
+   *
+   * @return {ExternalModelDefinition} the nth ExternalModelDefinition in the
+   * ListOfExternalModelDefinitions.  If the index is invalid, NULL is
+   * returned.
+   */
+  ExternalModelDefinition getExternalModelDefinition (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given ExternalModelDefinition object to the
+   * ListOfExternalModelDefinitions.
+   *
+   * @param {ExternalModelDefinition} externalModelDefinition the ExternalModelDefinition object to be
+   * added to the ListOFExternalModelDefinitions.  Fails if the added
+   * ExternalModelDefinition is NULL, does not match the
+   * level/version/package of the parent object, or cannot be added to the
+   * list of external model definitions
+   */
+  long addExternalModelDefinition (ExternalModelDefinition externalModelDefinition);
+
+
+  /**
+   * Returns the number of ExternalModelDefinition objects for this SBMLDocumentPlugin.
+   *
+   * @return {number} the number of ExternalModelDefinition objects for this SBMLDocumentPlugin.
+   */
+  unsigned long getNumExternalModelDefinitions ();
+
+
+  /**
+   * Creates a ExternalModelDefinition object, adds it to the end of the
+   * ExternalModelDefinition objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {ExternalModelDefinition} a newly created ExternalModelDefinition object.
+   */
+  ExternalModelDefinition createExternalModelDefinition ();
+
+
+  /**
+   * Removes the ExternalModelDefinition with the given index.
+   *
+   * A pointer to the ExternalModelDefinition that was removed is returned.
+   * If no ExternalModelDefinition has been removed, NULL is returned.
+   *
+   * @param {number} index the index of the ExternalModelDefinition object to remove.
+   *
+   * @return {ExternalModelDefinition} the ExternalModelDefinition object removed.  As mentioned above,
+   * the caller owns the returned object. NULL is returned if
+   * the given index is out of range.
+   */
+  ExternalModelDefinition removeExternalModelDefinition(unsigned long index);
+};
+
+CompSBMLDocumentPlugin implements SBasePlugin;

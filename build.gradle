@@ -192,9 +192,11 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "comp", "sbase_ref.idl")
     include Paths.get(idl_dir, "comp", "port.idl")
     include Paths.get(idl_dir, "comp", "model_definition.idl")
+    include Paths.get(idl_dir, "comp", "external_model_definition.idl")
     include Paths.get(idl_dir, "comp", "submodel.idl")
     include Paths.get(idl_dir, "comp", "deletion.idl")
     include Paths.get(idl_dir, "comp", "model_plugin.idl")
+    include Paths.get(idl_dir, "comp", "document_plugin.idl")
     include Paths.get(idl_dir, "comp", "extension.idl")
   }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))

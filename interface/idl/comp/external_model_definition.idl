@@ -1,0 +1,76 @@
+/**
+ * # A reference to an externally-defined model.
+ *
+ * The ExternalModelDefinition class was introduced by the SBML Level 3
+ * @ref comp ("comp") package to define references to Model
+ * objects defined in other files.
+ *
+ * ExternalModelDefinition objects are model definitions---in and of
+ * themselves, they are definitions of models but not uses of those models.
+ * The class provides a way to declare and identify them so that Model
+ * objects in the present SBML document can use them in Submodel objects.
+ *
+ * ExternalModelDefinition contains two required attributes
+ * ("source" and "id") and three optional attributes
+ * ("modelRef", "md5" and "name").
+ *
+ * The "id" attribute serves to provide a handle for the external
+ * model reference so that Submodel objects can refer to it.  Crucially,
+ * it is not the identifier of the model being referenced; rather,
+ * it is an identifier for this ExternalModelDefinition object within the
+ * current SBML document.  The "id" attribute takes a required value
+ * of type SId, and must be unique across all Model and ExternalModelDefinition
+ * objects present in the document.
+ *
+ * ExternalModelDefinition also has an optional "name" attribute, of
+ * type 'string'.  The "name" attribute may be used to provide
+ * a human-readable description of the ExternalModelDefintion object.
+ *
+ * The required attribute "source" is used to locate the SBML document
+ * containing an external model definition.  The value of this attribute must
+ * be of type anyURI.  Since URIs may be either URLs, URNs, or relative or
+ * absolute file locations, this offers flexibility in referencing SBML
+ * documents.  In all cases, the "source" attribute value must refer
+ * specifically to an SBML Level 3 document; prior
+ * Levels/Versions of SBML are not supported by this package.  The entire
+ * file at the given location is referenced.  The "source" attribute must
+ * have a value for every ExternalModelDefinition instance.
+ *
+ * It should be noted that even though there is currently only a
+ * Hierarchical Model Composition package for SBML Level 3
+ * Version 1, it may be used in SBML Level 3 Version 2,
+ * as long as nothing new from that package is used.  This allows the
+ * ExternalModelDefinition to reference any SBML Level 3 document,
+ * so long as only constructs from Version 1 are used.
+ *
+ * ExternalModelDefinition's optional attribute "modelRef", of type
+ * SIdRef, is used to identify a Model or
+ * ExternalModelDefinition object within the SBML document located at
+ * "source".  The object referenced may be the main model in the
+ * document, or it may be a model definition contained in the SBML
+ * document's ListOfModelDefinitions or
+ * ListOfExternalModelDefinitions lists.  Loops are not allowed: it
+ * must be possible to follow a chain of ExternalModelDefinition objects
+ * to its end in a Model object.
+ *
+ * In core SBML, the "id" on Model is an optional attribute, and therefore,
+ * it is possible that the Model object in a given SBML document does not
+ * have an identifier.  In that case, there is no value to give to the
+ * "modelRef" attribute in ExternalModelDefinition.  If "modelRef" does not
+ * have a value, then the main model (i.e., the <code>&lt;model&gt;</code>
+ * element within the <code>&lt;sbml&gt;</code> element) in the referenced
+ * file is interpreted as being the model referenced by this
+ * ExternalModelDefinition instance.
+ *
+ * Finally, the optional "md5" attribute takes a string value.  If
+ * set, it must be an MD5 checksum value computed over the document
+ * referenced by "source".  This checksum can serve as a data
+ * integrity check over the contents of the "source".  Applications
+ * may use this to verify that the contents have not changed since the time
+ * that the ExternalModelDefinition reference was constructed.
+ */
+[Prefix="libsbml::"]
+interface ExternalModelDefinition {
+};
+
+ExternalModelDefinition implements CompBase;

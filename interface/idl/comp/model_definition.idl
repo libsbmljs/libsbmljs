@@ -10,11 +10,11 @@
  *
  * An additional restriction is placed on the "id" attribute of ModelDefinition
  * objects:  not only must it be unique across all such attributes of type SId
- * within the ModelDefintion, it must also be unique across all Model,
+ * within the ModelDefinition, it must also be unique across all Model,
  * ModelDefinition, and ExternalModelDefinition objects in the same SBMLDocument.
  */
 [Prefix="libsbml::"]
-interface ModelDefintion {
+interface ModelDefinition {
 };
 
-ModelDefintion implements Model;
+ModelDefinition implements Model;
