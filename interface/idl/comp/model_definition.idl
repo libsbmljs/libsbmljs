@@ -1,0 +1,20 @@
+/**
+ * # A model used in model composition.
+ *
+ * The comp ("comp") package allows multiple Model objects
+ * to be defined in a single SBMLDocument.  While these new Model objects are
+ * not new SBML classes, they are given a new name,
+ * `<modelDefinition>`, and reside in ListOfModelDefinition
+ * objects.  In libSBML, this class inherits from the Model class, changing
+ * only the expected parent of the object, and the XML name.
+ *
+ * An additional restriction is placed on the "id" attribute of ModelDefinition
+ * objects:  not only must it be unique across all such attributes of type SId
+ * within the ModelDefintion, it must also be unique across all Model,
+ * ModelDefinition, and ExternalModelDefinition objects in the same SBMLDocument.
+ */
+[Prefix="libsbml::"]
+interface ModelDefintion {
+};
+
+ModelDefintion implements Model;

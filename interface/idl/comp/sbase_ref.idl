@@ -1,0 +1,259 @@
+/**
+ * # Base class for references to objects.
+ *
+ * The SBaseRef class was introduced by the SBML Level 3 comp
+ * ("comp") package as the principle way by which submodel
+ * elements may be referenced.  The SBaseRef class is usually found as the
+ * base class of a Port, Deletion, ReplacedElement, or ReplacedBy class, but
+ * may appear as an child of one of the above classes if the parent object
+ * references a Submodel.
+ *
+ * An SBaseRef object must reference an element using exactly one of the
+ * optional attributes of the class.  Subclasses of SBaseRef may define
+ * additional optional attributes that are legal ways to reference an element.
+ *
+ * SBaseRef objects may reference elements that do not live in the Model parent
+ * of the SBaseRef object.  However, the SBaseRef class itself does not
+ * provide a method of determining which Model or Submodel is being referenced.
+ * The subclasses of SBaseRef provide methods for this instead.
+ *
+ * Once the Model to which the SBaseRef object is referencing has been established,
+ * there are four optional attributes defined in the SBaseRef class that
+ * are each methods of referencing an element:
+ *
+ * * "portRef" (type `PortSIdRef`):  As its name implies, this attribute is used to
+ * refer to a port identifier, in the case when the reference being
+ *ructed with the SBaseRef is intended to refer to a port on a
+ * submodel.  The namespace of the `PortSIdRef` value is the set
+ * of identifiers of type `PortSId` defined in the submodel, not
+ * the parent model.
+ * * "idRef" (type `SIdRef`): As its name implies, this attribute is used to
+ * refer to a regular identifier (i.e., the value of an "id"
+ * attribute on some other object), in the case when the reference being
+ *ructed with the SBaseRef is intended to refer to an object that
+ * does not have a port identifier.  The namespace of the `SIdRef`
+ * value is the set of identifiers of type SId defined in the
+ * submodel, not the parent model.
+ * * "unitRef" (type `UnitSIdRef`): This attribute is used to refer to the identifier
+ * of a UnitDefinition object.  The namespace of the `UnitSIdRef`
+ * value is the set of unit identifiers defined in the submodel, not the
+ * parent model. (Note that even though this attribute is of type `UnitSIdRef`,
+ * the reserved unit identifiers that are defined by SBML Level 3 (see
+ * Section 3.1.10 of the core specification) are
+ * *not* permitted as values of "unitRef".  Reserved unit
+ * identifiers may not be replaced or deleted.)
+ * * "metaIdRef" (type `IDREF`): This attribute is used to refer to a "metaid"
+ * attribute value on some other object, in the case when the reference
+ * beingructed with the SBaseRef is intended to refer to an object
+ * that does not have a port identifier.  The namespace of the "metaIdRef"
+ * value is the entire document in which the referenced model resides, but
+ * must refer to a subelement of the referenced model.  Since meta identifiers are
+ * optional attributes of SBase, all SBML objects have the potential to
+ * have a meta identifier value.
+ *
+ * An SBaseRef object may have up to one subcomponent named "SBaseRef", of
+ * type SBaseRef.  This permits recursive structures to beructed so
+ * that objects inside submodels can be referenced.
+ *
+ * The form of such recursive references must be as follows.  The
+ * highest-level SBaseRef object of such a chain (which will necessarily
+ * be an object of class Port, Deletion, ReplacedElement or ReplacedBy,
+ * because they are the only classes derived from the class SBaseRef) must
+ * refer to a Submodel object in the containing model.  All child
+ * SBaseRef objects in the chain must refer to components inside the
+ * Model instance to which the Submodel refers.
+ */
+[Prefix="libsbml::"]
+interface SBaseRef {
+  /**
+   * Returns the value of the "metaIdRef" attribute of this SBaseRef.
+   *
+   * @return {string} the value of the "metaIdRef" attribute of this SBaseRef.
+   */
+  DOMString getMetaIdRef ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * SBaseRef's "metaIdRef" attribute has been set.
+   *
+   * @return {boolean} true if this SBaseRef's "metaIdRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMetaIdRef ();
+
+
+  /**
+   * Sets the value of the "metaIdRef" attribute of this SBaseRef.
+   *
+   * This method fails if the id is not a valid syntax for an <code>IDREF</code> (libsbml.LIBSBML_INVALID_ATTRIBUTE_VALUE), or if the SBaseRef already
+   * points to an element of the submodel using a different interface (libsbml.LIBSBML_OPERATION_FAILED).  An SBaseRef must use exactly one
+   * method to point to a submodel element.
+   */
+  long setMetaIdRef (DOMString id);
+
+
+  /**
+   * Unsets the value of the "metaIdRef" attribute of this SBaseRef.
+   */
+  long unsetMetaIdRef ();
+
+
+  /**
+   * Returns the value of the "portRef" attribute of this SBaseRef.
+   *
+   * @return {string} the value of the "portRef" attribute of this SBaseRef.
+   */
+  DOMString getPortRef ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * SBaseRef's "portRef" attribute has been set.
+   *
+   * @return {boolean} true if this SBaseRef's "portRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetPortRef ();
+
+
+  /**
+   * Sets the value of the "portRef" attribute of this SBaseRef.  Fails if
+   * the id is not a valid syntax for a <code>PortSIdRef</code> (libsbml.LIBSBML_INVALID_ATTRIBUTE_VALUE), or if the SBaseRef already
+   * points to an element of the submodel using a different interface (libsbml.LIBSBML_OPERATION_FAILED).  An SBaseRef must use exactly one
+   * method to point to a submodel element.
+   */
+  long setPortRef (DOMString id);
+
+
+  /**
+   * Unsets the value of the "portRef" attribute of this SBaseRef.
+   */
+  long unsetPortRef ();
+
+
+  /**
+   * Returns the value of the "idRef" attribute of this SBaseRef.
+   *
+   * @return the value of the "idRef" attribute of this SBaseRef.
+   */
+  DOMString getIdRef ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * SBaseRef's "idRef" attribute has been set.
+   *
+   * @return {boolean} true if this SBaseRef's "idRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetIdRef ();
+
+
+  /**
+   * Sets the value of the "idRef" attribute of this SBaseRef.
+   *
+   * This method fails if the id is not a valid syntax for an <code>SIdRef</code> (libsbml.LIBSBML_INVALID_ATTRIBUTE_VALUE), or if the SBaseRef already
+   * points to an element of the submodel using a different interface (libsbml.LIBSBML_OPERATION_FAILED).  A SBaseRef must use exactly one
+   * method to point to a submodel element.
+   */
+  long setIdRef (DOMString id);
+
+
+  /**
+   * Unsets the value of the "idRef" attribute of this SBaseRef.
+   */
+  long unsetIdRef ();
+
+
+  /**
+   * Returns the value of the "unitRef" attribute of this SBaseRef.
+   *
+   * @return {string} the value of the "unitRef" attribute of this SBaseRef.
+   */
+  DOMString getUnitRef ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * SBaseRef's "unitRef" attribute has been set.
+   *
+   * @return {boolean} true if this SBaseRef's "unitRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetUnitRef ();
+
+
+  /**
+   * Sets the value of the "unitRef" attribute of this SBaseRef.
+   *
+   * This method fails if the id is not a valid syntax for a <code>UnitSIdRef</code> (libsbml.LIBSBML_INVALID_ATTRIBUTE_VALUE), or if the SBaseRef already
+   * points to an element of the submodel using a different interface (libsbml.LIBSBML_OPERATION_FAILED).  A SBaseRef must use exactly one
+   * method to point to a submodel element.
+   */
+  long setUnitRef (DOMString id);
+
+
+  /**
+   * Unsets the value of the "unitRef" attribute of this SBaseRef.
+   */
+  long unsetUnitRef ();
+
+
+  /**
+   * Get the child SBaseRef of this SBaseRef.
+   *
+   * @return the SBaseRef child of this SBaseRef, or NULL if none exists.
+   */
+  SBaseRef getSBaseRef ();
+
+
+  /**
+   * Predicate for testing whether the SBaseRef for this SBaseRef is set.
+   *
+   * @return {boolean} true if the SBaseRef of this SBaseRef is set, false
+   * otherwise.
+   */
+  boolean isSetSBaseRef ();
+
+
+  /**
+   * Sets the SBaseRef definition of this SBaseRef to a copy of the given
+   * SBaseRef object instance.
+   *
+   * This method fails if the added SBaseRef does not match the
+   * level/version/package of the parent object or if the added SBaseRef cannot
+   * be copied.
+   *
+   * @param {SBaseRef} the SBaseRef object instance to use
+   */
+  long setSBaseRef (SBaseRef SBaseRef);
+
+
+  /**
+   * Creates a new, empty SBaseRef, adds it to this SBaseRef and
+   * returns the created SBaseRef.
+   *
+   * @return {SBaseRef} the newly created SBaseRef object instance.
+   */
+  SBaseRef createSBaseRef ();
+
+
+  /**
+   * Unsets the child SBaseRef of this SBaseRef.  Deletes the former SBaseRef child,
+   * if one existed.
+   */
+  long unsetSBaseRef();
+
+
+  /**
+   * Returns how many elements are being referred to by this SBaseRef.  A
+   * valid SBaseRef will have exactly one.  Possible referents are portRef,
+   * idRef, unitRef, and metaIdRef.
+   *
+   * @return {number} integer value between 0 and 4: the number of different ways this element points to its referent.
+   */
+  long getNumReferents();
+};
+
+SBaseRef implements CompBase;

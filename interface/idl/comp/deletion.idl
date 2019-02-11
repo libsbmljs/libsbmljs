@@ -1,3 +1,58 @@
+/**
+ * # Deletion of an object from a submodel.
+ *
+ * The Deletion class was introduced by the SBML Level 3 comp
+ * ("comp") package to allow elements of submodels to be removed
+ * before instantiation.
+
+ * The Deletion object class is used to define a deletion operation
+ * to be applied when a submodel instantiates a model definition.
+ * Deletions may be useful in hierarchical model composition scenarios for
+ * various reasons.  For example, some components in a submodel may be
+ * redundant in the composed model, perhaps because the same features are
+ * implemented in a different way in the new model.
+
+ * Deletions function as follows.  When the Model to which the Submodel
+ * object refers (via the "modelRef" attribute) is read and processed for
+ * inclusion into the composed model, each Deletion object identifies an
+ * object to remove from that Model instance.  The resulting submodel
+ * instance consists of everything in the Model object instance minus the
+ * entities referenced by the list of Deletion objects.
+ *
+ * As might be expected, deletions can have wide-ranging implications,
+ * especially when the object deleted has substantial substructure, as in
+ * the case of reactions.  The following are rules regarding deletions and
+ * their effects.
+ *
+ * * An object that has been deleted is considered inaccessible.
+ * Any element that has been deleted (or replaced)
+ * may not be referenced by an SBaseRef object.
+ * * If the deleted object has child objects and other structures, the
+ * child objects and substructure are also considered to be deleted.
+ * * It is not an error to delete explicitly an object that is already
+ * deleted by implication (for example as a result of the second point
+ * above).  The resulting model is the same.
+ * * If the deleted object is from an SBML namespace that is not
+ * understood by the interpreter, the deletion must be ignored---the
+ * object will not need to be deleted, as the interpreter could not
+ * understand the package.  If an interpreter cannot tell whether
+ * a referenced object does not exist or if exists in an unparsed namespace
+ * it may produce a warning.
+ *
+ * The Deletion object class is subclassed from SBaseRef, and reuses all the
+ * machinery provided by SBaseRef.  In addition, it defines two optional
+ * attributes, "id" and "name".  The "id" attribute can be used to give an
+ * identifier to a given deletion operation.  The identifier has no
+ * mathematical meaning, but it may be useful for creating submodels that
+ * can be manipulated more directly by other submodels.  (Indeed, it is
+ * legitimate for an enclosing model definition to delete a deletion!)
+ *
+ * The optional "name" attribute is provided on Deletion for the
+ * same reason it is provided on other elements that have identifiers;
+ * viz., to provide for the possibility of giving a human-readable name to
+ * the object.  The name may be useful in situations when deletions are
+ * displayed to modelers.
+ */
 [Prefix="libsbml::"]
 interface Deletion {
 };
