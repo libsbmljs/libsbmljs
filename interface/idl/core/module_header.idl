@@ -3,6 +3,8 @@
  *
  * A WebAssembly / JavaScript wrapper for the [libSBML C++ library](http://sbml.org/Software/libSBML).
  *
+ * ## Async Loading
+ *
  * Unlike most JavaScript modules,
  * this module and associated WebAssembly file are loaded asynchronously
  * by the browser, so you can not begin using it immediately after importing it.
@@ -12,11 +14,30 @@
  *
  * @module libsbml
  *
- * @example
- * import libsbml from 'libsbml_experimental'
+ * ```javascript
+ * import libsbml from 'libsbml_stable'
  * // the module isn't usable yet - wait for it to load
  * libsbml().then((libsbml) => {
  *   // now it is safe to use the module
  *   const doc = new libsbml.SBMLDocument(3,2)
  * })
+ * ```
+ *
+ * ## Static Methods
+ *
+ * The mechanism for calling static methods is somewhat unconventional.
+ * Static methods should be called via an class's `prototype`.
+ * For example, to get the namespace for the SBML comp extension,
+ * one would normally call the getXmlnsL3V1V1 static method of the
+ * [C++ CompExtension class](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_comp_extension.html).
+ * In libsbmljs, this method should be called on the class's `prototype` instead.
+ *
+ * ```javascript
+ * import libsbml from 'libsbml_stable'
+ * libsbml().then((libsbml) => {
+ *   const doc = new libsbml.SBMLDocument(3,2)
+ *   // call the getXmlnsL3V1V1 static method on the prototype, not the type itself
+ *   doc.enablePackage(libsbml.CompExtension.prototype.getXmlnsL3V1V1(), 'comp', true)
+ * })
+ * ```
  */
