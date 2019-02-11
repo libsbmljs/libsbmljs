@@ -21,15 +21,15 @@
 [Prefix="libsbml::"]
 interface CompModelPlugin {
   /**
-   * Returns the submodel with the given identifier.
+   * Returns the submodel with the given index.
+   * If the index is invalid, NULL is returned.
    *
-   * @param {string} id the identifier of the Submodel to get
+   * @param {number n the index number of the Submodel to get.
    *
-   * @return {Submodel} the Submodel in the ListOfSubmodels with the given
-   * identifier. If no submodel with identifier id exists, NULL is
-   * returned.
+   * @return the nth Submodel in the ListOfSubmodels or NULL if
+   * no such object exists.
    */
-  Submodel getSubmodel (DOMString id);
+  Submodel getSubmodel (unsigned long n);
 
 
   /**

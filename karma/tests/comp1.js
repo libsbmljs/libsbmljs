@@ -31,19 +31,33 @@ describe("Comp test 1", function() {
           comp.setId("comp")
           comp.setSize(1)
 
-          const spec = mod1.createSpecies()
+          let spec = mod1.createSpecies()
           spec.setCompartment("comp")
           spec.setHasOnlySubstanceUnits(false)
           spec.setConstant(false)
           spec.setBoundaryCondition(false)
           spec.setId("S")
 
+          spec = mod1.createSpecies()
+          spec.setCompartment("comp")
+          spec.setHasOnlySubstanceUnits(false)
+          spec.setConstant(false)
+          spec.setBoundaryCondition(false)
           spec.setId("E")
-          mod1.addSpecies(spec)
+
+          spec = mod1.createSpecies()
+          spec.setCompartment("comp")
+          spec.setHasOnlySubstanceUnits(false)
+          spec.setConstant(false)
+          spec.setBoundaryCondition(false)
           spec.setId("D")
-          mod1.addSpecies(spec)
+
+          spec = mod1.createSpecies()
+          spec.setCompartment("comp")
+          spec.setHasOnlySubstanceUnits(false)
+          spec.setConstant(false)
+          spec.setBoundaryCondition(false)
           spec.setId("ES")
-          mod1.addSpecies(spec)
 
           const rxn = model.createReaction()
           rxn.setReversible(true)
@@ -105,6 +119,19 @@ describe("Comp test 1", function() {
           const comp_model_plugin_after = libsbml.castObject(model_plugin_after, libsbml.CompModelPlugin)
 
           expect(comp_model_plugin_after.getNumSubmodels()).toEqual(2)
+
+          expect(comp_model_plugin_after.getSubmodel(0).getId()).toBe('submod1')
+          expect(comp_model_plugin_after.getSubmodel(0).getModelRef()).toBe('enzyme')
+          expect(comp_model_plugin_after.getSubmodel(1).getId()).toBe('submod2')
+          expect(comp_model_plugin_after.getSubmodel(1).getModelRef()).toBe('enzyme')
+
+          const doc_plugin_after = libsbml.castObject(doc.findPlugin('comp'), libsbml.CompSBMLDocumentPlugin)
+
+          expect(doc_plugin_after.getNumModelDefinitions()).toEqual(1)
+          const mod_def_after = doc_plugin_after.getModelDefinition(0)
+          expect(mod_def_after.getId()).toBe('enzyme')
+          expect(mod_def_after.getNumCompartments()).toEqual(1)
+          expect(mod_def_after.getNumSpecies()).toEqual(1)
 
           libsbml.destroy(doc)
           libsbml.destroy(doc_after)

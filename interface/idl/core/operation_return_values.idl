@@ -1,0 +1,35 @@
+/**
+ * LibSBML diagnostic return codes.
+ *
+ * Many methods in libSBML return a status code to indicate whether the
+ * operation requested by the caller succeeded or failed.  This enumeration
+ * lists all the possible return codes from any libSBML methods.
+ */
+enum libsbml__idl__OperationReturnValues_t {
+  "libsbml::LIBSBML_OPERATION_SUCCESS",
+  "libsbml::LIBSBML_INDEX_EXCEEDS_SIZE",
+  "libsbml::LIBSBML_UNEXPECTED_ATTRIBUTE",
+  "libsbml::LIBSBML_OPERATION_FAILED",
+  "libsbml::LIBSBML_INVALID_ATTRIBUTE_VALUE",
+  "libsbml::LIBSBML_INVALID_OBJECT",
+  "libsbml::LIBSBML_DUPLICATE_OBJECT_ID",
+  "libsbml::LIBSBML_LEVEL_MISMATCH",
+  "libsbml::LIBSBML_VERSION_MISMATCH",
+  "libsbml::LIBSBML_INVALID_XML_OPERATION",
+  "libsbml::LIBSBML_NAMESPACES_MISMATCH",
+  "libsbml::LIBSBML_DUPLICATE_ANNOTATION_NS",
+  "libsbml::LIBSBML_ANNOTATION_NAME_NOT_FOUND",
+  "libsbml::LIBSBML_ANNOTATION_NS_NOT_FOUND",
+  "libsbml::LIBSBML_MISSING_METAID",
+  "libsbml::LIBSBML_PKG_VERSION_MISMATCH",
+  "libsbml::LIBSBML_PKG_UNKNOWN",
+  "libsbml::LIBSBML_PKG_UNKNOWN_VERSION",
+  "libsbml::LIBSBML_PKG_DISABLED",
+  "libsbml::LIBSBML_PKG_CONFLICTED_VERSION",
+  "libsbml::LIBSBML_PKG_CONFLICT",
+  "libsbml::LIBSBML_CONV_INVALID_TARGET_NAMESPACE",
+  "libsbml::LIBSBML_CONV_PKG_CONVERSION_NOT_AVAILABLE",
+  "libsbml::LIBSBML_CONV_INVALID_SRC_DOCUMENT",
+  "libsbml::LIBSBML_CONV_CONVERSION_NOT_AVAILABLE",
+  "libsbml::LIBSBML_CONV_PKG_CONSIDERED_UNKNOWN"
+};
