@@ -256,7 +256,7 @@ describe("Writing test", function() {
 
           const objective = fbc_plugin.createObjective()
           objective.setId("obj1")
-          objective.setType("maximize")
+          objective.setType(libsbml.OBJECTIVE_TYPE_MAXIMIZE)
 
           // mark obj1 as active objective
           fbc_plugin.setActiveObjectiveId("obj1")

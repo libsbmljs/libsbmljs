@@ -1,3 +1,9 @@
+enum libsbml__idl__ObjectiveType_t {
+  "libsbml::OBJECTIVE_TYPE_MAXIMIZE",
+  "libsbml::OBJECTIVE_TYPE_MINIMIZE",
+  "libsbml::OBJECTIVE_TYPE_UNKNOWN"
+};
+
 /**
  * # An objective function.
  *
@@ -84,6 +90,34 @@ interface Objective {
    * @param {number} n the index of the FluxObjective to remove
    */
   FluxObjective removeFluxObjective(unsigned long n);
+
+
+  /**
+  * Returns the string of the "type" attribute of this Objective.
+  *
+  * @return {string} the "type" attribute of this Objective.
+  */
+  DOMString getType();
+
+
+  /**
+   * Predicate returning true if this Objective's "type" attribute is set.
+   *
+   * @return {boolean} true if this Objective's "type" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetType();
+
+
+  /**
+   * Sets the value of the "type" attribute of this Objective.
+   *
+   * The type must be a {@link ObjectiveType_t} value.
+   *
+   * @param {ObjectiveType_t} type string value of the "type" attribute to be set.  Valid values
+   * include: `OBJECTIVE_TYPE_MAXIMIZE`, `OBJECTIVE_TYPE_MINIMIZE`
+   */
+  long setType (libsbml__idl__ObjectiveType_t type);
 };
 
 Objective implements SBase;
