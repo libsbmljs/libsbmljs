@@ -1,7 +1,7 @@
 /**
  * # A model instance inside another model.
  *
- * The Submodel class was introduced by the SBML Level 3 @ref comp
+ * The Submodel class was introduced by the SBML Level 3 comp
  * ("comp") package as the principle way by which models are
  * structured hierarchically.  Submodels are instantiations of models
  * contained within other models.  They reference another Model that is to be
@@ -79,7 +79,7 @@ interface Submodel {
    * Predicate returning true or false depending on whether this
    * Submodel's "modelRef" attribute has been set.
    *
-   * @return true if this Submodel's "modelRef" attribute has been set,
+   * @return {boolean} true if this Submodel's "modelRef" attribute has been set,
    * otherwise false is returned.
    */
   boolean isSetModelRef();
@@ -140,7 +140,7 @@ interface Submodel {
    * Predicate returning true or false depending on whether this
    * Submodel's "timeConversionFactor" attribute has been set.
    *
-   * @return true if this Submodel's "timeConversionFactor" attribute has been set,
+   * @return {boolean} true if this Submodel's "timeConversionFactor" attribute has been set,
    * otherwise false is returned.
    */
   boolean isSetTimeConversionFactor ();
