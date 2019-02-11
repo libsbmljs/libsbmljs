@@ -40,4 +40,29 @@
  *   doc.enablePackage(libsbml.CompExtension.prototype.getXmlnsL3V1V1(), 'comp', true)
  * })
  * ```
+ *
+ * ## add* Methods vs. create* Methods
+ *
+ * Objects in libSBML typically provide two types of methods for
+ * adding a subobject. Methods that start with `add` take a pre-existing
+ * subobject and add it to the parent, whereas methods that
+ * start with `create` return a new subobject. You should generally
+ * use the `create` methods. While `add` methods technically work in this
+ * wrapper, they have very confusing ownership semantics and using them
+ * will most likely result in bugs which are difficult to track down.
+ * This advice is not particular to this wrapper, but debugging can
+ * be harder in a JavaScript environment.
+ *
+ * ```javascript
+ * import libsbml from 'libsbml_stable'
+ * libsbml().then((libsbml) => {
+ *   ...
+ *   const model = ...
+ *   // prefer this way of creating species
+ *   const spec = model.createSpecies()
+ *   // this way is more awkward
+ *   const spec = new libsbml.Species(...)
+ *   model.addSpecies(spec)
+ * })
+ * ```
  */
