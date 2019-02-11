@@ -188,6 +188,10 @@ task combineIDL(type: ConcatFiles) {
   if (enableQual) {
   }
   if (enableComp) {
+    include Paths.get(idl_dir, "comp", "port.idl")
+    include Paths.get(idl_dir, "comp", "submodel.idl")
+    include Paths.get(idl_dir, "comp", "model_plugin.idl")
+    include Paths.get(idl_dir, "comp", "extension.idl")
   }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
 }
@@ -211,6 +215,7 @@ task combineCPP(type: ConcatFiles) {
   if (enableQual) {
   }
   if (enableComp) {
+    include Paths.get(cpp_dir, "comp_interface_wrapper.cpp")
   }
   include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))

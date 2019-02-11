@@ -1,0 +1,160 @@
+/**
+ * # Extension of Model.
+ *
+ * The CompModelPlugin class inherits from the SBMLSBasePlugin class, and
+ * codifies the extensions to the Model class defined in the SBML
+ * Level"3 @ref comp ("comp") package.  This extension
+ * allows a Model to define Submodels (other Models that are instantiated as
+ * new parts of the parent Model), and Ports, a defined interface for
+ * including the given Model as a Submodel of a different Model.
+ *
+ * Submodels are stored in an optional child ListOfSubmodels object, which,
+ * if present, must contain one or more Submodel objects.  All of the Submodels
+ * present in the ListOfSubmodels are defined to be instantiated in the
+ * 'complete' Model.
+ *
+ * Ports are stored in an optional child ListOfPorts object, which,
+ * if present, must contain one or more Port objects.  All of the Ports
+ * present in the ListOfPorts collectively define the 'port interface'
+ * of the Model.
+ */
+[Prefix="libsbml::"]
+interface CompModelPlugin {
+  /**
+   * Returns the submodel with the given identifier.
+   *
+   * @param {string} id the identifier of the Submodel to get
+   *
+   * @return {Submodel} the Submodel in the ListOfSubmodels with the given
+   * identifier. If no submodel with identifier id exists, NULL is
+   * returned.
+
+   */
+  Submodel getSubmodel (DOMString id) const;
+
+
+  /**
+   * Adds a copy of the given Submodel object to the list of submodels.
+   *
+   * Fails if the added submodel is NULL, does not match the
+   * level/version/package of the parent object, or cannot be added to the
+   * list of submodels.
+   *
+   * @param {Submodel} submodel the Submodel object to be added to the list of
+   * submodels
+   */
+  long addSubmodel (Submodel submodel);
+
+
+  /**
+   * Returns the number of submodels for this CompModelPlugin.
+   *
+   * @return the number of submodels for this CompModelPlugin.
+   */
+  unsigned long getNumSubmodels () const;
+
+
+  /**
+   * Creates a Submodel object, adds it to the end of the
+   * submodel objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {Submodel} a newly created Submodel object.
+   */
+  Submodel createSubmodel ();
+
+
+  /**
+   * Removes the submodel with the given index.
+   * A pointer to the submodel that was removed is returned.
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {number} index the index of the Submodel object to remove
+   *
+   * @return {Submodel} the Submodel object removed.  As mentioned above, the caller
+   * owns the returned object. NULL is returned if the given index is
+   * out of range and no submodel has been removed, NULL is returned.
+   */
+  Submodel removeSubmodel(unsigned long index);
+
+
+  /**
+   * Returns the port with the given identifier.
+   *
+   * @param {string} id the id of the Port to get.
+   *
+   * @return {Port} the Port in the ListOfPorts with the given identifier.  If the
+   * identifier is invalid, NULL is returned.
+   */
+  Port getPort (DOMString id) const;
+
+
+  /**
+   * Adds a copy of the given Port object to the list of ports.
+   *
+   * @param {Port} port the Port object to be added to the list of ports.  Fails if
+   * the added port is NULL, does not match the level/version/package of the
+   * parent object, or cannot be added to the list of ports.
+   */
+  long addPort (Port port);
+
+
+  /**
+   * Returns the number of ports for this CompModelPlugin.
+   *
+   * @return {number} the number of ports for this CompModelPlugin.
+   */
+  unsigned long getNumPorts () const;
+
+
+  /**
+   * Creates a Port object, adds it to the end of the
+   * port objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {Port} a newly created Port object.
+   */
+  Port createPort ();
+
+
+  /**
+   * Removes the port with the given index.
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param index the index of the Port object to remove.
+   *
+   * @return the Port object removed.  As mentioned above,
+   * the caller owns the returned object. NULL is returned if
+   * the given index is out of range.
+   */
+  Port removePort(unsigned long index);
+
+
+  /**
+   * Set the string used as the divider between names when renaming and
+   * flattening models.
+   *
+   * The divider string consists of two underscore characters
+   * (`__`) by default.  This method will fail if called
+   * with an empty divider, or a divider that cannot be used internally as part
+   * of a valid SBML SId.
+   *
+   * @param {string} divider
+   */
+  long setDivider(DOMString divider);
+
+
+  /**
+   * Get the string used as the divider between names when renaming and
+   * flattening models.
+   *
+   * The divider string consists of two underscore characters
+   * (`__`) by default, and can be overridden
+   * with the setDivider() function.
+   *
+   * @return {string} the divider that will be used by any call to flattenModel().
+   */
+  DOMString getDivider();
+};
+
+CompModelPlugin implements SBasePlugin;

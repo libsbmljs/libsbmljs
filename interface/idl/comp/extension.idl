@@ -1,0 +1,27 @@
+/**
+ * # Base extension class for the package.
+ *
+ * There is currently exactly one namespace defined for the Hierarchical
+ * Model Composition package:
+ * "http://www.sbml.org/sbml/level3/version1/comp/version1".  Despite
+ * referencing SBML Level 3 Version 1 explicitly, this package
+ * (and all such packages) can be used without change in SBML Level 3
+ * Version 2 documents.  The only caveat is that features of the SBML
+ * Level 3 Version 2 specification that were not present in
+ * Level 1 may not be used by constructs from the Hierarchical Model
+ * Composition package.  The most relevant restriction this implies is that
+ * if a Level 2 SBML element has an "id" attribute that was newly added
+ * in Level 2 (when "id" was added to SBase itself), an SBaseRef "idRef"
+ * attribute may not reference it, and it must continue to use the "metaIdRef"
+ * attribute instead.
+ */
+[Prefix="libsbml::"]
+interface CompExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package
+   * implemented by this libSBML extension.
+   *
+   * @return {string} the XML namespace as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
+};
