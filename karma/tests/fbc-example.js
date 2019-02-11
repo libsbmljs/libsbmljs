@@ -263,6 +263,12 @@ describe("Writing test", function() {
           const fluxObjective = objective.createFluxObjective()
           fluxObjective.setReaction("J8")
           fluxObjective.setCoefficient(1)
+
+          const writer = new libsbml.SBMLWriter()
+          const serializedSBML = writer.writeSBMLToString(doc)
+          console.log(serializedSBML)
+
+          libsbml.destroy(doc)
         } catch(error) {
           fail(error)
           console.log(error.stack)
