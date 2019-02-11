@@ -100,7 +100,6 @@ describe("Comp test 1", function() {
           const serializedSBML = writer.writeSBMLToString(doc)
 
           // make sure the expected tags are there
-          console.log(serializedSBML)
           expect(serializedSBML).toContain('comp:listOfModelDefinitions')
           expect(serializedSBML).toContain('comp:modelDefinition')
           expect(serializedSBML).toContain('comp:submodel')
@@ -131,7 +130,7 @@ describe("Comp test 1", function() {
           const mod_def_after = doc_plugin_after.getModelDefinition(0)
           expect(mod_def_after.getId()).toBe('enzyme')
           expect(mod_def_after.getNumCompartments()).toEqual(1)
-          expect(mod_def_after.getNumSpecies()).toEqual(1)
+          expect(mod_def_after.getNumSpecies()).toEqual(4)
 
           libsbml.destroy(doc)
           libsbml.destroy(doc_after)
