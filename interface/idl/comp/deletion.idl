@@ -4,14 +4,14 @@
  * The Deletion class was introduced by the SBML Level 3 comp
  * ("comp") package to allow elements of submodels to be removed
  * before instantiation.
-
+ *
  * The Deletion object class is used to define a deletion operation
  * to be applied when a submodel instantiates a model definition.
  * Deletions may be useful in hierarchical model composition scenarios for
  * various reasons.  For example, some components in a submodel may be
  * redundant in the composed model, perhaps because the same features are
  * implemented in a different way in the new model.
-
+ *
  * Deletions function as follows.  When the Model to which the Submodel
  * object refers (via the "modelRef" attribute) is read and processed for
  * inclusion into the composed model, each Deletion object identifies an

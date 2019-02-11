@@ -1,7 +1,7 @@
 /**
  * # An interface to be used in composition.
  *
- * The Port class was introduced by the SBML Level&nbsp;3 comp
+ * The Port class was introduced by the SBML Level 3 comp
  * ("comp") package to allow a Model to define a standard
  * interface between it and other models that might use it as a submodel.  It
  * derives from the SBaseRef class, and the elements defined there refer to
@@ -11,12 +11,12 @@
  * Port object using a "portRef" attribute, the element being referenced is
  * the element the Port object itself points to.
  *
- * In the present formulation of the Hierarchical %Model Composition
+ * In the present formulation of the Hierarchical Model Composition
  * package, the use of ports is not enforced, nor is there any
  * mechanism to restrict which ports may be used in what ways---they are
  * only an advisory construct.  Future versions of this SBML package may
  * provide additional functionality to support explicit restrictions on
- * port use.  For the present definition of Hierarchical %Model Composition,
+ * port use.  For the present definition of Hierarchical Model Composition,
  * users of models containing ports are encouraged to respect the modeler's
  * intention in defining ports, and use the port definitions to interact
  * with components through their ports (when they have ports defined)

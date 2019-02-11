@@ -191,6 +191,7 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "comp", "comp_base.idl")
     include Paths.get(idl_dir, "comp", "sbase_ref.idl")
     include Paths.get(idl_dir, "comp", "port.idl")
+    include Paths.get(idl_dir, "comp", "model_definition.idl")
     include Paths.get(idl_dir, "comp", "submodel.idl")
     include Paths.get(idl_dir, "comp", "deletion.idl")
     include Paths.get(idl_dir, "comp", "model_plugin.idl")
