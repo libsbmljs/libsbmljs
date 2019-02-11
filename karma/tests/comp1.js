@@ -9,8 +9,6 @@ describe("Comp test 1", function() {
           doc.setPackageRequired('comp', true)
           expect(doc.isPackageEnabled('comp')).toEqual(true)
 
-          // expect(doc).not.toEqual(0)
-
           // create the Model
           const model=doc.createModel()
           model.setId("aggregate")

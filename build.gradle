@@ -197,7 +197,11 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "comp", "external_model_definition.idl")
     include Paths.get(idl_dir, "comp", "submodel.idl")
     include Paths.get(idl_dir, "comp", "deletion.idl")
+    include Paths.get(idl_dir, "comp", "replaced_element.idl")
+    include Paths.get(idl_dir, "comp", "replaced_by.idl")
+    include Paths.get(idl_dir, "comp", "replacing.idl")
     include Paths.get(idl_dir, "comp", "model_plugin.idl")
+    include Paths.get(idl_dir, "comp", "sbase_plugin.idl")
     include Paths.get(idl_dir, "comp", "document_plugin.idl")
     include Paths.get(idl_dir, "comp", "extension.idl")
   }

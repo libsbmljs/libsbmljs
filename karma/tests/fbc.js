@@ -9,8 +9,6 @@ describe("FBC test", function() {
           doc.setPackageRequired("fbc", false)
           expect(doc.isPackageEnabled('fbc')).toEqual(true)
 
-          // expect(doc).not.toEqual(0)
-
           const model = doc.createModel()
           model.setId('model1')
 
