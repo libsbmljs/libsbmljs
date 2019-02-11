@@ -2,7 +2,7 @@
  * # A reference to an externally-defined model.
  *
  * The ExternalModelDefinition class was introduced by the SBML Level 3
- * @ref comp ("comp") package to define references to Model
+ * comp ("comp") package to define references to Model
  * objects defined in other files.
  *
  * ExternalModelDefinition objects are model definitions---in and of
@@ -71,6 +71,124 @@
  */
 [Prefix="libsbml::"]
 interface ExternalModelDefinition {
+  /**
+   * Returns the value of the "modelRef" attribute of this
+   * ExternalModelDefinition.
+   *
+   * @return {string} the value of the "modelRef" attribute of this
+   * ExternalModelDefinition.
+   */
+  DOMString getModelRef ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * ExternalModelDefinition's "modelRef" attribute has been set.
+   *
+   * @return {boolean} true if this ExternalModelDefinition's "modelRef" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetModelRef ();
+
+
+  /**
+   * Sets the value of the "modelRef" attribute of this
+   * ExternalModelDefinition.  Fails if the @p id is not a valid syntax for an
+   * SIdRef.
+   *
+   * @param {string} id
+   */
+  long setModelRef (DOMString id);
+
+
+  /**
+   * Unsets the value of the "modelRef" attribute of this
+   * ExternalModelDefinition.
+   */
+  long unsetModelRef ();
+
+
+  /**
+   * Returns the value of the "md5" attribute of this
+   * ExternalModelDefinition.
+   *
+   * @return {string} the value of the "md5" attribute of this
+   * ExternalModelDefinition.
+   */
+  DOMString getMd5 ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * ExternalModelDefinition's "md5" attribute has been set.
+   *
+   * @return {boolean} true if this ExternalModelDefinition's "md5" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetMd5 ();
+
+
+  /**
+   * Sets the value of the "md5" attribute of this ExternalModelDefinition.
+   *
+   * @param {string} md5
+   */
+  long setMd5 (DOMString md5);
+
+
+  /**
+   * Unsets the value of the "md5" attribute of this ExternalModelDefinition.
+   */
+  long unsetMd5 ();
+
+
+  /**
+   * Returns the value of the "source" attribute of this
+   * ExternalModelDefinition.
+   *
+   * @return {string} the value of the "source" attribute of this
+   * ExternalModelDefinition.
+   */
+  DOMString getSource ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * ExternalModelDefinition's "source" attribute has been set.
+   *
+   * @return {boolean} true if this ExternalModelDefinition's "source" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetSource ();
+
+
+  /**
+   * Sets the value of the "source" attribute of this
+   * ExternalModelDefinition.
+   *
+   * @param {string} source the value to use for the "source" attribute
+   */
+  long setSource (DOMString source);
+
+
+  /**
+   * Unsets the value of the "source" attribute of this
+   * ExternalModelDefinition.
+   */
+  long unsetSource ();
+
+  /**
+   * Resolves and returns the referenced Model object of this ExternalModelDefinition.
+   * If none can be found, an error is set and NULL is returned.  The
+   * returned Model is a non-owning pointer to the model; the original
+   * Model is saved (along with the SBMLDocument from which it comes) as
+   * a child of the CompSBMLDocumentPlugin of the SBMLDocument to which this
+   * Model belongs.  If this ExternalModelDefinition is not part of any
+   * SBMLDocument, NULL will be returned.
+   *
+   * @return {Model}
+   */
+  Model getReferencedModel();
 };
 
 ExternalModelDefinition implements CompBase;
