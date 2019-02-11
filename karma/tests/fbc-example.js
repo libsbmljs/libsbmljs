@@ -82,7 +82,6 @@ describe("Writing test", function() {
           let reaction = model.createReaction()
           reaction.setId("J0")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           let reactant = reaction.createReactant()
           reactant.setSpecies("Node0")
@@ -97,8 +96,7 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J1")
           reaction.setReversible(false)
-          reaction.setFast(false)
-          reactant = reaction.createReactant()
+                    reactant = reaction.createReactant()
           reactant.setSpecies("Node1")
           reactant.setStoichiometry(1)
           reactant.setConstant(true)
@@ -111,7 +109,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J2")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node2")
@@ -126,7 +123,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J3")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node1")
@@ -141,7 +137,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J4")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node4")
@@ -156,7 +151,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J5")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node3")
@@ -171,7 +165,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J6")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node5")
@@ -186,7 +179,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J7")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node6")
@@ -201,7 +193,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J8")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node5")
@@ -216,7 +207,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J9")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node8")
@@ -231,7 +221,6 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J10")
           reaction.setReversible(false)
-          reaction.setFast(false)
 
           reactant = reaction.createReactant()
           reactant.setSpecies("Node7")

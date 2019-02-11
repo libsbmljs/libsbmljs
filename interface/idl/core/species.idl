@@ -1,4 +1,134 @@
 /**
+ * # Stochiometry expressions in SBML Level 2 reactions.
+ *
+ * ## Stoichiometries in SBML Level 2
+ *
+ * In SBML Level 2, product and reactant stoichiometries can be specified
+ * using either the "stoichiometry" attribute or a "stoichiometryMath"
+ * element in a SpeciesReference object.  The "stoichiometry" attribute is
+ * of type double and should contain values greater than zero (0).  The
+ * "stoichiometryMath" element is implemented as an element containing a
+ * MathML expression.  These two are mutually exclusive; only one of
+ * "stoichiometry" or "stoichiometryMath" should be defined in a given
+ * SpeciesReference instance.  When neither the attribute nor the element
+ * is present, the value of "stoichiometry" in the enclosing
+ * SpeciesReference instance defaults to 1.
+ *
+ * For maximum interoperability, SpeciesReference's "stoichiometry"
+ * attribute should be used in preference to "stoichiometryMath" when a
+ * species' stoichiometry is a simple scalar number (integer or decimal).
+ * When the stoichiometry is a rational number, or when it is a more
+ * complicated formula, "stoichiometryMath" must be used.  The MathML
+ * expression in "stoichiometryMath" may also refer to identifiers of
+ * entities in a model (except reaction identifiers).  However, the only
+ * species identifiers that can be used in "stoichiometryMath" are those
+ * referenced in the enclosing Reaction's list of reactants, products and
+ * modifiers.
+ *
+ * The "stoichiometry" attribute and the "stoichiometryMath" element, when
+ * either is used, is each interpreted as a factor applied to the reaction
+ * rate to produce the rate of change of the species identified by the
+ * "species" attribute in the enclosing SpeciesReference.  This is the
+ * normal interpretation of a stoichiometry, but in SBML, one additional
+ * consideration has to be taken into account.  The reaction rate, which is
+ * the result of the KineticLaw's "math" element, is always in the model's
+ * substance per time units.  However, the rate of change of the
+ * species will involve the species' substance units (i.e., the units
+ * identified by the Species object's "substanceUnits" attribute), and
+ * these units may be different from the model's default substance
+ * units.  If the units are different, the stoichiometry must
+ * incorporate a conversion factor for converting the model's substance
+ * units to the species' substance units.  The conversion factor is
+ * assumed to be included in the scalar value of the "stoichiometry"
+ * attribute if "stoichiometry" is used.  If instead "stoichiometryMath" is
+ * used, then the product of the model's "substance" units times the
+ * "stoichiometryMath" units must match the substance units of the
+ * species.  Note that in either case, if the species' units and the
+ * model's default substance units are the same, the stoichiometry ends
+ * up being a dimensionless number and equivalent to the standard chemical
+ * stoichiometry found in textbooks.  Examples and more explanations of
+ * this are given in the SBML specification.
+ *
+ * The following is a simple example of a species reference for species
+ * "X0", with stoichiometry 2, in a list of reactants within a reaction
+ * having the identifier "J1":
+ *
+ * ```
+ * <model>
+ *     ...
+ *     <listOfReactions>
+ *         <reaction id="J1">
+ *             <listOfReactants>
+ *                 <speciesReference species="X0" stoichiometry="2">
+ *             </listOfReactants>
+ *             ...
+ *         </reaction>
+ *         ...
+ *     </listOfReactions>
+ *     ...
+ * </model>
+ * ```
+ *
+ * The following is a more complex example of a species reference for
+ * species "X0", with a stoichiometry formula consisting of
+ * a rational number:
+ *
+ * ```
+ * <model>
+ *     ...
+ *     <listOfReactions>
+ *         <reaction id="J1">
+ *             <listOfReactants>
+ *                 <speciesReference species="X0">
+ *                     <stoichiometryMath>
+ *                         <math xmlns="http://www.w3.org/1998/Math/MathML">
+ *                             <cn type="rational"> 3 <sep/> 2 </cn>
+ *                         </math>
+ *                     </stoichiometryMath>
+ *                 </speciesReference>
+ *             </listOfReactants>
+ *             ...
+ *         </reaction>
+ *         ...
+ *     </listOfReactions>
+ *     ...
+ * </model>
+ * ```
+ *
+ * Additional discussions of stoichiometries and implications for species
+ * and reactions are included in the documentation of SpeciesReference
+ * class.
+ *
+ * ## Stoichiometries in SBML Level 3
+ *
+ * The StoichiometryMath construct is not defined in SBML Level 3.
+ * Instead, Level 3 defines the identifier of
+ * SpeciesReference objects as a stand-in for the stoichiometry of the
+ * reactant or product being referenced, and allows that identifier to be
+ * used elsewhere in SBML models, including (for example) InitialAssignment
+ * objects.  This makes it possible to achieve the same effect as
+ * StoichiometryMath, but with other SBML objects.  For instance, to
+ * produce a stoichiometry value that is a rational number, a model can use
+ * InitialAssignment to assign the identifier of a SpeciesReference object
+ * to a MathML expression evaluating to a rational number.  This is
+ * analogous to the same way that, in Level 2, the model would use
+ * StoichiometryMath with a MathML expression evaluating to a rational
+ * number.
+ *
+ * In SBML Level 2, the stoichiometry of a reactant or product is a
+ * combination of both a *biochemical stoichiometry* (meaning, the
+ * standard stoichiometry of a species in a reaction) and any necessary
+ * unit conversion factors. The introduction of an explicit attribute on
+ * the Species object for a conversion factor allows Level 3 to avoid
+ * having to overload the meaning of stoichiometry.  In Level 3, the
+ * stoichiometry given by a SpeciesReference object in a reaction is a
+ * "proper" biochemical stoichiometry, meaning a dimensionless number free
+ * of unit conversions.
+ */
+[Prefix="libsbml::"]
+interface StoichiometryMath {};
+
+/**
  * # A reference to an SBML species in a reaction.
  *
  * The Reaction structure provides a way to express which species act as
@@ -87,6 +217,181 @@ interface SpeciesReference {
    * SpeciesReference is set, false otherwise.
    */
   boolean isSetConstant();
+
+
+  /**
+   * Get the value of the "stoichiometry" attribute.
+   *
+   * In SBML Level 2, product and reactant stoichiometries can be specified
+   * using *either* "stoichiometry" or "stoichiometryMath" in a
+   * SpeciesReference object.  The former is to be used when a
+   * stoichiometry is simply a scalar number, while the latter is for
+   * occasions when it needs to be a rational number or it needs to
+   * reference other mathematical expressions.  The "stoichiometry"
+   * attribute is of type double and should contain values greater than
+   * zero (0).  The "stoichiometryMath" element is implemented as an
+   * element containing a MathML expression.  These two are mutually
+   * exclusive; only one of "stoichiometry" or "stoichiometryMath" should
+   * be defined in a given SpeciesReference instance.  When neither the
+   * attribute nor the element is present, the value of "stoichiometry" in
+   * the SpeciesReference instance defaults to 1.  For maximum
+   * interoperability between different software tools, the "stoichiometry"
+   * attribute should be used in preference to "stoichiometryMath" when a
+   * species' stoichiometry is a simple scalar number (integer or
+   * decimal).
+   *
+   * In SBML Level 3, there is no StoichiometryMath, and SpeciesReference
+   * objects have only the "stoichiometry" attribute.
+   *
+   * @return {number} the value of the (scalar) "stoichiometry" attribute of this
+   * SpeciesReference.
+   */
+  double getStoichiometry ();
+
+
+  /**
+   * Get the content of the "stoichiometryMath" subelement as an ASTNode
+   * tree.
+   *
+   * The "stoichiometryMath" element exists only in SBML Level 2.  There,
+   * product and reactant stoichiometries can be specified using
+   * *either* "stoichiometry" or "stoichiometryMath" in a
+   * SpeciesReference object.  The former is to be used when a
+   * stoichiometry is simply a scalar number, while the latter is for
+   * occasions when it needs to be a rational number or it needs to
+   * reference other mathematical expressions.  The "stoichiometry"
+   * attribute is of type double and should contain values greater than
+   * zero (0).  The "stoichiometryMath" element is implemented as an
+   * element containing a MathML expression.  These two are mutually
+   * exclusive; only one of "stoichiometry" or "stoichiometryMath" should
+   * be defined in a given SpeciesReference instance.  When neither the
+   * attribute nor the element is present, the value of "stoichiometry" in
+   * the SpeciesReference instance defaults to 1.  For maximum
+   * interoperability between different software tools, the "stoichiometry"
+   * attribute should be used in preference to "stoichiometryMath" when a
+   * species' stoichiometry is a simple scalar number (integer or decimal).
+   *
+   * @return the content of the "stoichiometryMath" subelement of this
+   * SpeciesReference.
+   */
+  StoichiometryMath getStoichiometryMath ();
+
+
+  /**
+   * Get the value of the "denominator" attribute, for the case of a
+   * rational-numbered stoichiometry or a model in SBML Level 1.
+   *
+   * The "denominator" attribute is only actually written out in the case
+   * of an SBML Level 1 model.  In SBML Level 2, rational-number
+   * stoichiometries are written as MathML elements in the
+   * "stoichiometryMath" subelement.  However, as a convenience to users,
+   * libSBML allows the creation and manipulation of rational-number
+   * stoichiometries by supplying the numerator and denominator directly
+   * rather than having to manually create an ASTNode object.  LibSBML
+   * will write out the appropriateructs (either a combination of
+   * "stoichiometry" and "denominator" in the case of SBML Level 1, or a
+   * "stoichiometryMath" subelement in the case of SBML Level 2).
+   * However, as the "stoichiometryMath" subelement was removed in SBML
+   * Level 3, automatic translation of the "denominator"
+   * attribute is no longer supported for that level.
+   *
+   * @return {number} the value of the "denominator" attribute of this
+   * SpeciesReference.
+   */
+  long getDenominator ();
+
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "stoichiometryMath" subelement is set
+   *
+   * @return {boolean} true if the "stoichiometryMath" subelement of this
+   * SpeciesReference is set, false otherwise.
+   */
+  boolean isSetStoichiometryMath ();
+
+
+  /**
+   * Predicate returning true if this
+   * SpeciesReference's "stoichiometry" attribute is set.
+   *
+   * @return {boolean} true if the "stoichiometry" attribute of this
+   * SpeciesReference is set, false otherwise.
+   */
+  boolean isSetStoichiometry ();
+
+
+  /**
+   * Sets the value of the "stoichiometry" attribute of this
+   * SpeciesReference.
+   *
+   * In SBML Level 2, product and reactant stoichiometries can be specified
+   * using *either* "stoichiometry" or "stoichiometryMath" in a
+   * SpeciesReference object.  The former is to be used when a
+   * stoichiometry is simply a scalar number, while the latter is for
+   * occasions when it needs to be a rational number or it needs to
+   * reference other mathematical expressions.  The "stoichiometry"
+   * attribute is of type double and should contain values greater than
+   * zero (0).  The "stoichiometryMath" element is implemented as an
+   * element containing a MathML expression.  These two are mutually
+   * exclusive; only one of "stoichiometry" or "stoichiometryMath" should
+   * be defined in a given SpeciesReference instance.  When neither the
+   * attribute nor the element is present, the value of "stoichiometry" in
+   * the SpeciesReference instance defaults to 1.  For maximum
+   * interoperability between different software tools, the "stoichiometry"
+   * attribute should be used in preference to "stoichiometryMath" when a
+   * species' stoichiometry is a simple scalar number (integer or
+   * decimal).
+   *
+   * In SBML Level 3, there is no StoichiometryMath, and SpeciesReference
+   * objects have only the "stoichiometry" attribute.
+   *
+   * @param {number} value the new value of the "stoichiometry" attribute
+   *
+   * **Note:** In SBML Level 2, the "stoichiometryMath" subelement of this
+   * SpeciesReference object will be unset because the "stoichiometry"
+   * attribute and the stoichiometryMath" subelement are mutually
+   * exclusive.
+   */
+  long setStoichiometry (double value);
+
+
+  /**
+   * Sets the "stoichiometryMath" subelement of this SpeciesReference.
+   *
+   * The Abstract Syntax Tree in @p math is copied.
+   *
+   * In SBML Level 2, product and reactant stoichiometries can be specified
+   * using *either* "stoichiometry" or "stoichiometryMath" in a
+   * SpeciesReference object.  The former is to be used when a
+   * stoichiometry is simply a scalar number, while the latter is for
+   * occasions when it needs to be a rational number or it needs to
+   * reference other mathematical expressions.  The "stoichiometry"
+   * attribute is of type double and should contain values greater than
+   * zero (0).  The "stoichiometryMath" element is implemented as an
+   * element containing a MathML expression.  These two are mutually
+   * exclusive; only one of "stoichiometry" or "stoichiometryMath" should
+   * be defined in a given SpeciesReference instance.  When neither the
+   * attribute nor the element is present, the value of "stoichiometry" in
+   * the SpeciesReference instance defaults to 1.  For maximum
+   * interoperability between different software tools, the "stoichiometry"
+   * attribute should be used in preference to "stoichiometryMath" when a
+   * species' stoichiometry is a simple scalar number (integer or
+   * decimal).
+   *
+   * In SBML Level 3, there is no StoichiometryMath, and SpeciesReference
+   * objects have only the "stoichiometry" attribute.
+   *
+   * @param {StoichiometryMath} math the StoichiometryMath expression that is to be copied as the
+   * content of the "stoichiometryMath" subelemen
+   *
+   * **Note:** In SBML Level 2, the "stoichiometry" attribute of this
+   * SpeciesReference object will be unset (isSetStoichiometry() will
+   * return false although getStoichiometry() will return 1.0) if the
+   * given math is not null because the "stoichiometry" attribute and the
+   * stoichiometryMath" subelement are mutually exclusive.
+   */
+  long setStoichiometryMath (StoichiometryMath math);
 };
 
 SpeciesReference implements SBase;
@@ -156,7 +461,7 @@ ModifierSpeciesReference implements SBase;
  * compartment.  The SBML Species object class is intended to represent
  * these pools.
  *
- * As with other major constructs in SBML, Species has a mandatory
+ * As with other majorructs in SBML, Species has a mandatory
  * attribute, "id", used to give the species type an identifier in the
  * model.  The identifier must be a text string conforming to the identifer
  * syntax permitted in SBML.  Species also has an optional "name"
@@ -172,7 +477,7 @@ ModifierSpeciesReference implements SBase;
  * Species objects must define at least one Compartment object.)
  *
  *
- * @section species-amounts The initial amount and concentration of a species
+ * ## The initial amount and concentration of a species
  *
  * The optional attributes "initialAmount" and "initialConcentration", both
  * having a data type of double, can be used to set the initial
@@ -181,7 +486,7 @@ ModifierSpeciesReference implements SBase;
  * have a value on any given instance of a Species object.  Missing
  * "initialAmount" and "initialConcentration" values implies that their
  * values either are unknown, or to be obtained from an external source, or
- * determined by an InitialAssignment or other SBML construct elsewhere in
+ * determined by an InitialAssignment or other SBMLruct elsewhere in
  * the model.
  *
  * A species' initial quantity in SBML is set by the "initialAmount" or
@@ -198,7 +503,7 @@ ModifierSpeciesReference implements SBase;
  * or AlgebraicRule, and in addition, for t > 0, it may also be
  * changed by a RateRule, Event objects, and as a result of being a
  * reactant or product in one or more Reaction objects.  (However, some
- * constructs are mutually exclusive; see the SBML specifications for the
+ *ructs are mutually exclusive; see the SBML specifications for the
  * precise details.)  It is not an error to define "initialAmount" or
  * "initialConcentration" on a species and also redefine the value using an
  * InitialAssignment, but the "initialAmount" or "initialConcentration"
@@ -212,7 +517,7 @@ ModifierSpeciesReference implements SBase;
  * concentration and density break down when a container has zero
  * dimensions.
  *
- * @section species-units The units of a species' amount or concentration
+ * ## The units of a species' amount or concentration
  *
  * When the attribute "initialAmount" is set, the unit of measurement
  * associated with the value of "initialAmount" is specified by the Species
@@ -297,7 +602,7 @@ ModifierSpeciesReference implements SBase;
  * default.
  *
  * The "constant" attribute indicates whether the species' quantity can be
- * changed at all, regardless of whether by reactions, rules, or constructs
+ * changed at all, regardless of whether by reactions, rules, orructs
  * other than InitialAssignment.  A value of false indicates that the
  * species' quantity can be changed.  (This is also a common value because
  * the purpose of most simulations is precisely to calculate changes in
@@ -310,7 +615,7 @@ ModifierSpeciesReference implements SBase;
  * equation derived from the reaction definitions should not be generated
  * for the species.  However, the species' quantity may still be changed by
  * AssignmentRule, RateRule, AlgebraicRule, Event, and InitialAssignment
- * constructs if its "constant" attribute is false.  Conversely, if the
+ *ructs if its "constant" attribute is false.  Conversely, if the
  * species' "constant" attribute is true, then its value cannot be
  * changed by anything except InitialAssignment.
  *
@@ -323,14 +628,14 @@ ModifierSpeciesReference implements SBase;
  * product, or as the target of any AssignmentRule, RateRule or
  * EventAssignment object in the model.
  *
- * Finally, it is worth clarifying that while the constant and
+ * Finally, it is worth clarifying that while theant and
  * boundaryCondition attributes restrict whether and how the species
  * amount changes, the same is not true of a species' concentration. In
  * SBML, the concentration of a species is a quantity that depends on the
  * size of the compartment in which it is located. A compartment's size
  * may change, and therefore, so can the concentration of a species even
  * if the amount of the species remains unchanged. A species' concentration
- * may therefore vary even if the Species object's constant attribute is
+ * may therefore vary even if the Species object'sant attribute is
  * set to true in a model.
  *
  * # The conversionFactor attribute in SBML Level 3
@@ -339,7 +644,7 @@ ModifierSpeciesReference implements SBase;
  * "conversionFactor", that defines a conversion factor that applies to a
  * particular species.  The value must be the identifier of a Parameter
  * object instance defined in the model.  That Parameter object must be a
- * constant, meaning its "constant" attribute must be set to true.
+ *ant, meaning its "constant" attribute must be set to true.
  * If a given Species object definition defines a value for its
  * "conversionFactor" attribute, it takes precedence over any factor
  * defined by the Model object's "conversionFactor" attribute.
@@ -357,7 +662,7 @@ ModifierSpeciesReference implements SBase;
  *
  * Note that the unit conversion factor is  only applied when
  * calculating the effect of a reaction on a species .  It is not
- * used in any rules or other SBML constructs that affect the species, and
+ * used in any rules or other SBMLructs that affect the species, and
  * it is also not used when the value of the species is referenced in a
  * mathematical expression.
  *
@@ -399,7 +704,7 @@ ModifierSpeciesReference implements SBase;
  * Version 3.
  *
  *
- * @section species-math Additional considerations for interpreting the numerical value of a species
+ * ## Additional considerations for interpreting the numerical value of a species
  *
  * Species are unique in SBML in that they have a kind of duality: a
  * species identifier may stand for either substance amount (meaning, a
@@ -407,14 +712,14 @@ ModifierSpeciesReference implements SBase;
  * density (meaning, amount divided by a compartment size).  The previous
  * sections explain the meaning of a species identifier when it is
  * referenced in a mathematical formula or in rules or other SBML
- * constructs; however, it remains to specify what happens to a species
+ *ructs; however, it remains to specify what happens to a species
  * when the compartment in which it is located changes in size.
  *
  * When a species definition has a "hasOnlySubstanceUnits" attribute value
  * of false and the size of the compartment in which the species is
  * located changes, the default in SBML is to assume that it is the
  * concentration that must be updated to account for the size change.  This
- * follows from the principle that, all other things held constant, if a
+ * follows from the principle that, all other things heldant, if a
  * compartment simply changes in size, the size change does not in itself
  * cause an increase or decrease in the number of entities of any species
  * in that compartment.  In a sense, the default is that the amount of
@@ -423,7 +728,7 @@ ModifierSpeciesReference implements SBase;
  * from the simple relationship concentration = amount / size if
  * the value of the concentration is needed (for example, if the species
  * identifier appears in a mathematical formula or is otherwise referenced
- * in an SBML construct).  There is one exception: if the species' quantity
+ * in an SBMLruct).  There is one exception: if the species' quantity
  * is determined by an AssignmentRule, RateRule, AlgebraicRule, or an
  * EventAssignment and the species has a "hasOnlySubstanceUnits" attribute
  * value of false, it means that the concentration is assigned
@@ -440,7 +745,7 @@ ModifierSpeciesReference implements SBase;
  * appears in a mathematical formula.  If instead the attribute's value is
  * true, then the identifier of the species always stands for
  * an amount wherever it appears in a mathematical formula or is referenced
- * by an SBML construct.  In that case, there is never a question about
+ * by an SBMLruct.  In that case, there is never a question about
  * whether an assignment or event is meant to affect the amount or
  * concentration: it is always the amount.
  *
@@ -448,9 +753,9 @@ ModifierSpeciesReference implements SBase;
  * "constant" attribute value of true in combination with a
  * "hasOnlySubstanceUnits" attribute value of false.  Suppose this
  * species is given a value for "initialConcentration".  Does a "constant"
- * value of true mean that the concentration is held constant if the
+ * value of true mean that the concentration is heldant if the
  * compartment size changes?  No; it is still the amount that is kept
- * constant across a compartment size change.  The fact that the species
+ *ant across a compartment size change.  The fact that the species
  * was initialized using a concentration value is irrelevant.
  */
 [Prefix="libsbml::"]
@@ -481,7 +786,7 @@ interface Species {
    * set, false otherwise
    *
    * **Note:** In SBML Level 1, Species' "initialAmount" is required and
-   * therefore <em>should always be set</em>.  (However, in Level 1, the
+   * therefore *should always be set*.  (However, in Level 1, the
    * attribute has no default value either, so this method will not return
    * true until a value has been assigned.)  In SBML Level 2,
    * "initialAmount" is optional and as such may or may not be set.
