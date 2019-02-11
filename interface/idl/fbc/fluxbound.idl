@@ -147,6 +147,30 @@ interface FluxBound {
    */
   double getValue ();
 
+
+  /**
+   * Predicate returning true if this FluxBound's "value" attribute is
+   * set.
+   *
+   * @return {boolean} true if this FluxBound object's "value" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetValue ();
+
+
+  /**
+   * Sets the value of the "value" attribute of this FluxBound object.
+   *
+   * @param {number} value
+   */
+  long setValue (double value);
+
+
+  /**
+   * Unsets the value of the "value" attribute of this FluxBound object.
+   */
+  long unsetValue ();
+
 };
 
 FluxBound implements SBase;

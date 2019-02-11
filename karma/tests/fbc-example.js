@@ -5,7 +5,9 @@ describe("Writing test", function() {
           // create new document
           const doc = new libsbml.SBMLDocument(3,2)
 
+          doc.enablePackage(libsbml.FbcExtension.prototype.getXmlnsL3V1V2(), 'fbc', true)
           doc.setPackageRequired("fbc", false)
+          expect(doc.isPackageEnabled('fbc')).toEqual(true)
 
           // expect(doc).not.toEqual(0)
 
@@ -242,7 +244,7 @@ describe("Writing test", function() {
           // corresponding derived class.
           //
 
-          const plugin = doc.getModel().findPlugin('layout')
+          const plugin = doc.getModel().findPlugin('fbc')
           expect(plugin.getPackageName()).toEqual('fbc')
           const fbc_plugin = libsbml.castObject(plugin, libsbml.FbcModelPlugin)
 
