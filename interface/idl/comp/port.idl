@@ -1,3 +1,5 @@
 [Prefix="libsbml::"]
 interface Port {
 };
+
+Port implements CompBase;

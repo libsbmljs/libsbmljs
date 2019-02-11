@@ -1,3 +1,251 @@
+/**
+ * # A model instance inside another model.
+ *
+ * The Submodel class was introduced by the SBML Level 3 @ref comp
+ * ("comp") package as the principle way by which models are
+ * structured hierarchically.  Submodels are instantiations of models
+ * contained within other models.  They reference another Model that is to be
+ * instantiated within its parent Model, and additionally define how that
+ * Model is to be modified before instantiation.
+ *
+ * The Submodel object class has a required attribute "modelRef", which must
+ * reference another Model or ExternalModelDefinition object present in the
+ * SBML Document.  This referenced Model is the model to be instantiated.
+ *
+ * It also has a required attribute, "id", to give the submodel a unique
+ * identifier by which other parts of an SBML model definition can refer to
+ * it, and an optional "name" attribute of type string.  Identifiers and
+ * names must be used according to the guidelines described in the SBML
+ * specification.
+ *
+ * The Submodel class also providesructs that define how the referenced
+ * Model object is to be modified before it is instantiated in the enclosing
+ * model.  If numerical values in the referenced model must be changed in order
+ * to fit them into their new context as part of the submodel, the changes can
+ * be handled through conversion factors.  If one or more structural features
+ * in the referenced model are undesirable and should be removed, the changes
+ * can be handled through deletions.  (For example, an initial assignment or
+ * reaction may not be relevant in its new context and should be removed.)
+ *
+ * In some cases, the referenced Model may have been written with different
+ * units than the containing model.  For most model elements, this is not a
+ * problem: it is already possible to have Species and Parameter objects with
+ * different units in a single model, for example, so in this case the
+ * resulting hierarchical model would be treated in exactly the same way as
+ * any other model with Species and Parameters with different units.
+ *
+ * However, two units in SBML models are fixed and must not vary between SBML
+ * elements: time and extent.  The units of time are set once per model, and
+ * affect the core elements of RateRule, KineticLaw, Delay, and the
+ * csymbols 'time' and 'delay'.  Even if the model does not explicitly state
+ * what the units of time actually are, they are defined to be consistent
+ * across the model, and therefore might differ from the units of time across
+ * a parent model.  To correct this imbalance, the optional attribute
+ * "timeConversionFactor" may be used, which, if defined, must reference a
+ *ant parameter in the parent model. The value of the time conversion
+ * factor should be defined such that a single unit of time in the Submodel
+ * multiplied by the time conversion factor should equal a single unit of
+ * time in the parent model.
+ *
+ * Extent is the unit in SBML that defines how the KineticLaw of a Reaction
+ * affects species quantities: kinetic laws are defined to be in units of
+ * extent/time.  No other SBML coreruct is defined in terms of extent.
+ * If the effective units of extent in a submodel differ from the effective
+ * units of extent in the parent model (regardless of whether either defined
+ * what those units actually are), the optional attribute
+ * "extentConversionFactor" may be used, which, if defined, must reference a
+ *ant parameter in the parent model. The value of the extent conversion
+ * factor should be defined such that a single unit of extent in the Submodel
+ * multiplied by the extent conversion factor should equal a single unit of
+ * extent in the parent model.
+ *
+ * If features of the referenced model must be removed, a Deletion should be added
+ * to the Submodel object.  A Submodel may contain a child ListOfDeletions, which
+ * in turn may contain one or more Deletion items.  Each Deletion references a single
+ * element of the referenced Model that must be removed before instantiating that
+ * Model as a submodel of the parent Model.
+ */
 [Prefix="libsbml::"]
 interface Submodel {
+  /**
+   * Returns the value of the "modelRef" attribute of this Submodel.
+   *
+   * @return {string} the value of the "modelRef" attribute of this Submodel.
+   */
+  DOMString getModelRef();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Submodel's "modelRef" attribute has been set.
+   *
+   * @return true if this Submodel's "modelRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetModelRef();
+
+
+  /**
+   * Sets the value of the "modelRef" attribute of this Submodel.  Fails if
+   * the modelRef is not a valid syntax for an SIdRef.
+   *
+   * @param {string} modelRef
+   */
+  long setModelRef(DOMString modelRef);
+
+
+  /**
+   * Unsets the value of the "modelRef" attribute of this Submodel.
+   */
+  long unsetModelRef();
+
+
+  /**
+   * Returns an empty string, since "substanceConversionFactor" is not a part of the comp spec.
+   *
+   * @return {string} an empty string.
+   */
+  DOMString getSubstanceConversionFactor ();
+
+
+  /**
+   * Returns false, since "substanceConversionFactor" is not a part of the comp spec.
+   *
+   * @return {boolean} false.
+   */
+  boolean isSetSubstanceConversionFactor ();
+
+
+  /**
+   * Automatically fails, since "substanceConversionFactor" is not a part of the comp spec.
+   */
+  long setSubstanceConversionFactor (DOMString id);
+
+
+  /**
+   * Automatically fails, since "substanceConversionFactor" is not a part of the comp spec.
+   */
+  long unsetSubstanceConversionFactor ();
+
+
+  /**
+   * Returns the value of the "timeConversionFactor" attribute of this Submodel.
+   *
+   * @return {string} the value of the "timeConversionFactor" attribute of this Submodel.
+   */
+  DOMString getTimeConversionFactor ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Submodel's "timeConversionFactor" attribute has been set.
+   *
+   * @return true if this Submodel's "timeConversionFactor" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetTimeConversionFactor ();
+
+
+  /**
+   * Sets the value of the "timeConversionFactor" attribute of this Submodel.
+   * Fails if the id is not a valid syntax for an SIdRef.
+   */
+  long setTimeConversionFactor (DOMString id);
+
+
+  /**
+   * Unsets the value of the "timeConversionFactor" attribute of this Submodel.
+   */
+  long unsetTimeConversionFactor ();
+
+
+  /**
+   * Returns the value of the "extentConversionFactor" attribute of this Submodel.
+   *
+   * @return {string} the value of the "extentConversionFactor" attribute of this Submodel.
+   */
+  DOMString getExtentConversionFactor ();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Submodel's "extentConversionFactor" attribute has been set.
+   *
+   * @return {boolean} true if this Submodel's "extentConversionFactor" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetExtentConversionFactor ();
+
+
+  /**
+   * Sets the value of the "extentConversionFactor" attribute of this
+   * Submodel.  Fails if the id is not a valid syntax for an SIdRef.
+   */
+  long setExtentConversionFactor (DOMString id);
+
+
+  /**
+   * Unsets the value of the "extentConversionFactor" attribute of this
+   * Submodel.
+   */
+  long unsetExtentConversionFactor ();
+
+
+  /**
+   * Returns the deletion with the given index.
+   * If the index is invalid, NULL is returned.
+   *
+   * @param {number} n the index number of the Deletion to get
+   *
+   * @return {Deletion} the nth Deletion in the ListOfDeletions.
+   * If the index n is invalid, NULL is returned.
+   */
+  Deletion getDeletion (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given Deletion object to the list of deletions.
+   *
+   * @param deletion the Deletion object to be added to the list of
+   * deletions.  Fails if the added deletion is NULL, does not match the
+   * level/version/package of the parent object, or cannot be added to the
+   * list of deletions
+   *
+   * @param {Deletion} deletion
+   */
+  long addDeletion (Deletion deletion);
+
+
+  /**
+   * Returns the number of deletions for this Submodel.
+   *
+   * @return {number} the number of deletions for this Submodel.
+   */
+  unsigned long getNumDeletions ();
+
+
+  /**
+   * Creates a Deletion object, adds it to the end of the
+   * deletion objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {Deletion} a newly created Deletion object.
+   */
+  Deletion createDeletion ();
+
+
+  /**
+   * Removes the deletion with the given index from the Submodel.
+   * A pointer to the deletion that was removed is returned.
+   * If no deletion has been removed, NULL is returned.
+   *
+   * @param {number} index the index of the Deletion object to remove
+   *
+   * @return {Deletion} the Deletion object removed.  As mentioned above,
+   * the caller owns the returned object. NULL is returned if
+   * the given index is out of range.
+   */
+  Deletion removeDeletion(unsigned long index);
 };
+
+Submodel implements CompBase;

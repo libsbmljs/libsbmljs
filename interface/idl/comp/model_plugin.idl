@@ -28,9 +28,8 @@ interface CompModelPlugin {
    * @return {Submodel} the Submodel in the ListOfSubmodels with the given
    * identifier. If no submodel with identifier id exists, NULL is
    * returned.
-
    */
-  Submodel getSubmodel (DOMString id) const;
+  Submodel getSubmodel (DOMString id);
 
 
   /**
@@ -51,7 +50,7 @@ interface CompModelPlugin {
    *
    * @return the number of submodels for this CompModelPlugin.
    */
-  unsigned long getNumSubmodels () const;
+  unsigned long getNumSubmodels ();
 
 
   /**
@@ -81,12 +80,12 @@ interface CompModelPlugin {
   /**
    * Returns the port with the given identifier.
    *
-   * @param {string} id the id of the Port to get.
+   * @param {string} id the id of the Port to get
    *
    * @return {Port} the Port in the ListOfPorts with the given identifier.  If the
    * identifier is invalid, NULL is returned.
    */
-  Port getPort (DOMString id) const;
+  Port getPort (DOMString id);
 
 
   /**
@@ -94,7 +93,7 @@ interface CompModelPlugin {
    *
    * @param {Port} port the Port object to be added to the list of ports.  Fails if
    * the added port is NULL, does not match the level/version/package of the
-   * parent object, or cannot be added to the list of ports.
+   * parent object, or cannot be added to the list of ports
    */
   long addPort (Port port);
 
@@ -104,7 +103,7 @@ interface CompModelPlugin {
    *
    * @return {number} the number of ports for this CompModelPlugin.
    */
-  unsigned long getNumPorts () const;
+  unsigned long getNumPorts ();
 
 
   /**
@@ -121,7 +120,7 @@ interface CompModelPlugin {
    * Removes the port with the given index.
    * The caller owns the returned item and is responsible for deleting it.
    *
-   * @param index the index of the Port object to remove.
+   * @param index the index of the Port object to remove
    *
    * @return the Port object removed.  As mentioned above,
    * the caller owns the returned object. NULL is returned if

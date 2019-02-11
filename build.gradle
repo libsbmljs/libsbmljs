@@ -84,7 +84,7 @@ ext.enableRender = findProperty('enableRender') || true
 ext.enableFBC = findProperty('enableFBC') || true
 ext.enableMulti = findProperty('enableMulti') || false
 ext.enableQual = findProperty('enableQual') || false
-ext.enableComp = findProperty('enableComp') || false
+ext.enableComp = findProperty('enableComp') || true
 ext.enableDistrib = findProperty('enableDistrib') || isExperimentalBranch
 ext.enableDyn = findProperty('enableDyn') || isExperimentalBranch
 ext.enableGroups = findProperty('enableGroups') || false
@@ -188,8 +188,10 @@ task combineIDL(type: ConcatFiles) {
   if (enableQual) {
   }
   if (enableComp) {
+    include Paths.get(idl_dir, "comp", "comp_base.idl")
     include Paths.get(idl_dir, "comp", "port.idl")
     include Paths.get(idl_dir, "comp", "submodel.idl")
+    include Paths.get(idl_dir, "comp", "deletion.idl")
     include Paths.get(idl_dir, "comp", "model_plugin.idl")
     include Paths.get(idl_dir, "comp", "extension.idl")
   }
