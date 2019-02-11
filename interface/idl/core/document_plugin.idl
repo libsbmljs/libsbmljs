@@ -1,0 +1,52 @@
+/**
+ * # Base class for extending SBMLDocument in packages.
+ *
+ * The SBMLDocumentPlugin class is a specialization of SBasePlugin
+ * designed specifically for extending SBMLDocument.  All package
+ * extensions must extend SBMLDocument to implement support for SBML
+ * Level 3 packages; these extensions can be subclasses of this
+ * class or from a derived class of this class.
+ *
+ * All packages must additionally define a
+ * required flag named `required`, which indicates whether
+ * that package's constructs can be used to change the core mathematics of the
+ * `<model>` child of the `<sbml>` element.
+ * If they can, this attribute must be set true, and if they cannot, this
+ * attribute must be set false.
+ */
+[Prefix="libsbml::"]
+interface SBMLDocumentPlugin {
+  /**
+   * Sets the SBML "required" attribute value.
+   *
+   * @param {boolean} value the value to be assigned to the "required" attribute.
+   * The "required" attribute takes a Boolean value, either true or
+   * false
+   */
+  long setRequired(boolean value);
+
+
+  /**
+   * Returns the value of the "required" attribute.
+   *
+   * @return {boolean} the boolean value of "required" attribute for the SBML package.
+   */
+  boolean getRequired();
+
+
+  /**
+   * Returns the value of the "required" attribute.
+   *
+   * @return {boolean} true if the "required" attribute of this SBMLDocument
+   * has been set to true, false otherwise.
+   */
+  boolean isSetRequired();
+
+
+  /**
+   * Unsets the value of the "required" attribute of this SBMLDocumentPlugin.
+   */
+  long unsetRequired();
+};
+
+SBMLDocumentPlugin implements SBasePlugin;

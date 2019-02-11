@@ -1,5 +1,5 @@
-describe("Writing test", function() {
-  it('Tests writing of an SBML model', (done) => {
+describe("FBC test", function() {
+  it('Tests the fbc package', (done) => {
     libsbml().then((libsbml) => {
         try {
           // create new document
@@ -98,7 +98,7 @@ describe("Writing test", function() {
           reaction = model.createReaction()
           reaction.setId("J1")
           reaction.setReversible(false)
-                    reactant = reaction.createReactant()
+          reactant = reaction.createReactant()
           reactant.setSpecies("Node1")
           reactant.setStoichiometry(1)
           reactant.setConstant(true)
@@ -234,8 +234,6 @@ describe("Writing test", function() {
           product.setStoichiometry(1)
           product.setConstant(true)
 
-          done()
-
           //
           // Get a FbcModelPlugin object plugged in the model object.
           //
@@ -278,7 +276,6 @@ describe("Writing test", function() {
 
           const doc_after = reader.readSBMLFromString(serializedSBML)
 
-          // console.log(doc_after.getError(0).getMessage())
           expect(doc_after.getNumErrors()).toEqual(0)
           expect(doc_after.isPackageEnabled('fbc')).toEqual(true)
 
@@ -296,6 +293,7 @@ describe("Writing test", function() {
           expect(fbc_model_plugin_after.getObjective(0).getFluxObjective().getReaction()).toBe('J8')
 
           libsbml.destroy(doc)
+          libsbml.destroy(doc_after)
         } catch(error) {
           fail(error)
           console.log(error.stack)

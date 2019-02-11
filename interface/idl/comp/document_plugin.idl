@@ -139,4 +139,4 @@ interface CompSBMLDocumentPlugin {
   ExternalModelDefinition removeExternalModelDefinition(unsigned long index);
 };
 
-CompSBMLDocumentPlugin implements SBasePlugin;
+CompSBMLDocumentPlugin implements SBMLDocumentPlugin;

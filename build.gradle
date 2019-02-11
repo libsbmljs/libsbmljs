@@ -145,6 +145,7 @@ task combineIDL(type: ConcatFiles) {
   include Paths.get(core_idl_dir, "reader.idl")
   include Paths.get(core_idl_dir, "writer.idl")
   include Paths.get(core_idl_dir, "document.idl")
+  include Paths.get(core_idl_dir, "document_plugin.idl")
   include Paths.get(core_idl_dir, "model.idl")
   include Paths.get(core_idl_dir, "species.idl")
   include Paths.get(core_idl_dir, "reaction.idl")
@@ -498,7 +499,8 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "writing.js")
   include Paths.get(tests_dir, "units.js")
   include Paths.get(tests_dir, "layout.js")
-  include Paths.get(tests_dir, "fbc-example.js")
+  include Paths.get(tests_dir, "fbc.js")
+  include Paths.get(tests_dir, "comp1.js")
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {

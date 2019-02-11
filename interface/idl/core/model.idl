@@ -280,7 +280,25 @@ interface Model {
    * if no such Reaction exists.
    */
   Reaction getReaction(unsigned long i);
+
+  /**
+   * Creates a new Reaction inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {Reaction} the Reaction object created.
+   */
   Reaction createReaction();
+
+  /**
+   * Adds a copy of the given Reaction object to this Model.
+   *
+   * @param {Reaction} r the Reaction object to add
+   */
+  long addReaction (Reaction r);
+
 
   /**
    * Get the number of Species objects in this Model.
@@ -288,7 +306,26 @@ interface Model {
    * @return {number} the number of Species in this Model.
    */
   unsigned long getNumSpecies();
+
+  /**
+   * Creates a new Species inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {Species} the Species object created.
+   */
   Species createSpecies();
+
+
+  /**
+   * Adds a copy of the given Species object to this Model.
+   *
+   * @param {Species} s the Species object to add
+   */
+  long addSpecies (Species s);
+
   /**
    * Get the nth Species object in this Model.
    *
