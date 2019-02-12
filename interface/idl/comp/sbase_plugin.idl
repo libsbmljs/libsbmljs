@@ -94,7 +94,7 @@ interface CompSBasePlugin {
    * @return {boolean} true if the ReplacedBy of this SBase is set, false
    * otherwise.
    */
-  bool isSetReplacedBy ();
+  boolean isSetReplacedBy ();
 
 
   /**
