@@ -19,3 +19,4 @@
   * writing Fancy math and units?
   * writing events
   * Packages
+* Test whether XML output of libSBML examples is identical to output of Karma tests
