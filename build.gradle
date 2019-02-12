@@ -185,6 +185,14 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "fbc", "model_plugin.idl")
     include Paths.get(idl_dir, "fbc", "extension.idl")
   }
+  if (enableGroups) {
+    include Paths.get(idl_dir, "groups", "group.idl")
+    include Paths.get(idl_dir, "groups", "group_kind.idl")
+    include Paths.get(idl_dir, "groups", "member.idl")
+    include Paths.get(idl_dir, "groups", "model_plugin.idl")
+    include Paths.get(idl_dir, "groups", "document_plugin.idl")
+    include Paths.get(idl_dir, "groups", "extension.idl")
+  }
   if (enableMulti) {
   }
   if (enableQual) {

@@ -295,8 +295,8 @@ interface Model {
   /**
    * Adds the given Reaction object to this Model.
    *
-   * ❗DANGER: the libSBML documentation indicates that this method
-   * should add a copy, but it actually creates a reference.
+   * ❗DANGER: in libSBML, addX methods can have complex
+   * ownership semantics.
    * {@link Model#createReaction} should be used instead.
    *
    * @param {Reaction} r the Reaction object to add
@@ -326,8 +326,8 @@ interface Model {
   /**
    * Adds the given Species object to this Model.
    *
-   * ❗DANGER: the libSBML documentation indicates that this method
-   * should add a copy, but it actually creates a reference.
+   * ❗DANGER: in libSBML, addX methods can have complex
+   * ownership semantics.
    * {@link Model#createSpecies} should be used instead.
    *
    * @param {Species} s the Species object to add

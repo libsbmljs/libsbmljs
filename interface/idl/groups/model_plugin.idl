@@ -1,0 +1,53 @@
+/**
+ * # Extension of Model.
+ */
+[Prefix="libsbml::"]
+interface GroupsModelPlugin {
+  /**
+   * Get a Group from the GroupsModelPlugin.
+   *
+   * @param {number} n an unsigned long representing the index of the Group to retrieve.
+   *
+   * @return {Group} the nth Group in the ListOfGroups within this GroupsModelPlugin
+   * or NULL if no such object exists.
+   */
+  Group getGroup(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given Group to this GroupsModelPlugin.
+   *
+   * @param {Group} g the Group object to add.
+   */
+  long addGroup([Const] Group g);
+
+
+  /**
+   * Get the number of Group objects in this GroupsModelPlugin.
+   *
+   * @return {number} the number of Group objects in this GroupsModelPlugin.
+   */
+  unsigned long getNumGroups();
+
+
+  /**
+   * Creates a new Group object, adds it to this GroupsModelPlugin object and
+   * returns the Group object created.
+   *
+   * @return {Group} a new Group object instance.
+   */
+  Group createGroup();
+
+
+  /**
+   * Removes the nth Group from this GroupsModelPlugin and returns a pointer to
+   * it.
+   *
+   * @param {number} n an unsigned long representing the index of the Group to remove.
+   *
+   * @return {Group} a pointer to the nth Group in this GroupsModelPlugin.
+   */
+  Group removeGroup(unsigned long n);
+};
+
+GroupsModelPlugin implements SBasePlugin;

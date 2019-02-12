@@ -1,0 +1,11 @@
+/**
+ * # Extension of SBMLDocument.
+ *
+ * This class extends SBMLDocumentPlugin, a class that is used by libSBML
+ * plugins as part of their implementation of SBML Level 3 packages.
+ */
+[Prefix="libsbml::"]
+interface GroupsSBMLDocumentPlugin {
+};
+
+GroupsSBMLDocumentPlugin implements SBasePlugin;

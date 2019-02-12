@@ -2,9 +2,9 @@
  * Enumeration of values permitted as the value of the "kind" attribute
  * on Group objects.
  */
-enum libsbml__idl__ GroupKind_t {
+enum libsbml__idl__GroupKind_t {
   "libsbml::GROUP_KIND_CLASSIFICATION",
   "libsbml::GROUP_KIND_PARTONOMY",
   "libsbml::GROUP_KIND_COLLECTION",
   "libsbml::GROUP_KIND_UNKNOWN"
-}
+};

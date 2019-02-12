@@ -1,0 +1,83 @@
+/**
+ * # The Member class defines what objects are parts of a Group.
+ *
+ * The Member class has four optional attributes: id and name, which identify
+ * the element, and idRef and metaIdRef which reference the identifiers of
+ * other elements. There must be exactly one (and only one) method used to
+ * reference another element: either idRef or metaIdRef may be defined, but
+ * not both. (Multiple attributes are needed to account for the different types
+ * of identifiers that a given object may have.) The referenced object
+ * (including, potentially, another Group object) is thus made a member of the
+ * group in which the Member object is contained.
+ *
+ * Since Member is derived from SBase and, as mentioned above, SBase provides
+ * both the ability to attach SBO terms as well as MIRIAM annotations, the
+ * semantics of a given member in a model can be made more precise by reference
+ * to external controlled vocabularies and ontologies.
+ */
+[Prefix="libsbml::"]
+interface Member {
+  /**
+   * Returns the value of the "idRef" attribute of this Member.
+   *
+   * @return {string} the value of the "idRef" attribute of this Member as a string.
+   */
+  DOMString getIdRef();
+
+
+  /**
+   * Returns the value of the "metaIdRef" attribute of this Member.
+   *
+   * @return {string} the value of the "metaIdRef" attribute of this Member as a string.
+   */
+  DOMString getMetaIdRef();
+
+
+  /**
+   * Predicate returning true if this Member's "idRef" attribute is set.
+   *
+   * @return {boolean} true if this Member's "idRef" attribute has been set, otherwise
+   * false is returned.
+   */
+  boolean isSetIdRef();
+
+
+  /**
+   * Predicate returning true if this Member's "metaIdRef" attribute is set.
+   *
+   * @return {boolean} true if this Member's "metaIdRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMetaIdRef();
+
+
+  /**
+   * Sets the value of the "idRef" attribute of this Member.
+   *
+   * @param {string} idRef std::string& value of the "idRef" attribute to be set.
+   */
+  long setIdRef(DOMString idRef);
+
+
+  /**
+   * Sets the value of the "metaIdRef" attribute of this Member.
+   *
+   * @param {string} metaIdRef std::string& value of the "metaIdRef" attribute to be
+   * set.
+   */
+  long setMetaIdRef(DOMString metaIdRef);
+
+
+  /**
+   * Unsets the value of the "idRef" attribute of this Member.
+   */
+  long unsetIdRef();
+
+
+  /**
+   * Unsets the value of the "metaIdRef" attribute of this Member.
+   */
+  long unsetMetaIdRef();
+};
+
+Member implements SBase;

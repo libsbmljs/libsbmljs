@@ -102,7 +102,7 @@ interface Group {
    * @return {boolean} true if this Group's "kind" attribute has been set, otherwise
    * false is returned.
    */
-  bool isSetKind();
+   boolean isSetKind();
 
 
   /**
@@ -117,7 +117,7 @@ interface Group {
    * * GROUP_KIND_PARTONOMY
    * * GROUP_KIND_COLLECTION.
    */
-  long setKind(const GroupKind_t kind);
+  long setKind(libsbml__idl__GroupKind_t kind);
 
 
   /**
