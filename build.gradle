@@ -163,6 +163,7 @@ task combineIDL(type: ConcatFiles) {
   include Paths.get(core_idl_dir, "operation_return_values.idl")
   include Paths.get(core_idl_dir, "core_interface.idl")
   if (enableLayout) {
+    include Paths.get(idl_dir, "layout", "species_reference_role.idl")
     include Paths.get(idl_dir, "layout", "curve.idl")
     include Paths.get(idl_dir, "layout", "layout.idl")
     include Paths.get(idl_dir, "layout", "extension.idl")
@@ -522,6 +523,7 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "comp3.js")
   include Paths.get(tests_dir, "comp4.js")
   include Paths.get(tests_dir, "groups1.js")
+  include Paths.get(tests_dir, "groups2.js")
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {

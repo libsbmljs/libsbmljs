@@ -1,0 +1,18 @@
+/**
+ * SpeciesReferenceRole_t is the enumeration of possible values for the 'role' attribute of a SpeciesReferenceGlyph.
+ *
+ * The role attribute is of type SpeciesReferenceRole and is used to specify how the species reference should be displayed. Allowed values are 'substrate', 'product', 'sidesubstrate', 'sideproduct', 'modifier', 'activator', 'inhibitor' and 'undefined'.
+ *
+ * This attribute is optional and should only be necessary if the optional speciesReference attribute is not given or if the respective information from the model needs to be overridden.
+ */
+enum libsbml__idl__SpeciesReferenceRole_t {
+  "libsbml::SPECIES_ROLE_UNDEFINED",
+  "libsbml::SPECIES_ROLE_SUBSTRATE",
+  "libsbml::SPECIES_ROLE_PRODUCT",
+  "libsbml::SPECIES_ROLE_SIDESUBSTRATE",
+  "libsbml::SPECIES_ROLE_SIDEPRODUCT",
+  "libsbml::SPECIES_ROLE_MODIFIER",
+  "libsbml::SPECIES_ROLE_ACTIVATOR",
+  "libsbml::SPECIES_ROLE_INHIBITOR",
+  "libsbml::SPECIES_ROLE_INVALID"
+};

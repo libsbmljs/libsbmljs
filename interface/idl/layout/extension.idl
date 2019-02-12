@@ -84,6 +84,16 @@ Dimensions implements SBase;
 [Prefix="libsbml::"]
 interface Point {
   /**
+   * Creates a new point with the given coordinates.
+   *
+   * @param {LayoutPkgNamespaces} layoutns
+   * @param {number} x
+   * @param {number} y
+   */
+  void Point (LayoutPkgNamespaces layoutns, double x, double y);
+
+
+  /**
    * Sets the x offset.
    *
    * @param {number} x
@@ -175,6 +185,17 @@ Point implements SBase;
  */
 [Prefix="libsbml::"]
 interface BoundingBox {
+  /**
+   * Constructor which sets the id, the coordinates and the dimensions to
+   * the given 2D values.
+   *
+   * (FOR BACKWARD COMPATIBILITY)
+   *
+   */
+  void BoundingBox (LayoutPkgNamespaces layoutns, DOMString id, double x, double y,
+               double width, double height);
+
+
   /**
    * Returns the dimensions of the BoundingBox as const reference to a
    * Dimensions object.
@@ -289,9 +310,59 @@ GraphicalObject implements SBase;
  */
 [Prefix="libsbml::"]
 interface CompartmentGlyph {
+  /**
+   * Returns the id of the associated compartment.
+   *
+   * @return {string} the value of the "compartment" attribute.
+   */
+  DOMString getCompartmentId ();
+
+  /**
+   * Sets the id of the associated compartment.
+   *
+   * @param {string} id the identifier of a Compartment object defined elsewhere
+   * in this Model.
+   */
+  long setCompartmentId (DOMString id);
+
+  /**
+   * Returns true if the id of the associated compartment is not the empty
+   * string.
+   *
+   * @return {boolean} true if the "compartment" attribute of this CompartmentGlyph is
+   * set, false otherwise.
+   */
+  boolean isSetCompartmentId ();
+
+  /**
+   * Returns the compartment order.
+   *
+   * @return {number} the value of the "order" attribute.
+   */
+  double getOrder ();
+
+  /**
+   * Sets the compartment order.
+   *
+   * @param {number} order the value to use for the "order" attribute.
+   */
+  long setOrder (double order);
+
+  /**
+   * Unsets the compartment order.
+   */
+  long unsetOrder ();
+
+  /**
+   * Returns true if the compartment order has been set.
+   *
+   * @return {boolean} true if the "order" attribute of this CompartmentGlyph is
+   * set, false otherwise.
+   */
+  boolean isSetOrder ();
 };
 
-CompartmentGlyph implements SBase;
+CompartmentGlyph implements GraphicalObject;
 
 /**
  * # A glyph for miscellaneous items.
@@ -354,7 +425,7 @@ interface ReactionGlyph {
 
   /**
    * Returns the species reference glyph with the given @p index.
-   * If the index is invalid, @c NULL is returned.
+   * If the index is invalid, NULL is returned.
    *
    * @return {SpeciesReferenceGlyph}
    */
@@ -386,6 +457,23 @@ interface ReactionGlyph {
    * @return {CubicBezier}
    */
    CubicBezier createCubicBezier();
+
+   /**
+    * Returns the curve object for the reaction glyph
+    */
+   Curve getCurve () ;
+
+   /**
+    * Sets the curve object for the reaction glyph.
+    */
+   void setCurve (Curve curve);
+
+   /**
+    * Returns true if the curve consists of one or more segments.
+    *
+    * @return {boolean}
+    */
+   boolean isSetCurve ();
 };
 
 ReactionGlyph implements SBase;
@@ -468,6 +556,69 @@ interface SpeciesReferenceGlyph {
    * @return {boolean}
    */
   boolean isSetCurve();
+
+
+  /**
+   * Returns the id of the associated SpeciesGlyph.
+   */
+  DOMString getSpeciesGlyphId ();
+
+  /**
+   * Sets the id of the associated species glyph.
+   */
+  void setSpeciesGlyphId (DOMString speciesGlyphId);
+
+  /**
+   * Returns the id of the associated species reference.
+   */
+  DOMString getSpeciesReferenceId();
+
+  /**
+   * Sets the id of the associated species reference.
+   */
+  void setSpeciesReferenceId (DOMString id);
+
+  /**
+   * Returns the role.
+   *
+   * @return {SpeciesReferenceRole_t}
+   */
+  libsbml__idl__SpeciesReferenceRole_t getRole();
+
+  /**
+   * Returns a string representation of the role.
+   *
+   * @return {string}
+   */
+  DOMString getRoleString();
+
+  /**
+   * Sets the role.
+   */
+  void setRole (libsbml__idl__SpeciesReferenceRole_t role);
+
+  /**
+   * Returns true if the id of the associated species glyph is not the
+   * empty string.
+   *
+   * @return {boolean}
+   */
+  boolean isSetSpeciesGlyphId ();
+
+  /**
+   * Returns true if the id of the associated species reference is not the
+   * empty string.
+   *
+   * @return {boolean}
+   */
+  boolean isSetSpeciesReferenceId();
+
+  /**
+   * Returns true of role is different from @sbmlconstant{SPECIES_ROLE_INVALID, SpeciesReferenceRole_t}.
+   *
+   * @return {boolean}
+   */
+  boolean isSetRole ();
 };
 
 SpeciesReferenceGlyph implements GraphicalObject;
@@ -501,6 +652,45 @@ interface TextGlyph {
    * @return {boolean}
    */
   boolean isSetText();
+
+  /**
+   * Returns the id of the associated graphical object.
+   *
+   * @return {string}
+   */
+  DOMString getGraphicalObjectId ();
+
+  /**
+   * Sets the id of the associated graphical object.
+   */
+  long setGraphicalObjectId (DOMString id);
+
+  /**
+   * Returns the id of the origin of text.
+   *
+   * @return {string}
+   */
+  DOMString getOriginOfTextId ();
+
+  /**
+   * Sets the id of the origin of text.
+   */
+  long setOriginOfTextId (DOMString orig);
+
+  /**
+   * Returns true if the id of the origin of text is not the empty string.
+   *
+   * @return {boolean}
+   */
+  boolean isSetOriginOfTextId ();
+
+  /**
+   * Returns true if the id of the associated graphical object is not the
+   * empty string.
+   *
+   * @return {boolean}
+   */
+  boolean isSetGraphicalObjectId ();
 };
 
 TextGlyph implements GraphicalObject;
@@ -533,7 +723,7 @@ interface LayoutModelPlugin {
 
   /**
    * Returns the layout object that belongs to the given index. If the
-   * index is invalid, @c NULL is returned.
+   * index is invalid, NULL is returned.
    *
    * @param {number} index the index of list of layout objects
    *
