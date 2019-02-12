@@ -1,0 +1,177 @@
+/**
+ * # Representation of a group of SBML components.
+ *
+ * The Group class is the first and most central class in the SBML
+ * Level 3 Groups package.  This class represents a group of
+ * entities: a simple mechanism for indicating that particular
+ * components of an SBML model are related in some way.  The nature of the
+ * relationship is left up to the modeler, and can be clarified by means of
+ * annotations on model components.  Groups may contain either the same or
+ * different types of SBML objects, and groups may be nested if desired.
+ * There are no predefined modeling or mathematical semantics associated with
+ * groups.
+ *
+ * The Groups class has one required attribute, "kind"; two optional
+ * attributes, "id" and "name"; and a single child element, ListOfMembers.
+ * The membership of a group is determined by the contents of the list of
+ * members stored in Member objects within the ListOfMembers child of a Group
+ * object.  Since the Group class of objects is derived from SBase, and SBase
+ * provides the ability to attach SBO terms as well as MIRIAM annotations,
+ * the semantics of a given group in a model can be made more precise using
+ * references to external controlled vocabularies and ontologies.
+ *
+ *  ## Group kinds
+ *
+ * The attribute "kind" on Group is used to indicate the nature of the group
+ * defined by a Group instance.  The "kind" attribute must always have
+ * one of the following three possible values:
+ *
+ * * "classification": The group represents a class, and its members
+ * have an is-a relationship to the group.  For example, the group
+ * could represent a type of molecule such as ATP, and the members could be
+ * species located in different compartments, thereby establishing that the
+ * species are pools of the same molecule in different locations.
+ *
+ * * "partonomy": The group represents a collection of parts, and its
+ * members have a part-of relationship to the group.  For example, the
+ * group could represent a cellular structure, and individual compartments
+ * could be made members of the group to indicate they represent subparts of
+ * that cellular structure.
+ *
+ * * "collection": The grouping is merely a collection for convenience,
+ * without an implied relationship between the members.  For example, the
+ * group could be used to collect together multiple disparate components of a
+ * model&mdash;species, reactions, events&mdash;involved in a particular
+ * phenotype, and apply a common annotation rather than having to copy the
+ * same annotation to each component individually.
+ *
+ * In the libSBML API for Groups, these possible values for the "kind"
+ * attribute are programmatically represented as constants so that callers
+ * will not normally need to deal with text string values.  The following
+ * are the constants defined for the three values of "kind" (plus an
+ * additional constant to represent unrecognized values):
+ *
+ * * libsbml.GROUP_KIND_CLASSIFICATION
+ * * libsbml.GROUP_KIND_PARTONOMY
+ * * libsbml.GROUP_KIND_COLLECTION
+ * * libsbml.GROUP_KIND_UNKNOWN
+ *
+ *  ## Groups and their members
+ *
+ * If an SBML element is referenced by a Group's child Member (directly or
+ * indirectly), it is considered to be a member of that Group.  If the same
+ * element is referenced by multiple Member objects, this is equivalent to
+ * including it just once.  (It is considered best practice to avoid this,
+ * but does not make for an invalid SBML document.)
+ *
+ * Children of referenced elements are not considered to be members of the
+ * Group: a KineticLaw of a referenced Reaction is not itself a Group
+ * member. Even the membership of so-called SBML container classes (e.g.,
+ * ListOfSpecies, ListOfCompartments, etc.) does not imply inclusion of
+ * children as members of the Group. The sole exception to this rule is the
+ * handling of ListOfMembers class. See the
+ * [libSBML C++ documentation](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/class_group.html)
+ * for more info.
+ */
+[Prefix="libsbml::"]
+interface Group {
+  /**
+   * Returns the value of the "kind" attribute of this Group.
+   *
+   * @return {GroupKind_t} the value of the "kind" attribute of this Group as a GroupKind_t.
+   */
+  libsbml__idl__GroupKind_t getKind();
+
+
+  /**
+   * Returns the value of the "kind" attribute of this Group.
+   *
+   * @return {string} the value of the "kind" attribute of this Group as a string.
+   * The possible values returned by this method are:
+   * * "classification"
+   * * "partonomy"
+   * * "collection"
+   * * "unknown"
+   */
+  DOMString getKindAsString();
+
+
+  /**
+   * Predicate returning true if this Group's "kind" attribute is set.
+   *
+   * @return {boolean} true if this Group's "kind" attribute has been set, otherwise
+   * false is returned.
+   */
+  bool isSetKind();
+
+
+  /**
+   * Sets the value of the "kind" attribute of this Group.
+   *
+   * @param {GroupKind_t} value of the
+   * "kind" attribute to be set.
+   * The value must be one of the predefined constants that represent
+   * valid SBML Level 3 Version 1 Group "kind" names, which
+   * means it must be one of the following values:
+   * * GROUP_KIND_CLASSIFICATION
+   * * GROUP_KIND_PARTONOMY
+   * * GROUP_KIND_COLLECTION.
+   */
+  long setKind(const GroupKind_t kind);
+
+
+  /**
+   * Get a Member from the Group.
+   *
+   * @param {number} n an unsigned long representing the index of the Member to retrieve.
+   *
+   * @return {Member} the nth Member in the ListOfMembers within this Group.
+   * If the index n is invalid, NULL is returned.
+   *
+   * @copydetails doc_returned_unowned_pointer
+   */
+  Member getMember(unsigned long n);
+
+
+  /**
+   * Get a Member from the Group based on the element to which it refers.
+   *
+   * @param {string} sid a string representing the "idRef" attribute of the Member
+   * object to retrieve.
+   *
+   * @return {Member} the first Member in this Group based on the given idRef attribute
+   * or NULL if no such Member exists.
+   *
+   * @copydetails doc_returned_unowned_pointer
+   */
+  Member getMemberByIdRef(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given Member to this Group.
+   *
+   * @param {Member} m the Member object to add.
+   */
+  long addMember(Member m);
+
+
+  /**
+   * Creates a new Member object, adds it to this Group object and returns the
+   * Member object created.
+   *
+   * @return {Member} a new Member object instance.
+   */
+  Member createMember();
+
+
+  /**
+   * Removes the nth Member from this Group and returns a pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the Member to remove.
+   *
+   * @return {Member} a pointer to the nth Member in this Group.
+   */
+  Member removeMember(unsigned long n);
+};
+
+Group implements SBase;
