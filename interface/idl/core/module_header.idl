@@ -23,6 +23,11 @@
  * })
  * ```
  *
+ * Despite this suggestive naming scheme, the libsbml().then() method
+ * does not return an authentic JavaScript Promise. For instance, the
+ * expected catch() method is missing. Instead, it is recommended that users
+ * use normal try/catch blocks to handle errors within the callback.
+ *
  * ## Static Methods
  *
  * The mechanism for calling static methods is somewhat unconventional.
