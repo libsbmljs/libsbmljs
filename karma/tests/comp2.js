@@ -53,7 +53,7 @@ describe("Comp test 1", function() {
           spec.setId("S")
 
           //Tell the model that this species replaces both of the inside ones.
-          const spp = libsbml.castObject(comp.findPlugin("comp"), libsbml.CompSBasePlugin)
+          const spp = libsbml.castObject(spec.findPlugin("comp"), libsbml.CompSBasePlugin)
 
           const re3 = spp.createReplacedElement()
           re3.setIdRef("S")
@@ -80,25 +80,29 @@ describe("Comp test 1", function() {
           expect(doc_after.isPackageEnabled('comp')).toEqual(true)
 
           const model_after = doc_after.getModel()
+          const compartment_plugin_after = libsbml.castObject(doc.getModel().getCompartment(0).findPlugin('comp'), libsbml.CompSBasePlugin)
 
-          const model_plugin_after = doc.getModel().findPlugin('comp')
-          expect(model_plugin_after.getPackageName()).toEqual('comp')
-          const comp_model_plugin_after = libsbml.castObject(model_plugin_after, libsbml.CompModelPlugin)
+          expect(compartment_plugin_after.getNumReplacedElements()).toEqual(2)
+          expect(compartment_plugin_after.getReplacedElement(0).getIdRef()).toBe('comp')
+          expect(compartment_plugin_after.getReplacedElement(0).getSubmodelRef()).toBe('A')
+          expect(compartment_plugin_after.getReplacedElement(1).getIdRef()).toBe('comp')
+          expect(compartment_plugin_after.getReplacedElement(1).getSubmodelRef()).toBe('B')
 
-          // expect(comp_model_plugin_after.getNumSubmodels()).toEqual(2)
-          //
-          // expect(comp_model_plugin_after.getSubmodel(0).getId()).toBe('submod1')
-          // expect(comp_model_plugin_after.getSubmodel(0).getModelRef()).toBe('enzyme')
-          // expect(comp_model_plugin_after.getSubmodel(1).getId()).toBe('submod2')
-          // expect(comp_model_plugin_after.getSubmodel(1).getModelRef()).toBe('enzyme')
+          const model_plugin_after = libsbml.castObject(doc.getModel().findPlugin('comp'), libsbml.CompModelPlugin)
+          expect(model_plugin_after.getNumSubmodels()).toEqual(2)
 
-          const doc_plugin_after = libsbml.castObject(doc.findPlugin('comp'), libsbml.CompSBMLDocumentPlugin)
+          expect(model_plugin_after.getSubmodel(0).getId()).toBe('A')
+          expect(model_plugin_after.getSubmodel(0).getModelRef()).toBe('ExtMod1')
+          expect(model_plugin_after.getSubmodel(1).getId()).toBe('B')
+          expect(model_plugin_after.getSubmodel(1).getModelRef()).toBe('ExtMod1')
 
-          // expect(doc_plugin_after.getNumModelDefinitions()).toEqual(1)
-          // const mod_def_after = doc_plugin_after.getModelDefinition(0)
-          // expect(mod_def_after.getId()).toBe('enzyme')
-          // expect(mod_def_after.getNumCompartments()).toEqual(1)
-          // expect(mod_def_after.getNumSpecies()).toEqual(4)
+          const species_plugin_after = libsbml.castObject(doc.getModel().getSpecies(0).findPlugin('comp'), libsbml.CompSBasePlugin)
+
+          expect(species_plugin_after.getNumReplacedElements()).toEqual(2)
+          expect(species_plugin_after.getReplacedElement(0).getIdRef()).toBe('S')
+          expect(species_plugin_after.getReplacedElement(0).getSubmodelRef()).toBe('A')
+          expect(species_plugin_after.getReplacedElement(1).getIdRef()).toBe('S')
+          expect(species_plugin_after.getReplacedElement(1).getSubmodelRef()).toBe('B')
 
           libsbml.destroy(doc)
           libsbml.destroy(doc_after)
