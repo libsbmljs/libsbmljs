@@ -1,0 +1,18 @@
+/**
+ * # Indicates an object replaced by another.
+ *
+ * The ReplacedBy class was introduced by the SBML Level&nbsp;3 @ref comp
+ * ("comp") package to allow submodel elements to be 'canonical'
+ * versions of the element while still allowing the parent model to reference
+ * those elements.  Whereas a ReplacedElement object indicates that the
+ * containing object replaces another, a ReplacedBy object indicates the
+ * converse: the parent object is to be replaced by another object.
+
+ * As is the case with ReplacedElement, the ReplacedBy class inherits from SBaseRef.
+ * It additionally defines one required attribute ("submodelRef"), defined in
+ * libSBML in the Replacing class.
+ */
+[Prefix="libsbml::"]
+interface ReplacedBy {
+};
+ReplacedElement implements Replacing;

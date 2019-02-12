@@ -1,0 +1,127 @@
+/**
+ * # Extension of SBase.
+ *
+ * The CompSBasePlugin class inherits from the SBasePlugin class, and
+ * codifies the extensions to the SBase class defined in the comp
+ * ("comp") package.  This extension allows the modeler to define
+ * one or more submodel elements which the parent SBase object replaces,
+ * and/or a single submodel element which replaces the parent SBase object.
+ *
+ * This is accomplished through the addition of an optional ListOfReplacedElements
+ * child, which may contain one or more ReplacedElement objects, each of which
+ * references a submodel object to be replaced by the containing SBase object,
+ * and through the addition of a single optional ReplacedBy child, which
+ * references a submodel object which is to replace the containing SBase object.
+ *
+ * If a single SBase element both contains a ListOfReplacedElements and has a ReplacedBy
+ * child, it and all the referenced ReplacedElement objects are to be replaced
+ * by the object referenced by the ReplacedBy element.
+ */
+[Prefix="libsbml::"]
+interface CompSBasePlugin {
+  /**
+   * Returns the ReplacedElement with the given index.
+   *
+   * @param {number} n the index number of the ReplacedElement to get.
+   *
+   * @return {ReplacedElement} the nth ReplacedElement in the ListOfReplacedElements.  If the
+   * index is invalid, NULL is returned.
+   */
+  ReplacedElement getReplacedElement (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given ReplacedElement object to the list of ReplacedElements.
+   *
+   * @param {ReplacedElement} replacedElement the ReplacedElement object to be added to the
+   * list of ReplacedElements.  Fails if the added ReplacedElement is NULL,
+   * does not match the level/version/package of the parent object, or cannot
+   * be added to the list of replaced elements.
+   */
+  long addReplacedElement (ReplacedElement replacedElement);
+
+
+  /**
+   * Returns the number of ReplacedElements for this CompSBasePlugin.
+   *
+   * @return {number} the number of ReplacedElements for this CompSBasePlugin.
+   */
+  unsigned long getNumReplacedElements ();
+
+
+  /**
+   * Remove all ReplacedElements, if any exist.
+   */
+  void clearReplacedElements();
+
+
+  /**
+   * Creates a ReplacedElement object, adds it to the end of the
+   * ReplacedElement objects list and returns a pointer to the newly
+   * created object.
+   *
+   * @return {ReplacedElement} a newly created ReplacedElement object.
+   */
+  ReplacedElement createReplacedElement ();
+
+
+  /**
+   * Removes the ReplacedElement with the given index.
+   *
+   * A pointer to the ReplacedElement that was removed is returned.
+   * If no ReplacedElement has been removed, NULL is returned.
+   *
+   * @param {number} index the index of the ReplacedElement object to remove.
+   *
+   * @return {ReplacedElement} the ReplacedElement object removed.  As mentioned above,
+   * the caller owns the returned object. NULL is returned if
+   * the given index is out of range.
+   */
+  ReplacedElement removeReplacedElement(unsigned long index);
+
+
+  /**
+   * Get the child ReplacedBy of this SBase.
+   *
+   * @return {ReplacedBy} the ReplacedBy child of this SBase.
+   */
+  ReplacedBy getReplacedBy ();
+
+
+  /**
+   * Predicate for testing whether the ReplacedBy for this SBase is set.
+   *
+   * @return {boolean} true if the ReplacedBy of this SBase is set, false
+   * otherwise.
+   */
+  bool isSetReplacedBy ();
+
+
+  /**
+   * Sets the ReplacedBy definition of this SBase to a copy of the given
+   * ReplacedBy object instance.
+   *
+   * This method fails if the added ReplacedBy does not match the
+   * level/version/package of the parent object or if the added ReplacedBy
+   * cannot be copied.
+   *
+   * @param {ReplacedBy} replacedBy the ReplacedBy object instance to use.
+   */
+  long setReplacedBy (ReplacedBy replacedBy);
+
+
+  /**
+   * Creates a new, empty ReplacedBy, adds it to this CompSBasePlugin and
+   * returns the created ReplacedBy.
+   *
+   * @return {ReplacedBy} the newly created ReplacedBy object instance.
+   */
+  ReplacedBy createReplacedBy ();
+
+
+  /**
+   * Unsets the child ReplacedBy of this SBase.
+   */
+  long unsetReplacedBy();
+};
+CompSBasePlugin implements SBasePlugin;
