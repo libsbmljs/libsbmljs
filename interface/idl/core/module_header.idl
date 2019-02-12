@@ -12,8 +12,6 @@
  * which is invoked with the module itself when it is fully loaded.
  * This is a standard convention for all Emscripten modules.
  *
- * @module libsbml
- *
  * ```javascript
  * import libsbml from 'libsbml_stable'
  * // the module isn't usable yet - wait for it to load
@@ -46,7 +44,7 @@
  * })
  * ```
  *
- * ## add* Methods vs. create* Methods
+ * ## addX Methods vs. createX Methods
  *
  * Objects in libSBML typically provide two types of methods for
  * adding a subobject. Methods that start with `add` take a pre-existing
@@ -55,7 +53,7 @@
  * use the `create` methods. While `add` methods technically work in this
  * wrapper, they have very confusing ownership semantics and using them
  * will most likely result in bugs which are difficult to track down.
- * This advice is not particular to this wrapper, but debugging can
+ * This advice also applies to C++, but debugging can
  * be harder in a JavaScript environment.
  *
  * ```javascript
@@ -70,4 +68,7 @@
  *   model.addSpecies(spec)
  * })
  * ```
+ *
+ * ## Module
+ * @module libsbml
  */
