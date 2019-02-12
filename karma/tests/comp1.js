@@ -1,5 +1,5 @@
 describe("Comp test 1", function() {
-  it('Tests the comp package', (done) => {
+  it('Tests the comp package (1/4)', (done) => {
     libsbml().then((libsbml) => {
         try {
           // create new document
