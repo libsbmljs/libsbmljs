@@ -284,7 +284,12 @@ describe("Comp test 1", function() {
           const serializedSBML = writer.writeSBMLToString(doc)
 
           // make sure the expected tags are there
-          // expect(serializedSBML).toContain('comp:replacedElement')
+          expect(serializedSBML).toContain('comp:submodel')
+          expect(serializedSBML).toContain('comp:listOfSubmodels')
+          expect(serializedSBML).toContain('comp:listOfModelDefinitions')
+          expect(serializedSBML).toContain('comp:modelDefinition')
+          expect(serializedSBML).toContain('comp:listOfPorts')
+          expect(serializedSBML).toContain('comp:port')
 
           const reader = new libsbml.SBMLReader()
 
