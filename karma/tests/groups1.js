@@ -64,8 +64,10 @@ describe("FBC test", function() {
           const serializedSBML = writer.writeSBMLToString(doc)
 
           // make sure the expected tags are there
-          console.log(serializedSBML)
-          // expect(serializedSBML).toContain('fbc:listOfObjectives')
+          expect(serializedSBML).toContain('groups:listOfGroups')
+          expect(serializedSBML).toContain('groups:group')
+          expect(serializedSBML).toContain('groups:listOfMembers')
+          expect(serializedSBML).toContain('groups:member')
 
           const reader = new libsbml.SBMLReader()
 
