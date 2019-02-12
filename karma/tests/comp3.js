@@ -59,7 +59,7 @@ describe("Comp test 1", function() {
           sr.setSpecies("D")
 
           const mod1plug = libsbml.castObject(mod1.findPlugin("comp"), libsbml.CompModelPlugin)
-          const port = mod1plug.createPort()
+          let port = mod1plug.createPort()
           port.setId("S_port")
           port.setIdRef("S")
 
