@@ -1,3 +1,51 @@
-};
+/**
+ * # Convenience class.
+ *
+ * The Replacing class does not exist officialy in the the @ref comp
+ * ("comp") package, but is implemented here as a convenience
+ * subclass of the ReplacedElement and ReplacedBy classes, since both of
+ * those classes define a 'submodelRef' attribute.
+ *
+ * The required attribute "submodelRef" takes a value of type
+ * SIdRef, which must be the identifier of a Submodel object in
+ * the containing model.  The model referenced by the
+ * Submodel object establishes the object namespaces for the
+ * "portRef", "idRef", "unitRef" and "metaIdRef"
+ * attributes: only objects within the Model object may be referenced by
+ * those attributes.
+ */
+[Prefix="libsbml::"]
+interface Replacing {
+   /**
+    * Returns the value of the "submodelRef" attribute of this SBaseRef.
+    *
+    * @return {string} the value of the "submodelRef" attribute of this SBaseRef.
+    */
+   DOMString getSubmodelRef ();
 
-ReplacedElement implements CompBase;
+
+   /**
+    * Predicate returning true or false depending on whether this
+    * SBaseRef's "submodelRef" attribute has been set.
+    *
+    * @return {boolean} true if this SBaseRef's "submodelRef" attribute has been set,
+    * otherwise false is returned.
+    */
+   boolean isSetSubmodelRef ();
+
+
+   /**
+    * Sets the value of the "submodelRef" attribute of this SBaseRef.  Fails
+    * if the id is not a valid syntax for an SIdRef.
+    *
+    * @param {string} id
+    */
+   long setSubmodelRef (DOMString id);
+
+
+   /**
+    * Unsets the value of the "SubmodelRef" attribute of this SBaseRef.
+    */
+   long unsetSubmodelRef ();
+};
+ReplacedElement implements SBaseRef;
