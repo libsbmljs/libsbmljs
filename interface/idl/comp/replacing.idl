@@ -48,4 +48,4 @@ interface Replacing {
     */
    long unsetSubmodelRef ();
 };
-ReplacedElement implements SBaseRef;
+Replacing implements SBaseRef;

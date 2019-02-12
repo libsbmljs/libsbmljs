@@ -1028,6 +1028,67 @@ interface Species {
    * and 2.
    */
   boolean isSetConversionFactor();
+
+
+  /**
+   * Unsets the value of the "constant" attribute of this Species object.
+   */
+  long unsetConstant ();
+
+
+  /**
+   * Unsets the "initialAmount" attribute value of this Species object.
+   */
+  long unsetInitialAmount ();
+
+
+  /**
+   * Unsets the "initialConcentration" attribute value of this Species object.
+   *
+   * **Note:** The attribute "initialConcentration" is only available in SBML
+   * Level 2 and 3.  It does not exist on Species in Level 1.
+   */
+  long unsetInitialConcentration ();
+
+
+  /**
+   * Unsets the "substanceUnits" attribute value of this Species object.
+   */
+  long unsetSubstanceUnits ();
+
+
+  /**
+   * Unsets the "units" attribute value of this Species object.
+   */
+  long unsetUnits ();
+
+
+  /**
+   * Unsets the "conversionFactor" attribute value of this Species object.
+   *
+   * **Note:** The "conversionFactor" attribute was introduced in SBML
+   * Level 3.  It does not exist on Species in SBML Levels 1
+   * and 2.
+   */
+  long unsetConversionFactor ();
+
+
+  /**
+   * Unsets the "compartment" attribute value of this Species object.
+   */
+  long unsetCompartment ();
+
+
+  /**
+   * Unsets the "boundaryCondition" attribute value of this Species object.
+   */
+  long unsetBoundaryCondition ();
+
+
+  /**
+   * Unsets the "hasOnlySubstanceUnits" attribute value of this Species object.
+   */
+  long unsetHasOnlySubstanceUnits ();
 };
 
 Species implements SBase;

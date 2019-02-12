@@ -57,4 +57,4 @@
 interface Deletion {
 };
 
-Deletion implements CompBase;
+Deletion implements SBaseRef;
