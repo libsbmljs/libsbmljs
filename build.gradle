@@ -411,11 +411,12 @@ task emccCompileLibSBML(type:Exec) {
     Paths.get(libsbmlOutputDir,"lib","libsbml.so").toString(),
     "--post-js",Paths.get("$buildDir","interface","idl","sbml_interface.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","xhr.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","sbase.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","doc_getset.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_layout.js"),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","plugin_render.js"),
-    "--post-js",Paths.get(project.rootDir.path,"interface","js","model_getset.js").toString(),
-    "--post-js",Paths.get(project.rootDir.path,"interface","js","astnode_getset.js").toString(),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","model_getset.js"),
+    "--post-js",Paths.get(project.rootDir.path,"interface","js","astnode_getset.js"),
     "--post-js", Paths.get(project.rootDir.path,"interface","js","reaction_getset.js").toString(),
     "--post-js", Paths.get(project.rootDir.path,"interface","js","spec_ref_getset.js").toString(),
     "--post-js",Paths.get(project.rootDir.path,"interface","js","modifier_spec_ref_getset.js").toString(),
@@ -506,6 +507,7 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "layout.js")
   include Paths.get(tests_dir, "fbc.js")
   include Paths.get(tests_dir, "comp1.js")
+  include Paths.get(tests_dir, "comp2.js")
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {

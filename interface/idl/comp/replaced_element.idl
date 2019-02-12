@@ -1,7 +1,7 @@
 /**
  * # Indicates an object replaces another.
  *
- * The ReplacedElement class was introduced by the SBML Level&nbsp;3 @ref
+ * The ReplacedElement class was introduced by the SBML Level 3
  * comp ("comp") package to allow submodel elements to be
  * replaced, but still allow references to those elements to be valid.  A
  * ReplacedElement object is essentially a pointer to a submodel object that

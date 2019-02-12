@@ -67,7 +67,10 @@ describe("Comp test 1", function() {
           const serializedSBML = writer.writeSBMLToString(doc)
 
           // make sure the expected tags are there
-          // expect(serializedSBML).toContain('comp:listOfModelDefinitions')
+          expect(serializedSBML).toContain('comp:listOfReplacedElements')
+          expect(serializedSBML).toContain('comp:replacedElement')
+          expect(serializedSBML).toContain('comp:listOfSubmodels')
+          expect(serializedSBML).toContain('comp:submodel')
 
           const reader = new libsbml.SBMLReader()
 

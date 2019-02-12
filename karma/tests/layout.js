@@ -1,9 +1,9 @@
 describe("Layout test", function() {
   it('Tests reading layout info', (done) => {
     libsbml().then((libsbml) => {
-      try {
-        const reader = new libsbml.SBMLReader()
-        libsbml.readSBMLFromURL('base/karma/models/layout-glycolysis.xml').then((doc) => {
+      const reader = new libsbml.SBMLReader()
+      libsbml.readSBMLFromURL('base/karma/models/layout-glycolysis.xml').then((doc) => {
+          try {
           // read with no errors
           expect(doc.getNumErrors()).toEqual(0)
 
