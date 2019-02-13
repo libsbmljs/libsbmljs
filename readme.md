@@ -177,7 +177,7 @@ to the following:
 ## FAQ
 
 * Are all classes and methods from the libSBML C++ library available in this wrapper.
-  * No. We have not included methods involving tasks which we believe to be irrelevant for most JavaScript applications such as: low-level XML node access, unnecessary back-pointers (e.g. getModel on every object), and methods that are deprecated or deal only with older SBML standards (e.g. SBase.isSetId).
+  * No. We have not included methods involving tasks which we believe to be irrelevant for most JavaScript applications such as: low-level XML node access, unnecessary back-pointers (e.g. getModel on every object), and methods that are deprecated or deal only with older SBML standards (e.g. SBase.isSetId). We also have not wrapped ListOfX classes because each container class in libSBML provides getNumX() and getX(index) methods to facilitate element access.
 
 * Is compression support for SBML models built-in?
   * No. We have tried to minimize the size of the generated WASM binary by excluding non-essential components. You can easily compress your hosted SBML models using (HTTP compression)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression] without all of the downsides mentioned above.

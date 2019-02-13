@@ -1,0 +1,112 @@
+/**
+ * # Extension of Model.
+ *
+ * The extension of SBML Level 3 Core's Model class is relatively
+ * straightforward: the Qualitative Models Package adds two lists, one for
+ * holding qualitativeSpecies (ListOfQualitativeSpecies), and the other for
+ * holding transitions (ListOfTransitions).  The Model element may contain at
+ * most one ListOfQualitativeSpecies, which must contain at least one
+ * QualitativeSpecies. It may also contain at most one ListOfTransitions
+ * which must contain at least one Transition.
+ */
+[Prefix="libsbml::"]
+interface QualModelPlugin {
+  /**
+   * Returns the QualitativeSpecies object that belongs to the given index. If the
+   * index is invalid, NULL is returned.
+   *
+   * @param {number} n the index number of the QualitativeSpecies to get.
+   *
+   * @return {QualitativeSpecies} the nth QualitativeSpecies in the ListOfQualitativeSpecies.
+   * If the index n is invalid, @c NULL is returned.
+   */
+  QualitativeSpecies getQualitativeSpecies (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given QualitativeSpecies object to the list of qual.
+   *
+   * @param {QualitativeSpecies} qualitativeSpecies the QualitativeSpecies object to be added to the list of qual.
+   */
+  long addQualitativeSpecies (QualitativeSpecies qualitativeSpecies);
+
+
+  /**
+   * Creates a new qual object and adds it to the list of qual objects
+   * and returns it.
+   *
+   * @return {QualitativeSpecies} a newly created QualitativeSpecies object.
+   */
+  QualitativeSpecies createQualitativeSpecies();
+
+
+  /**
+   * Removes the nth QualitativeSpecies object from this plugin object and
+   * returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for
+   *  deleting it.
+   *
+   * @param {number} n the index of the QualitativeSpecies object to remove.
+   *
+   * @return {QualitativeSpecies} the QualitativeSpecies object removed.  As mentioned above, the
+   * caller owns the returned object. NULL is returned if the
+   * given index is out of range.
+   */
+  QualitativeSpecies removeQualitativeSpecies (unsigned long n);
+
+
+  /**
+   * Returns the Transition object that belongs to the given index. If the
+   * index is invalid, NULL is returned.
+   *
+   * @param {number} n the index number of the Transition to get.
+   *
+   * @return {Transition} the nth Transition in the ListOfTransitions.
+   * If the index n is invalid, @c NULL is returned.
+   */
+  Transition getTransition (unsigned long n);
+
+
+  /**
+   * Adds a copy of the given Transition object to the list of qual.
+   *
+   * @param {Transition} transition the Transition object to be added to the list of qual.
+   */
+  long addTransition (Transition transition);
+
+
+  /**
+   * Creates a new qual object and adds it to the list of qual objects
+   * and returns it.
+   *
+   * @return {Transition} a newly created Transition object.
+   */
+  Transition createTransition();
+
+
+  /**
+   * Removes the nth Transition object from this plugin object and
+   * returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for
+   *  deleting it.
+   *
+   * @param {number} n the index of the Transition object to remove.
+   *
+   * @return {Transition} the Transition object removed.  As mentioned above, the
+   * caller owns the returned object. NULL is returned if the
+   * given index is out of range.
+   */
+  Transition removeTransition (unsigned long n);
+
+
+  /**
+   * Returns the number of Transition object in this plugin object.
+   *
+   * @return {number} the number of Transition object in this plugin object.
+   */
+  unsigned long getNumTransitions();
+};
+
+QualModelPlugin implements SBasePlugin;

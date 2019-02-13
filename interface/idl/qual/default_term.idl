@@ -1,0 +1,43 @@
+/**
+ * # The default result of a Transition.
+ *
+ * The DefaultTerm defines the default result of a Transition, held in the
+ * (required) "resultLevel" attribute.  This term is
+ * used when there are no other FunctionTerm elements or when none of the Math
+ * elements of the FunctionTerm elements evaluate to @c true.
+ */
+[Prefix="libsbml::"]
+interface DefaultTerm {
+  /**
+   * Returns the value of the "resultLevel" attribute of this DefaultTerm.
+   *
+   * @return {number} the value of the "resultLevel" attribute of this DefaultTerm as a integer.
+   */
+  long getResultLevel();
+
+
+  /**
+   * Predicate returning @c true or @c false depending on whether this
+   * DefaultTerm's "resultLevel" attribute has been set.
+   *
+   * @return {boolean} @c true if this DefaultTerm's "resultLevel" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  boolean isSetResultLevel();
+
+
+  /**
+   * Sets the value of the "resultLevel" attribute of this DefaultTerm.
+   *
+   * @param {number} resultLevel long value of the "resultLevel" attribute to be set.
+   */
+  long setResultLevel(long resultLevel);
+
+
+  /**
+   * Unsets the value of the "resultLevel" attribute of this DefaultTerm.
+   */
+  long unsetResultLevel();
+};
+
+DefaultTerm implements SBase;

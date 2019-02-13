@@ -1,0 +1,126 @@
+/**
+ * Enumeration of possible values for the 'transitionEffect' attribute of an Output.
+ */
+enum libsbml__idl__OutputTransitionEffect_t {
+  "libsbml::OUTPUT_TRANSITION_EFFECT_PRODUCTION",
+  "libsbml::OUTPUT_TRANSITION_EFFECT_ASSIGNMENT_LEVEL",
+  "libsbml::OUTPUT_TRANSITION_EFFECT_UNKNOWN"
+};
+
+/**
+ * # The output from a QualitativeSpecies.
+ *
+ * Each Output refers to a QualitativeSpecies that participates in (is
+ * affected by) the corresponding Transition. In Petri net models these are
+ * the output places of the transition.
+ *
+ * In a logical model, a QualitativeSpecies should be referenced in at most
+ * one ListOfOutputs, (that of the Transition defining the evolution of this
+ * species). When a Transition has several outputs, it is because the
+ * referenced species share the same regulators and the same logical rules.
+ */
+[Prefix="libsbml::"]
+interface Output {
+  /**
+   * Returns the value of the "qualitativeSpecies" attribute of this Output.
+   *
+   * @return {string} the value of the "qualitativeSpecies" attribute of this Output as a string.
+   */
+  DOMString getQualitativeSpecies();
+
+
+  /**
+   * Returns the value of the "transitionEffect" attribute of this Output.
+   *
+   * @return {OutputTransitionEffect_t} the value of the "transitionEffect" attribute of this Output as a string.
+   */
+  libsbml__idl__OutputTransitionEffect_t getTransitionEffect();
+
+
+  /**
+   * Returns the value of the "outputLevel" attribute of this Output.
+   *
+   * @return {number} the value of the "outputLevel" attribute of this Output as a integer.
+   */
+  long getOutputLevel();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Output's "qualitativeSpecies" attribute has been set.
+   *
+   * @return {boolean} true if this Output's "qualitativeSpecies" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetQualitativeSpecies();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Output's "transitionEffect" attribute has been set.
+   *
+   * @return {boolean} true if this Output's "transitionEffect" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetTransitionEffect();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Output's "outputLevel" attribute has been set.
+   *
+   * @return {boolean} true if this Output's "outputLevel" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetOutputLevel();
+
+
+  /**
+   * Sets the value of the "qualitativeSpecies" attribute of this Output.
+   *
+   * @param {string} qualitativeSpecies the value of the "qualitativeSpecies" attribute to be set.
+   */
+  long setQualitativeSpecies(DOMString qualitativeSpecies);
+
+
+  /**
+   * Sets the value of the "transitionEffect" attribute of this Output.
+   *
+   * @param {OutputTransitionEffect_t} transitionEffect the value of the "transitionEffect" attribute to be set.
+   */
+  long setTransitionEffect(libsbml__idl__OutputTransitionEffect_t transitionEffect);
+
+
+  /**
+   * Sets the value of the "outputLevel" attribute of this Output.
+   *
+   * @param {number} outputLevel long value of the "outputLevel" attribute to be set.
+   */
+  long setOutputLevel(long outputLevel);
+
+
+  /**
+   * Unsets the value of the "qualitativeSpecies" attribute of this Output.
+   */
+  long unsetQualitativeSpecies();
+
+
+  /**
+   * Unsets the value of the "transitionEffect" attribute of this Output.
+   */
+  long unsetTransitionEffect();
+
+
+  /**
+   * Unsets the value of the "name" attribute of this Output.
+   */
+  long unsetName();
+
+
+  /**
+   * Unsets the value of the "outputLevel" attribute of this Output.
+   */
+  long unsetOutputLevel();
+};
+
+Output implements SBase;

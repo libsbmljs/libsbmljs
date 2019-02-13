@@ -1,0 +1,228 @@
+/**
+ * # A transition of a QualitativeSpecies.
+ *
+ * A Transition element contains at most one ListOfInputs and one
+ * ListOfOutputs and exactly one ListOfFunctionTerms.
+ *
+ * A Transition defines the changes in level associated with the
+ * QualitativeSpecies that occur when a Transition is enabled.
+ *
+ * In logical models, a Transition is used to specify the logical rule
+ * associated with a QualitativeSpecies (that appears as an Output of this
+ * Transition). For example, the rule "if A > 1 : B = 2" would be
+ * encapsulated as a Transition with QualitativeSpecies "A" as an Input and
+ * "B" as an Output; the "if A > 1" rule being encode by the math element of
+ * a FunctionTerm with the resultLevel attribute having a value "2".
+ *
+ * In Petri net models, a Transition is interpreted, using the common Petri
+ * net semantics, as events that might occur within the system causing tokens
+ * to be moved.
+ */
+[Prefix="libsbml::"]
+interface Transition {
+  /**
+   * Get a Input from the ListOfInputs.
+   *
+   * @param {number} n the index number of the Input to get.
+   *
+   * @return {Input} the nth Input in the ListOfInputs within this Transition.
+   * If the index n is invalid, NULL is returned.
+   */
+  Input getInput(unsigned long n);
+
+
+  /**
+   * Get a Input from the ListOfInputs
+   * based on its qualitativeSpecies attribute.
+   *
+   * @param {string} sid a string representing the qualitativeSpecies
+   * of the Input to get.
+   *
+   * @return {Input} the first Input in the ListOfInputs
+   * with the given qualitativeSpecies or NULL if no such
+   * Input exists.
+   */
+  Input getInputBySpecies(DOMString sid);
+
+
+  /**
+   * Adds a copy the given Input to this Transition.
+   *
+   * @param {Input} i the Input object to add.
+   */
+  long addInput(Input i);
+
+
+  /**
+   * Get the number of Input objects in this Transition.
+   *
+   * @return {number} the number of Input objects in this Transition.
+   */
+  unsigned long getNumInputs();
+
+
+  /**
+   * Creates a new Input object, adds it to this Transition's
+   * ListOfInputs and returns the Input object created.
+   *
+   * @return {Input} a new Input object instance.
+   */
+  Input createInput();
+
+
+  /**
+   * Removes the nth Input from the ListOfInputs within this Transition.
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Input to remove.
+   */
+  Input removeInput(unsigned long n);
+
+
+  /**
+   * Get a Output from the ListOfOutputs.
+   *
+   * @param {number} n the index number of the Output to get.
+   *
+   * @return {Output} the nth Output in the ListOfOutputs within this Transition.
+   * If the index n is invalid, NULL is returned.
+   */
+  Output getOutput(unsigned long n);
+
+
+  /**
+   * Get a Output from the ListOfOutputs
+   * based on its qualitativeSpecies attribute.
+   *
+   * @param {string} sid a string representing the qualitativeSpecies
+   * of the Output to get.
+   *
+   * @return {Output} the first Output in the ListOfOutputs
+   * with the given qualitativeSpecies or NULL if no such
+   * Output exists.
+   */
+  Output getOutputBySpecies(DOMString sid);
+
+
+  /**
+   * Adds a copy the given Output to this Transition.
+   *
+   * @param {Output} o the Output object to add.
+   */
+  long addOutput(Output o);
+
+
+  /**
+   * Get the number of Output objects in this Transition.
+   *
+   * @return {number} the number of Output objects in this Transition.
+   */
+  unsigned long getNumOutputs();
+
+
+  /**
+   * Creates a new Output object, adds it to this Transition's
+   * ListOfOutputs and returns the Output object created.
+   *
+   * @return {Output} a new Output object instance.
+   */
+  Output createOutput();
+
+
+  /**
+   * Removes the nth Output from the ListOfOutputs within this Transition.
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Output to remove.
+   */
+  Output removeOutput(unsigned long n);
+
+
+  /**
+   * Get a FunctionTerm from the ListOfFunctionTerms.
+   *
+   * @param {number} n the index number of the FunctionTerm to get.
+   *
+   * @return {FunctionTerm} the nth FunctionTerm in the ListOfFunctionTerms within this Transition.
+   * If the index n is invalid, NULL is returned.
+   */
+  FunctionTerm getFunctionTerm(unsigned long n);
+
+
+  /**
+   * Adds a copy the given FunctionTerm to this Transition.
+   *
+   * @param ft the FunctionTerm object to add.
+   */
+  long addFunctionTerm(FunctionTerm ft);
+
+
+  /**
+   * Get the number of FunctionTerm objects in this Transition.
+   *
+   * @return {number} the number of FunctionTerm objects in this Transition.
+   */
+  unsigned long getNumFunctionTerms();
+
+
+  /**
+   * Creates a new FunctionTerm object, adds it to this Transition's
+   * ListOfFunctionTerms and returns the FunctionTerm object created.
+   *
+   * @return {FunctionTerm} a new FunctionTerm object instance.
+   */
+  FunctionTerm createFunctionTerm();
+
+
+  /**
+   * Removes the nth FunctionTerm from the ListOfFunctionTerms within this Transition.
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {number} n the index of the FunctionTerm to remove.
+   *
+   * @return {FunctionTerm}
+   */
+  FunctionTerm removeFunctionTerm(unsigned long n);
+
+
+  /**
+   * Creates a new DefaultTerm object, adds it to this Transition's
+   * ListOfFunctionTerms and returns the DefaultTerm object created.
+   *
+   * @return {DefaultTerm} a new DefaultTerm object instance.
+   */
+   DefaultTerm createDefaultTerm();
+
+
+  /**
+   * Sets the given DefaultTerm to this Transition.
+   *
+   * @param {DefaultTerm} dt the DefaultTerm object to add.
+   */
+  long setDefaultTerm(DefaultTerm dt);
+
+
+  /**
+   * Predicate returning true if the defaultTerm
+   * for this Transition object has been set.
+   *
+   * @return {boolean} a boolean value indicating whether the defaultTerm
+   * child for this object has been defined.
+   */
+  boolean isSetDefaultTerm();
+
+  /**
+   * Get the DefaultTerm from the ListOfFunctionTerms.
+   *
+   * @return {DefaultTerm} the DefaultTerm in the ListOfFunctionTerms within this Transition, or NULL if no such value is set.
+   */
+  DefaultTerm getDefaultTerm();
+};
+
+Transition implements SBase;

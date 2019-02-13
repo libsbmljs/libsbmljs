@@ -1,0 +1,23 @@
+/**
+ * # Base extension class for the package.
+ *
+ * There is currently one possible namespace defined for the Qualitative
+ * Modeling package:
+ * "http://www.sbml.org/sbml/level3/version1/qual/version1".  Despite
+ * referencing SBML Level 3 Version 1 explicitly, this package
+ * (and all such packages) can be used without change in SBML
+ * Level 3 Version 2 documents.  The only caveat is that features of
+ * the SBML Level 3 Version 2 specification that were not present in
+ * Level 1 may not be used by constructs from the Qualitative Modeling
+ * package.
+ */
+[Prefix="libsbml::"]
+interface QualExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package
+   * implemented by this libSBML extension.
+   *
+   * @return {string} the XML namespace as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
+};

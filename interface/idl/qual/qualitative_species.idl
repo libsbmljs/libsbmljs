@@ -1,0 +1,149 @@
+/**
+ * # Extension of Species.
+ *
+ * Similarly to the Species in SBML, the components of qualitative models
+ * refer to pools of entities that are considered indistinguishable and are
+ * each located in a specific Compartment. However, here components are
+ * characterised by their qualitative influences rather than by taking part
+ * in reactions. Therefore, we define the QualitativeSpecies element to
+ * represent such pools of entities.
+ *
+ * In a Petri net, qualitative species refer to the places of the model,
+ * while in a logical model, they refer to the variables of this model
+ * (i.e. nodes of the influence graph).
+ *
+ * A QualitativeSpecies describes a pool of indistinguishable entities in a
+ * Compartment. It is associated with a level (an integer representing
+ * e.g. an activity state, or a functional level of concentration, etc.)
+ */
+[Prefix="libsbml::"]
+interface QualitativeSpecies {
+  /**
+   * Returns the value of the "compartment" attribute of this QualitativeSpecies.
+   *
+   * @return {string} the value of the "compartment" attribute of this QualitativeSpecies as a string.
+   */
+  DOMString getCompartment();
+
+
+  /**
+   * Returns the value of the "constant" attribute of this QualitativeSpecies.
+   *
+   * @return {boolean} the value of the "constant" attribute of this QualitativeSpecies as a boolean.
+   */
+  boolean getConstant();
+
+
+  /**
+   * Returns the value of the "initialLevel" attribute of this QualitativeSpecies.
+   *
+   * @return {number} the value of the "initialLevel" attribute of this QualitativeSpecies as a integer.
+   */
+  long getInitialLevel();
+
+
+  /**
+   * Returns the value of the "maxLevel" attribute of this QualitativeSpecies.
+   *
+   * @return {number} the value of the "maxLevel" attribute of this QualitativeSpecies as a integer.
+   */
+  long getMaxLevel();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * QualitativeSpecies's "compartment" attribute has been set.
+   *
+   * @return {boolean} true if this QualitativeSpecies's "compartment" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCompartment();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * QualitativeSpecies's "constant" attribute has been set.
+   *
+   * @return {boolean} true if this QualitativeSpecies's "constant" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetConstant();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * QualitativeSpecies's "initialLevel" attribute has been set.
+   *
+   * @return {boolean} true if this QualitativeSpecies's "initialLevel" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetInitialLevel();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * QualitativeSpecies's "maxLevel" attribute has been set.
+   *
+   * @return {boolean} true if this QualitativeSpecies's "maxLevel" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMaxLevel();
+
+
+  /**
+   * Sets the value of the "compartment" attribute of this QualitativeSpecies.
+   *
+   * @param {string} compartment the value of the "compartment" attribute to be set.
+   */
+  long setCompartment(DOMString compartment);
+
+
+  /**
+   * Sets the value of the "constant" attribute of this QualitativeSpecies.
+   *
+   * @param {boolean} constant boolean value of the "constant" attribute to be set.
+   */
+  long setConstant(boolean constant);
+
+
+  /**
+   * Sets the value of the "initialLevel" attribute of this QualitativeSpecies.
+   *
+   * @param {number} initialLevel long value of the "initialLevel" attribute to be set.
+   */
+  long setInitialLevel(long initialLevel);
+
+
+  /**
+   * Sets the value of the "maxLevel" attribute of this QualitativeSpecies.
+   *
+   * @param {number} maxLevel long value of the "maxLevel" attribute to be set.
+   */
+  long setMaxLevel(long maxLevel);
+
+
+  /**
+   * Unsets the value of the "compartment" attribute of this QualitativeSpecies.
+   */
+  long unsetCompartment();
+
+
+  /**
+   * Unsets the value of the "constant" attribute of this QualitativeSpecies.
+   */
+  long unsetConstant();
+
+
+  /**
+   * Unsets the value of the "initialLevel" attribute of this QualitativeSpecies.
+   */
+  long unsetInitialLevel();
+
+
+  /**
+   * Unsets the value of the "maxLevel" attribute of this QualitativeSpecies.
+   */
+  long unsetMaxLevel();
+};
+
+QualitativeSpecies implements SBase;

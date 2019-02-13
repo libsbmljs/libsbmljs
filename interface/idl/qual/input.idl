@@ -1,0 +1,176 @@
+/**
+ * Enumeration of possible values for the 'transitionEffect' attribute of an Input.  Must be 'none' or 'consumption'.
+ */
+enum libsbml__idl__InputTransitionEffect_t {
+  "libsbml::INPUT_TRANSITION_EFFECT_NONE",
+  "libsbml::INPUT_TRANSITION_EFFECT_CONSUMPTION",
+  "libsbml::INPUT_TRANSITION_EFFECT_UNKNOWN",
+};
+
+/**
+ * Enumeration of possible values for the 'transitionEffect' attribute of an Input.  Must be 'positive', 'negative', 'dual', or 'unknown'.
+ */
+enum libsbml__idl__InputSign_t {
+  "libsbml::INPUT_SIGN_POSITIVE",
+  "libsbml::INPUT_SIGN_NEGATIVE",
+  "libsbml::INPUT_SIGN_DUAL",
+  "libsbml::INPUT_SIGN_UNKNOWN",
+  "libsbml::INPUT_SIGN_VALUE_NOTSET",
+};
+
+/**
+ * # The input to a QualitativeSpecies.
+ *
+ * Each Input refers to a QualitativeSpecies that participates in the
+ * corresponding Transition. In Petri nets, these are the input places of the
+ * transition. In logical models, they are the regulators of the species
+ * whose behaviour is defined by the transition.
+ */
+[Prefix="libsbml::"]
+interface Input {
+  /**
+   * Returns the value of the "qualitativeSpecies" attribute of this Input.
+   *
+   * @return {string} the value of the "qualitativeSpecies" attribute of this Input as a string.
+   */
+  DOMString getQualitativeSpecies();
+
+
+  /**
+   * Returns the value of the "transitionEffect" attribute of this Input.
+   *
+   * @return {InputTransitionEffect_t} the value of the "transitionEffect" attribute of this Input as a string.
+   */
+  libsbml__idl__InputTransitionEffect_t getTransitionEffect();
+
+
+  /**
+   * Returns the value of the "name" attribute of this Input object.
+   *
+   * @return {string}
+   */
+  DOMString getName();
+
+
+  /**
+   * Returns the value of the "sign" attribute of this Input.
+   *
+   * @return {InputSign_t} the value of the "sign" attribute of this Input as a string.
+   */
+  libsbml__idl__InputSign_t getSign();
+
+
+  /**
+   * Returns the value of the "thresholdLevel" attribute of this Input.
+   *
+   * @return {number} the value of the "thresholdLevel" attribute of this Input as a integer.
+   */
+  long getThresholdLevel();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Input's "qualitativeSpecies" attribute has been set.
+   *
+   * @return {boolean} true if this Input's "qualitativeSpecies" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetQualitativeSpecies();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Input's "transitionEffect" attribute has been set.
+   *
+   * @return {boolean} true if this Input's "transitionEffect" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetTransitionEffect();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Input's "name" attribute has been set.
+   *
+   * @return {boolean}
+   */
+  boolean isSetName();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Input's "sign" attribute has been set.
+   *
+   * @return {boolean} true if this Input's "sign" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetSign();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * Input's "thresholdLevel" attribute has been set.
+   *
+   * @return {boolean} true if this Input's "thresholdLevel" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetThresholdLevel();
+
+
+  /**
+   * Sets the value of the "qualitativeSpecies" attribute of this Input.
+   *
+   * @param {string} qualitativeSpecies the value of the "qualitativeSpecies" attribute to be set.
+   */
+  long setQualitativeSpecies(DOMString qualitativeSpecies);
+
+
+  /**
+   * Sets the value of the "transitionEffect" attribute of this Input.
+   *
+   * @param {InputTransitionEffect_t} transitionEffect the value of the "transitionEffect" attribute to be set.
+   */
+  long setTransitionEffect(libsbml__idl__InputTransitionEffect_t transitionEffect);
+
+
+  /**
+   * Sets the value of the "sign" attribute of this Input.
+   *
+   * @param {InputSign_t} sign the value of the "sign" attribute to be set.
+   */
+  long setSign(libsbml__idl__InputSign_t sign);
+
+
+  /**
+   * Sets the value of the "thresholdLevel" attribute of this Input.
+   *
+   * @param {number} thresholdLevel long value of the "thresholdLevel" attribute to be set.
+   */
+  long setThresholdLevel(long thresholdLevel);
+
+
+  /**
+   * Unsets the value of the "qualitativeSpecies" attribute of this Input.
+   */
+  long unsetQualitativeSpecies();
+
+
+  /**
+   * Unsets the value of the "transitionEffect" attribute of this Input.
+   */
+  long unsetTransitionEffect();
+
+
+  /**
+   * Unsets the value of the "sign" attribute of this Input.
+   */
+  long unsetSign();
+
+
+  /**
+   * Unsets the value of the "thresholdLevel" attribute of this Input.
+   */
+  long unsetThresholdLevel();
+};
+
+Input implements SBase;

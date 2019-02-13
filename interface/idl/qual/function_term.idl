@@ -1,0 +1,74 @@
+/**
+ * # A function term.
+ *
+ * Each FunctionTerm is associated with a result and with a Boolean function
+ * inside a Math element that can be used to set the conditions under which
+ * this term is selected.
+ */
+[Prefix="libsbml::"]
+interface FunctionTerm {
+  /**
+   * Returns the value of the "resultLevel" attribute of this FunctionTerm.
+   *
+   * @return {number} the value of the "resultLevel" attribute of this FunctionTerm as a integer.
+   */
+  long getResultLevel();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * FunctionTerm's "resultLevel" attribute has been set.
+   *
+   * @return {boolean} true if this FunctionTerm's "resultLevel" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetResultLevel();
+
+
+  /**
+   * Sets the value of the "resultLevel" attribute of this FunctionTerm.
+   *
+   * @param {number} resultLevel long value of the "resultLevel" attribute to be set.
+   */
+  long setResultLevel(long resultLevel);
+
+
+  /**
+   * Unsets the value of the "resultLevel" attribute of this FunctionTerm.
+   */
+  long unsetResultLevel();
+
+
+  /**
+   * Returns the "math" element of this FunctionTerm.
+   *
+   * @return {ASTNode} the "math" element of this FunctionTerm, or NULL if the math is not set.
+   */
+  [Const] ASTNode getMath();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * FunctionTerm's "math" element has been set.
+   *
+   * @return {boolean} true if this FunctionTerm's "math" element has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMath();
+
+
+  /**
+   * Sets the "math" element of this FunctionTerm.
+   *
+   * @param {ASTNode} math ASTNode math of the "resultLevel" attribute to be set.
+   */
+  long setMath(ASTNode math);
+
+
+  /**
+   * Unsets the "math" element of this FunctionTerm.
+   */
+  long unsetMath();
+};
+
+FunctionTerm implements SBase;

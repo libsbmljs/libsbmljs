@@ -1,0 +1,18 @@
+/**
+ * # Extension of SBMLDocument.
+ *
+ * The QualSBMLDocumentPlugin class inherits from the SBMLDocumentPlugin
+ * class, and codifies the extensions to the SBMLDocument class defined in
+ * the SBML Level 3 qual ("qual") package.
+ *
+ * The QualSBMLDocumentPlugin defines a
+ * required flag named required, which indicates whether the
+ * 'qual' constructs can be used to change the core mathematics of the
+ * `model` child of the `sbml` element.
+ * Because they can not, this attribute must be set false.
+ */
+[Prefix="libsbml::"]
+interface QualSBMLDocumentPlugin {
+};
+
+QualSBMLDocumentPlugin implements SBasePlugin;

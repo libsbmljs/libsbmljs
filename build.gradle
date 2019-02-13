@@ -83,7 +83,7 @@ ext.enableLayout = findProperty('enableLayout') || true
 ext.enableRender = findProperty('enableRender') || true
 ext.enableFBC = findProperty('enableFBC') || true
 ext.enableMulti = findProperty('enableMulti') || false
-ext.enableQual = findProperty('enableQual') || false
+ext.enableQual = findProperty('enableQual') || true
 ext.enableComp = findProperty('enableComp') || true
 ext.enableDistrib = findProperty('enableDistrib') || isExperimentalBranch
 ext.enableDyn = findProperty('enableDyn') || isExperimentalBranch
@@ -197,6 +197,15 @@ task combineIDL(type: ConcatFiles) {
   if (enableMulti) {
   }
   if (enableQual) {
+    include Paths.get(idl_dir, "qual", "default_term.idl")
+    include Paths.get(idl_dir, "qual", "function_term.idl")
+    include Paths.get(idl_dir, "qual", "input.idl")
+    include Paths.get(idl_dir, "qual", "output.idl")
+    include Paths.get(idl_dir, "qual", "qualitative_species.idl")
+    include Paths.get(idl_dir, "qual", "transition.idl")
+    include Paths.get(idl_dir, "qual", "model_plugin.idl")
+    include Paths.get(idl_dir, "qual", "document_plugin.idl")
+    include Paths.get(idl_dir, "qual", "extension.idl")
   }
   if (enableComp) {
     include Paths.get(idl_dir, "comp", "comp_base.idl")
@@ -237,6 +246,7 @@ task combineCPP(type: ConcatFiles) {
   if (enableMulti) {
   }
   if (enableQual) {
+    include Paths.get(cpp_dir, "qual_interface_wrapper.cpp")
   }
   if (enableComp) {
     include Paths.get(cpp_dir, "comp_interface_wrapper.cpp")
