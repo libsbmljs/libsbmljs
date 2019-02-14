@@ -92,8 +92,11 @@ describe("FBC test", function() {
           const serializedSBML = writer.writeSBMLToString(doc)
 
           // make sure the expected tags are there
-          console.log(serializedSBML)
-          // expect(serializedSBML).toContain('groups:listOfGroups')
+          expect(serializedSBML).toContain('multi:listOfSpeciesTypes')
+          expect(serializedSBML).toContain('multi:listOfCompartmentReferences')
+          expect(serializedSBML).toContain('multi:compartmentReference')
+          expect(serializedSBML).toContain('multi:speciesType')
+          expect(serializedSBML).toContain('multi:speciesTypeInstance')
 
           const reader = new libsbml.SBMLReader()
 

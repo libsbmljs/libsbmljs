@@ -4,6 +4,8 @@
 #include "sbml/Model.h"
 #include "sbml/extension/SBasePlugin.h"
 
+#include <emscripten.h>
+
 LIBSBML_CPP_NAMESPACE_BEGIN
 
   class SBMLFormulaParser {
@@ -96,3 +98,12 @@ namespace libsbmljs {
 }
 
 // #include "sbml_interface.cpp"
+
+extern "C" {
+  libsbml::SBasePlugin* EMSCRIPTEN_KEEPALIVE manual_bind_SBase_getPlugin_str(libsbml::SBase* self, char* arg0) {
+    return self->getPlugin(std::string(arg0));
+  }
+  libsbml::ASTBasePlugin* EMSCRIPTEN_KEEPALIVE manual_bind_ASTNode_getPlugin_str(libsbml::ASTNode* self, char* arg0) {
+    return self->getPlugin(std::string(arg0));
+  }
+}

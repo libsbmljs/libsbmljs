@@ -20,7 +20,6 @@
  * elsewhere in the Model.  If the "compartmentType" attribute is set, the
  * "isType" attribute must be true.
  */
-
 [Prefix="libsbml::"]
 interface MultiCompartmentPlugin {
   /**

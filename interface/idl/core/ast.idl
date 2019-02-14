@@ -1,4 +1,18 @@
 /**
+ * Base class for extensions that plug into AST classes.
+ */
+[Prefix="libsbml::"]
+interface ASTBasePlugin {
+  /**
+   * Returns the package name of this plugin object.
+   *
+   * @return {string} the package name of this plugin object.
+   */
+  DOMString getPackageName();
+
+};
+
+/**
  * # Abstract Syntax Tree (AST) representation of amathematical expression.
  *
  * Abstract Syntax Trees (ASTs) are a simple kind of data structure used in
@@ -54,6 +68,21 @@
  */
 [Prefix="libsbml::"]
 interface ASTNode {
+  /**
+   * Creates a new ASTNode.
+   *
+   * Unless the argument @p type is given, the returned node will by default
+   * have a type of libsbml.AST_UNKNOWN.  If the type
+   * isn't supplied when caling this constructor, the caller should set the
+   * node type to something else as soon as possible using
+   * {@link ASTNode#setType}.
+   *
+   * @param {ASTNodeType_t} type an optional
+   * code indicating the type of node to create.
+   */
+  void ASTNode (libsbml__idl__ASTNodeType_t type);
+
+
   /**
    * Returns the number of children of a given node.
    *
@@ -532,4 +561,36 @@ interface ASTNode {
    * should be set
    */
   long setName(ByteString name);
+
+
+  /**
+   * Returns the number of plug-in objects (extenstion interfaces) for SBML
+   * Level&nbsp;3 package extensions known.
+   *
+   * @return {number} the number of plug-in objects (extension interfaces) of
+   * package extensions known by this instance of libSBML.
+   */
+  unsigned long getNumPlugins();
+
+
+  /**
+   * Returns the nth plug-in object (extension interface) for an SBML Level&nbsp;3
+   * package extension.
+   *
+   * @param {number} n the index of the plug-in to return.
+   *
+   * @return {ASTBasePlugin} the plug-in object (the libSBML extension interface) of
+   * a package extension with the given package name or URI.
+   */
+  ASTBasePlugin getPlugin(unsigned long n);
+
+ /**
+  * Adds the given node as a child of this ASTNode.
+  *
+  * Child nodes are added in-order, from left to right.
+  *
+  * @param {ASTNode} disownedChild the ASTNode instance to add.
+  * Will become a child of the parent node.
+  */
+ long addChild (ASTNode disownedChild);
 };

@@ -559,8 +559,9 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "comp4.js")
   include Paths.get(tests_dir, "groups1.js")
   include Paths.get(tests_dir, "groups2.js")
-  include Paths.get(tests_dir, "multi1.js")
   include Paths.get(tests_dir, "qual.js")
+  include Paths.get(tests_dir, "multi1.js")
+  include Paths.get(tests_dir, "multi2.js")
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {
