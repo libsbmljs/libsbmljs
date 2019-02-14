@@ -82,7 +82,7 @@ interface SubListOfSpeciesFeatures {
    *
    * @param {number} n the index number of the SpeciesFeature to get.
    *
-   * @return {SpeciesFeature} the nth object, or NULL if the index @p is out of range.
+   * @return {SpeciesFeature} the nth object, or NULL if the index is out of range.
    */
   SpeciesFeature get(unsigned long n);
 
@@ -131,6 +131,19 @@ interface SubListOfSpeciesFeatures {
    * Unsets the value of the "relation" attribute of this SubListOfSpeciesFeatures.
    */
   long unsetRelation();
+
+
+  /**
+   * Adds an item to the end of this ListOf's list of items.
+   *
+   * This method does not clone the disownedItem handed to it; instead, it assumes
+   * ownership of it.  This means that when the ListOf is destroyed, the item
+   * will be destroyed along with it.
+   *
+   * @param {SBase} disownedItem the item to be added to the list.
+   * Will become a child of the parent list.
+   */
+  long appendAndOwn (SBase disownedItem);
 };
 
 SubListOfSpeciesFeatures implements SBase;

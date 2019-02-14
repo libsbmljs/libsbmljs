@@ -65,8 +65,6 @@ describe("FBC test", function() {
           const writer = new libsbml.SBMLWriter()
           const serializedSBML = writer.writeSBMLToString(doc)
 
-          // make sure the expected tags are there
-
           const reader = new libsbml.SBMLReader()
 
           const doc_after = reader.readSBMLFromString(serializedSBML)

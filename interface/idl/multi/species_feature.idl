@@ -24,6 +24,17 @@
 [Prefix="libsbml::"]
 interface SpeciesFeature {
   /**
+   * Creates a new SpeciesFeature object.
+   *
+   * @param {number} level the SBML Level.
+   * @param {number} version the Version within the SBML Level.
+   * @param {number} pkgVersion the version of the package.
+   */
+  void SpeciesFeature(unsigned long level,
+                 unsigned long version,
+                 unsigned long pkgVersion);
+
+  /**
    * Returns the value of the "speciesFeatureType" attribute of this
    * SpeciesFeature.
    *
