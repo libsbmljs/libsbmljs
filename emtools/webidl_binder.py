@@ -761,6 +761,7 @@ for name, enum in enums.items():
     if len(symbols) == 1:
       identifier = symbols[0]
       deferred_js += ["Module['%s'] = _%s();\n" % (identifier, function_id)]
+      resolved_name = name.replace('__idl__', '::')
     elif len(symbols) >= 2:
       [namespace, identifier] = symbols[-2:]
       if namespace in interfaces:
