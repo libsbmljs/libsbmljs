@@ -20,3 +20,7 @@
   * writing events
   * Packages
 * Test whether XML output of libSBML examples is identical to output of Karma tests
+
+Drawbacks:
+* memory management
+* size of binary (mainly a libsbml problem, and mitigated by browser cache)

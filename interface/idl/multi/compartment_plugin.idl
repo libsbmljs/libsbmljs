@@ -5,20 +5,20 @@
  * Compartment base object with an optional "compartmentType" attribute, a
  * required "isType" Boolean attribute, and a child
  * ListOfCompartmentReferences.  The "isType" attribute flags whether this
- * Compartment should be treated as a standard SBML Compartment (if @c false),
- * or as a more generic rule-based "type" of Compartment (if @c true).  A
+ * Compartment should be treated as a standard SBML Compartment (if false),
+ * or as a more generic rule-based "type" of Compartment (if true).  A
  * compartment "type" is a template (in the sense of prototype) for all
  * Compartment objects referencing it (via "compartmentType" attributes). A
  * Species object directly referencing a compartment type is not a "fully
  * defined" species, but rather a "template" species.  If the value of the
- * "isType" attribute is @c false, the Compartment object is a "not-a-type"
+ * "isType" attribute is false, the Compartment object is a "not-a-type"
  * compartment, and it is similar to a SBML core Compartment except it can
  * reference a compartment type and can have a ListOfCompartmentReferences
  * child.  Each child CompartmentReference in the ListOfCompartmentReferences
  * defines a subcompartment of the parent Compartment.  The "compartmentType"
  * attribute identifies this Compartment as the CompartmentType defined
  * elsewhere in the Model.  If the "compartmentType" attribute is set, the
- * "isType" attribute must be @c true.
+ * "isType" attribute must be true.
  */
 
 [Prefix="libsbml::"]
@@ -32,11 +32,11 @@ interface MultiCompartmentPlugin {
 
 
   /**
-   * Returns @c true if this compartment's "compartmentType" attribute has
+   * Returns true if this compartment's "compartmentType" attribute has
    * been set.
    *
-   * @return {boolean} @c true if the "compartmentType" attribute has been set;
-   * otherwise, @c false is returned.
+   * @return {boolean} true if the "compartmentType" attribute has been set;
+   * otherwise, false is returned.
    */
   boolean isSetCompartmentType();
 
@@ -64,10 +64,10 @@ interface MultiCompartmentPlugin {
 
 
   /**
-   * Returns @c true if this compartment's "isType" attribute has been set.
+   * Returns true if this compartment's "isType" attribute has been set.
    *
-   * @return {boolean} @c true if the "isType" attribute has been set; otherwise,
-   * @c false is returned.
+   * @return {boolean} true if the "isType" attribute has been set; otherwise,
+   * false is returned.
    */
   boolean isSetIsType();
 
@@ -84,6 +84,58 @@ interface MultiCompartmentPlugin {
    * Unsets the value of the "isType" attribute.
    */
   long unsetIsType();
+
+
+  /**
+   * Returns the nth CompartmentReference object from the
+   * ListOfCompartmentReferences.
+   *
+   * @param {number} n the index number of the CompartmentReference to get.
+   *
+   * @return {CompartmentReference} the nth CompartmentReference, or NULL if the index n is out
+   * of range.
+   */
+  CompartmentReference getCompartmentReference(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given CompartmentReference object to the
+   * ListOfCompartmentReferences.
+   *
+   * @param {CompartmentReference} compartmentReference the CompartmentReference object to add.
+   */
+  long addCompartmentReference (CompartmentReference compartmentReference);
+
+
+  /**
+   * Creates a new CompartmentReference object and adds it to the
+   * ListOfCompartmentReferences.
+   *
+   * @return {CompartmentReference} the newly created CompartmentReference object.
+   */
+  CompartmentReference createCompartmentReference ();
+
+
+  /**
+   * Removes the nth CompartmentReference object from the
+   * ListOfCompartmentReferences.
+   *
+   * @param {number} n the index of the CompartmentReference to remove.
+   *
+   * @return {CompartmentReference} the CompartmentReference object removed, or NULL if the given
+   * index n is out of range.  Note that the caller owns the returned
+   * object and is responsible for deleting it.
+   */
+  CompartmentReference removeCompartmentReference(unsigned long n);
+
+
+  /**
+   * Returns the number of CompartmentReference objects in the
+   * ListOfCompartmentReferences.
+   *
+   * @return {number} the number of CompartmentReference objects.
+   */
+  unsigned long getNumCompartmentReferences ();
 };
 
 MultiCompartmentPlugin implements SBasePlugin;
