@@ -1,0 +1,12 @@
+/**
+ * # Extension of ListOfReactions for the "multi" package.
+ *
+ * The MultiListOfReactionsPlugin class extends the ListOfReactions class to
+ * allow a ListOfReactions to contain IntraSpeciesReaction objects as well as
+ * Reaction objects.
+ */
+[Prefix="libsbml::"]
+interface MultiListOfReactionsPlugin {
+};
+
+MultiListOfReactionsPlugin implements SBasePlugin;

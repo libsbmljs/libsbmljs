@@ -1,0 +1,50 @@
+/**
+ * # Extension of SimpleSpeciesReference for the "multi" package.
+ *
+ * The MultiSpeciesPlugin class extends the SimpleSpeciesReference class with
+ * a new optional attribute "compartmentReference", of type SIdRef, that
+ * points to a CompartmentReference.  The compartmentReference attribute can
+ * serve to indicate in which subcompartment the SpeciesReference or
+ * ModifierSpeciesReference (which inherit from SimpleSpeciesReference) is
+ * located.
+ */
+[Prefix="libsbml::"]
+interface MultiSimpleSpeciesReferencePlugin {
+   /**
+   * Returns the value of the "compartmentReference" attribute of this
+   * SimpleSpeciesReference.
+   *
+   * @return {string} the value of the "compartmentReference" attribute of this
+   * SimpleSpeciesReference, as a string.
+   */
+  DOMString getCompartmentReference();
+
+
+  /**
+   * Returns true if this SimpleSpeciesReference's "compartmentReference"
+   * attribute has been set.
+   *
+   * @return {boolean} true if this SimpleSpeciesReference's "compartmentReference"
+   * attribute has been set; otherwise, false is returned.
+   */
+  boolean isSetCompartmentReference();
+
+
+  /**
+   * Sets the value of the "compartmentReference" attribute of this
+   * SimpleSpeciesReference.
+   *
+   * @param {string} compartmentReference the new value of the "compartmentReference"
+   * attribute.
+   */
+  long setCompartmentReference(DOMString compartmentReference);
+
+
+  /**
+   * Unsets the value of the "compartmentReference" attribute of this
+   * SimpleSpeciesReference.
+   */
+  long unsetCompartmentReference();
+};
+
+MultiSimpleSpeciesReferencePlugin implements SBasePlugin;

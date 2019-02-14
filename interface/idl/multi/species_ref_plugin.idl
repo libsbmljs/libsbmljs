@@ -1,0 +1,69 @@
+/**
+ * # Extension of SpeciesReference for the "multi" package.
+ *
+ * The MultiSpeciesReferencePlugin class inherits from the
+ * MultiSimpleSpeciesReferencePlugin class, and extends the SpeciesReference
+ * class to establish component mappings between the reactant species and the
+ * product species when the mappings cannot be inferred from the ids of the
+ * SpeciesTypeInstance objects. A MultiSpeciesReferencePlugin object defines
+ * an optional ListOfSpeciesTypeComponentMapInProducts child. Only a reaction
+ * product can contain the ListOfSpeciesTypeComponentMapInProducts child and
+ * it is not necessary to store the mappings again in the reactants.
+ */
+[Prefix="libsbml::"]
+interface MultiSpeciesReferencePlugin {
+  /**
+   * Returns the nth SpeciesTypeComponentMapInProduct object.
+   *
+   * @param {number} n the index number of the SpeciesTypeComponentMapInProduct to get.
+   *
+   * @return {SpeciesTypeComponentMapInProduct} the nth SpeciesTypeComponentMapInProduct in the
+   * ListOfSpeciesTypeComponentMapInProducts. If the index is invalid, NULL
+   * is returned.
+   */
+  SpeciesTypeComponentMapInProduct* getSpeciesTypeComponentMapInProduct(unsigned int n);
+
+
+  /**
+   * Adds a copy of the given SpeciesTypeComponentMapInProduct to the
+   * ListOfSpeciesTypeComponentMapInProducts.
+   *
+   * @param {SpeciesTypeComponentMapInProduct} speciesTypeComponentMapInProduct the
+   * speciesTypeComponentMapInProduct to be added.
+   */
+  int addSpeciesTypeComponentMapInProduct (const SpeciesTypeComponentMapInProduct* speciesTypeComponentMapInProduct);
+
+
+  /**
+   * Creates a new SpeciesTypeComponentMapInProduct object and adds it to the
+   * ListOfSpeciesTypeComponentMapInProducts.
+   *
+   * @return {SpeciesTypeComponentMapInProduct} the newly created SpeciesTypeComponentMapInProduct object.  Note
+   * that the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  SpeciesTypeComponentMapInProduct* createSpeciesTypeComponentMapInProduct ();
+
+
+  /**
+   * Removes the nth SpeciesTypeComponentMapInProduct object and returns a
+   * pointer to it.
+   *
+   * @param {number} n the index of the SpeciesTypeComponentMapInProduct to remove.
+   *
+   * @return {SpeciesTypeComponentMapInProduct} the SpeciesTypeComponentMapInProduct object removed or NULL
+   * index was out of range.  Note that the caller owns the returned object
+   * and is responsible for deleting it.
+   */
+  SpeciesTypeComponentMapInProduct* removeSpeciesTypeComponentMapInProduct(unsigned int n);
+
+
+  /**
+   * Returns the number of SpeciesTypeComponentMapInProduct objects.
+   *
+   * @return {number} the number of SpeciesTypeComponentMapInProduct objects.
+   */
+  unsigned int getNumSpeciesTypeComponentMapInProducts () const;
+};
+
+MultiSpeciesReferencePlugin implements MultiSimpleSpeciesReferencePlugin;

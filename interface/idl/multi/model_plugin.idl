@@ -1,0 +1,75 @@
+/**
+ * # Extension of Model.
+ *
+ * The MultiModelPlugin object is used to extend the standard SBML Model
+ * object to allow a ListOfSpeciesTypes child.
+ */
+[Prefix="libsbml::"]
+interface MultiModelPlugin {
+  /**
+   * Returns the MultiSpeciesType object that belongs to the given index. If the
+   * index is invalid, NULL is returned.
+   *
+   * @param {number} n the index number of the MultiSpeciesType to get
+   *
+   * @return {MultiSpeciesType} the nth MultiSpeciesType in the ListOfMultiSpeciesTypes
+   * If the index @p n is invalid, NULL is returned.
+   */
+  MultiSpeciesType getMultiSpeciesType(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given MultiSpeciesType to the ListOfMultiSpeciesTypes in this plugin object.
+   *
+   * @param {MultiSpeciesType} multiSpeciesType the multiSpeciesType to be added.
+   */
+  long addMultiSpeciesType (MultiSpeciesType multiSpeciesType);
+
+
+  /**
+   * Creates a new MultiSpeciesType object and adds it to the ListOfMultiSpeciesTypes in this plugin object.
+   *
+   * @return {MultiSpeciesType} the newly created MultiSpeciesType object.
+   */
+  MultiSpeciesType createMultiSpeciesType ();
+
+
+  /**
+   * Creates a new BindingSiteSpeciesType object and adds it to the ListOfMultiSpeciesTypes in this plugin object.
+   *
+   * @return {BindingSiteSpeciesType} the newly created BindingSiteSpeciesType object.
+   */
+  BindingSiteSpeciesType createBindingSiteSpeciesType ();
+
+
+  /**
+   * Removes the nth MultiSpeciesType object from this plugin object
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for
+   * deleting it.
+   *
+   * @param {number} n the index of the MultiSpeciesType to remove
+   *
+   * @return {MultiSpeciesType} the MultiSpeciesType object removed
+   * or NULL index was out of range.
+   */
+  MultiSpeciesType removeMultiSpeciesType(unsigned long n);
+
+
+  /**
+   * Returns the number of MultiSpeciesType objects in this plugin object.
+   *
+   * @return {number} the number of MultiSpeciesType objects in this plugin object.
+   */
+  unsigned long getNumMultiSpeciesTypes () const;
+
+  /**
+   * Creates a new IntraSpeciesReaction object and adds it to the ListOfReactions.
+   *
+   * @return {IntraSpeciesReaction} the newly created IntraSpeciesReaction object.
+   */
+  IntraSpeciesReaction createIntraSpeciesReaction ();
+};
+
+MultiModelPlugin implements SBasePlugin;

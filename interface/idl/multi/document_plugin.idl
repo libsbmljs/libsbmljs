@@ -1,0 +1,16 @@
+/**
+ * # Extension of SBMLDocument for the "multi" package.
+ *
+ * The MultiSBMLDocumentPlugin class inherits from the SBMLDocumentPlugin
+ * class, and codifies the extensions to the SBMLDocument class defined in
+ * the SBML Level 3 @ref multi ("multi") package.  This extension
+ * defines a required flag named "required", which indicates whether "multi"
+ * constructs can be used to change the core mathematical interpretation of
+ * the Model defined in the SBML input.  Since "multi" constructs can, this
+ * attribute must be set to the value "true".
+ */
+[Prefix="libsbml::"]
+interface MultiSBMLDocumentPlugin {
+};
+
+MultiSBMLDocumentPlugin implements SBasePlugin;

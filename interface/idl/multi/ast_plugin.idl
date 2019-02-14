@@ -1,0 +1,63 @@
+/**
+ * # Extension of ASTBasePlugin.
+ *
+ * The MultiASTPlugin object is used to extend the standard SBML AST
+ * (abstract syntax tree) base object (ASTBase) to allow a "ci" element
+ * (libsbml.AST_NAME) to have an optional
+ * "speciesReference" attribute.  This attribute is used to distinguish which
+ * version of a Species should be used in the mathematics.  If a "template"
+ * type Species appears as both a reactant and a product in the same
+ * Reaction, for example, it may have one amount as a reactant and a
+ * different amount as a product, since the same template is being used to
+ * match slightly different pools of elements in each case.  By defining the
+ * "speciesReference" attribute on an libsbml.AST_NAME
+ * that references that Species, the modeler may determine which amount is
+ * being referenced.  Similarly, an libsbml.AST_NAME
+ * node may reference a SpeciesFeature that appears in multiple Species in
+ * the Reaction, and this attribute can be used to specify which one should
+ * be used.
+ */
+[Prefix="libsbml::"]
+interface MultiASTPlugin {
+  /**
+   * @return {string}
+   */
+  DOMString getSpeciesReference();
+
+  /**
+   * @return {boolean}
+   */
+  boolean isSetSpeciesReference();
+
+  /**
+   * @param {string speciesReference}
+   */
+  long setSpeciesReference(DOMString speciesReference);
+
+  /**
+   * Unsets the species reference.
+   */
+  long unsetSpeciesReference();
+
+  /**
+   * @return {string}
+   */
+  DOMString getRepresentationType();
+
+  /**
+   * @return {boolean}
+   */
+  boolean isSetRepresentationType();
+
+  /**
+   * @param {string} representationType
+   */
+  long setRepresentationType(DOMString representationType);
+
+  /**
+   * Unset the representation type.
+   */
+  long unsetRepresentationType();
+};
+
+MultiASTPlugin implements SBasePlugin;

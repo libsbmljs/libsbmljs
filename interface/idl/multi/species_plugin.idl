@@ -1,0 +1,181 @@
+/**
+ * # Extension of Species for the "multi" package.
+ *
+ * The MultiSpeciesPlugin class extends the Species class to have a new
+ * attribute "speciesType", and two extra optional ListOfOutwardBindingSites
+ * and ListOfSpeciesFeatures children. A species may have a
+ * ListOfOutwardBindingSites child and/or a ListOfSpeciesFeatures child only
+ * when its speciesType attribute has been defined.  The relationship among
+ * the elements of a ListOfOutwardBindingSites or a ListOfSpeciesFeatures is
+ * "and".
+ */
+[Prefix="libsbml::"]
+interface MultiSpeciesPlugin {
+  /**
+   * Returns the value of the "speciesType" attribute of this "multi" Species.
+   *
+   * @return {string} the value of the "speciesType" attribute.
+   */
+  DOMString getSpeciesType();
+
+
+  /**
+   * Returns @c true if the "speciesType" attribute of this "multi" Species
+   * has been set.
+   *
+   * @return {boolean} @c true if this SpeciesPlugin's "speciesType" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  boolean isSetSpeciesType();
+
+
+  /**
+   * Sets the value of the "speciesType" attribute on this "multi" Species.
+   *
+   * @param {string} speciesType the new value for the attribute.
+   */
+  long setSpeciesType(DOMString speciesType);
+
+
+  /**
+   * Unsets the value of the "speciesType" attribute on this "multi" Species.
+   */
+  long unsetSpeciesType();
+
+
+  /**
+   * Returns the nth OutwardBindingSite object.
+   *
+   * @param {number} n the index number of the OutwardBindingSite to get
+   *
+   * @return {OutwardBindingSite} the nth OutwardBindingSite in the ListOfOutwardBindingSites.  If
+   * the index is invalid, NULL is returned.
+   */
+  OutwardBindingSite getOutwardBindingSite(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given OutwardBindingSite to the
+   * ListOfOutwardBindingSites.
+   *
+   * @param {OutwardBindingSite} outwardBindingSite the outwardBindingSite to be added.
+   */
+  long addOutwardBindingSite (OutwardBindingSite outwardBindingSite);
+
+
+  /**
+   * Creates a new OutwardBindingSite object and adds it to the
+   * ListOfOutwardBindingSites.
+   *
+   * @return {OutwardBindingSite} the newly created OutwardBindingSite object.
+   */
+  OutwardBindingSite createOutwardBindingSite ();
+
+
+  /**
+   * Removes the nth OutwardBindingSite object and returns a pointer to it.
+   *
+   * @param {number} n the index of the OutwardBindingSite to remove.
+   *
+   * @return {OutwardBindingSite} the OutwardBindingSite object removed or @c NULL index was out of
+   * range.  Note that the caller owns the returned object and is responsible
+   * for deleting it.
+   */
+  OutwardBindingSite removeOutwardBindingSite(unsigned long n);
+
+
+  /**
+   * Returns the number of OutwardBindingSite objects of this "multi" Species.
+   *
+   * @return {number} the number of OutwardBindingSite objects in this plugin object.
+   */
+  unsigned long getNumOutwardBindingSites ();
+
+
+  /**
+   * Returns the nth SpeciesFeature object.
+   *
+   * @param {number} n the index number of the SpeciesFeature to get.
+   *
+   * @return {SpeciesFeature} the nth SpeciesFeature in the ListOfSpeciesFeatures.  If the
+   * index is invalid, NULL is returned.
+   */
+  SpeciesFeature getSpeciesFeature(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given SpeciesFeature to the ListOfSpeciesFeatures of
+   * this "multi" Species.
+   *
+   * @param {SpeciesFeature} speciesFeature the SpeciesFeature to be added.
+   */
+  long addSpeciesFeature (SpeciesFeature speciesFeature);
+
+
+  /**
+   * Creates a new SpeciesFeature object and adds it to the
+   * ListOfSpeciesFeatures of this "multi" Species.
+   *
+   * @return {SpeciesFeature} the newly created SpeciesFeature object.
+   */
+  SpeciesFeature createSpeciesFeature ();
+
+
+  /**
+   * Removes the nth SpeciesFeature object and returns a pointer to it.
+   *
+   * @param n the index of the SpeciesFeature to remove.
+   *
+   * @return {SpeciesFeature} the SpeciesFeature object removed or @c NULL index was out of
+   * range.  Note that the caller owns the returned object and is responsible
+   * for deleting it.
+   */
+  SpeciesFeature removeSpeciesFeature(unsigned long n);
+
+
+  /**
+   * Returns the nth SubListOfSpeciesFeatures object.
+   *
+   * @param {number} n the index number of the SubListOfSpeciesFeatures to get
+   *
+   * @return {SubListOfSpeciesFeatures} the nth SubListOfSpeciesFeatures in the ListOfSpeciesFeatures.
+   * If the index is invalid, NULL is returned.
+   */
+  SubListOfSpeciesFeatures getSubListOfSpeciesFeatures(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given SubListOfSpeciesFeatures to the
+   * ListOfSpeciesFeatures.
+   *
+   * @param {SubListOfSpeciesFeatures} subListOfSpeciesFeatures the SubListOfSpeciesFeatures to be added.
+   */
+  long addSubListOfSpeciesFeatures (SubListOfSpeciesFeatures subListOfSpeciesFeatures);
+
+
+  /**
+   * Creates a new SubListOfSpeciesFeatures object and adds it to the
+   * SubListOfSpeciesFeatures.
+   *
+   * @return {SubListOfSpeciesFeatures} the newly created SubListOfSpeciesFeatures object.
+   */
+  SubListOfSpeciesFeatures createSubListOfSpeciesFeatures ();
+
+
+  /**
+   * Returns the number of SpeciesFeature objects of this "multi" Species.
+   *
+   * @return {number} the number of SpeciesFeature objects in this plugin object.
+   */
+  unsigned long getNumSpeciesFeatures ();
+
+
+  /**
+   * Returns the number of SubListOfSpeciesFeatures objects of this "multi" Species.
+   *
+   * @return {number} the number of SubListOfSpeciesFeatures objects in this plugin object.
+   */
+  unsigned long getNumSubListOfSpeciesFeatures ();
+};
+
+MultiSpeciesPlugin implements SBasePlugin;

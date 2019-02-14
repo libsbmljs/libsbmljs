@@ -1,0 +1,28 @@
+/**
+ * # Base extension class for the package.
+ *
+ * This is the Multistate, Multicomponent and Multicompartment Species
+ * package extension of the SBMLExtension class.  This is a class that every
+ * libSBML plug-in must implement in order to implement an SBML Level 3
+ * package.
+ *
+ * There is currently exactly one namespace defined for the Multistate,
+ * Multicomponent and Multicompartment Species package:
+ * "http://www.sbml.org/sbml/level3/version1/multi/version1".  Despite
+ * referencing SBML Level 3 Version 1 explicitly, this package (and
+ * all such packages) can be used without change in SBML Level 3
+ * Version 2 documents.  The only caveat is that features of the SBML
+ * Level 3 Version 2 specification that were not present in
+ * Level 1 may not be used by constructs from Level 1 packages.
+ * However, this restriction should not affect the 'multi' package.
+ */
+[Prefix="libsbml::"]
+interface MultiExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package
+   * implemented by this libSBML extension.
+   *
+   * @return {string} the XML namespace as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
+};
