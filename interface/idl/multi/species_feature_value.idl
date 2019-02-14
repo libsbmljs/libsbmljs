@@ -1,0 +1,43 @@
+/**
+ * # Defines a particular value for a SpeciesFeature.
+ *
+ * The SpeciesFeatureValue object is a child of a SpeciesFeature, and serves
+ * to specify a value for a SpeciesFeature to select from the
+ * ListOfPossibleSpeciesFeatureValues defined in the SpeciesFeatureType
+ * referenced by the parent SpeciesFeature.
+ */
+[Prefix="libsbml"]
+interface SpeciesFeatureValue {
+  /**
+   * Returns the value of the "value" attribute of this SpeciesFeatureValue.
+   *
+   * @return {string} the value of the "value" attribute of this SpeciesFeatureValue as a string.
+   */
+  DOMString getValue() const;
+
+
+  /**
+   * Returns true if this SpeciesFeatureValue's "value" attribute has been
+   * set.
+   *
+   * @return {boolean} true if this SpeciesFeatureValue's "value" attribute has been
+   * set; otherwise, false is returned.
+   */
+  boolean isSetValue() const;
+
+
+  /**
+   * Sets the value of the "value" attribute of this SpeciesFeatureValue.
+   *
+   * @param {string} value DOMString value of the "value" attribute to be set
+   */
+  long setValue(DOMString value);
+
+
+  /**
+   * Unsets the value of the "value" attribute of this SpeciesFeatureValue.
+   */
+  long unsetValue();
+};
+
+SpeciesFeatureValue implements SBase;

@@ -1,0 +1,128 @@
+/**
+ * Enumeration of possible binding status of a OutwardBindingSite in
+ * the libSBML "multi" package implementation.
+ */
+enum libsbml__idl__BindingStatus_t {
+  "libsbml::MULTI_BINDING_STATUS_BOUND",
+  "libsbml::MULTI_BINDING_STATUS_UNBOUND",
+  "libsbml::MULTI_BINDING_STATUS_EITHER",
+  "libsbml::MULTI_BINDING_STATUS_UNKNOWN"
+};
+
+/**
+ * # Defines a outward-facing binding site for a MultiSpeciesType.
+ *
+ * The OutwardBindingSite object is a child of a Species (via the
+ * MultiSpeciesPlugin).  It has two optional attributes, "id" and "name", and
+ * two required attributes, "bindingStatus" and "component". A binding site
+ * not involved in any InSpeciesTypeBond object in the MultiSpeciesType
+ * referenced by a Species is an OutwardBindingSite. The bindingStatus
+ * attribute is of type {*nk BindingStatus_t}.  The component attribute,
+ * of type SIdRef, references a component which ultimately references a
+ * BindingSiteSpeciesType object. The attribute value must be the identifier
+ * of a SpeciesTypeInstance, SpeciesTypeComponentIndex or MultiSpeciesType
+ * object. An OutwardBindingSite cannot be a binding site referenced by any
+ * InSpeciesTypeBond in the species. There are three scenarios for the
+ * component attribute to have the value of an identifier of
+ * MultiSpeciesType, SpeciesTypeInstance, or SpeciesTypeComponentIndex
+ * respectively:
+ *
+ * * When a Species references a simple BindingSiteSpeciesType, the value
+ * of the component attribute of the OutwardBindingSite of the Species can
+ * only be the id of the referenced MultiSpeciesType.
+ * * When a Species references a MultiSpeciesType with a
+ * SpeciesTypeInstance being a binding site (have an id of
+ * BindingSiteSpeciesType as its "speciesType" attribute) and the id of the
+ * SpeciesTypeInstance can identify the binding site within the
+ * MultiSpeciesType (referenced by the Species) unambiguously, and therefore,
+ * the value of the component attribute of an OutwardBindingSite of the
+ * species can be the id of the SpeciesTypeInstance.
+ * * When a Species references a MultiSpeciesType with a
+ * SpeciesTypeInstance being a binding site (directly or indirectly) and id of
+ * the SpeciesTypeInstance can NOT identify the binding site without
+ * ambiguity, an id of SpeciesTypeComponentIndex can be used as the value of
+ * the component attribute of an OutwardBindingSite of the Species.
+ */
+[Prefix="libsbml"]
+interface OutwardBindingSite {
+  /**
+  * Returns the value of the "bindingStatus" attribute of this
+  * OutwardBindingSite.
+  *
+  * @return {BindingStatus_t} the value of the "bindingStatus" attribute of this
+  * OutwardBindingSite.
+  */
+  libsbml__idl__BindingStatus_t getBindingStatus();
+
+
+  /**
+  * Returns true if this OutwardBindingSite's "bindingStatus" attribute
+  * has been set.
+  *
+  * @return {boolean} true if this OutwardBindingSite's "bindingStatus" attribute
+  * has been set, otherwise false is returned.
+  */
+  boolean isSetBindingStatus();
+
+
+  /**
+  * Sets the value of the "bindingStatus" attribute of this
+  * OutwardBindingSite.
+  *
+  * @param {BindingStatus_t} bindingStatus the new value of the "bindingStatus" attribute.
+  */
+  long setBindingStatus(libsbml__idl__BindingStatus_t bindingStatus);
+
+
+  /**
+  * Sets the value of the "bindingStatus" attribute of this
+  * OutwardBindingSite.
+  *
+  * @param {string} bindingStatus std::string& of the "bindingStatus" attribute to be
+  * set.
+  */
+  long setBindingStatus(DOMString bindingStatus);
+
+
+  /**
+  * Unsets the value of the "bindingStatus" attribute of this
+  * OutwardBindingSite.
+  */
+  long unsetBindingStatus();
+
+
+  /**
+  * Returns the value of the "component" attribute of this
+  * OutwardBindingSite.
+  *
+  * @return the value of the "component" attribute of this
+  * OutwardBindingSite as a string.
+  */
+  DOMString getComponent();
+
+
+  /**
+  * Returns true if this OutwardBindingSite's "component" attribute has
+  * been set.
+  *
+  * @return {boolean} true if this OutwardBindingSite's "component" attribute has
+  * been set; otherwise, false is returned.
+  */
+  boolean isSetComponent();
+
+
+  /**
+  * Sets the value of the "component" attribute of this OutwardBindingSite.
+  *
+  * @param {string} component DOMString value of the "component" attribute to be set
+  */
+  long setComponent(DOMString component);
+
+
+  /**
+  * Unsets the value of the "component" attribute of this OutwardBindingSite.
+  */
+  long unsetComponent();
+};
+
+OutwardBindingSite implements SBase;

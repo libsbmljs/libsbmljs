@@ -1,0 +1,91 @@
+/**
+ * # Identifies a component within a MultiSpeciesType.
+ *
+ * The SpeciesTypeComponentIndex object is a child of MultiSpeciesType, and
+ * provides a way to identify or index a component within that
+ * MultiSpeciesType. A SpeciesTypeComponentIndex object can be referenced by
+ * other class objects, such as InSpeciesTypeBond, OutwardBindingSite,
+ * SpeciesFeature or SpeciesTypeComponentMapInProduct objects, which need to
+ * identify a component in a particular MultiSpeciesType.  A
+ * SpeciesTypeComponentIndex should be unambiguous. For example, a
+ * SpeciesTypeComponentIndex should not reference a MultiSpeciesType which is
+ * referenced by two SpeciesTypeInstance objects contained in the same
+ * MultiSpeciesType object.
+ */
+[Prefix="libsbml"]
+interface SpeciesTypeComponentIndex {
+  /**
+   * Returns the value of the "component" attribute of this
+   * SpeciesTypeComponentIndex.
+   *
+   * @return {string} the value of the "component" attribute of this
+   * SpeciesTypeComponentIndex as a string.
+   */
+  DOMString getComponent();
+
+
+  /**
+   * Returns @c true if this SpeciesTypeComponentIndex's "component"
+   * attribute has been set.
+   *
+   * @return {boolean} @c true if this SpeciesTypeComponentIndex's "component"
+   * attribute has been set; otherwise, @c false is returned.
+   */
+  boolean isSetComponent();
+
+
+  /**
+   * Sets the value of the "component" attribute of this
+   * SpeciesTypeComponentIndex.
+   *
+   * @param {string} component DOMString value of the "component" attribute
+   * to be set
+   */
+  long setComponent(DOMString component);
+
+
+  /**
+   * Unsets the value of the "component" attribute of this
+   * SpeciesTypeComponentIndex.
+   */
+  long unsetComponent();
+
+
+  /**
+   * Returns the value of the "identifyingParent" attribute of this
+   * SpeciesTypeComponentIndex.
+   *
+   * @return {string} the value of the "identifyingParent" attribute of this
+   * SpeciesTypeComponentIndex as a string.
+   */
+  DOMString getIdentifyingParent();
+
+
+  /**
+   * Returns @c true if this SpeciesTypeComponentIndex's "identifyingParent"
+   * attribute has been set.
+   *
+   * @return {boolean} @c true if this SpeciesTypeComponentIndex's "identifyingParent"
+   * attribute has been set, otherwise @c false is returned.
+   */
+  boolean isSetIdentifyingParent();
+
+
+  /**
+   * Sets the value of the "identifyingParent" attribute of this
+   * SpeciesTypeComponentIndex.
+   *
+   * @param {string} identifyingParent DOMString value of the
+   * "identifyingParent" attribute to be set
+   */
+  long setIdentifyingParent(DOMString identifyingParent);
+
+
+  /**
+   * Unsets the value of the "identifyingParent" attribute of this
+   * SpeciesTypeComponentIndex.
+   */
+  long unsetIdentifyingParent();
+};
+
+SpeciesTypeComponentIndex implements SBase;

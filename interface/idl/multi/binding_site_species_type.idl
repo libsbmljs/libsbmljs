@@ -1,0 +1,20 @@
+/**
+ * # Extension of MultiSpeciesType to define a binding site.
+ *
+ * A BindingSiteSpeciesType inherits from MultiSpeciesType, and also is a
+ * child of the extended Model (via the MultiModelPlugin). A
+ * BindingSiteSpeciesType object defines a binding site, and therefore its
+ * instance can further define the bindingStatus attribute and can
+ * participate a binding internally and explicitly in an InSpeciesTypeBond
+ * object, or externally and implicitly defined by an OutwardBindingSite
+ * object. A binding site must be an atomic component which means that a
+ * BindingSiteSpeciesType object cannot contain a ListOfSpeciesTypeInstances
+ * subobject. Note: In the Multi package, a binding site can only participate
+ * in one binding at a time. That means a binding site cannot bind two
+ * partners at the same time. The binding relationship is one-to-one.
+ */
+[Prefix="libsbml::"]
+interface BindingSiteSpeciesType {
+};
+
+BindingSiteSpeciesType implements MultiSpeciesType;

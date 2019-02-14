@@ -1,0 +1,127 @@
+/**
+ * # Distinguishes between components in reactants versus products.
+ *
+ * The SpeciesTypeComponentMapInProduct object is a child of a
+ * SpeciesReference (via the MultiSpeciesReferencePlugin) in a Reaction, and
+ * defines the mapping between a component in a reactant and a component in a
+ * product. The identifications of a component and the SpeciesReference
+ * should be sufficient to identify the component in the context of a
+ * reaction. The attributes "reactant" and "reactantComponent" can identify
+ * the component in a reactant, and the "productComponent" attribute and the
+ * product storing the mapping information can identify the component in a
+ * product.
+ */
+[Prefix="libsbml"]
+interface SpeciesTypeComponentMapInProduct {
+  /**
+   * Returns the value of the "reactant" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @return {string} the value of the "reactant" attribute of this
+   * SpeciesTypeComponentMapInProduct as a string.
+   */
+  DOMString getReactant();
+
+
+  /**
+   * Returns @c true if this SpeciesTypeComponentMapInProduct's "reactant"
+   * attribute has been set.
+   *
+   * @return {boolean} @c true if this SpeciesTypeComponentMapInProduct's "reactant"
+   * attribute has been set; otherwise, @c false is returned.
+   */
+  boolean isSetReactant();
+
+
+  /**
+   * Sets the value of the "reactant" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @param {string} reactant DOMString value of the "reactant" attribute to be set
+   */
+  long setReactant(DOMString reactant);
+
+
+  /**
+   * Unsets the value of the "reactant" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   */
+  long unsetReactant();
+
+
+  /**
+   * Returns the value of the "reactantComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @return {string} the value of the "reactantComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct as a string.
+   */
+  DOMString getReactantComponent();
+
+
+  /**
+   * Returns @c true if this SpeciesTypeComponentMapInProduct's
+   * "reactantComponent" attribute has been set.
+   *
+   * @return {boolean} @c true if this SpeciesTypeComponentMapInProduct's
+   * "reactantComponent" attribute has been set; otherwise, @c false is
+   * returned.
+   */
+  boolean isSetReactantComponent();
+
+
+  /**
+   * Sets the value of the "reactantComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @param {string} reactantComponent DOMString value of the
+   * "reactantComponent" attribute to be set
+   */
+  long setReactantComponent(DOMString reactantComponent);
+
+
+  /**
+   * Unsets the value of the "reactantComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   */
+  long unsetReactantComponent();
+
+
+  /**
+   * Returns the value of the "productComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @return {boolean} the value of the "productComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct as a string.
+   */
+  DOMString getProductComponent();
+
+
+  /**
+   * Returns @c true if this SpeciesTypeComponentMapInProduct's
+   * "productComponent" attribute has been set.
+   *
+   * @return {boolean} @c true if this SpeciesTypeComponentMapInProduct's
+   * "productComponent" attribute has been set, otherwise @c false is
+   * returned.
+   */
+  boolean isSetProductComponent();
+
+
+  /**
+   * Sets the value of the "productComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   *
+   * @param {string} productComponent the new value of the attribute.
+   */
+  long setProductComponent(DOMString productComponent);
+
+
+  /**
+   * Unsets the value of the "productComponent" attribute of this
+   * SpeciesTypeComponentMapInProduct.
+   */
+  long unsetProductComponent();
+};
+
+SpeciesTypeComponentMapInProduct implements SBase;

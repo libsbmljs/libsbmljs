@@ -1,0 +1,102 @@
+/**
+ * # Defines a template for referencing SpeciesFeature objects.
+ *
+ * The SpeciesFeatureType object is a child of a MultiSpeciesType, and serves
+ * to provide frameworks or templates to define the referencing
+ * SpeciesFeature objects. SpeciesFeatureType has two required attributes
+ * "id" and "occur", an optional attribute "name", and a required child
+ * ListOfPossibleSpeciesFeatureValues. The multiple
+ * PossibleSpeciesFeatureValue children of the
+ * ListOfPossibleSpeciesFeatureValues object permit constructing multistate
+ * species via its SpeciesFeature children of the ListOfSpeciesFeatures or
+ * SubListOfSpeciesFeatures object.  The "occur" attribute is used to
+ * indicate the number of instances of the SpeciesFeatureType. This attribute
+ * can be used to infer the number of the instances in the "don"t care" state
+ * in a referencing SpeciesFeature.
+ */
+[Prefix="libsbml"]
+interface SpeciesFeatureType {
+  /**
+   * Returns the value of the "occur" attribute of this SpeciesFeatureType.
+   *
+   * @return {number} the value of the "occur" attribute of this SpeciesFeatureType as
+   * a unsigned integer.
+   */
+  unsigned long getOccur();
+
+
+  /**
+   * Returns true if this SpeciesFeatureType's "occur" attribute has been
+   * set.
+   *
+   * @return {boolean} true if this SpeciesFeatureType's "occur" attribute has been
+   * set; otherwise, false is returned.
+   */
+  bool isSetOccur();
+
+
+  /**
+   * Sets the value of the "occur" attribute of this SpeciesFeatureType.
+   *
+   * @param {number} occur unsigned long value of the "occur" attribute to be set
+   */
+  long setOccur(unsigned long occur);
+
+
+  /**
+   * Unsets the value of the "occur" attribute of this SpeciesFeatureType.
+   */
+  long unsetOccur();
+
+
+  /**
+   * Get the nth PossibleSpeciesFeatureValue object from the
+   * ListOfPossibleSpeciesFeatureValues.
+   *
+   * @param {number} n the index number of the PossibleSpeciesFeatureValue to get.
+   *
+   * @return {PossibleSpeciesFeatureValue} the nth object, or NULL if the index @p is out of range.
+   */
+  PossibleSpeciesFeatureValue getPossibleSpeciesFeatureValue(unsigned long n);
+
+
+  /**
+   * Adds a copy the given "PossibleSpeciesFeatureValue" to this SpeciesFeatureType.
+   *
+   * @param {PossibleSpeciesFeatureValue} psfv the PossibleSpeciesFeatureValue object to add
+   */
+  long addPossibleSpeciesFeatureValue(PossibleSpeciesFeatureValue psfv);
+
+
+  /**
+   * Get the number of PossibleSpeciesFeatureValue objects in this
+   * SpeciesFeatureType.
+   *
+   * @return {number} the number of PossibleSpeciesFeatureValue objects in this
+   * SpeciesFeatureType
+   */
+  unsigned long getNumPossibleSpeciesFeatureValues();
+
+
+  /**
+   * Creates a new PossibleSpeciesFeatureValue object and adds it to this
+   * SpeciesFeatureTypes.
+   *
+   * @return {PossibleSpeciesFeatureValue} a new PossibleSpeciesFeatureValue object instance
+   */
+  PossibleSpeciesFeatureValue createPossibleSpeciesFeatureValue();
+
+
+  /**
+   * Removes the nth PossibleSpeciesFeatureValue object from the
+   * ListOfPossibleSpeciesFeatureValues.
+   *
+   * @param n the index of the PossibleSpeciesFeatureValue to remove.
+   *
+   * @return {PossibleSpeciesFeatureValue} the object removed, or NULL if no such object exists.  Note that
+   * the caller owns the returned object and is responsible for deleting it.
+   */
+  PossibleSpeciesFeatureValue removePossibleSpeciesFeatureValue(unsigned long n);
+};
+
+SpeciesFeatureType implements SBase;

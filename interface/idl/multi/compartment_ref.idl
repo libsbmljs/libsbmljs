@@ -1,0 +1,51 @@
+/**
+ * # Child of a Compartment that references a different Compartment.
+ *
+ * A CompartmentReference object is a child of an extended Compartment (via
+ * the MultiCompartmentPlugin), and provides a way for that Compartment to
+ * reference another Compartment, and indicates that the referenced
+ * Compartment is a sub-compartment in a composite parent compartment.
+ * Compartments may be arbitrarily nested in this way, but this nesting
+ * cannot be circular.
+ *
+ * The ListOfCompartmentReferences is a container for CompartmentReference objects.
+ */
+[Prefix="libsbml"]
+interface CompartmentReference {
+  /**
+   * Returns the value of the "compartment" attribute of this
+   * CompartmentReference.
+   *
+   * @return {string} the value of the "compartment" attribute of this
+   * CompartmentReference as a string.
+   */
+  DOMString getCompartment();
+
+
+  /**
+   * Returns true if this CompartmentReference's "compartment" attribute
+   * has been set.
+   *
+   * @return {boolean} true if this CompartmentReference's "compartment" attribute
+   * has been set; otherwise, false is returned.
+   */
+  boolean isSetCompartment();
+
+
+  /**
+   * Sets the value of the "compartment" attribute of this
+   * CompartmentReference.
+   *
+   * @param {string} compartment the new attribute value.
+   */
+  long setCompartment(DOMString compartment);
+
+
+  /**
+   * Unsets the value of the "compartment" attribute of this
+   * CompartmentReference.
+   */
+  long unsetCompartment();
+};
+
+CompartmentReference implements SBase;

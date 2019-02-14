@@ -1,0 +1,91 @@
+/**
+ * # Allows construction of structured MultiSpeciesType objects.
+ *
+ * The SpeciesTypeInstance object is a child of MultiSpeciesType, and
+ * provides a way to construct MultiSpeciesType objects and Species with
+ * multiple components. A MultiSpeciesType can contain a list of instances of
+ * other MultiSpeciesType objects which can also have their own
+ * SpeciesTypeInstance objects, so the complete construct of a
+ * MultiSpeciesType has a tree structure. A MultiSpeciesType cannot contain
+ * an instance of any other MultiSpeciesType that already contains the
+ * instance of it. In other words, circular references are not allowed when
+ * constructing MultiSpeciesType objects. For example, if a MultiSpeciesType
+ * "A" contains the instance of another MultiSpeciesType "B", "B" must not
+ * contain the instance of "A" anywhere in the complete structure of "B".
+ * The optional attribute compartmentReference, of type SIdRef, can be used
+ * to indicate which sub-compartment in a composite compartment the
+ * SpeciesTypeInstance is located in.
+ */
+[Prefix="libsbml"]
+interface SpeciesTypeInstance {
+  /**
+   * Returns the value of the "speciesType" attribute of this SpeciesTypeInstance.
+   *
+   * @return {string} the value of the "speciesType" attribute of this SpeciesTypeInstance as a string.
+   */
+  DOMString getSpeciesType();
+
+
+  /**
+   * Returns true if this SpeciesTypeInstance's "speciesType" attribute
+   * has been set.
+   *
+   * @return {boolean} true if this SpeciesTypeInstance's "speciesType" attribute
+   * has been set; otherwise, false is returned.
+   */
+  boolean isSetSpeciesType();
+
+
+  /**
+   * Sets the value of the "speciesType" attribute of this
+   * SpeciesTypeInstance.
+   *
+   * @param {string} speciesType the new value for the attribute.
+   */
+  long setSpeciesType(DOMString speciesType);
+
+
+  /**
+   * Unsets the value of the "speciesType" attribute of this
+   * SpeciesTypeInstance.
+   */
+  long unsetSpeciesType();
+
+
+  /**
+   * Returns the value of the "compartmentReference" attribute of this
+   * SpeciesTypeInstance.
+   *
+   * @return {string} the value of the "compartmentReference" attribute of this
+   * SpeciesTypeInstance as a string.
+   */
+  DOMString getCompartmentReference();
+
+
+  /**
+   * Returns true if this SpeciesTypeInstance's "compartmentReference"
+   * attribute has been set.
+   *
+   * @return {boolean} true if this SpeciesTypeInstance's "compartmentReference"
+   * attribute has been set; otherwise, false is returned.
+   */
+  boolean isSetCompartmentReference();
+
+
+  /**
+   * Sets the value of the "compartmentReference" attribute of this
+   * SpeciesTypeInstance.
+   *
+   * @param {string} compartmentReference the new value for the attribute.
+   */
+  long setCompartmentReference(DOMString compartmentReference);
+
+
+  /**
+   * Unsets the value of the "compartmentReference" attribute of this
+   * SpeciesTypeInstance.
+   */
+  long unsetCompartmentReference();
+};
+
+SpeciesTypeInstance implements SBase;

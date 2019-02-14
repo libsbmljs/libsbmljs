@@ -1,0 +1,28 @@
+/**
+ * # A subclass of Reaction for changes of an internal species bond.
+ *
+ * An IntraSpeciesReaction is derived from Reaction for the reactions
+ * happening within a Species. A particular Reaction may happen within a
+ * Species as an IntraSpeciesReaction if the following conditions are
+ * fulfilled:
+ *
+ * * The Reaction is either an association reaction or a dissociation
+ * reaction.
+ *
+ * * If it is an association reaction, each of the two reactant Species has
+ * at least one OutwardBindingSite free ("unbound").
+ *
+ * * If it is a dissociation reaction, each of the two product Species has
+ * at least one OutwardBindingSite free ("unbound").
+ *
+ * Note: Technically, transformations are also reactions happening with one
+ * Species, but they do not have the ambiguity of association and
+ * dissociation reactions. Therefore, a transformation reaction does not have
+ * to be defined as an IntraSpeciesReaction.
+ */
+[Prefix="libsbml"]
+interface IntraSpeciesReaction {
+
+};
+
+IntraSpeciesReaction implements Reaction;

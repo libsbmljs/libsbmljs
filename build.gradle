@@ -195,6 +195,30 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "groups", "extension.idl")
   }
   if (enableMulti) {
+    include Paths.get(idl_dir, "multi", "ast_plugin.idl")
+    include Paths.get(idl_dir, "multi", "compartment_plugin.idl")
+    include Paths.get(idl_dir, "multi", "document_plugin.idl")
+    include Paths.get(idl_dir, "multi", "extension.idl")
+    include Paths.get(idl_dir, "multi", "list_of_reactions_plugin.idl")
+    include Paths.get(idl_dir, "multi", "model_plugin.idl")
+    include Paths.get(idl_dir, "multi", "simple_species_ref_plugin.idl")
+    include Paths.get(idl_dir, "multi", "species_plugin.idl")
+    include Paths.get(idl_dir, "multi", "species_ref_plugin.idl")
+
+    include Paths.get(idl_dir, "multi", "binding_site_species_type.idl")
+    include Paths.get(idl_dir, "multi", "compartment_ref.idl")
+    include Paths.get(idl_dir, "multi", "in_species_type_bond.idl")
+    include Paths.get(idl_dir, "multi", "intra_species_reaction.idl")
+    include Paths.get(idl_dir, "multi", "outward_binding_site.idl")
+    include Paths.get(idl_dir, "multi", "possible_species_feature_value.idl")
+    include Paths.get(idl_dir, "multi", "species_feature.idl")
+    include Paths.get(idl_dir, "multi", "species_feature_type.idl")
+    include Paths.get(idl_dir, "multi", "species_feature_value.idl")
+    include Paths.get(idl_dir, "multi", "species_type.idl")
+    include Paths.get(idl_dir, "multi", "species_type_component_index.idl")
+    include Paths.get(idl_dir, "multi", "species_type_component_map_in_prod.idl")
+    include Paths.get(idl_dir, "multi", "species_type_instance.idl")
+    include Paths.get(idl_dir, "multi", "sub_list_of_species_features.idl")
   }
   if (enableQual) {
     include Paths.get(idl_dir, "qual", "default_term.idl")

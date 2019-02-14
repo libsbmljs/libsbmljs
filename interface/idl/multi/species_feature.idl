@@ -1,0 +1,173 @@
+/**
+ * # Defines a feature of a multi Species.
+ *
+ * Each SpeciesFeature object is a child of the MultiSpeciesPlugin, which
+ * extends the Species.  Each defines one feature of the parent Species.  It
+ * has three optional attributes, "id", "name" and "component", and two
+ * required attributes, "speciesFeatureType" and "occur", and a required
+ * child ListOfSpeciesFeatureValues. SpeciesFeature serves to define the
+ * state of a component in a species by selecting values from the
+ * ListOfPossibleSpeciesFeatureValues of the referenced SpeciesFeatureType.
+ * Its "speciesFeatureType" attribue references the particular
+ * SpeciesFeatureType of which this Species is an example.  The "occur"
+ * attribute defines the number of instances of the referenced
+ * SpeciesFeatureType.  The optional "component" attribute, of type SIdRef,
+ * can be used to indicate which component of a Species the SpeciesFeature
+ * belongs to, and is required when the component cannot be identified only
+ * based on the speciesFeatureType attribute.  The ListOfSpeciesFeatureValues
+ * contain one or more SpeciesFeatureValue objects&mdash;if more than one, the
+ * relationship between them is "or", defining a list of mutually exclusive
+ * possibilities.  Each SpeciesFeatureValue serves to specify a value for a
+ * SpeciesFeature to select from the ListOfPossibleSpeciesFeatureValues
+ * defined in the referenced SpeciesFeatureType.
+ */
+[Prefix="libsbml"]
+interface SpeciesFeature {
+  /**
+   * Returns the value of the "speciesFeatureType" attribute of this
+   * SpeciesFeature.
+   *
+   * @return {string} the value of the "speciesFeatureType" attribute of this
+   * SpeciesFeature as a string.
+   */
+  DOMString getSpeciesFeatureType();
+
+
+  /**
+   * Returns true if this SpeciesFeature's "speciesFeatureType" attribute
+   * has been set.
+   *
+   * @return {boolean} true if this SpeciesFeature's "speciesFeatureType" attribute
+   * has been set; otherwise, false is returned.
+   */
+  boolean isSetSpeciesFeatureType();
+
+
+  /**
+   * Sets the value of the "speciesFeatureType" attribute of this SpeciesFeature.
+   *
+   * @param {string} speciesFeatureType the new value for the "speciesFeatureType"
+   * attribute.
+   */
+  long setSpeciesFeatureType(DOMString speciesFeatureType);
+
+
+  /**
+   * Unsets the value of the "speciesFeatureType" attribute of this SpeciesFeature.
+   */
+  long unsetSpeciesFeatureType();
+
+
+  /**
+   * Returns the value of the "occur" attribute of this SpeciesFeature.
+   *
+   * @return {number} the value of the "occur" attribute of this SpeciesFeature as a
+   * unsigned integer.
+   */
+  unsigned long getOccur();
+
+
+  /**
+   * Returns true if this SpeciesFeature's "occur" attribute has been set.
+   *
+   * @return {boolean} true if this SpeciesFeature's "occur" attribute has been set;
+   * otherwise, false is returned.
+   */
+  boolean isSetOccur();
+
+
+  /**
+   * Sets the value of the "occur" attribute of this SpeciesFeature.
+   *
+   * @param {number} occur unsigned long value of the "occur" attribute to be set
+   */
+  long setOccur(unsigned long occur);
+
+
+  /**
+   * Unsets the value of the "occur" attribute of this SpeciesFeature.
+   */
+  long unsetOccur();
+
+
+  /**
+   * Returns the value of the "component" attribute of this SpeciesFeature.
+   *
+   * @return {string} the value of the "component" attribute of this SpeciesFeature as
+   * a string.
+   */
+  DOMString getComponent();
+
+
+  /**
+   * Returns @c true if this SpeciesFeature's "component" attribute has been
+   * set.
+   *
+   * @return {boolean} @c true if this SpeciesFeature's "component" attribute has been
+   * set; otherwise, @c false is returned.
+   */
+  boolean isSetComponent();
+
+
+  /**
+   * Sets the value of the "component" attribute of this SpeciesFeature.
+   *
+   * @param {string} component the new value of the attribute.
+   */
+  long setComponent(DOMString component);
+
+
+  /**
+   * Unsets the value of the "component" attribute of this SpeciesFeature.
+   */
+  long unsetComponent();
+
+
+  /**
+   * Get the nth SpeciesFeatureValue object from the
+   * ListOfSpeciesFeatureValues.
+   *
+   * @param {number} n the index number of the SpeciesFeatureValue to get.
+   *
+   * @return {SpeciesFeatureValue} the nth object, or @c NULL if the index @p is out of range.
+   */
+  SpeciesFeatureValue getSpeciesFeatureValue(unsigned long n);
+
+
+  /**
+   * Adds a copy the given "SpeciesFeatureValue" to this SpeciesFeature.
+   *
+   * @param {SpeciesFeatureValue} sfv the SpeciesFeatureValue object to add
+   */
+  long addSpeciesFeatureValue(SpeciesFeatureValue sfv);
+
+
+  /**
+   * Get the number of SpeciesFeatureValue objects in this SpeciesFeature.
+   *
+   * @return {number} the number of SpeciesFeatureValue objects in this SpeciesFeature
+   */
+  unsigned long getNumSpeciesFeatureValues();
+
+
+  /**
+   * Creates a new SpeciesFeatureValue object and adds it to this
+   * SpeciesFeatures ListOfSpeciesFeatureValues.
+   *
+   * @return {SpeciesFeatureValue} a new SpeciesFeatureValue object instance
+   */
+  SpeciesFeatureValue createSpeciesFeatureValue();
+
+
+  /**
+   * Removes the nth SpeciesFeatureValue from the ListOfSpeciesFeatureValues.
+   *
+   * @param {string} n the index of the SpeciesFeatureValue to remove.
+   *
+   * @return {SpeciesFeatureValue} the object removed, or @c NULL if no such object exists.  Note that
+   * the caller owns the returned object and is responsible for deleting it.
+   */
+  SpeciesFeatureValue removeSpeciesFeatureValue(unsigned long n);
+};
+
+SpeciesFeature implements SBase;

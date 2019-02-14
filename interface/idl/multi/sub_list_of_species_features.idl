@@ -1,0 +1,136 @@
+/**
+ * Enumeration of possible relations between the children of a
+ * SubListOfSpeciesFeatures in the libSBML "multi" package implementation.
+ */
+enum libsbml__idl__Relation_t {
+  "libsbml::MULTI_RELATION_AND",
+  "libsbml::MULTI_RELATION_OR",
+  "libsbml::MULTI_RELATION_NOT",
+  "libsbml::MULTI_RELATION_UNKNOWN"
+};
+
+/**
+ * # Defines a set of SpeciesFeature objects.
+ *
+ * The SubListOfSpeciesFeatures object is an optional child of the
+ * ListOfSpeciesFeatures list child of the extended Species (via the
+ * MultiSpeciesPlugin object).  Listed alongside its sibling SpeciesFeature
+ * objects, it allows the user to define a set of two or more SpeciesFeature
+ * elements that have a logical relationship with each other.  This
+ * relationship is defined by the "relation" attribute, which is an
+ * enumeration of values representing "and", "or", "not".  (An "unknown"
+ * option is provided here for incomplete models, but cannot be used in a
+ * valid SBML document.)  The following constants represent the values:
+ * libsbml.MULTI_RELATION_AND,
+ * libsbml.MULTI_RELATION_OR,
+ * libsbml.MULTI_RELATION_NOT, and
+ * libsbml.MULTI_RELATION_UNKNOWN.
+ * If any SpeciesFeature involved in a SubListOfSpeciesFeatures references a
+ * SpeciesFeatureType with an "occur" attribute greater than 1, the
+ * SubListOfSpeciesFeatures can only have the value "and" for its relation
+ * attribute.
+ */
+[Prefix="libsbml"]
+interface SubListOfSpeciesFeatures {
+  /**
+   * Returns the value of the "component" attribute of this
+   * SubListOfSpeciesFeatures.
+   *
+   * @return {string} the value of the "component" attribute of this
+   * SubListOfSpeciesFeatures as a string.
+   */
+  DOMString getComponent();
+
+
+  /**
+   * Returns true if this SubListOfSpeciesFeatures's "component" attribute
+   * has been set.
+   *
+   * @return {boolean} true if this SubListOfSpeciesFeatures's "component" attribute
+   * has been set; otherwise, false is returned.
+   */
+  boolean isSetComponent();
+
+
+  /**
+   * Sets the value of the "component" attribute of this
+   * SubListOfSpeciesFeatures.
+   *
+   * @param {string} component the new value for the attribute.
+   */
+  long setComponent(DOMString component);
+
+
+  /**
+   * Unsets the value of the "component" attribute of this
+   * SubListOfSpeciesFeatures.
+   */
+  long unsetComponent();
+
+
+  /**
+   * Creates a new SpeciesFeature object and adds it to this
+   * SubListOfSpeciesFeatures object.
+   *
+   * @return {SpeciesFeature} the newly created SpeciesFeature object.
+   */
+  SpeciesFeature createSpeciesFeature ();
+
+
+  /**
+   * Get the nth SpeciesFeature object from the SubListOfSpeciesFeatures.
+   *
+   * @param {number} n the index number of the SpeciesFeature to get.
+   *
+   * @return {SpeciesFeature} the nth object, or NULL if the index @p is out of range.
+   */
+  SpeciesFeature get(unsigned long n);
+
+
+  /**
+   * Removes the nth SpeciesFeature object from this
+   * SubListOfSpeciesFeatures.
+   *
+   * @param {number} n the index of the SpeciesFeature to remove.
+   *
+   * @return {SpeciesFeature} the object removed, or NULL if no such object exists.  Note that
+   * the caller owns the returned object and is responsible for deleting it.
+   */
+  SpeciesFeature remove(unsigned long n);
+
+
+  /**
+   * Returns the value of the "relation" attribute of this
+   * SubListOfSpeciesFeatures.
+   *
+   * @return {Relation_t} the value of the "relation" attribute of this
+   * SubListOfSpeciesFeatures.
+   */
+  libsbml__idl__Relation_t getRelation();
+
+
+  /**
+   * Returns true if this SubListOfSpeciesFeatures's "relation" attribute
+   * has been set.
+   *
+   * @return {boolean} true if this SubListOfSpeciesFeatures's "relation" attribute
+   * has been set; otherwise, false is returned.
+   */
+  boolean isSetRelation();
+
+
+  /**
+   * Sets the value of the "relation" attribute of this SubListOfSpeciesFeatures.
+   *
+   * @param {Relation_t} relation value of the "relation" attribute to be set
+   */
+  long setRelation(libsbml__idl__Relation_t relation);
+
+
+  /**
+   * Unsets the value of the "relation" attribute of this SubListOfSpeciesFeatures.
+   */
+  long unsetRelation();
+};
+
+SubListOfSpeciesFeatures implements SBase;

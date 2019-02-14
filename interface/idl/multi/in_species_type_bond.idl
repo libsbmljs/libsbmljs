@@ -1,0 +1,89 @@
+/**
+ * # Defines a bond within a MultiSpeciesType.
+ *
+ * The InSpeciesTypeBond object is a child of MultiSpeciesType, and defines a
+ * bond existing within that MultiSpeciesType. The bond therefore exists in
+ * every species that references the MultiSpeciesType.  The binding
+ * relationship in an InSpeciesTypeBond is one-to-one. The uniqueness of an
+ * InSpeciesTypeBond is ensured by the pair of referenced attributes
+ * "bindingSite1" and "bindingSite2", both of type SBaseRef.  The referenced
+ * identifiers of the binding sites can be the ids of SpeciesTypeInstance
+ * objects (binding sites), or the ids of the SpeciesTypeComponentIndex
+ * objects indexing the binding sites and the ultimately referenced
+ * components must be the BindingSiteSpeciesType objects. Obviously,
+ * attributes "bindingSite1" and "bindingSite2" must not reference the same
+ * BindingSiteSpeciesType object.
+ */
+[Prefix="libsbml"]
+interface InSpeciesTypeBond {
+  /**
+   * Returns the value of the "bindingSite1" attribute of this
+   * InSpeciesTypeBond.
+   *
+   * @return the value of the "bindingSite1" attribute of this
+   * InSpeciesTypeBond as a string.
+   */
+  DOMString getBindingSite1();
+
+
+  /**
+   * Returns @c true if this InSpeciesTypeBond's "bindingSite1" attribute has
+   * been set.
+   *
+   * @return {boolean} @c true if this InSpeciesTypeBond's "bindingSite1" attribute has
+   * been set; otherwise, @c false is returned.
+   */
+  boolean isSetBindingSite1();
+
+
+  /**
+   * Sets the value of the "bindingSite1" attribute of this InSpeciesTypeBond.
+   *
+   * @param {string} bindingSite1 the new value for the "bindingSite1" attribute.
+   */
+  long setBindingSite1(DOMString bindingSite1);
+
+
+  /**
+   * Unsets the value of the "bindingSite1" attribute of this
+   * InSpeciesTypeBond.
+   */
+  long unsetBindingSite1();
+
+
+  /**
+   * Returns the value of the "bindingSite2" attribute of this
+   * InSpeciesTypeBond.
+   *
+   * @return {string} the value of the "bindingSite2" attribute of this
+   * InSpeciesTypeBond as a string.
+   */
+  DOMString getBindingSite2();
+
+
+  /**
+   * Returns @c true if this InSpeciesTypeBond's "bindingSite2" attribute has
+   * been set.
+   *
+   * @return {boolean} @c true if this InSpeciesTypeBond's "bindingSite2" attribute has
+   * been set; otherwise, @c false is returned.
+   */
+  boolean isSetBindingSite2();
+
+
+  /**
+   * Sets the value of the "bindingSite2" attribute of this
+   * InSpeciesTypeBond.
+   *
+   * @param bindingSite2 the new value of the "bindingSite2" attribute.
+   */
+  long setBindingSite2(DOMString bindingSite2);
+
+
+  /**
+   * Unsets the value of the "bindingSite2" attribute of this InSpeciesTypeBond.
+   */
+  long unsetBindingSite2();
+};
+
+InSpeciesTypeBond implements SBase;
