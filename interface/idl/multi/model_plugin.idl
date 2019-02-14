@@ -62,7 +62,7 @@ interface MultiModelPlugin {
    *
    * @return {number} the number of MultiSpeciesType objects in this plugin object.
    */
-  unsigned long getNumMultiSpeciesTypes () const;
+  unsigned long getNumMultiSpeciesTypes ();
 
   /**
    * Creates a new IntraSpeciesReaction object and adds it to the ListOfReactions.

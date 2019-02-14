@@ -21,7 +21,7 @@
  * SpeciesFeature to select from the ListOfPossibleSpeciesFeatureValues
  * defined in the referenced SpeciesFeatureType.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesFeature {
   /**
    * Returns the value of the "speciesFeatureType" attribute of this

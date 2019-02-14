@@ -11,7 +11,7 @@
  * product storing the mapping information can identify the component in a
  * product.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesTypeComponentMapInProduct {
   /**
    * Returns the value of the "reactant" attribute of this

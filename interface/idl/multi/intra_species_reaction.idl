@@ -20,7 +20,7 @@
  * dissociation reactions. Therefore, a transformation reaction does not have
  * to be defined as an IntraSpeciesReaction.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface IntraSpeciesReaction {
 
 };

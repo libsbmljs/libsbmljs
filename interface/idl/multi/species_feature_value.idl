@@ -6,14 +6,14 @@
  * ListOfPossibleSpeciesFeatureValues defined in the SpeciesFeatureType
  * referenced by the parent SpeciesFeature.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesFeatureValue {
   /**
    * Returns the value of the "value" attribute of this SpeciesFeatureValue.
    *
    * @return {string} the value of the "value" attribute of this SpeciesFeatureValue as a string.
    */
-  DOMString getValue() const;
+  DOMString getValue();
 
 
   /**
@@ -23,7 +23,7 @@ interface SpeciesFeatureValue {
    * @return {boolean} true if this SpeciesFeatureValue's "value" attribute has been
    * set; otherwise, false is returned.
    */
-  boolean isSetValue() const;
+  boolean isSetValue();
 
 
   /**

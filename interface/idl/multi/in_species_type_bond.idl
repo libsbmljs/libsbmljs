@@ -14,7 +14,7 @@
  * attributes "bindingSite1" and "bindingSite2" must not reference the same
  * BindingSiteSpeciesType object.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface InSpeciesTypeBond {
   /**
    * Returns the value of the "bindingSite1" attribute of this

@@ -28,7 +28,7 @@ interface MultiCompartmentPlugin {
    *
    * @return {string} the "compartmentType" attribute value.
    */
-  const std::string& getCompartmentType();
+  DOMString getCompartmentType();
 
 
   /**

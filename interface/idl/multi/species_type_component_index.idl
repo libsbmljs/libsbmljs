@@ -12,7 +12,7 @@
  * referenced by two SpeciesTypeInstance objects contained in the same
  * MultiSpeciesType object.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesTypeComponentIndex {
   /**
    * Returns the value of the "component" attribute of this

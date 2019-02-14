@@ -130,6 +130,35 @@ interface MyClassName {
 };
 ```
 
+* Enumerations should be in the libsbml namespace and should have the `libsbml__idl__` prefix and each enum value should be prefixed with `libsbml::`
+
+```
+enum libsbml__idl__MyEnum_t {
+  "libsbml::ENUM_VALUE1",
+  "libsbml::ENUM_VALUE2"
+};
+```
+
+```
+/**
+ * Document the class using documentation.js syntax.
+ * The documentation can usually be copied from libSBML,
+ * Replace or remove Doxygen-specific tags like @c, @p, @note.
+ */
+[Prefix="libsbml::"]
+interface MyClassName {
+  /**
+   * Methods should also be documented using documentation.js syntax.
+   *
+   * @param {number} n a parameter - IDL uses long to represent the C++ int type
+   *
+   * @return {string} the return value - DOMStrings are wrap the C++ std::string type
+   * (this is different from vanilla Emscripten which can only wrap char*)
+   */
+  DOMString getSomeStringAttr(unsigned long n);
+};
+```
+
 * Add your IDL files to the Gradle `combineIDL` task in `build.gradle`.
 
 ```

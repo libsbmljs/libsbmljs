@@ -5,7 +5,7 @@
  * and defines one value (though its optional "numericValue" attribute) which
  * the parent SpeciesFeatureType can hold.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface PossibleSpeciesFeatureValue {
   /**
    * Returns the value of the "numericValue" attribute of this

@@ -16,7 +16,7 @@
  * to indicate which sub-compartment in a composite compartment the
  * SpeciesTypeInstance is located in.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesTypeInstance {
   /**
    * Returns the value of the "speciesType" attribute of this SpeciesTypeInstance.

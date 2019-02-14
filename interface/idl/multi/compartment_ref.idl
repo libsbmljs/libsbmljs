@@ -10,7 +10,7 @@
  *
  * The ListOfCompartmentReferences is a container for CompartmentReference objects.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface CompartmentReference {
   /**
    * Returns the value of the "compartment" attribute of this

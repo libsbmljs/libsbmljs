@@ -14,7 +14,7 @@
  * can be used to infer the number of the instances in the "don"t care" state
  * in a referencing SpeciesFeature.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SpeciesFeatureType {
   /**
    * Returns the value of the "occur" attribute of this SpeciesFeatureType.
@@ -32,7 +32,7 @@ interface SpeciesFeatureType {
    * @return {boolean} true if this SpeciesFeatureType's "occur" attribute has been
    * set; otherwise, false is returned.
    */
-  bool isSetOccur();
+  boolean isSetOccur();
 
 
   /**

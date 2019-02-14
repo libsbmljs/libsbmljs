@@ -2,11 +2,11 @@
  * Enumeration of possible relations between the children of a
  * SubListOfSpeciesFeatures in the libSBML "multi" package implementation.
  */
-enum libsbml__idl__Relation_t {
-  "libsbml::MULTI_RELATION_AND",
-  "libsbml::MULTI_RELATION_OR",
-  "libsbml::MULTI_RELATION_NOT",
-  "libsbml::MULTI_RELATION_UNKNOWN"
+enum Relation_t {
+  "MULTI_RELATION_AND",
+  "MULTI_RELATION_OR",
+  "MULTI_RELATION_NOT",
+  "MULTI_RELATION_UNKNOWN"
 };
 
 /**
@@ -30,7 +30,7 @@ enum libsbml__idl__Relation_t {
  * SubListOfSpeciesFeatures can only have the value "and" for its relation
  * attribute.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface SubListOfSpeciesFeatures {
   /**
    * Returns the value of the "component" attribute of this
@@ -106,7 +106,7 @@ interface SubListOfSpeciesFeatures {
    * @return {Relation_t} the value of the "relation" attribute of this
    * SubListOfSpeciesFeatures.
    */
-  libsbml__idl__Relation_t getRelation();
+  Relation_t getRelation();
 
 
   /**
@@ -124,7 +124,7 @@ interface SubListOfSpeciesFeatures {
    *
    * @param {Relation_t} relation value of the "relation" attribute to be set
    */
-  long setRelation(libsbml__idl__Relation_t relation);
+  long setRelation(Relation_t relation);
 
 
   /**

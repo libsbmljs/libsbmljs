@@ -21,7 +21,7 @@ interface MultiSpeciesReferencePlugin {
    * ListOfSpeciesTypeComponentMapInProducts. If the index is invalid, NULL
    * is returned.
    */
-  SpeciesTypeComponentMapInProduct* getSpeciesTypeComponentMapInProduct(unsigned int n);
+  SpeciesTypeComponentMapInProduct getSpeciesTypeComponentMapInProduct(unsigned long n);
 
 
   /**
@@ -31,7 +31,7 @@ interface MultiSpeciesReferencePlugin {
    * @param {SpeciesTypeComponentMapInProduct} speciesTypeComponentMapInProduct the
    * speciesTypeComponentMapInProduct to be added.
    */
-  int addSpeciesTypeComponentMapInProduct (const SpeciesTypeComponentMapInProduct* speciesTypeComponentMapInProduct);
+  long addSpeciesTypeComponentMapInProduct (SpeciesTypeComponentMapInProduct speciesTypeComponentMapInProduct);
 
 
   /**
@@ -42,7 +42,7 @@ interface MultiSpeciesReferencePlugin {
    * that the caller owns the returned object and is responsible for deleting
    * it.
    */
-  SpeciesTypeComponentMapInProduct* createSpeciesTypeComponentMapInProduct ();
+  SpeciesTypeComponentMapInProduct createSpeciesTypeComponentMapInProduct ();
 
 
   /**
@@ -55,7 +55,7 @@ interface MultiSpeciesReferencePlugin {
    * index was out of range.  Note that the caller owns the returned object
    * and is responsible for deleting it.
    */
-  SpeciesTypeComponentMapInProduct* removeSpeciesTypeComponentMapInProduct(unsigned int n);
+  SpeciesTypeComponentMapInProduct removeSpeciesTypeComponentMapInProduct(unsigned long n);
 
 
   /**
@@ -63,7 +63,7 @@ interface MultiSpeciesReferencePlugin {
    *
    * @return {number} the number of SpeciesTypeComponentMapInProduct objects.
    */
-  unsigned int getNumSpeciesTypeComponentMapInProducts () const;
+  unsigned long getNumSpeciesTypeComponentMapInProducts ();
 };
 
 MultiSpeciesReferencePlugin implements MultiSimpleSpeciesReferencePlugin;

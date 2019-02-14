@@ -2,11 +2,11 @@
  * Enumeration of possible binding status of a OutwardBindingSite in
  * the libSBML "multi" package implementation.
  */
-enum libsbml__idl__BindingStatus_t {
-  "libsbml::MULTI_BINDING_STATUS_BOUND",
-  "libsbml::MULTI_BINDING_STATUS_UNBOUND",
-  "libsbml::MULTI_BINDING_STATUS_EITHER",
-  "libsbml::MULTI_BINDING_STATUS_UNKNOWN"
+enum BindingStatus_t {
+  "MULTI_BINDING_STATUS_BOUND",
+  "MULTI_BINDING_STATUS_UNBOUND",
+  "MULTI_BINDING_STATUS_EITHER",
+  "MULTI_BINDING_STATUS_UNKNOWN"
 };
 
 /**
@@ -43,7 +43,7 @@ enum libsbml__idl__BindingStatus_t {
  * ambiguity, an id of SpeciesTypeComponentIndex can be used as the value of
  * the component attribute of an OutwardBindingSite of the Species.
  */
-[Prefix="libsbml"]
+[Prefix="libsbml::"]
 interface OutwardBindingSite {
   /**
   * Returns the value of the "bindingStatus" attribute of this
@@ -52,7 +52,7 @@ interface OutwardBindingSite {
   * @return {BindingStatus_t} the value of the "bindingStatus" attribute of this
   * OutwardBindingSite.
   */
-  libsbml__idl__BindingStatus_t getBindingStatus();
+  BindingStatus_t getBindingStatus();
 
 
   /**
@@ -71,7 +71,7 @@ interface OutwardBindingSite {
   *
   * @param {BindingStatus_t} bindingStatus the new value of the "bindingStatus" attribute.
   */
-  long setBindingStatus(libsbml__idl__BindingStatus_t bindingStatus);
+  long setBindingStatus(BindingStatus_t bindingStatus);
 
 
   /**
@@ -81,7 +81,7 @@ interface OutwardBindingSite {
   * @param {string} bindingStatus std::string& of the "bindingStatus" attribute to be
   * set.
   */
-  long setBindingStatus(DOMString bindingStatus);
+  /*long setBindingStatus(DOMString bindingStatus);*/
 
 
   /**

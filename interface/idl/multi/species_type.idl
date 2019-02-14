@@ -1,0 +1,263 @@
+/**
+ * # A type of Species in SBML Level&nbsp;3 "multi"
+ *
+ * The MultiSpeciesType class (defined simply as SpeciesType in the SBML
+ * Level&nbsp;3 "multi" specification, but called MultiSpeciesType here to
+ * distinguish it from the SpeciesType class defined in SBML Level&nbsp;2),
+ * is a child of the extended Model object (via the MultiModelPlugin class).
+ * It defines "id" and "name" attributes, an optional "compartment" attribute
+ * for indicating which Compartment the referencing Species is in, and four
+ * optional lists for child SpeciesFeatureType, SpeciesTypeInstance,
+ * SpeciesTypeComponentIndex, and InSpeciesTypeBond objects.  Together those
+ * children define the species type.  The ListOfSpeciesTypeInstances
+ * subobject provides a way to define multicomponents which are instances of
+ * other MultiSpeciesType objects. The ListOfSpeciesFeatureTypes subobject
+ * and its SpeciesFeatureType children set up a framework for the referencing
+ * species or the instances of MultiSpeciesType objects to be able to have
+ * multistates. The ListOfSpeciesTypeComponentIndexes subobject provides a
+ * flexible way to reference any component in a MultiSpeciesType.  The
+ * ListOfInSpeciesTypeBonds subobject and its InSpeciesTypeBond children
+ * provides a way to define bonds within a MultiSpeciesType.
+ */
+[Prefix="libsbml::"]
+interface MultiSpeciesType {
+  /**
+   * Returns the value of the "compartment" attribute of this
+   * MultiSpeciesType.
+   *
+   * @return {string} the value of the "compartment" attribute of this
+   * MultiSpeciesType as a string.
+   */
+  DOMString getCompartment();
+
+
+  /**
+   * Returns true if this MultiSpeciesType's "compartment" attribute has
+   * been set.
+   *
+   * @return {boolean} true if this MultiSpeciesType's "compartment" attribute has
+   * been set; otherwise, false is returned.
+   */
+  boolean isSetCompartment();
+
+
+  /**
+   * Sets the value of the "compartment" attribute of this MultiSpeciesType.
+   *
+   * @param {string} compartment the new value for the attribute.
+   */
+  long setCompartment(DOMString compartment);
+
+
+  /**
+   * Unsets the value of the "compartment" attribute of this MultiSpeciesType.
+   */
+  long unsetCompartment();
+
+
+  /**
+   * Returns the nth SpeciesFeatureType object from the
+   * ListOfSpeciesFeatureTypes.
+   *
+   * @param {number} n the index number of the SpeciesFeatureType to get.
+   *
+   * @return {SpeciesFeatureType} the nth SpeciesFeatureType in the ListOfSpeciesFeatureTypes
+   * within this MultiSpeciesType.
+   * If the index n is invalid, NULL is returned.
+   */
+  SpeciesFeatureType getSpeciesFeatureType(unsigned long n);
+
+
+  /**
+   * Adds a copy the given "SpeciesFeatureType" to this MultiSpeciesType.
+   *
+   * @param {SpeciesFeatureType} sft the SpeciesFeatureType object to add
+   */
+  long addSpeciesFeatureType(SpeciesFeatureType sft);
+
+
+  /**
+   * Get the number of SpeciesFeatureType objects in this MultiSpeciesType.
+   *
+   * @return {number} the number of SpeciesFeatureType objects in this
+   * MultiSpeciesType
+   */
+  unsigned long getNumSpeciesFeatureTypes();
+
+
+  /**
+   * Creates a new SpeciesFeatureType object and adds it to this
+   * MultiSpeciesTypes ListOfSpeciesFeatureTypes.
+   *
+   * @return {SpeciesFeatureType} the newly created SpeciesFeatureType object instance.
+   */
+  SpeciesFeatureType createSpeciesFeatureType();
+
+
+  /**
+   * Removes the nth SpeciesFeatureType from the ListOfSpeciesFeatureTypes
+   * within this MultiSpeciesType object.
+   *
+   * @param n the index of the SpeciesFeatureType to remove.
+   *
+   * @return {SpeciesFeatureType} the SpeciesFeatureType object removed, or NULL if the given
+   * index n is out of range.  Note that the caller owns the returned
+   * object and is responsible for deleting it.
+   */
+  SpeciesFeatureType removeSpeciesFeatureType(unsigned long n);
+
+
+  /**
+   * Get the nth SpeciesTypeInstance object from the
+   * ListOfSpeciesTypeInstances.
+   *
+   * @param {number} n the index number of the SpeciesTypeInstance to get.
+   *
+   * @return {SpeciesTypeInstance} the nth SpeciesTypeInstance object in the
+   * ListOfSpeciesTypeInstances, or NULL if the given index is out of range.
+   */
+  SpeciesTypeInstance getSpeciesTypeInstance(unsigned long n);
+
+
+  /**
+   * Adds a copy the given "SpeciesTypeInstance" to this MultiSpeciesType.
+   *
+   * @param {SpeciesTypeInstance} sti the SpeciesTypeInstance object to add
+   */
+  long addSpeciesTypeInstance(SpeciesTypeInstance sti);
+
+
+  /**
+   * Get the number of SpeciesTypeInstance objects in this MultiSpeciesType.
+   *
+   * @return {number} the number of SpeciesTypeInstance objects in this MultiSpeciesType
+   */
+  unsigned long getNumSpeciesTypeInstances();
+
+
+  /**
+   * Creates a new SpeciesTypeInstance object and adds it to this
+   * MultiSpeciesTypes ListOfSpeciesTypeInstances.
+   *
+   * @return {SpeciesTypeInstance} a new SpeciesTypeInstance object instance.
+   */
+  SpeciesTypeInstance createSpeciesTypeInstance();
+
+
+  /**
+   * Removes the nth SpeciesTypeInstance from the ListOfSpeciesTypeInstances
+   * within this MultiSpeciesType.
+   *
+   * @param {number} n the index of the SpeciesTypeInstance to remove.
+   *
+   * @return {SpeciesTypeInstance} the object removed, or NULL if no such object exists.  Note that
+   * the caller owns the returned object and is responsible for deleting it.
+   */
+  SpeciesTypeInstance removeSpeciesTypeInstance(unsigned long n);
+
+
+  /**
+   * Get the nth SpeciesTypeComponentIndex object from the
+   * ListOfSpeciesTypeComponentIndexes.
+   *
+   * @param {number} n the index number of the SpeciesTypeComponentIndex to get from
+   * the ListOfSpeciesTypeComponentIndexes.
+   *
+   * @return {SpeciesTypeComponentIndex} the nth object in the ListOfSpeciesTypeComponentIndexes, or NULL
+   * if the index n is out of range.
+   */
+  SpeciesTypeComponentIndex getSpeciesTypeComponentIndex(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given SpeciesTypeComponentIndex object to this
+   * MultiSpeciesType.
+   *
+   * @param {SpeciesTypeComponentIndex} stci the SpeciesTypeComponentIndex object to add
+   */
+  long addSpeciesTypeComponentIndex(SpeciesTypeComponentIndex stci);
+
+
+  /**
+   * Get the number of SpeciesTypeComponentIndex objects in this
+   * MultiSpeciesType.
+   *
+   * @return {number} the number of SpeciesTypeComponentIndex objects in the
+   * ListOfSpeciesTypeComponentIndexes object within this MultiSpeciesType
+   * object.
+   */
+  unsigned long getNumSpeciesTypeComponentIndexes();
+
+
+  /**
+   * Creates a new SpeciesTypeComponentIndex object and adds it to the
+   * ListOfSpeciesTypeComponentIndexes.
+   *
+   * @return {SpeciesTypeComponentIndex} a new SpeciesTypeComponentIndex object instance to add to the
+   * ListOfSpeciesTypeComponentIndexes object within this MultiSpeciesType
+   * object.
+   */
+  SpeciesTypeComponentIndex createSpeciesTypeComponentIndex();
+
+
+  /**
+   * Removes the nth SpeciesTypeComponentIndex object from the
+   * ListOfSpeciesTypeComponentIndexes.
+   *
+   * @param {number} n the index of the SpeciesTypeComponentIndex to remove.
+   *
+   * @return {SpeciesTypeComponentIndex} the object removed, or NULL if no such object exists.  Note that
+   * the caller owns the returned object and is responsible for deleting it.
+   */
+  SpeciesTypeComponentIndex removeSpeciesTypeComponentIndex(unsigned long n);
+
+
+  /**
+   * Get the nth InSpeciesTypeBond object from the ListOfInSpeciesTypeBonds.
+   *
+   * @param {number} n the index number of the InSpeciesTypeBond to get.
+   *
+   * @return {InSpeciesTypeBond} the nth object, or NULL if the index is out of range.
+   */
+  InSpeciesTypeBond getInSpeciesTypeBond(unsigned long n);
+
+
+  /**
+   * Adds a copy the given InSpeciesTypeBond object to this MultiSpeciesType.
+   *
+   * @param {InSpeciesTypeBond} istb the InSpeciesTypeBond object to add
+   */
+  long addInSpeciesTypeBond(InSpeciesTypeBond istb);
+
+
+  /**
+   * Get the number of InSpeciesTypeBond objects in the
+   * ListOfInSpeciesTypeBonds.
+   *
+   * @return {number} the number of InSpeciesTypeBond objects in the
+   * ListOfInSpeciesTypeBonds within this MultiSpeciesType object.
+   */
+  unsigned long getNumInSpeciesTypeBonds();
+
+
+  /**
+   * Creates a new InSpeciesTypeBond object and adds it to the
+   * ListOfInSpeciesTypeBonds.
+   *
+   * @return {InSpeciesTypeBond} a new InSpeciesTypeBond object instance.
+   */
+  InSpeciesTypeBond createInSpeciesTypeBond();
+
+
+  /**
+   * Removes the nth InSpeciesTypeBond object from the
+   * ListOfInSpeciesTypeBonds.  and returns a pointer to it.
+   *
+   * @param {number} n the index of the InSpeciesTypeBond to remove.
+   *
+   * @return {InSpeciesTypeBond} the nth object, or NULL if the index is out of range.
+   */
+  InSpeciesTypeBond removeInSpeciesTypeBond(unsigned long n);
+};
+
+MultiSpeciesType implements SBase;
