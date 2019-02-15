@@ -627,7 +627,7 @@ interface ASTNode {
   * having the appropriate number of children for the given type, but may
   * still be invalid in the context of its use within an SBML model.
   *
-  * @return true if this ASTNode is well-formed, false otherwise.
+  * @return {boolean} true if this ASTNode is well-formed, false otherwise.
   */
   boolean isWellFormedASTNode();
 };
