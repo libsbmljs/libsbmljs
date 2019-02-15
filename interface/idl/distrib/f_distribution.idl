@@ -7,7 +7,7 @@ interface DistribFDistribution {
    * Returns the value of the "numerator" element of this DistribFDistribution.
    *
    * @return the value of the "numerator" element of this DistribFDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getNumerator();
 
@@ -17,7 +17,7 @@ interface DistribFDistribution {
    * DistribFDistribution.
    *
    * @return the value of the "denominator" element of this
-   * DistribFDistribution as a DistribUncertValue*.
+   * DistribFDistribution as a DistribUncertValue.
    */
   DistribUncertValue getDenominator();
 
@@ -27,7 +27,7 @@ interface DistribFDistribution {
    * DistribFDistribution.
    *
    * @return the value of the "denominator" element of this
-   * DistribFDistribution as a DistribUncertValue*.
+   * DistribFDistribution as a DistribUncertValue.
    */
   DistribUncertValue getDenominator();
 
@@ -55,7 +55,7 @@ interface DistribFDistribution {
   /**
    * Sets the value of the "numerator" element of this DistribFDistribution.
    *
-   * @param {DistribUncertValue} numerator DistribUncertValue* value of the "numerator" element to
+   * @param {DistribUncertValue} numerator DistribUncertValue value of the "numerator" element to
    * be set.
    */
   long setNumerator(DistribUncertValue numerator);
@@ -64,7 +64,7 @@ interface DistribFDistribution {
   /**
    * Sets the value of the "denominator" element of this DistribFDistribution.
    *
-   * @param {DistribUncertValue} denominator DistribUncertValue* value of the "denominator" element
+   * @param {DistribUncertValue} denominator DistribUncertValue value of the "denominator" element
    * to be set.
    */
   long setDenominator(DistribUncertValue denominator);

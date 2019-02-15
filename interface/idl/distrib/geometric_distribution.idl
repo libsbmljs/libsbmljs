@@ -8,7 +8,7 @@ interface DistribGeometricDistribution {
    * DistribGeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "probability" element of this
-   * DistribGeometricDistribution as a DistribUncertValue*.
+   * DistribGeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getProbability();
 
@@ -27,7 +27,7 @@ interface DistribGeometricDistribution {
    * Sets the value of the "probability" element of this
    * DistribGeometricDistribution.
    *
-   * @param {DistribUncertValue} probability DistribUncertValue* value of the "probability" element
+   * @param {DistribUncertValue} probability DistribUncertValue value of the "probability" element
    * to be set.
    */
   long setProbability(DistribUncertValue probability);

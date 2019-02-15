@@ -8,7 +8,7 @@ interface DistribHypergeometricDistribution {
    * DistribHypergeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "numberOfSuccesses" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue*.
+   * DistribHypergeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getNumberOfSuccesses();
 
@@ -18,7 +18,7 @@ interface DistribHypergeometricDistribution {
    * DistribHypergeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "numberOfTrials" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue*.
+   * DistribHypergeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getNumberOfTrials();
 
@@ -28,7 +28,7 @@ interface DistribHypergeometricDistribution {
    * DistribHypergeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "numberOfTrials" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue*.
+   * DistribHypergeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getNumberOfTrials();
 
@@ -38,7 +38,7 @@ interface DistribHypergeometricDistribution {
    * DistribHypergeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "populationSize" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue*.
+   * DistribHypergeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getPopulationSize();
 
@@ -48,7 +48,7 @@ interface DistribHypergeometricDistribution {
    * DistribHypergeometricDistribution.
    *
    * @return {DistribUncertValue} the value of the "populationSize" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue*.
+   * DistribHypergeometricDistribution as a DistribUncertValue.
    */
   DistribUncertValue getPopulationSize();
 
@@ -87,7 +87,7 @@ interface DistribHypergeometricDistribution {
    * Sets the value of the "numberOfSuccesses" element of this
    * DistribHypergeometricDistribution.
    *
-   * @param {DistribUncertValue} numberOfSuccesses DistribUncertValue* value of the
+   * @param {DistribUncertValue} numberOfSuccesses DistribUncertValue value of the
    * "numberOfSuccesses" element to be set.
    */
   int setNumberOfSuccesses(DistribUncertValue numberOfSuccesses);
@@ -97,7 +97,7 @@ interface DistribHypergeometricDistribution {
    * Sets the value of the "numberOfTrials" element of this
    * DistribHypergeometricDistribution.
    *
-   * @param {DistribUncertValue} numberOfTrials DistribUncertValue* value of the "numberOfTrials"
+   * @param {DistribUncertValue} numberOfTrials DistribUncertValue value of the "numberOfTrials"
    * element to be set.
    */
   int setNumberOfTrials(DistribUncertValue numberOfTrials);
@@ -107,7 +107,7 @@ interface DistribHypergeometricDistribution {
    * Sets the value of the "populationSize" element of this
    * DistribHypergeometricDistribution.
    *
-   * @param {DistribUncertValue} populationSize DistribUncertValue* value of the "populationSize"
+   * @param {DistribUncertValue} populationSize DistribUncertValue value of the "populationSize"
    * element to be set.
    */
   int setPopulationSize(DistribUncertValue populationSize);

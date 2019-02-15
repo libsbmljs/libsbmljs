@@ -7,7 +7,7 @@ interface DistribGammaDistribution {
    * Returns the value of the "shape" element of this DistribGammaDistribution.
    *
    * @return {DistribUncertValue} the value of the "shape" element of this DistribGammaDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getShape();
 
@@ -16,7 +16,7 @@ interface DistribGammaDistribution {
    * Returns the value of the "scale" element of this DistribGammaDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this DistribGammaDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -44,7 +44,7 @@ interface DistribGammaDistribution {
   /**
    * Sets the value of the "shape" element of this DistribGammaDistribution.
    *
-   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   * @param {DistribUncertValue} shape DistribUncertValue value of the "shape" element to be set.
    */
   long setShape(DistribUncertValue shape);
 
@@ -52,7 +52,7 @@ interface DistribGammaDistribution {
   /**
    * Sets the value of the "scale" element of this DistribGammaDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   long setScale(DistribUncertValue scale);
 

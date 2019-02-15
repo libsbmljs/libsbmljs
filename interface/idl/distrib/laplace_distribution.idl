@@ -8,7 +8,7 @@ interface DistribLaPlaceDistribution {
    * DistribLaPlaceDistribution.
    *
    * @return {DistribUncertValue} the value of the "location" element of this
-   * DistribLaPlaceDistribution as a DistribUncertValue*.
+   * DistribLaPlaceDistribution as a DistribUncertValue.
    */
   DistribUncertValue getLocation();
 
@@ -18,7 +18,7 @@ interface DistribLaPlaceDistribution {
    * DistribLaPlaceDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this
-   * DistribLaPlaceDistribution as a DistribUncertValue*.
+   * DistribLaPlaceDistribution as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -47,7 +47,7 @@ interface DistribLaPlaceDistribution {
    * Sets the value of the "location" element of this
    * DistribLaPlaceDistribution.
    *
-   * @param {DistribUncertValue} location DistribUncertValue* value of the "location" element to be
+   * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
   int setLocation(DistribUncertValue location);
@@ -56,7 +56,7 @@ interface DistribLaPlaceDistribution {
   /**
    * Sets the value of the "scale" element of this DistribLaPlaceDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   int setScale(DistribUncertValue scale);
 

@@ -8,7 +8,7 @@ interface DistribParetoDistribution {
    * DistribParetoDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this DistribParetoDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -18,7 +18,7 @@ interface DistribParetoDistribution {
    * DistribParetoDistribution.
    *
    * @return {DistribUncertValue} the value of the "shape" element of this DistribParetoDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getShape();
 
@@ -46,7 +46,7 @@ interface DistribParetoDistribution {
   /**
    * Sets the value of the "scale" element of this DistribParetoDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   long setScale(DistribUncertValue scale);
 
@@ -54,7 +54,7 @@ interface DistribParetoDistribution {
   /**
    * Sets the value of the "shape" element of this DistribParetoDistribution.
    *
-   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   * @param {DistribUncertValue} shape DistribUncertValue value of the "shape" element to be set.
    */
   long setShape(DistribUncertValue shape);
 

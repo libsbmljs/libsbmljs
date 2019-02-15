@@ -61,7 +61,7 @@ interface DistribExternalDistribution {
    *
    * @param {DistribExternalParameter} dep the DistribExternalParameter object to add.
    */
-  long addDistribExternalParameter(const DistribExternalParameter* dep);
+  long addDistribExternalParameter(DistribExternalParameter dep);
 
 
   /**

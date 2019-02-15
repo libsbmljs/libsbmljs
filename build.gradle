@@ -86,7 +86,7 @@ ext.enableFBC = findProperty('enableFBC') || true
 ext.enableMulti = findProperty('enableMulti') || true
 ext.enableQual = findProperty('enableQual') || true
 ext.enableComp = findProperty('enableComp') || true
-ext.enableDistrib = findProperty('enableDistrib') || false
+ext.enableDistrib = findProperty('enableDistrib') || true
 ext.enableDyn = findProperty('enableDyn') || false
 ext.enableGroups = findProperty('enableGroups') || true
 ext.enableArrays = findProperty('enableArrays') || isExperimentalBranch
@@ -257,6 +257,51 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "arrays", "index.idl")
   }
   if (enableDistrib) {
+    include Paths.get(idl_dir, "distrib", "ast_plugin.idl")
+    include Paths.get(idl_dir, "distrib", "document_plugin.idl")
+    include Paths.get(idl_dir, "distrib", "extension.idl")
+    include Paths.get(idl_dir, "distrib", "function_def_plugin.idl")
+    include Paths.get(idl_dir, "distrib", "sbase_plugin.idl")
+
+    include Paths.get(idl_dir, "distrib", "base.idl")
+    include Paths.get(idl_dir, "distrib", "bernoulli_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "beta_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "binomial_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "categorical_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "category.idl")
+    include Paths.get(idl_dir, "distrib", "cauchy_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "chi_square_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "continuous_univariate_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "discrete_univariate_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "distribution.idl")
+    include Paths.get(idl_dir, "distrib", "draw_from_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "exponential_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "external_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "external_parameter.idl")
+    include Paths.get(idl_dir, "distrib", "f_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "gamma_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "geometric_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "hypergeometric_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "input.idl")
+    include Paths.get(idl_dir, "distrib", "inverse_gamma_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "laplace_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "log_normal_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "logistic_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "multivariate_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "negative_binomial_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "normal_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "pareto_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "poisson_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "rayleigh_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "student_t_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "uncert_bound.idl")
+    include Paths.get(idl_dir, "distrib", "uncert_statistics.idl")
+    include Paths.get(idl_dir, "distrib", "uncert_statistics_span.idl")
+    include Paths.get(idl_dir, "distrib", "uncert_value.idl")
+    include Paths.get(idl_dir, "distrib", "uncertainty.idl")
+    include Paths.get(idl_dir, "distrib", "uniform_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "univariate_distribution.idl")
+    include Paths.get(idl_dir, "distrib", "weibull_distribution.idl")
   }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
 }

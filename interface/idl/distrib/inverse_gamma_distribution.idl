@@ -8,7 +8,7 @@ interface DistribInverseGammaDistribution {
    * DistribInverseGammaDistribution.
    *
    * @return {DistribUncertValue} the value of the "shape" element of this
-   * DistribInverseGammaDistribution as a DistribUncertValue*.
+   * DistribInverseGammaDistribution as a DistribUncertValue.
    */
   DistribUncertValue getShape();
 
@@ -18,7 +18,7 @@ interface DistribInverseGammaDistribution {
    * DistribInverseGammaDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this
-   * DistribInverseGammaDistribution as a DistribUncertValue*.
+   * DistribInverseGammaDistribution as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -47,7 +47,7 @@ interface DistribInverseGammaDistribution {
    * Sets the value of the "shape" element of this
    * DistribInverseGammaDistribution.
    *
-   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   * @param {DistribUncertValue} shape DistribUncertValue value of the "shape" element to be set.
    */
   long setShape(DistribUncertValue shape);
 
@@ -56,7 +56,7 @@ interface DistribInverseGammaDistribution {
    * Sets the value of the "scale" element of this
    * DistribInverseGammaDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   long setScale(DistribUncertValue scale);
 

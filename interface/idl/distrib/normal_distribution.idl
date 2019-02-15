@@ -7,7 +7,7 @@ interface DistribNormalDistribution {
    * Returns the value of the "mean" element of this DistribNormalDistribution.
    *
    * @return {DistribUncertValue} the value of the "mean" element of this DistribNormalDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
   DistribUncertValue getMean();
 
@@ -17,7 +17,7 @@ interface DistribNormalDistribution {
    * DistribNormalDistribution.
    *
    * @return {DistribUncertValue} the value of the "stddev" element of this
-   * DistribNormalDistribution as a DistribUncertValue*.
+   * DistribNormalDistribution as a DistribUncertValue.
    */
   DistribUncertValue getStddev();
 
@@ -27,7 +27,7 @@ interface DistribNormalDistribution {
    * DistribNormalDistribution.
    *
    * @return {DistribUncertValue} the value of the "variance" element of this
-   * DistribNormalDistribution as a DistribUncertValue*.
+   * DistribNormalDistribution as a DistribUncertValue.
    */
   DistribUncertValue getVariance();
 
@@ -65,7 +65,7 @@ interface DistribNormalDistribution {
   /**
    * Sets the value of the "mean" element of this DistribNormalDistribution.
    *
-   * @param {DistribUncertValue} mean DistribUncertValue* value of the "mean" element to be set.
+   * @param {DistribUncertValue} mean DistribUncertValue value of the "mean" element to be set.
    */
   long setMean(DistribUncertValue mean);
 
@@ -73,7 +73,7 @@ interface DistribNormalDistribution {
   /**
    * Sets the value of the "stddev" element of this DistribNormalDistribution.
    *
-   * @param {DistribUncertValue} stddev DistribUncertValue* value of the "stddev" element to be set.
+   * @param {DistribUncertValue} stddev DistribUncertValue value of the "stddev" element to be set.
    */
   long setStddev(DistribUncertValue stddev);
 
@@ -82,7 +82,7 @@ interface DistribNormalDistribution {
    * Sets the value of the "variance" element of this
    * DistribNormalDistribution.
    *
-   * @param {DistribUncertValue} variance DistribUncertValue* value of the "variance" element to be
+   * @param {DistribUncertValue} variance DistribUncertValue value of the "variance" element to be
    * set.
    */
   long setVariance(DistribUncertValue variance);

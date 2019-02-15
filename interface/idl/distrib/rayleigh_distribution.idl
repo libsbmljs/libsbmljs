@@ -8,7 +8,7 @@ interface DistribRayleighDistribution {
    * DistribRayleighDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this
-   * DistribRayleighDistribution as a DistribUncertValue*.
+   * DistribRayleighDistribution as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -26,7 +26,7 @@ interface DistribRayleighDistribution {
   /**
    * Sets the value of the "scale" element of this DistribRayleighDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   long setScale(DistribUncertValue scale);
 

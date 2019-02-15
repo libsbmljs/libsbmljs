@@ -8,7 +8,7 @@ interface DistribStudentTDistribution {
    * DistribStudentTDistribution.
    *
    * @return {DistribUncertValue} the value of the "location" element of this
-   * DistribStudentTDistribution as a DistribUncertValue*.
+   * DistribStudentTDistribution as a DistribUncertValue.
    */
   DistribUncertValue getLocation();
 
@@ -18,7 +18,7 @@ interface DistribStudentTDistribution {
    * DistribStudentTDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this
-   * DistribStudentTDistribution as a DistribUncertValue*.
+   * DistribStudentTDistribution as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -28,7 +28,7 @@ interface DistribStudentTDistribution {
    * DistribStudentTDistribution.
    *
    * @return {DistribUncertValue} the value of the "degreesOfFreedom" element of this
-   * DistribStudentTDistribution as a DistribUncertValue*.
+   * DistribStudentTDistribution as a DistribUncertValue.
    */
   DistribUncertValue getDegreesOfFreedom();
 
@@ -67,7 +67,7 @@ interface DistribStudentTDistribution {
    * Sets the value of the "location" element of this
    * DistribStudentTDistribution.
    *
-   * @param {DistribUncertValue} location DistribUncertValue* value of the "location" element to be
+   * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
   int setLocation(DistribUncertValue location);
@@ -76,7 +76,7 @@ interface DistribStudentTDistribution {
   /**
    * Sets the value of the "scale" element of this DistribStudentTDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   int setScale(DistribUncertValue scale);
 
@@ -85,7 +85,7 @@ interface DistribStudentTDistribution {
    * Sets the value of the "degreesOfFreedom" element of this
    * DistribStudentTDistribution.
    *
-   * @param {DistribUncertValue} degreesOfFreedom DistribUncertValue* value of the
+   * @param {DistribUncertValue} degreesOfFreedom DistribUncertValue value of the
    * "degreesOfFreedom" element to be set.
    */
   int setDegreesOfFreedom(DistribUncertValue degreesOfFreedom);

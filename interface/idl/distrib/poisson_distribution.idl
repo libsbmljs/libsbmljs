@@ -8,9 +8,9 @@ interface DistribPoissonDistribution {
    * DistribPoissonDistribution.
    *
    * @return {DistribUncertValue} the value of the "rate" element of this DistribPoissonDistribution
-   * as a DistribUncertValue*.
+   * as a DistribUncertValue.
    */
-  DistribUncertValue* getRate();
+  DistribUncertValue getRate();
 
 
   /**
@@ -26,9 +26,9 @@ interface DistribPoissonDistribution {
   /**
    * Sets the value of the "rate" element of this DistribPoissonDistribution.
    *
-   * @param {DistribUncertValue} rate DistribUncertValue* value of the "rate" element to be set.
+   * @param {DistribUncertValue} rate DistribUncertValue value of the "rate" element to be set.
    */
-  int setRate(const DistribUncertValue* rate);
+  int setRate(const DistribUncertValue rate);
 
 
   /**
@@ -38,7 +38,7 @@ interface DistribPoissonDistribution {
    *
    * @return {DistribUncertValue} a new DistribUncertValue object instance.
    */
-  DistribUncertValue* createRate();
+  DistribUncertValue createRate();
 
 
   /**

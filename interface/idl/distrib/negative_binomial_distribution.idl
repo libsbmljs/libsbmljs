@@ -8,7 +8,7 @@ interface DistribNegativeBinomialDistribution {
    * DistribNegativeBinomialDistribution.
    *
    * @return {DistribUncertValue} the value of the "numberOfFailures" element of this
-   * DistribNegativeBinomialDistribution as a DistribUncertValue*.
+   * DistribNegativeBinomialDistribution as a DistribUncertValue.
    */
   DistribUncertValue getNumberOfFailures();
 
@@ -18,7 +18,7 @@ interface DistribNegativeBinomialDistribution {
    * DistribNegativeBinomialDistribution.
    *
    * @return {DistribUncertValue} the value of the "probability" element of this
-   * DistribNegativeBinomialDistribution as a DistribUncertValue*.
+   * DistribNegativeBinomialDistribution as a DistribUncertValue.
    */
   DistribUncertValue getProbability();
 
@@ -47,7 +47,7 @@ interface DistribNegativeBinomialDistribution {
    * Sets the value of the "numberOfFailures" element of this
    * DistribNegativeBinomialDistribution.
    *
-   * @param {DistribUncertValue} numberOfFailures DistribUncertValue* value of the
+   * @param {DistribUncertValue} numberOfFailures DistribUncertValue value of the
    * "numberOfFailures" element to be set.
    */
   int setNumberOfFailures(DistribUncertValue numberOfFailures);
@@ -57,7 +57,7 @@ interface DistribNegativeBinomialDistribution {
    * Sets the value of the "probability" element of this
    * DistribNegativeBinomialDistribution.
    *
-   * @param {DistribUncertValue} probability DistribUncertValue* value of the "probability" element
+   * @param {DistribUncertValue} probability DistribUncertValue value of the "probability" element
    * to be set.
    */
   int setProbability(DistribUncertValue probability);

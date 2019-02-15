@@ -2,13 +2,13 @@
  * # DistribLogNormalDistribution
  */
 [Prefix="libsbml::"]
-interface DistribLogNormalDistribution {
+interface DistribLogisticDistribution {
   /**
    * Returns the value of the "location" element of this
    * DistribLogisticDistribution.
    *
    * @return {DistribUncertValue} the value of the "location" element of this
-   * DistribLogisticDistribution as a DistribUncertValue*.
+   * DistribLogisticDistribution as a DistribUncertValue.
    */
   DistribUncertValue getLocation();
 
@@ -18,7 +18,7 @@ interface DistribLogNormalDistribution {
    * DistribLogisticDistribution.
    *
    * @return {DistribUncertValue} the value of the "scale" element of this
-   * DistribLogisticDistribution as a DistribUncertValue*.
+   * DistribLogisticDistribution as a DistribUncertValue.
    */
   DistribUncertValue getScale();
 
@@ -47,7 +47,7 @@ interface DistribLogNormalDistribution {
    * Sets the value of the "location" element of this
    * DistribLogisticDistribution.
    *
-   * @param {DistribUncertValue} location DistribUncertValue* value of the "location" element to be
+   * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
   long setLocation(DistribUncertValue location);
@@ -56,7 +56,7 @@ interface DistribLogNormalDistribution {
   /**
    * Sets the value of the "scale" element of this DistribLogisticDistribution.
    *
-   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
   long setScale(DistribUncertValue scale);
 
