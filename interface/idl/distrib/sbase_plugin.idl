@@ -1,0 +1,53 @@
+/**
+ * # Extension of SBase.
+ */
+[Prefix="libsbml::"]
+interface DistribSBasePlugin {
+  /**
+   * Returns the value of the "distribUncertainty" element of this
+   * DistribSBasePlugin.
+   *
+   * @return {DistribUncertainty} the value of the "distribUncertainty" element of this
+   * DistribSBasePlugin as a DistribUncertainty.
+   */
+  DistribUncertainty getDistribUncertainty();
+
+
+  /**
+   * Predicate returning true if this DistribSBasePlugin's
+   * "distribUncertainty" element is set.
+   *
+   * @return {boolean} true if this DistribSBasePlugin's "distribUncertainty" element
+   * has been set, otherwise false is returned.
+   */
+  bool isSetDistribUncertainty();
+
+
+  /**
+   * Sets the value of the "distribUncertainty" element of this
+   * DistribSBasePlugin.
+   *
+   * @param {DistribUncertainty} distribUncertainty DistribUncertainty value of the
+   * "distribUncertainty" element to be set.
+   */
+  int setDistribUncertainty(DistribUncertainty distribUncertainty);
+
+
+  /**
+   * Creates a new DistribUncertainty object, adds it to this
+   * DistribSBasePlugin object and returns the DistribUncertainty object
+   * created.
+   *
+   * @return {DistribUncertainty} a new DistribUncertainty object instance.
+   */
+  DistribUncertainty createDistribUncertainty();
+
+
+  /**
+   * Unsets the value of the "distribUncertainty" element of this
+   * DistribSBasePlugin.
+   */
+  int unsetDistribUncertainty();
+};
+
+DistribSBasePlugin implements SBasePlugin;

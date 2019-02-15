@@ -1,0 +1,55 @@
+/**
+ * # Extension of FunctionDefinition.
+ */
+[Prefix="libsbml::"]
+interface DistribFunctionDefinitionPlugin {
+  /**
+   * Returns the value of the "distribDrawFromDistribution" element of this
+   * DistribFunctionDefinitionPlugin.
+   *
+   * @return {DistribDrawFromDistribution} the value of the "distribDrawFromDistribution" element of this
+   * DistribFunctionDefinitionPlugin as a DistribDrawFromDistribution.
+   */
+  DistribDrawFromDistribution getDistribDrawFromDistribution();
+
+
+  /**
+   * Predicate returning true if this DistribFunctionDefinitionPlugin's
+   * "distribDrawFromDistribution" element is set.
+   *
+   * @return {boolean} true if this DistribFunctionDefinitionPlugin's
+   * "distribDrawFromDistribution" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetDistribDrawFromDistribution();
+
+
+  /**
+   * Sets the value of the "distribDrawFromDistribution" element of this
+   * DistribFunctionDefinitionPlugin.
+   *
+   * @param {DistribDrawFromDistribution} distribDrawFromDistribution value of
+   * the "distribDrawFromDistribution" element to be set.
+   */
+  long setDistribDrawFromDistribution(DistribDrawFromDistribution distribDrawFromDistribution);
+
+
+  /**
+   * Creates a new DistribDrawFromDistribution object, adds it to this
+   * DistribFunctionDefinitionPlugin object and returns the
+   * DistribDrawFromDistribution object created.
+   *
+   * @return {DistribDrawFromDistribution} a new DistribDrawFromDistribution object instance.
+   */
+  DistribDrawFromDistribution createDistribDrawFromDistribution();
+
+
+  /**
+   * Unsets the value of the "distribDrawFromDistribution" element of this
+   * DistribFunctionDefinitionPlugin.
+   */
+  long unsetDistribDrawFromDistribution();
+
+};
+
+DistribFunctionDefinitionPlugin implements SBasePlugin;

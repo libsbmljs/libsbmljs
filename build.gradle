@@ -256,6 +256,8 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "arrays", "dimension.idl")
     include Paths.get(idl_dir, "arrays", "index.idl")
   }
+  if (enableDistrib) {
+  }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
 }
 combineIDL.dependsOn(generateAstEnum)
@@ -287,6 +289,9 @@ task combineCPP(type: ConcatFiles) {
   }
   if (enableArrays) {
     include Paths.get(cpp_dir, "arrays_interface_wrapper.cpp")
+  }
+  if (enableDistrib) {
+    include Paths.get(cpp_dir, "distrib_interface_wrapper.cpp")
   }
   include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))

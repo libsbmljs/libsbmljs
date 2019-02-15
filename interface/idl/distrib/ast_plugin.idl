@@ -1,0 +1,9 @@
+/**
+ * # Extension of AST.
+ */
+[Prefix="libsbml::"]
+interface DistribASTPlugin {
+
+};
+
+DistribASTPlugin implements ASTBasePlugin;
