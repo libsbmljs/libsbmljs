@@ -1,0 +1,51 @@
+/**
+ * # DistribRayleighDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribRayleighDistribution {
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribRayleighDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this
+   * DistribRayleighDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Predicate returning true if this DistribRayleighDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribRayleighDistribution's "scale" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetScale() const;
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribRayleighDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   */
+  long setScale(DistribUncertValue scale);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribRayleighDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Unsets the value of the "scale" element of this
+   * DistribRayleighDistribution.
+   */
+  long unsetScale();
+};
+
+DistribRayleighDistribution implements DistribContinuousUnivariateDistribution;

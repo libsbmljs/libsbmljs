@@ -1,0 +1,338 @@
+/**
+ * # DistribUncertainty
+ */
+[Prefix="libsbml::"]
+interface DistribUncertainty {
+  /**
+   * Returns the value of the "distribution" element of this
+   * DistribUncertainty.
+   *
+   * @return {DistribDistribution} the value of the "distribution" element of this DistribUncertainty
+   * as a DistribDistribution.
+   */
+  DistribDistribution getDistribution();
+
+
+  /**
+   * Predicate returning @c true if this DistribUncertainty's
+   * "uncertStatistics" element is set.
+   *
+   * @return {boolean} true if this DistribUncertainty's "uncertStatistics" element
+   * has been set, otherwise @c false is returned.
+   */
+  boolean isSetUncertStatistics();
+
+
+  /**
+   * Predicate returning @c true if this DistribUncertainty's "distribution"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertainty's "distribution" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetDistribution();
+
+
+  /**
+   * Sets the value of the "uncertStatistics" element of this
+   * DistribUncertainty.
+   *
+   * @param uncertStatistics DistribUncertStatistics* value of the
+   * "uncertStatistics" element to be set.
+   *
+   *
+   * OperationReturnValues_t}
+   */
+  long setUncertStatistics(DistribUncertStatistics uncertStatistics);
+
+
+  /**
+   * Sets the value of the "distribution" element of this DistribUncertainty.
+   *
+   * @param distribution DistribDistribution* value of the "distribution"
+   * element to be set.
+   *
+   *
+   * OperationReturnValues_t}
+   */
+  long setDistribution(DistribDistribution distribution);
+
+
+  /**
+   * Creates a new DistribUncertStatistics object, adds it to this
+   * DistribUncertainty object and returns the DistribUncertStatistics object
+   * created.
+   *
+   * @return {DistribUncertStatistics} a new DistribUncertStatistics object instance.
+   */
+  DistribUncertStatistics createUncertStatistics();
+
+
+  /**
+   * Creates a new DistribBetaDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribBetaDistribution object
+   * created.
+   *
+   * @return {DistribBetaDistribution} a new DistribBetaDistribution object instance.
+   */
+  DistribBetaDistribution createDistribBetaDistribution();
+
+
+  /**
+   * Creates a new DistribCauchyDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribCauchyDistribution object
+   * created.
+   *
+   * @return {DistribCauchyDistribution} a new DistribCauchyDistribution object instance.
+   */
+  DistribCauchyDistribution createDistribCauchyDistribution();
+
+
+  /**
+   * Creates a new DistribChiSquareDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribChiSquareDistribution
+   * object created.
+   *
+   * @return {DistribChiSquareDistribution} a new DistribChiSquareDistribution object instance.
+   */
+  DistribChiSquareDistribution createDistribChiSquareDistribution();
+
+
+  /**
+   * Creates a new DistribExponentialDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribExponentialDistribution
+   * object created.
+   *
+   * @return {DistribExponentialDistribution} a new DistribExponentialDistribution object instance.
+   */
+  DistribExponentialDistribution createDistribExponentialDistribution();
+
+
+  /**
+   * Creates a new DistribFDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribFDistribution object
+   * created.
+   *
+   * @return {DistribFDistribution} a new DistribFDistribution object instance.
+   */
+  DistribFDistribution createDistribFDistribution();
+
+
+  /**
+   * Creates a new DistribGammaDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribGammaDistribution object
+   * created.
+   *
+   * @return {DistribGammaDistribution} a new DistribGammaDistribution object instance.
+   */
+  DistribGammaDistribution createDistribGammaDistribution();
+
+
+  /**
+   * Creates a new DistribInverseGammaDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribInverseGammaDistribution
+   * object created.
+   *
+   * @return {DistribInverseGammaDistribution} a new DistribInverseGammaDistribution object instance.
+   */
+  DistribInverseGammaDistribution createDistribInverseGammaDistribution();
+
+
+  /**
+   * Creates a new DistribLaPlaceDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribLaPlaceDistribution
+   * object created.
+   *
+   * @return {DistribLaPlaceDistribution} a new DistribLaPlaceDistribution object instance.
+   */
+  DistribLaPlaceDistribution createDistribLaPlaceDistribution();
+
+
+  /**
+   * Creates a new DistribLogNormalDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribLogNormalDistribution
+   * object created.
+   *
+   * @return {DistribLogNormalDistribution} a new DistribLogNormalDistribution object instance.
+   */
+  DistribLogNormalDistribution createDistribLogNormalDistribution();
+
+
+  /**
+   * Creates a new DistribLogisticDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribLogisticDistribution
+   * object created.
+   *
+   * @return {DistribLogisticDistribution} a new DistribLogisticDistribution object instance.
+   */
+  DistribLogisticDistribution createDistribLogisticDistribution();
+
+
+  /**
+   * Creates a new DistribNormalDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribNormalDistribution object
+   * created.
+   *
+   * @return {DistribNormalDistribution} a new DistribNormalDistribution object instance.
+   */
+  DistribNormalDistribution createDistribNormalDistribution();
+
+
+  /**
+   * Creates a new DistribParetoDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribParetoDistribution object
+   * created.
+   *
+   * @return {DistribParetoDistribution} a new DistribParetoDistribution object instance.
+   */
+  DistribParetoDistribution createDistribParetoDistribution();
+
+
+  /**
+   * Creates a new DistribRayleighDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribRayleighDistribution
+   * object created.
+   *
+   * @return {DistribRayleighDistribution} a new DistribRayleighDistribution object instance.
+   */
+  DistribRayleighDistribution createDistribRayleighDistribution();
+
+
+  /**
+   * Creates a new DistribStudentTDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribStudentTDistribution
+   * object created.
+   *
+   * @return {DistribStudentTDistribution} a new DistribStudentTDistribution object instance.
+   */
+  DistribStudentTDistribution createDistribStudentTDistribution();
+
+
+  /**
+   * Creates a new DistribUniformDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribUniformDistribution
+   * object created.
+   *
+   * @return {DistribUniformDistribution} a new DistribUniformDistribution object instance.
+   */
+  DistribUniformDistribution createDistribUniformDistribution();
+
+
+  /**
+   * Creates a new DistribWeibullDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribWeibullDistribution
+   * object created.
+   *
+   * @return {DistribWeibullDistribution} a new DistribWeibullDistribution object instance.
+   */
+  DistribWeibullDistribution createDistribWeibullDistribution();
+
+
+  /**
+   * Creates a new DistribBinomialDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribBinomialDistribution
+   * object created.
+   *
+   * @return {DistribBinomialDistribution} a new DistribBinomialDistribution object instance.
+   */
+  DistribBinomialDistribution createDistribBinomialDistribution();
+
+
+  /**
+   * Creates a new DistribGeometricDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribGeometricDistribution
+   * object created.
+   *
+   * @return {DistribGeometricDistribution} a new DistribGeometricDistribution object instance.
+   */
+  DistribGeometricDistribution createDistribGeometricDistribution();
+
+
+  /**
+   * Creates a new DistribHypergeometricDistribution object, adds it to this
+   * DistribUncertainty object and returns the
+   * DistribHypergeometricDistribution object created.
+   *
+   * @return {DistribHypergeometricDistribution} a new DistribHypergeometricDistribution object instance.
+   */
+  DistribHypergeometricDistribution createDistribHypergeometricDistribution();
+
+
+  /**
+   * Creates a new DistribNegativeBinomialDistribution object, adds it to this
+   * DistribUncertainty object and returns the
+   * DistribNegativeBinomialDistribution object created.
+   *
+   * @return {DistribNegativeBinomialDistribution} a new DistribNegativeBinomialDistribution object instance.
+   */
+  DistribNegativeBinomialDistribution createDistribNegativeBinomialDistribution();
+
+
+  /**
+   * Creates a new DistribPoissonDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribPoissonDistribution
+   * object created.
+   *
+   * @return {DistribPoissonDistribution} a new DistribPoissonDistribution object instance.
+   */
+  DistribPoissonDistribution createDistribPoissonDistribution();
+
+
+  /**
+   * Creates a new DistribBernoulliDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribBernoulliDistribution
+   * object created.
+   *
+   * @return {DistribBernoulliDistribution} a new DistribBernoulliDistribution object instance.
+   */
+  DistribBernoulliDistribution createDistribBernoulliDistribution();
+
+
+  /**
+   * Creates a new DistribCategoricalDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribCategoricalDistribution
+   * object created.
+   *
+   * @return {DistribCategoricalDistribution} a new DistribCategoricalDistribution object instance.
+   */
+  DistribCategoricalDistribution createDistribCategoricalDistribution();
+
+
+  /**
+   * Creates a new DistribMultivariateDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribMultivariateDistribution
+   * object created.
+   *
+   * @return {DistribMultivariateDistribution} a new DistribMultivariateDistribution object instance.
+   */
+  DistribMultivariateDistribution createDistribMultivariateDistribution();
+
+
+  /**
+   * Creates a new DistribExternalDistribution object, adds it to this
+   * DistribUncertainty object and returns the DistribExternalDistribution
+   * object created.
+   *
+   * @return {DistribExternalDistribution} a new DistribExternalDistribution object instance.
+   */
+  DistribExternalDistribution createDistribExternalDistribution();
+
+
+  /**
+   * Unsets the value of the "uncertStatistics" element of this
+   * DistribUncertainty.
+   *
+   *
+   */
+  long unsetUncertStatistics();
+
+
+  /**
+   * Unsets the value of the "distribution" element of this DistribUncertainty.
+   *
+   *
+   */
+  long unsetDistribution();
+};
+
+DistribUncertainty implements DistribBase;

@@ -1,0 +1,39 @@
+/**
+ * # DistribUncertBound
+ */
+[Prefix="libsbml::"]
+interface DistribUncertBound {
+  /**
+   * Returns the value of the "inclusive" attribute of this DistribUncertBound.
+   *
+   * @return {boolean} the value of the "inclusive" attribute of this DistribUncertBound
+   * as a boolean.
+   */
+  boolean getInclusive() const;
+
+
+  /**
+   * Predicate returning true if this DistribUncertBound's "inclusive"
+   * attribute is set.
+   *
+   * @return {boolean true if this DistribUncertBound's "inclusive" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetInclusive() const;
+
+
+  /**
+   * Sets the value of the "inclusive" attribute of this DistribUncertBound.
+   *
+   * @param {boolean} inclusive boolean value of the "inclusive" attribute to be set.
+   */
+  long setInclusive(boolean inclusive);
+
+
+  /**
+   * Unsets the value of the "inclusive" attribute of this DistribUncertBound.
+   */
+  long unsetInclusive();
+};
+
+DistribUncertBound implements DistribUncertValue;

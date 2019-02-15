@@ -1,0 +1,96 @@
+/**
+ * # DistribWeibullDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribWeibullDistribution {
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribWeibullDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this
+   * DistribWeibullDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Returns the value of the "shape" element of this
+   * DistribWeibullDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "shape" element of this
+   * DistribWeibullDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getShape();
+
+
+  /**
+   * Predicate returning @c true if this DistribWeibullDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribWeibullDistribution's "scale" element has
+   * been set, otherwise @c false is returned.
+   */
+  bool isSetScale();
+
+
+  /**
+   * Predicate returning @c true if this DistribWeibullDistribution's "shape"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribWeibullDistribution's "shape" element has
+   * been set, otherwise @c false is returned.
+   */
+  bool isSetShape();
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribWeibullDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
+   */
+  int setScale(DistribUncertValue scale);
+
+
+  /**
+   * Sets the value of the "shape" element of this DistribWeibullDistribution.
+   *
+   * @param {DistribUncertValue} shape DistribUncertValue value of the "shape" element to be set.
+   */
+  int setShape(DistribUncertValue shape);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribWeibullDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribWeibullDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createShape();
+
+
+  /**
+   * Unsets the value of the "scale" element of this
+   * DistribWeibullDistribution.
+   */
+  int unsetScale();
+
+
+  /**
+   * Unsets the value of the "shape" element of this
+   * DistribWeibullDistribution.
+   */
+  int unsetShape();
+};
+
+DistribWeibullDistribution implements DistribContinuousUnivariateDistribution;

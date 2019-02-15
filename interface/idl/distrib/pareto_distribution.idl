@@ -1,0 +1,94 @@
+/**
+ * # DistribParetoDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribParetoDistribution {
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribParetoDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this DistribParetoDistribution
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Returns the value of the "shape" element of this
+   * DistribParetoDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "shape" element of this DistribParetoDistribution
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getShape();
+
+
+  /**
+   * Predicate returning true if this DistribParetoDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribParetoDistribution's "scale" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetScale();
+
+
+  /**
+   * Predicate returning true if this DistribParetoDistribution's "shape"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribParetoDistribution's "shape" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetShape();
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribParetoDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   */
+  long setScale(DistribUncertValue scale);
+
+
+  /**
+   * Sets the value of the "shape" element of this DistribParetoDistribution.
+   *
+   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   */
+  long setShape(DistribUncertValue shape);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribParetoDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribParetoDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createShape();
+
+
+  /**
+   * Unsets the value of the "scale" element of this DistribParetoDistribution.
+   */
+  long unsetScale();
+
+
+  /**
+   * Unsets the value of the "shape" element of this DistribParetoDistribution.
+   */
+  long unsetShape();
+};
+
+DistribParetoDistribution implements DistribContinuousUnivariateDistribution;

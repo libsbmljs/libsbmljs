@@ -1,0 +1,107 @@
+/**
+ * # DistribCauchyDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribCauchyDistribution {
+  /**
+   * Returns the value of the "location" element of this
+   * DistribCauchyDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "location" element of this
+   * DistribCauchyDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getLocation();
+
+
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribCauchyDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this DistribCauchyDistribution
+   * as a DistribUncertValue.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribCauchyDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this DistribCauchyDistribution
+   * as a DistribUncertValue.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Predicate returning @c true if this DistribCauchyDistribution's "location"
+   * element is set.
+   *
+   * @return {boolean} @c true if this DistribCauchyDistribution's "location" element has
+   * been set, otherwise @c false is returned.
+   */
+  bool isSetLocation();
+
+
+  /**
+   * Predicate returning @c true if this DistribCauchyDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} @c true if this DistribCauchyDistribution's "scale" element has
+   * been set, otherwise @c false is returned.
+   */
+  bool isSetScale();
+
+
+  /**
+   * Sets the value of the "location" element of this
+   * DistribCauchyDistribution.
+   *
+   * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
+   * set.
+   */
+  int setLocation(DistribUncertValue location);
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribCauchyDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
+   */
+  int setScale(DistribUncertValue scale);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribCauchyDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createLocation();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribCauchyDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Unsets the value of the "location" element of this
+   * DistribCauchyDistribution.
+   */
+  int unsetLocation();
+
+
+  /**
+   * Unsets the value of the "scale" element of this DistribCauchyDistribution.
+   */
+  int unsetScale();
+};
+
+DistribCauchyDistribution implements DistribContinuousUnivariateDistribution;

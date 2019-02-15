@@ -1,0 +1,150 @@
+/**
+ * # DistribUncertStatisticSpan
+ */
+[Prefix="libsbml::"]
+interface DistribUncertStatisticSpan {
+  /**
+   * Returns the value of the "varLower" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @return {string} the value of the "varLower" attribute of this
+   * DistribUncertStatisticSpan as a string.
+   */
+  DOMString getVarLower();
+
+
+  /**
+   * Returns the value of the "valueLower" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @return {number} the value of the "valueLower" attribute of this
+   * DistribUncertStatisticSpan as a double.
+   */
+  double getValueLower();
+
+
+  /**
+   * Returns the value of the "varUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @return {string} the value of the "varUpper" attribute of this
+   * DistribUncertStatisticSpan as a string.
+   */
+  DOMString getVarUpper();
+
+
+  /**
+   * Returns the value of the "valueUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @return {number} the value of the "valueUpper" attribute of this
+   * DistribUncertStatisticSpan as a double.
+   */
+  double getValueUpper();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatisticSpan's
+   * "varLower" attribute is set.
+   *
+   * @return {boolean} true if this DistribUncertStatisticSpan's "varLower" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetVarLower();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatisticSpan's
+   * "valueLower" attribute is set.
+   *
+   * @return {boolean} true if this DistribUncertStatisticSpan's "valueLower"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetValueLower();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatisticSpan's
+   * "varUpper" attribute is set.
+   *
+   * @return {boolean} true if this DistribUncertStatisticSpan's "varUpper" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetVarUpper();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatisticSpan's
+   * "valueUpper" attribute is set.
+   *
+   * @return {boolean} true if this DistribUncertStatisticSpan's "valueUpper"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetValueUpper();
+
+
+  /**
+   * Sets the value of the "varLower" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {string} varLower std::string& value of the "varLower" attribute to be set.
+   */
+  long setVarLower(DOMString varLower);
+
+
+  /**
+   * Sets the value of the "valueLower" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {number} valueLower value of the "valueLower" attribute to be set.
+   */
+  long setValueLower(double valueLower);
+
+
+  /**
+   * Sets the value of the "varUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {string} varUpper value of the "varUpper" attribute to be set.
+   */
+  long setVarUpper(DOMString varUpper);
+
+
+  /**
+   * Sets the value of the "valueUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {number} valueUpper double value of the "valueUpper" attribute to be set.
+   */
+  long setValueUpper(double valueUpper);
+
+
+  /**
+   * Unsets the value of the "varLower" attribute of this
+   * DistribUncertStatisticSpan.
+   */
+  long unsetVarLower();
+
+
+  /**
+   * Unsets the value of the "valueLower" attribute of this
+   * DistribUncertStatisticSpan.
+   */
+  long unsetValueLower();
+
+
+  /**
+   * Unsets the value of the "varUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   */
+  long unsetVarUpper();
+
+
+  /**
+   * Unsets the value of the "valueUpper" attribute of this
+   * DistribUncertStatisticSpan.
+   */
+  long unsetValueUpper();
+};
+
+DistribUncertStatisticSpan implements DistribBase;

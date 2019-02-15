@@ -1,0 +1,101 @@
+/**
+ * # DistribBernoulliDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribBetaDistribution {
+  /**
+   * Returns the value of the "alpha" element of this DistribBetaDistribution.
+   *
+   * @return the value of the "alpha" element of this DistribBetaDistribution
+   * as a DistribUncertValue.
+   */
+  DistribUncertValue getAlpha();
+
+
+  /**
+   * Returns the value of the "beta" element of this DistribBetaDistribution.
+   *
+   * @return the value of the "beta" element of this DistribBetaDistribution as
+   * a DistribUncertValue.
+   */
+  DistribUncertValue getBeta();
+
+
+  /**
+   * Returns the value of the "beta" element of this DistribBetaDistribution.
+   *
+   * @return the value of the "beta" element of this DistribBetaDistribution as
+   * a DistribUncertValue.
+   */
+  DistribUncertValue getBeta();
+
+
+  /**
+   * Predicate returning true if this DistribBetaDistribution's "alpha"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribBetaDistribution's "alpha" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetAlpha();
+
+
+  /**
+   * Predicate returning true if this DistribBetaDistribution's "beta"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribBetaDistribution's "beta" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetBeta();
+
+
+  /**
+   * Sets the value of the "alpha" element of this DistribBetaDistribution.
+   *
+   * @param {DistribUncertValue} alpha DistribUncertValue value of the "alpha" element to be set.
+   */
+  long setAlpha(DistribUncertValue alpha);
+
+
+  /**
+   * Sets the value of the "beta" element of this DistribBetaDistribution.
+   *
+   * @param {DistribUncertValue} beta DistribUncertValue value of the "beta" element to be set.
+   */
+  long setBeta(DistribUncertValue beta);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribBetaDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createAlpha();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribBetaDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createBeta();
+
+
+  /**
+   * Unsets the value of the "alpha" element of this DistribBetaDistribution.
+   */
+  long unsetAlpha();
+
+
+  /**
+   * Unsets the value of the "beta" element of this DistribBetaDistribution.
+   */
+  long unsetBeta();
+};
+
+DistribBetaDistribution implements DistribBase;

@@ -1,0 +1,8 @@
+/**
+ * # DistribMultivariateDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribMultivariateDistribution {
+};
+
+DistribMultivariateDistribution implements DistribDistribution;

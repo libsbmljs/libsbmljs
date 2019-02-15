@@ -467,6 +467,8 @@ task emccCompileLibSBML(type:Exec) {
   workingDir "${buildDir}"
   def cmdlineArgs = ["${emccCommand}",
     "-O0",
+    // "-Os", // tier 1 code size optimizations
+    // "-OZ", // tier 2 code size optimizations
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
     "-I",Paths.get("$buildDir","interface","idl").toString(),
@@ -568,22 +570,38 @@ task combineTests(type: ConcatFiles) {
   include Paths.get(tests_dir, "reading.js")
   include Paths.get(tests_dir, "writing.js")
   include Paths.get(tests_dir, "units.js")
-  include Paths.get(tests_dir, "layout.js")
-  include Paths.get(tests_dir, "fbc.js")
-  include Paths.get(tests_dir, "comp1.js")
-  include Paths.get(tests_dir, "comp2.js")
-  include Paths.get(tests_dir, "comp3.js")
-  include Paths.get(tests_dir, "comp4.js")
-  include Paths.get(tests_dir, "groups1.js")
-  include Paths.get(tests_dir, "groups2.js")
-  include Paths.get(tests_dir, "qual.js")
-  include Paths.get(tests_dir, "multi1.js")
-  include Paths.get(tests_dir, "multi2.js")
-  include Paths.get(tests_dir, "multi3.js")
-  include Paths.get(tests_dir, "render.js")
-  include Paths.get(tests_dir, "arrays1.js")
-  include Paths.get(tests_dir, "arrays2.js")
-  include Paths.get(tests_dir, "arrays3.js")
+  if (enableLayout) {
+    include Paths.get(tests_dir, "layout.js")
+  }
+  if (enableFBC) {
+    include Paths.get(tests_dir, "fbc.js")
+  }
+  if (enableComp) {
+    include Paths.get(tests_dir, "comp1.js")
+    include Paths.get(tests_dir, "comp2.js")
+    include Paths.get(tests_dir, "comp3.js")
+    include Paths.get(tests_dir, "comp4.js")
+  }
+  if (enableGroups) {
+    include Paths.get(tests_dir, "groups1.js")
+    include Paths.get(tests_dir, "groups2.js")
+  }
+  if (enableQual) {
+    include Paths.get(tests_dir, "qual.js")
+  }
+  if (enableMulti) {
+    include Paths.get(tests_dir, "multi1.js")
+    include Paths.get(tests_dir, "multi2.js")
+    include Paths.get(tests_dir, "multi3.js")
+  }
+  if (enableRender) {
+    include Paths.get(tests_dir, "render.js")
+  }
+  if (enableArrays) {
+    include Paths.get(tests_dir, "arrays1.js")
+    include Paths.get(tests_dir, "arrays2.js")
+    include Paths.get(tests_dir, "arrays3.js")
+  }
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
 combineTests.doFirst {

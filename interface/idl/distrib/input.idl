@@ -1,0 +1,8 @@
+/**
+ * # DistribInput
+ */
+[Prefix="libsbml::"]
+interface DistribInput {
+};
+
+DistribInput implements DistribBase;

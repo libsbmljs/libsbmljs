@@ -1,0 +1,100 @@
+/**
+ * # DistribNegativeBinomialDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribNegativeBinomialDistribution {
+  /**
+   * Returns the value of the "numberOfFailures" element of this
+   * DistribNegativeBinomialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "numberOfFailures" element of this
+   * DistribNegativeBinomialDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getNumberOfFailures();
+
+
+  /**
+   * Returns the value of the "probability" element of this
+   * DistribNegativeBinomialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "probability" element of this
+   * DistribNegativeBinomialDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getProbability();
+
+
+  /**
+   * Predicate returning true if this DistribNegativeBinomialDistribution's
+   * "numberOfFailures" element is set.
+   *
+   * @return {boolean} true if this DistribNegativeBinomialDistribution's
+   * "numberOfFailures" element has been set, otherwise false is returned.
+   */
+  boolean isSetNumberOfFailures();
+
+
+  /**
+   * Predicate returning true if this DistribNegativeBinomialDistribution's
+   * "probability" element is set.
+   *
+   * @return {boolean} true if this DistribNegativeBinomialDistribution's
+   * "probability" element has been set, otherwise false is returned.
+   */
+  boolean isSetProbability();
+
+
+  /**
+   * Sets the value of the "numberOfFailures" element of this
+   * DistribNegativeBinomialDistribution.
+   *
+   * @param {DistribUncertValue} numberOfFailures DistribUncertValue* value of the
+   * "numberOfFailures" element to be set.
+   */
+  int setNumberOfFailures(DistribUncertValue numberOfFailures);
+
+
+  /**
+   * Sets the value of the "probability" element of this
+   * DistribNegativeBinomialDistribution.
+   *
+   * @param {DistribUncertValue} probability DistribUncertValue* value of the "probability" element
+   * to be set.
+   */
+  int setProbability(DistribUncertValue probability);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribNegativeBinomialDistribution object and returns the
+   * DistribUncertValue object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createNumberOfFailures();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribNegativeBinomialDistribution object and returns the
+   * DistribUncertValue object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createProbability();
+
+
+  /**
+   * Unsets the value of the "numberOfFailures" element of this
+   * DistribNegativeBinomialDistribution.
+   */
+  int unsetNumberOfFailures();
+
+
+  /**
+   * Unsets the value of the "probability" element of this
+   * DistribNegativeBinomialDistribution.
+   */
+  int unsetProbability();
+};
+
+DistribNegativeBinomialDistribution implements DistribDiscreteUnivariateDistribution;

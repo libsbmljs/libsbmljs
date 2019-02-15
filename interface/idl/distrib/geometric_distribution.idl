@@ -1,0 +1,53 @@
+/**
+ * # DistribGeometricDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribGeometricDistribution {
+  /**
+   * Returns the value of the "probability" element of this
+   * DistribGeometricDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "probability" element of this
+   * DistribGeometricDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getProbability();
+
+
+  /**
+   * Predicate returning @c true if this DistribGeometricDistribution's
+   * "probability" element is set.
+   *
+   * @return {boolean} true if this DistribGeometricDistribution's "probability"
+   * element has been set, otherwise @c false is returned.
+   */
+  boolean isSetProbability();
+
+
+  /**
+   * Sets the value of the "probability" element of this
+   * DistribGeometricDistribution.
+   *
+   * @param {DistribUncertValue} probability DistribUncertValue* value of the "probability" element
+   * to be set.
+   */
+  long setProbability(DistribUncertValue probability);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribGeometricDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createProbability();
+
+
+  /**
+   * Unsets the value of the "probability" element of this
+   * DistribGeometricDistribution.
+   */
+  long unsetProbability();
+};
+
+DistribGeometricDistribution implements DistribDiscreteUnivariateDistribution;

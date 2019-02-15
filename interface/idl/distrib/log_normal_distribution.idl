@@ -1,0 +1,99 @@
+/**
+ * # DistribLogNormalDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribLogNormalDistribution {
+  /**
+   * Returns the value of the "shape" element of this
+   * DistribLogNormalDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "shape" element of this
+   * DistribLogNormalDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getShape();
+
+
+  /**
+   * Returns the value of the "logScale" element of this
+   * DistribLogNormalDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "logScale" element of this
+   * DistribLogNormalDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getLogScale();
+
+
+  /**
+   * Predicate returning @c true if this DistribLogNormalDistribution's "shape"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribLogNormalDistribution's "shape" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetShape();
+
+
+  /**
+   * Predicate returning @c true if this DistribLogNormalDistribution's
+   * "logScale" element is set.
+   *
+   * @return {boolean} true if this DistribLogNormalDistribution's "logScale" element
+   * has been set, otherwise @c false is returned.
+   */
+  boolean isSetLogScale();
+
+
+  /**
+   * Sets the value of the "shape" element of this
+   * DistribLogNormalDistribution.
+   *
+   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   */
+  long setShape(DistribUncertValue shape);
+
+
+  /**
+   * Sets the value of the "logScale" element of this
+   * DistribLogNormalDistribution.
+   *
+   * @param {DistribUncertValue} logScale DistribUncertValue* value of the "logScale" element to be
+   * set.
+   */
+  long setLogScale(DistribUncertValue logScale);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribLogNormalDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createShape();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribLogNormalDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createLogScale();
+
+
+  /**
+   * Unsets the value of the "shape" element of this
+   * DistribLogNormalDistribution.
+   */
+  long unsetShape();
+
+
+  /**
+   * Unsets the value of the "logScale" element of this
+   * DistribLogNormalDistribution.
+   */
+  long unsetLogScale();
+};
+
+DistribLogNormalDistribution implements DistribContinuousUnivariateDistribution;

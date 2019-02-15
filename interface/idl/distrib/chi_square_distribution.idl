@@ -1,0 +1,53 @@
+/**
+ * # DistribChiSquareDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribChiSquareDistribution {
+  /**
+   * Returns the value of the "degreesOfFreedom" element of this
+   * DistribChiSquareDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "degreesOfFreedom" element of this
+   * DistribChiSquareDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getDegreesOfFreedom();
+
+
+  /**
+   * Predicate returning true if this DistribChiSquareDistribution's
+   * "degreesOfFreedom" element is set.
+   *
+   * @return {boolean} true if this DistribChiSquareDistribution's "degreesOfFreedom"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetDegreesOfFreedom();
+
+
+  /**
+   * Sets the value of the "degreesOfFreedom" element of this
+   * DistribChiSquareDistribution.
+   *
+   * @param {DistribUncertValue} degreesOfFreedom DistribUncertValue value of the
+   * "degreesOfFreedom" element to be set.
+   */
+  long setDegreesOfFreedom(DistribUncertValue degreesOfFreedom);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribChiSquareDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createDegreesOfFreedom();
+
+
+  /**
+   * Unsets the value of the "degreesOfFreedom" element of this
+   * DistribChiSquareDistribution.
+   */
+  long unsetDegreesOfFreedom();
+};
+
+DistribChiSquareDistribution implements DistribContinuousUnivariateDistribution;

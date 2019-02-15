@@ -1,0 +1,169 @@
+/**
+ * # DistribDiscreteUnivariateDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribDiscreteUnivariateDistribution {
+  /**
+   * Returns the value of the "truncationLowerBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   *
+   * @return {DistribUncertBound} the value of the "truncationLowerBound" element of this
+   * DistribDiscreteUnivariateDistribution as a DistribUncertBound.
+   */
+  DistribUncertBound getTruncationLowerBound();
+
+
+  /**
+   * Returns the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   *
+   * @return the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution as a DistribUncertBound.
+   */
+  DistribUncertBound getTruncationUpperBound();
+
+
+  /**
+   * Returns the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   *
+   * @return {DistribUncertBound} the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution as a DistribUncertBound.
+   */
+  DistribUncertBound getTruncationUpperBound();
+
+
+  /**
+   * Predicate returning true if this
+   * DistribDiscreteUnivariateDistribution's "truncationLowerBound" element is
+   * set.
+   *
+   * @return {boolean} true if this DistribDiscreteUnivariateDistribution's
+   * "truncationLowerBound" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetTruncationLowerBound();
+
+
+  /**
+   * Predicate returning true if this
+   * DistribDiscreteUnivariateDistribution's "truncationUpperBound" element is
+   * set.
+   *
+   * @return {boolean} true if this DistribDiscreteUnivariateDistribution's
+   * "truncationUpperBound" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetTruncationUpperBound();
+
+
+  /**
+   * Sets the value of the "truncationLowerBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   *
+   * @param {DistribUncertBound} truncationLowerBound DistribUncertBound value of the
+   * "truncationLowerBound" element to be set.
+   */
+  long setTruncationLowerBound(DistribUncertBound truncationLowerBound);
+
+
+  /**
+   * Sets the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   *
+   * @param {DistribUncertBound} truncationUpperBound DistribUncertBound value of the
+   * "truncationUpperBound" element to be set.
+   */
+  long setTruncationUpperBound(DistribUncertBound truncationUpperBound);
+
+
+  /**
+   * Creates a new DistribUncertBound object, adds it to this
+   * DistribDiscreteUnivariateDistribution object and returns the
+   * DistribUncertBound object created.
+   *
+   * @return {DistribUncertBound} a new DistribUncertBound object instance.
+   */
+  DistribUncertBound createTruncationLowerBound();
+
+
+  /**
+   * Creates a new DistribUncertBound object, adds it to this
+   * DistribDiscreteUnivariateDistribution object and returns the
+   * DistribUncertBound object created.
+   *
+   * @return {DistribUncertBound} a new DistribUncertBound object instance.
+   */
+  DistribUncertBound createTruncationUpperBound();
+
+
+  /**
+   * Unsets the value of the "truncationLowerBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   */
+  long unsetTruncationLowerBound();
+
+
+  /**
+   * Unsets the value of the "truncationUpperBound" element of this
+   * DistribDiscreteUnivariateDistribution.
+   */
+  long unsetTruncationUpperBound();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribDiscreteUnivariateDistribution" is of type
+   * DistribBinomialDistribution
+   *
+   * @return {boolean} true if this abstract "DistribDiscreteUnivariateDistribution"
+   * is of type DistribBinomialDistribution, false otherwise
+   */
+  boolean isDistribBinomialDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribDiscreteUnivariateDistribution" is of type
+   * DistribGeometricDistribution
+   *
+   * @return {boolean} true if this abstract "DistribDiscreteUnivariateDistribution"
+   * is of type DistribGeometricDistribution, false otherwise
+   */
+  boolean isDistribGeometricDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribDiscreteUnivariateDistribution" is of type
+   * DistribHypergeometricDistribution
+   *
+   * @return {boolean} true if this abstract "DistribDiscreteUnivariateDistribution"
+   * is of type DistribHypergeometricDistribution, false otherwise
+   */
+  boolean isDistribHypergeometricDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribDiscreteUnivariateDistribution" is of type
+   * DistribNegativeBinomialDistribution
+   *
+   * @return {boolean} true if this abstract "DistribDiscreteUnivariateDistribution"
+   * is of type DistribNegativeBinomialDistribution, false otherwise
+   */
+  boolean isDistribNegativeBinomialDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribDiscreteUnivariateDistribution" is of type
+   * DistribPoissonDistribution
+   *
+   * @return {boolean} true if this abstract "DistribDiscreteUnivariateDistribution"
+   * is of type DistribPoissonDistribution, false otherwise
+   */
+  boolean isDistribPoissonDistribution();
+};
+
+DistribDiscreteUnivariateDistribution implements DistribUnivariateDistribution;

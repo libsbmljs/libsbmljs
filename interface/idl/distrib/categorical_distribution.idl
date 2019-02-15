@@ -1,0 +1,60 @@
+/**
+ * # DistribCategoricalDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribCategoricalDistribution {
+  /**
+   * Get a DistribCategory from the DistribCategoricalDistribution.
+   *
+   * @param {number} n an unsigned long representing the index of the DistribCategory to
+   * retrieve.
+   *
+   * @return {DistribCategory} the nth DistribCategory in the ListOfDistribCategories within this
+   * DistribCategoricalDistribution.
+   */
+  DistribCategory getDistribCategory(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given DistribCategory to this
+   * DistribCategoricalDistribution.
+   *
+   * @param {DistribCategory} dc the DistribCategory object to add.
+   */
+  long addDistribCategory(DistribCategory dc);
+
+
+  /**
+   * Get the number of DistribCategory objects in this
+   * DistribCategoricalDistribution.
+   *
+   * @return {number} the number of DistribCategory objects in this
+   * DistribCategoricalDistribution.
+   */
+  unsigned long getNumDistribCategories();
+
+
+  /**
+   * Creates a new DistribCategory object, adds it to this
+   * DistribCategoricalDistribution object and returns the DistribCategory
+   * object created.
+   *
+   * @return {DistribCategory} a new DistribCategory object instance.
+   */
+  DistribCategory createDistribCategory();
+
+
+  /**
+   * Removes the nth DistribCategory from this DistribCategoricalDistribution
+   * and returns a pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the DistribCategory to
+   * remove.
+   *
+   * @return {DistribCategory} a pointer to the nth DistribCategory in this
+   * DistribCategoricalDistribution.
+   */
+  DistribCategory removeDistribCategory(unsigned long n);
+};
+
+DistribCategoricalDistribution implements DistribCategoricalUnivariateDistribution;

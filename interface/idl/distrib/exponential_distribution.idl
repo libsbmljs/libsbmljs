@@ -1,0 +1,62 @@
+/**
+ * # DistribExponentialDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribExponentialDistribution {
+  /**
+   * Returns the value of the "rate" element of this
+   * DistribExponentialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "rate" element of this
+   * DistribExponentialDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getRate();
+
+
+  /**
+   * Returns the value of the "rate" element of this
+   * DistribExponentialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "rate" element of this
+   * DistribExponentialDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getRate();
+
+
+  /**
+   * Predicate returning @c true if this DistribExponentialDistribution's
+   * "rate" element is set.
+   *
+   * @return {boolean} @c true if this DistribExponentialDistribution's "rate" element
+   * has been set, otherwise @c false is returned.
+   */
+  bool isSetRate();
+
+
+  /**
+   * Sets the value of the "rate" element of this
+   * DistribExponentialDistribution.
+   *
+   * @param {DistribUncertValue} rate DistribUncertValue value of the "rate" element to be set.
+   */
+  int setRate(DistribUncertValue rate);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribExponentialDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createRate();
+
+
+  /**
+   * Unsets the value of the "rate" element of this
+   * DistribExponentialDistribution.
+   */
+  int unsetRate();
+};
+
+DistribExponentialDistribution implements DistribContinuousUnivariateDistribution;

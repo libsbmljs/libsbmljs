@@ -1,0 +1,659 @@
+/**
+ * # DistribUncertStatistics
+ */
+[Prefix="libsbml::"]
+interface DistribUncertStatistics {
+  /**
+   * Returns the value of the "coefficientOfVariation" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "coefficientOfVariation" element of this
+   * DistribUncertStatistics as a DistribUncertValue.
+   */
+  DistribUncertValue getCoefficientOfVariation();
+
+
+  /**
+   * Returns the value of the "kurtosis" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "kurtosis" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getKurtosis();
+
+
+  /**
+   * Returns the value of the "kurtosis" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "kurtosis" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getKurtosis();
+
+
+  /**
+   * Returns the value of the "mean" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "mean" element of this DistribUncertStatistics as
+   * a DistribUncertValue*.
+   */
+  DistribUncertValue getMean();
+
+
+  /**
+   * Returns the value of the "mean" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "mean" element of this DistribUncertStatistics as
+   * a DistribUncertValue*.
+   */
+  DistribUncertValue getMean();
+
+
+  /**
+   * Returns the value of the "median" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "median" element of this DistribUncertStatistics
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getMedian();
+
+
+  /**
+   * Returns the value of the "median" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "median" element of this DistribUncertStatistics
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getMedian();
+
+
+  /**
+   * Returns the value of the "mode" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "mode" element of this DistribUncertStatistics as
+   * a DistribUncertValue*.
+   */
+  DistribUncertValue getMode();
+
+
+  /**
+   * Returns the value of the "mode" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "mode" element of this DistribUncertStatistics as
+   * a DistribUncertValue*.
+   */
+  DistribUncertValue getMode();
+
+
+  /**
+   * Returns the value of the "skewness" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "skewness" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getSkewness();
+
+
+  /**
+   * Returns the value of the "skewness" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "skewness" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getSkewness();
+
+
+  /**
+   * Returns the value of the "standardDeviation" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "standardDeviation" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getStandardDeviation();
+
+
+  /**
+   * Returns the value of the "standardDeviation" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "standardDeviation" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getStandardDeviation();
+
+
+  /**
+   * Returns the value of the "variance" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "variance" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getVariance();
+
+
+  /**
+   * Returns the value of the "variance" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertValue} the value of the "variance" element of this
+   * DistribUncertStatistics as a DistribUncertValue*.
+   */
+  DistribUncertValue getVariance();
+
+
+  /**
+   * Returns the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getConfidenceInterval();
+
+
+  /**
+   * Returns the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getConfidenceInterval();
+
+
+  /**
+   * Returns the value of the "credibleInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "credibleInterval" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getCredibleInterval();
+
+
+  /**
+   * Returns the value of the "credibleInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "credibleInterval" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getCredibleInterval();
+
+
+  /**
+   * Returns the value of the "interquartileRange" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "interquartileRange" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getInterquartileRange();
+
+
+  /**
+   * Returns the value of the "interquartileRange" element of this
+   * DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "interquartileRange" element of this
+   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getInterquartileRange();
+
+
+  /**
+   * Returns the value of the "range" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "range" element of this DistribUncertStatistics
+   * as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getRange();
+
+
+  /**
+   * Returns the value of the "range" element of this DistribUncertStatistics.
+   *
+   * @return {DistribUncertStatisticSpan} the value of the "range" element of this DistribUncertStatistics
+   * as a DistribUncertStatisticSpan*.
+   */
+  DistribUncertStatisticSpan getRange();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's
+   * "coefficientOfVariation" element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "coefficientOfVariation"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetCoefficientOfVariation();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "kurtosis"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "kurtosis" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetKurtosis();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "mean"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "mean" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetMean();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "median"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "median" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetMedian();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "mode"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "mode" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetMode();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "skewness"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "skewness" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetSkewness();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's
+   * "standardDeviation" element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "standardDeviation"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetStandardDeviation();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "variance"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "variance" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetVariance();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's
+   * "confidenceInterval" element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "confidenceInterval"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetConfidenceInterval();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's
+   * "credibleInterval" element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "credibleInterval"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetCredibleInterval();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's
+   * "interquartileRange" element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "interquartileRange"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetInterquartileRange();
+
+
+  /**
+   * Predicate returning true if this DistribUncertStatistics's "range"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUncertStatistics's "range" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetRange();
+
+
+  /**
+   * Sets the value of the "coefficientOfVariation" element of this
+   * DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} coefficientOfVariation value of the
+   * "coefficientOfVariation" element to be set.
+   */
+  long setCoefficientOfVariation(DistribUncertValue
+    coefficientOfVariation);
+
+
+  /**
+   * Sets the value of the "kurtosis" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} kurtosis value of the "kurtosis" element to be
+   * set.
+   */
+  long setKurtosis(DistribUncertValue kurtosis);
+
+
+  /**
+   * Sets the value of the "mean" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} mean value of the "mean" element to be set.
+   */
+  long setMean(DistribUncertValue mean);
+
+
+  /**
+   * Sets the value of the "median" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} median value of the "median" element to be set.
+   */
+  long setMedian(DistribUncertValue median);
+
+
+  /**
+   * Sets the value of the "mode" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} mode value of the "mode" element to be set.
+   */
+  long setMode(DistribUncertValue mode);
+
+
+  /**
+   * Sets the value of the "skewness" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} skewness value of the "skewness" element to be
+   * set.
+   */
+  long setSkewness(DistribUncertValue skewness);
+
+
+  /**
+   * Sets the value of the "standardDeviation" element of this
+   * DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} standardDeviation value of the
+   * "standardDeviation" element to be set.
+   */
+  long setStandardDeviation(DistribUncertValue standardDeviation);
+
+
+  /**
+   * Sets the value of the "variance" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertValue} variance value of the "variance" element to be
+   * set.
+   */
+  long setVariance(DistribUncertValue variance);
+
+
+  /**
+   * Sets the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @param {DistribUncertStatisticSpan} confidenceInterval value of the
+   * "confidenceInterval" element to be set.
+   */
+  long setConfidenceInterval(DistribUncertStatisticSpan confidenceInterval);
+
+
+  /**
+   * Sets the value of the "credibleInterval" element of this
+   * DistribUncertStatistics.
+   *
+   * @param {DistribUncertStatisticSpan} credibleInterval value of the
+   * "credibleInterval" element to be set.
+   */
+  long setCredibleInterval(DistribUncertStatisticSpan credibleInterval);
+
+
+  /**
+   * Sets the value of the "interquartileRange" element of this
+   * DistribUncertStatistics.
+   *
+   * @param {DistribUncertStatisticSpan} interquartileRange value of the
+   * "interquartileRange" element to be set.
+   */
+  long setInterquartileRange(DistribUncertStatisticSpan interquartileRange);
+
+
+  /**
+   * Sets the value of the "range" element of this DistribUncertStatistics.
+   *
+   * @param {DistribUncertStatisticSpan} range value of the "range" element to
+   * be set.
+   */
+  long setRange(DistribUncertStatisticSpan range);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createCoefficientOfVariation();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createKurtosis();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createMean();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createMedian();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createMode();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createSkewness();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createStandardDeviation();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new value object instance.
+   */
+  DistribUncertValue createVariance();
+
+
+  /**
+   * Creates a new DistribUncertStatisticSpan object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertStatisticSpan
+   * object created.
+   *
+   * @return {DistribUncertStatisticSpan} a new span object instance.
+   */
+  DistribUncertStatisticSpan createConfidenceInterval();
+
+
+  /**
+   * Creates a new DistribUncertStatisticSpan object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertStatisticSpan
+   * object created.
+   *
+   * @return {DistribUncertStatisticSpan} a new span object instance.
+   */
+  DistribUncertStatisticSpan createCredibleInterval();
+
+
+  /**
+   * Creates a new DistribUncertStatisticSpan object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertStatisticSpan
+   * object created.
+   *
+   * @return {DistribUncertStatisticSpan} a new span object instance.
+   */
+  DistribUncertStatisticSpan createInterquartileRange();
+
+
+  /**
+   * Creates a new DistribUncertStatisticSpan object, adds it to this
+   * DistribUncertStatistics object and returns the DistribUncertStatisticSpan
+   * object created.
+   *
+   * @return {DistribUncertStatisticSpan} a new span object instance.
+   */
+  DistribUncertStatisticSpan createRange();
+
+
+  /**
+   * Unsets the value of the "coefficientOfVariation" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetCoefficientOfVariation();
+
+
+  /**
+   * Unsets the value of the "kurtosis" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetKurtosis();
+
+
+  /**
+   * Unsets the value of the "mean" element of this DistribUncertStatistics.
+   */
+  long unsetMean();
+
+
+  /**
+   * Unsets the value of the "median" element of this DistribUncertStatistics.
+   */
+  long unsetMedian();
+
+
+  /**
+   * Unsets the value of the "mode" element of this DistribUncertStatistics.
+   */
+  long unsetMode();
+
+
+  /**
+   * Unsets the value of the "skewness" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetSkewness();
+
+
+  /**
+   * Unsets the value of the "standardDeviation" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetStandardDeviation();
+
+
+  /**
+   * Unsets the value of the "variance" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetVariance();
+
+
+  /**
+   * Unsets the value of the "confidenceInterval" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetConfidenceInterval();
+
+
+  /**
+   * Unsets the value of the "credibleInterval" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetCredibleInterval();
+
+
+  /**
+   * Unsets the value of the "interquartileRange" element of this
+   * DistribUncertStatistics.
+   */
+  long unsetInterquartileRange();
+
+
+  /**
+   * Unsets the value of the "range" element of this DistribUncertStatistics.
+   */
+  long unsetRange();
+};
+
+DistribUncertStatistics implements DistribBase;

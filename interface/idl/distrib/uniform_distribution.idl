@@ -1,0 +1,167 @@
+/**
+ * # DistribUniformDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribUniformDistribution {
+  /**
+   * Returns the value of the "minimum" element of this
+   * DistribUniformDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "minimum" element of this
+   * DistribUniformDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getMinimum();
+
+
+  /**
+   * Returns the value of the "maximum" element of this
+   * DistribUniformDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "maximum" element of this
+   * DistribUniformDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getMaximum();
+
+
+  /**
+   * Returns the value of the "maximum" element of this
+   * DistribUniformDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "maximum" element of this
+   * DistribUniformDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getMaximum();
+
+
+  /**
+   * Returns the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getNumberOfClasses();
+
+
+  /**
+   * Returns the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getNumberOfClasses();
+
+
+  /**
+   * Predicate returning @c true if this DistribUniformDistribution's "minimum"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUniformDistribution's "minimum" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetMinimum();
+
+
+  /**
+   * Predicate returning @c true if this DistribUniformDistribution's "maximum"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribUniformDistribution's "maximum" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetMaximum();
+
+
+  /**
+   * Predicate returning @c true if this DistribUniformDistribution's
+   * "numberOfClasses" element is set.
+   *
+   * @return {boolean} true if this DistribUniformDistribution's "numberOfClasses"
+   * element has been set, otherwise @c false is returned.
+   */
+  boolean isSetNumberOfClasses();
+
+
+  /**
+   * Sets the value of the "minimum" element of this
+   * DistribUniformDistribution.
+   *
+   * @param {DistribUncertValue} minimum DistribUncertValue value of the "minimum" element to be
+   * set.
+   */
+  long setMinimum(DistribUncertValue minimum);
+
+
+  /**
+   * Sets the value of the "maximum" element of this
+   * DistribUniformDistribution.
+   *
+   * @param {DistribUncertValue} maximum DistribUncertValue value of the "maximum" element to be
+   * set.
+   */
+  long setMaximum(DistribUncertValue maximum);
+
+
+  /**
+   * Sets the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution.
+   *
+   * @param {DistribUncertValue} numberOfClasses DistribUncertValue value of the "numberOfClasses"
+   * element to be set.
+   */
+  long setNumberOfClasses(DistribUncertValue numberOfClasses);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUniformDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createMinimum();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUniformDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createMaximum();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribUniformDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createNumberOfClasses();
+
+
+  /**
+   * Unsets the value of the "minimum" element of this
+   * DistribUniformDistribution.
+   */
+  long unsetMinimum();
+
+
+  /**
+   * Unsets the value of the "maximum" element of this
+   * DistribUniformDistribution.
+   */
+  long unsetMaximum();
+
+
+  /**
+   * Unsets the value of the "numberOfClasses" element of this
+   * DistribUniformDistribution.
+   */
+  long unsetNumberOfClasses();
+};
+
+DistribUniformDistribution implements DistribContinuousUnivariateDistribution;

@@ -1,0 +1,124 @@
+/**
+ * # DistribCategory
+ */
+[Prefix="libsbml::"]
+interface DistribCategory {
+  /**
+   * Returns the value of the "rank" attribute of this DistribCategory.
+   *
+   * @return {number} the value of the "rank" attribute of this DistribCategory as a
+   * unsigned integer.
+   */
+  unsigned long getRank();
+
+
+  /**
+   * Predicate returning @c true if this DistribCategory's "rank" attribute is
+   * set.
+   *
+   * @return {boolean} @c true if this DistribCategory's "rank" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  bool isSetRank();
+
+
+  /**
+   * Sets the value of the "rank" attribute of this DistribCategory.
+   *
+   * @param {number} rank unsigned long value of the "rank" attribute to be set.
+   */
+  long setRank(unsigned long rank);
+
+
+  /**
+   * Unsets the value of the "rank" attribute of this DistribCategory.
+   */
+  long unsetRank();
+
+
+  /**
+   * Returns the value of the "probability" element of this DistribCategory.
+   *
+   * @return {DistribUncertValue} the value of the "probability" element of this DistribCategory as
+   * a DistribUncertValue.
+   */
+  DistribUncertValue getProbability();
+
+
+  /**
+   * Returns the value of the "value" element of this DistribCategory.
+   *
+   * @return {DistribUncertValue} the value of the "value" element of this DistribCategory as a
+   * DistribUncertValue.
+   */
+  DistribUncertValue getValue();
+
+
+  /**
+   * Predicate returning @c true if this DistribCategory's "probability"
+   * element is set.
+   *
+   * @return {boolean} @c true if this DistribCategory's "probability" element has been
+   * set, otherwise @c false is returned.
+   */
+  bool isSetProbability();
+
+
+  /**
+   * Predicate returning @c true if this DistribCategory's "value" element is
+   * set.
+   *
+   * @return {boolean} @c true if this DistribCategory's "value" element has been set,
+   * otherwise @c false is returned.
+   */
+  bool isSetValue();
+
+
+  /**
+   * Sets the value of the "probability" element of this DistribCategory.
+   *
+   * @param {DistribUncertValue} probability DistribUncertValue value of the "probability" element
+   * to be set.
+   */
+  long setProbability(DistribUncertValue probability);
+
+
+  /**
+   * Sets the value of the "value" element of this DistribCategory.
+   *
+   * @param {DistribUncertValue} value DistribUncertValue value of the "value" element to be set.
+   */
+  long setValue(DistribUncertValue value);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this DistribCategory
+   * object and returns the DistribUncertValue object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createProbability();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this DistribCategory
+   * object and returns the DistribUncertValue object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createValue();
+
+
+  /**
+   * Unsets the value of the "probability" element of this DistribCategory.
+   */
+  long unsetProbability();
+
+
+  /**
+   * Unsets the value of the "value" element of this DistribCategory.
+   */
+  long unsetValue();
+};
+
+DistribCategory implements DistribBase;

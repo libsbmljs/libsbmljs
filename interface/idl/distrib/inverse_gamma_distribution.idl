@@ -1,0 +1,98 @@
+/**
+ * # DistribInverseGammaDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribInverseGammaDistribution {
+  /**
+   * Returns the value of the "shape" element of this
+   * DistribInverseGammaDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "shape" element of this
+   * DistribInverseGammaDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getShape();
+
+
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribInverseGammaDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this
+   * DistribInverseGammaDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Predicate returning @c true if this DistribInverseGammaDistribution's
+   * "shape" element is set.
+   *
+   * @return {boolean} true if this DistribInverseGammaDistribution's "shape" element
+   * has been set, otherwise @c false is returned.
+   */
+  boolean isSetShape();
+
+
+  /**
+   * Predicate returning @c true if this DistribInverseGammaDistribution's
+   * "scale" element is set.
+   *
+   * @return {boolean} true if this DistribInverseGammaDistribution's "scale" element
+   * has been set, otherwise @c false is returned.
+   */
+  boolean isSetScale();
+
+
+  /**
+   * Sets the value of the "shape" element of this
+   * DistribInverseGammaDistribution.
+   *
+   * @param {DistribUncertValue} shape DistribUncertValue* value of the "shape" element to be set.
+   */
+  long setShape(DistribUncertValue shape);
+
+
+  /**
+   * Sets the value of the "scale" element of this
+   * DistribInverseGammaDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   */
+  long setScale(DistribUncertValue scale);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribInverseGammaDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createShape();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribInverseGammaDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Unsets the value of the "shape" element of this
+   * DistribInverseGammaDistribution.
+   */
+  long unsetShape();
+
+
+  /**
+   * Unsets the value of the "scale" element of this
+   * DistribInverseGammaDistribution.
+   */
+  long unsetScale();
+};
+
+DistribInverseGammaDistribution implements DistribContinuousUnivariateDistribution;

@@ -1,0 +1,125 @@
+/**
+ * # DistribUncertValue
+ */
+[Prefix="libsbml::"]
+interface DistribUncertValue {
+  /**
+   * Returns the value of the "value" attribute of this DistribUncertValue.
+   *
+   * @return {number} the value of the "value" attribute of this DistribUncertValue as a
+   * double.
+   */
+  double getValue();
+
+
+  /**
+   * Returns the value of the "var" attribute of this DistribUncertValue.
+   *
+   * @return {string} the value of the "var" attribute of this DistribUncertValue as a
+   * string.
+   */
+  DOMString getVar();
+
+
+  /**
+   * Returns the value of the "units" attribute of this DistribUncertValue.
+   *
+   * @return {string} the value of the "units" attribute of this DistribUncertValue as a
+   * string.
+   */
+  DOMString getUnits();
+
+
+  /**
+   * Predicate returning true if this DistribUncertValue's "value" attribute
+   * is set.
+   *
+   * @return {boolean} true if this DistribUncertValue's "value" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetValue();
+
+
+  /**
+   * Predicate returning true if this DistribUncertValue's "var" attribute
+   * is set.
+   *
+   * @return {boolean} true if this DistribUncertValue's "var" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetVar();
+
+
+  /**
+   * Predicate returning true if this DistribUncertValue's "units" attribute
+   * is set.
+   *
+   * @return {boolean} true if this DistribUncertValue's "units" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetUnits();
+
+
+  /**
+   * Sets the value of the "value" attribute of this DistribUncertValue.
+   *
+   * @param {number} value double value of the "value" attribute to be set.
+   */
+  int setValue(double value);
+
+
+  /**
+   * Sets the value of the "var" attribute of this DistribUncertValue.
+   *
+   * @param {string} var std::string& value of the "var" attribute to be set.
+   */
+  int setVar(DOMString var);
+
+
+  /**
+   * Sets the value of the "units" attribute of this DistribUncertValue.
+   *
+   * @param {string} units std::string& value of the "units" attribute to be set.
+   */
+  int setUnits(DOMString units);
+
+
+  /**
+   * Unsets the value of the "value" attribute of this DistribUncertValue.
+   */
+  int unsetValue();
+
+
+  /**
+   * Unsets the value of the "var" attribute of this DistribUncertValue.
+   */
+  int unsetVar();
+
+
+  /**
+   * Unsets the value of the "units" attribute of this DistribUncertValue.
+   */
+  int unsetUnits();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribUncertValue" is of
+   * type DistribUncertBound
+   *
+   * @return {boolean} true if this abstract "DistribUncertValue" is of type
+   * DistribUncertBound, false otherwise
+   */
+  virtual boolean isDistribUncertBound();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribUncertValue" is of
+   * type DistribExternalParameter
+   *
+   * @return {boolean} true if this abstract "DistribUncertValue" is of type
+   * DistribExternalParameter, false otherwise
+   */
+  virtual boolean isDistribExternalParameter();
+};
+
+DistribUncertValue implements DistribBase;

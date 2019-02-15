@@ -1,0 +1,145 @@
+/**
+ * # DistribStudentTDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribStudentTDistribution {
+  /**
+   * Returns the value of the "location" element of this
+   * DistribStudentTDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "location" element of this
+   * DistribStudentTDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getLocation();
+
+
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribStudentTDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this
+   * DistribStudentTDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Returns the value of the "degreesOfFreedom" element of this
+   * DistribStudentTDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "degreesOfFreedom" element of this
+   * DistribStudentTDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getDegreesOfFreedom();
+
+
+  /**
+   * Predicate returning @c true if this DistribStudentTDistribution's
+   * "location" element is set.
+   *
+   * @return {boolean} true if this DistribStudentTDistribution's "location" element
+   * has been set, otherwise @c false is returned.
+   */
+  boolean isSetLocation();
+
+
+  /**
+   * Predicate returning @c true if this DistribStudentTDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribStudentTDistribution's "scale" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetScale();
+
+
+  /**
+   * Predicate returning @c true if this DistribStudentTDistribution's
+   * "degreesOfFreedom" element is set.
+   *
+   * @return {boolean} true if this DistribStudentTDistribution's "degreesOfFreedom"
+   * element has been set, otherwise @c false is returned.
+   */
+  boolean isSetDegreesOfFreedom();
+
+
+  /**
+   * Sets the value of the "location" element of this
+   * DistribStudentTDistribution.
+   *
+   * @param {DistribUncertValue} location DistribUncertValue* value of the "location" element to be
+   * set.
+   */
+  int setLocation(DistribUncertValue location);
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribStudentTDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   */
+  int setScale(DistribUncertValue scale);
+
+
+  /**
+   * Sets the value of the "degreesOfFreedom" element of this
+   * DistribStudentTDistribution.
+   *
+   * @param {DistribUncertValue} degreesOfFreedom DistribUncertValue* value of the
+   * "degreesOfFreedom" element to be set.
+   */
+  int setDegreesOfFreedom(DistribUncertValue degreesOfFreedom);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribStudentTDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createLocation();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribStudentTDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribStudentTDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createDegreesOfFreedom();
+
+
+  /**
+   * Unsets the value of the "location" element of this
+   * DistribStudentTDistribution.
+   */
+  int unsetLocation();
+
+
+  /**
+   * Unsets the value of the "scale" element of this
+   * DistribStudentTDistribution.
+   */
+  int unsetScale();
+
+
+  /**
+   * Unsets the value of the "degreesOfFreedom" element of this
+   * DistribStudentTDistribution.
+   */
+  int unsetDegreesOfFreedom();
+};
+
+DistribStudentTDistribution implements DistribContinuousUnivariateDistribution;

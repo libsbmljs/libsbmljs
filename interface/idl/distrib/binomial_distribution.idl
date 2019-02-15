@@ -1,0 +1,101 @@
+/**
+ * # DistribBinomialDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribBinomialDistribution {
+  /**
+   * Returns the value of the "numberOfTrials" element of this
+   * DistribBinomialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "numberOfTrials" element of this
+   * DistribBinomialDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getNumberOfTrials();
+
+
+  /**
+   * Returns the value of the "probabilityOfSuccess" element of this
+   * DistribBinomialDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "probabilityOfSuccess" element of this
+   * DistribBinomialDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getProbabilityOfSuccess();
+
+
+  /**
+   * Predicate returning true if this DistribBinomialDistribution's
+   * "numberOfTrials" element is set.
+   *
+   * @return {boolean} true if this DistribBinomialDistribution's "numberOfTrials"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetNumberOfTrials();
+
+
+  /**
+   * Predicate returning true if this DistribBinomialDistribution's
+   * "probabilityOfSuccess" element is set.
+   *
+   * @return {boolean} true if this DistribBinomialDistribution's
+   * "probabilityOfSuccess" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetProbabilityOfSuccess();
+
+
+  /**
+   * Sets the value of the "numberOfTrials" element of this
+   * DistribBinomialDistribution.
+   *
+   * @param {DistribUncertValue} numberOfTrials DistribUncertValue value of the "numberOfTrials"
+   * element to be set.
+   */
+  int setNumberOfTrials(DistribUncertValue numberOfTrials);
+
+
+  /**
+   * Sets the value of the "probabilityOfSuccess" element of this
+   * DistribBinomialDistribution.
+   *
+   * @param {DistribUncertValue} probabilityOfSuccess value of the
+   * "probabilityOfSuccess" element to be set.
+   */
+  int setProbabilityOfSuccess(DistribUncertValue probabilityOfSuccess);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribBinomialDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createNumberOfTrials();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribBinomialDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createProbabilityOfSuccess();
+
+
+  /**
+   * Unsets the value of the "numberOfTrials" element of this
+   * DistribBinomialDistribution.
+   */
+  int unsetNumberOfTrials();
+
+
+  /**
+   * Unsets the value of the "probabilityOfSuccess" element of this
+   * DistribBinomialDistribution.
+   */
+  int unsetProbabilityOfSuccess();
+};
+
+DistribBinomialDistribution implements DistribBase;

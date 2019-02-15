@@ -1,0 +1,141 @@
+/**
+ * # DistribNormalDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribNormalDistribution {
+  /**
+   * Returns the value of the "mean" element of this DistribNormalDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "mean" element of this DistribNormalDistribution
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getMean();
+
+
+  /**
+   * Returns the value of the "stddev" element of this
+   * DistribNormalDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "stddev" element of this
+   * DistribNormalDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getStddev();
+
+
+  /**
+   * Returns the value of the "variance" element of this
+   * DistribNormalDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "variance" element of this
+   * DistribNormalDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getVariance();
+
+
+  /**
+   * Predicate returning true if this DistribNormalDistribution's "mean"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribNormalDistribution's "mean" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetMean();
+
+
+  /**
+   * Predicate returning true if this DistribNormalDistribution's "stddev"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribNormalDistribution's "stddev" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetStddev();
+
+
+  /**
+   * Predicate returning true if this DistribNormalDistribution's "variance"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribNormalDistribution's "variance" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetVariance();
+
+
+  /**
+   * Sets the value of the "mean" element of this DistribNormalDistribution.
+   *
+   * @param {DistribUncertValue} mean DistribUncertValue* value of the "mean" element to be set.
+   */
+  long setMean(DistribUncertValue mean);
+
+
+  /**
+   * Sets the value of the "stddev" element of this DistribNormalDistribution.
+   *
+   * @param {DistribUncertValue} stddev DistribUncertValue* value of the "stddev" element to be set.
+   */
+  long setStddev(DistribUncertValue stddev);
+
+
+  /**
+   * Sets the value of the "variance" element of this
+   * DistribNormalDistribution.
+   *
+   * @param {DistribUncertValue} variance DistribUncertValue* value of the "variance" element to be
+   * set.
+   */
+  long setVariance(DistribUncertValue variance);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribNormalDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createMean();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribNormalDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createStddev();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribNormalDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createVariance();
+
+
+  /**
+   * Unsets the value of the "mean" element of this DistribNormalDistribution.
+   */
+  long unsetMean();
+
+
+  /**
+   * Unsets the value of the "stddev" element of this
+   * DistribNormalDistribution.
+   */
+  long unsetStddev();
+
+
+  /**
+   * Unsets the value of the "variance" element of this
+   * DistribNormalDistribution.
+   */
+  long unsetVariance();
+};
+
+DistribNormalDistribution implements DistribContinuousUnivariateDistribution;

@@ -1,0 +1,98 @@
+/**
+ * # DistribLaPlaceDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribLaPlaceDistribution {
+  /**
+   * Returns the value of the "location" element of this
+   * DistribLaPlaceDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "location" element of this
+   * DistribLaPlaceDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getLocation();
+
+
+  /**
+   * Returns the value of the "scale" element of this
+   * DistribLaPlaceDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "scale" element of this
+   * DistribLaPlaceDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getScale();
+
+
+  /**
+   * Predicate returning true if this DistribLaPlaceDistribution's
+   * "location" element is set.
+   *
+   * @return {boolean} true if this DistribLaPlaceDistribution's "location" element
+   * has been set, otherwise false is returned.
+   */
+  bool isSetLocation();
+
+
+  /**
+   * Predicate returning true if this DistribLaPlaceDistribution's "scale"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribLaPlaceDistribution's "scale" element has
+   * been set, otherwise false is returned.
+   */
+  bool isSetScale();
+
+
+  /**
+   * Sets the value of the "location" element of this
+   * DistribLaPlaceDistribution.
+   *
+   * @param {DistribUncertValue} location DistribUncertValue* value of the "location" element to be
+   * set.
+   */
+  int setLocation(DistribUncertValue location);
+
+
+  /**
+   * Sets the value of the "scale" element of this DistribLaPlaceDistribution.
+   *
+   * @param {DistribUncertValue} scale DistribUncertValue* value of the "scale" element to be set.
+   */
+  int setScale(DistribUncertValue scale);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribLaPlaceDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createLocation();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribLaPlaceDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createScale();
+
+
+  /**
+   * Unsets the value of the "location" element of this
+   * DistribLaPlaceDistribution.
+   */
+  int unsetLocation();
+
+
+  /**
+   * Unsets the value of the "scale" element of this
+   * DistribLaPlaceDistribution.
+   */
+  int unsetScale();
+};
+
+DistribLaPlaceDistribution implements DistribContinuousUnivariateDistribution;

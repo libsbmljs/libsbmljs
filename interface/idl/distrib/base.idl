@@ -1,0 +1,336 @@
+/**
+ * # DistribBase class
+ */
+[Prefix="libsbml::"]
+interface DistribBase {
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribDrawFromDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribDrawFromDistribution, false otherwise
+   */
+  boolean isDistribDrawFromDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribInput
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type DistribInput,
+   * false otherwise
+   */
+  boolean isDistribInput();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribBetaDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribBetaDistribution, false otherwise
+   */
+  boolean isDistribBetaDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribCauchyDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribCauchyDistribution, false otherwise
+   */
+  boolean isDistribCauchyDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribChiSquareDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribChiSquareDistribution, false otherwise
+   */
+  boolean isDistribChiSquareDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribExponentialDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribExponentialDistribution, false otherwise
+   */
+  boolean isDistribExponentialDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribFDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribFDistribution, false otherwise
+   */
+  boolean isDistribFDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribGammaDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribGammaDistribution, false otherwise
+   */
+  boolean isDistribGammaDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribInverseGammaDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribInverseGammaDistribution, false otherwise
+   */
+  boolean isDistribInverseGammaDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribLaPlaceDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribLaPlaceDistribution, false otherwise
+   */
+  boolean isDistribLaPlaceDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribLogNormalDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribLogNormalDistribution, false otherwise
+   */
+  boolean isDistribLogNormalDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribLogisticDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribLogisticDistribution, false otherwise
+   */
+  boolean isDistribLogisticDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribNormalDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribNormalDistribution, false otherwise
+   */
+  boolean isDistribNormalDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribParetoDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribParetoDistribution, false otherwise
+   */
+  boolean isDistribParetoDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribRayleighDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribRayleighDistribution, false otherwise
+   */
+  boolean isDistribRayleighDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribStudentTDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribStudentTDistribution, false otherwise
+   */
+  boolean isDistribStudentTDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribUniformDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribUniformDistribution, false otherwise
+   */
+  boolean isDistribUniformDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribWeibullDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribWeibullDistribution, false otherwise
+   */
+  boolean isDistribWeibullDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribBinomialDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribBinomialDistribution, false otherwise
+   */
+  boolean isDistribBinomialDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribGeometricDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribGeometricDistribution, false otherwise
+   */
+  boolean isDistribGeometricDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribHypergeometricDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribHypergeometricDistribution, false otherwise
+   */
+  boolean isDistribHypergeometricDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribNegativeBinomialDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribNegativeBinomialDistribution, false otherwise
+   */
+  boolean isDistribNegativeBinomialDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribPoissonDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribPoissonDistribution, false otherwise
+   */
+  boolean isDistribPoissonDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribBernoulliDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribBernoulliDistribution, false otherwise
+   */
+  boolean isDistribBernoulliDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribCategoricalDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribCategoricalDistribution, false otherwise
+   */
+  boolean isDistribCategoricalDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribMultivariateDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribMultivariateDistribution, false otherwise
+   */
+  boolean isDistribMultivariateDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribExternalDistribution
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribExternalDistribution, false otherwise
+   */
+  boolean isDistribExternalDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribUncertBound
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribUncertBound, false otherwise
+   */
+  boolean isDistribUncertBound();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribExternalParameter
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribExternalParameter, false otherwise
+   */
+  boolean isDistribExternalParameter();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribCategory
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type DistribCategory,
+   * false otherwise
+   */
+  boolean isDistribCategory();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribUncertainty
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribUncertainty, false otherwise
+   */
+  boolean isDistribUncertainty();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribUncertStatistics
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribUncertStatistics, false otherwise
+   */
+  boolean isDistribUncertStatistics();
+
+
+  /**
+   * Predicate returning true if this abstract "DistribBase" is of type
+   * DistribUncertStatisticSpan
+   *
+   * @return {boolean} true if this abstract "DistribBase" is of type
+   * DistribUncertStatisticSpan, false otherwise
+   */
+  boolean isDistribUncertStatisticSpan();
+};
+
+DistribBase implements SBase;

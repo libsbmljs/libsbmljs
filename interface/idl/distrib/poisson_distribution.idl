@@ -1,0 +1,50 @@
+/**
+ * # DistribPoissonDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribPoissonDistribution {
+  /**
+   * Returns the value of the "rate" element of this
+   * DistribPoissonDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "rate" element of this DistribPoissonDistribution
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue* getRate();
+
+
+  /**
+   * Predicate returning true if this DistribPoissonDistribution's "rate"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribPoissonDistribution's "rate" element has
+   * been set, otherwise false is returned.
+   */
+  bool isSetRate() const;
+
+
+  /**
+   * Sets the value of the "rate" element of this DistribPoissonDistribution.
+   *
+   * @param {DistribUncertValue} rate DistribUncertValue* value of the "rate" element to be set.
+   */
+  int setRate(const DistribUncertValue* rate);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribPoissonDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue* createRate();
+
+
+  /**
+   * Unsets the value of the "rate" element of this DistribPoissonDistribution.
+   */
+  int unsetRate();
+};
+
+DistribPoissonDistribution implements DistribDiscreteUnivariateDistribution;

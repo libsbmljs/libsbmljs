@@ -1,0 +1,100 @@
+/**
+ * # DistribExternalDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribExternalDistribution {
+  /**
+   * Returns the value of the "definitionURL" attribute of this
+   * DistribExternalDistribution.
+   *
+   * @return {string} the value of the "definitionURL" attribute of this
+   * DistribExternalDistribution as a string.
+   */
+  DOMString getDefinitionURL();
+
+
+  /**
+   * Predicate returning true if this DistribExternalDistribution's
+   * "definitionURL" attribute is set.
+   *
+   * @return {boolean} true if this DistribExternalDistribution's "definitionURL"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetDefinitionURL();
+
+
+  /**
+   * Sets the value of the "definitionURL" attribute of this
+   * DistribExternalDistribution.
+   *
+   * @param {string} definitionURL std::string& value of the "definitionURL" attribute
+   * to be set.
+   *
+   * Calling this function with @p definitionURL = NULL or an empty string
+   * is equivalent to calling unsetDefinitionURL().
+   */
+  long setDefinitionURL(DOMString definitionURL);
+
+
+  /**
+   * Unsets the value of the "definitionURL" attribute of this
+   * DistribExternalDistribution.
+   */
+  long unsetDefinitionURL();
+
+
+  /**
+   * Get a DistribExternalParameter from the DistribExternalDistribution.
+   *
+   * @param {number} n an unsigned long representing the index of the
+   * DistribExternalParameter to retrieve.
+   *
+   * @return {DistribExternalParameter} the nth DistribExternalParameter in the
+   * ListOfDistribExternalParameters within this DistribExternalDistribution.
+   */
+  DistribExternalParameter getDistribExternalParameter(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given DistribExternalParameter to this
+   * DistribExternalDistribution.
+   *
+   * @param {DistribExternalParameter} dep the DistribExternalParameter object to add.
+   */
+  long addDistribExternalParameter(const DistribExternalParameter* dep);
+
+
+  /**
+   * Get the number of DistribExternalParameter objects in this
+   * DistribExternalDistribution.
+   *
+   * @return {number} the number of DistribExternalParameter objects in this
+   * DistribExternalDistribution.
+   */
+  unsigned long getNumDistribExternalParameters();
+
+
+  /**
+   * Creates a new DistribExternalParameter object, adds it to this
+   * DistribExternalDistribution object and returns the
+   * DistribExternalParameter object created.
+   *
+   * @return {DistribExternalParameter} a new DistribExternalParameter object instance.
+   */
+  DistribExternalParameter createDistribExternalParameter();
+
+
+  /**
+   * Removes the nth DistribExternalParameter from this
+   * DistribExternalDistribution and returns a pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the
+   * DistribExternalParameter to remove.
+   *
+   * @return {DistribExternalParameter} a pointer to the nth DistribExternalParameter in this
+   * DistribExternalDistribution.
+   */
+  DistribExternalParameter removeDistribExternalParameter(unsigned long n);
+};
+
+DistribExternalDistribution implements DistribDistribution;

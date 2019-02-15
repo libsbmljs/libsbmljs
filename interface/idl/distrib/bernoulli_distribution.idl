@@ -1,0 +1,51 @@
+/**
+ * # DistribBernoulliDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribBernoulliDistribution {
+  /**
+   * Returns the value of the "prob" element of this
+   * DistribBernoulliDistribution.
+   *
+   * @return {DistribUncertValue} the value of the "prob" element of this
+   * DistribBernoulliDistribution as a DistribUncertValue.
+   */
+  DistribUncertValue getProb();
+
+
+  /**
+   * Predicate returning @c true if this DistribBernoulliDistribution's "prob"
+   * element is set.
+   *
+   * @return {boolean} @c true if this DistribBernoulliDistribution's "prob" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetProb();
+
+
+  /**
+   * Sets the value of the "prob" element of this DistribBernoulliDistribution.
+   *
+   * @param {DistribUncertValue} prob value of the "prob" element to be set.
+   */
+  long setProb(DistribUncertValue prob);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribBernoulliDistribution object and returns the DistribUncertValue
+   * object created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createProb();
+
+
+  /**
+   * Unsets the value of the "prob" element of this
+   * DistribBernoulliDistribution.
+   */
+  long unsetProb();
+};
+
+DistribBernoulliDistribution implements DistribBase;

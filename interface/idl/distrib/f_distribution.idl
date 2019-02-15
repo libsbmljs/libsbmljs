@@ -1,0 +1,106 @@
+/**
+ * # DistribFDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribFDistribution {
+  /**
+   * Returns the value of the "numerator" element of this DistribFDistribution.
+   *
+   * @return the value of the "numerator" element of this DistribFDistribution
+   * as a DistribUncertValue*.
+   */
+  DistribUncertValue getNumerator();
+
+
+  /**
+   * Returns the value of the "denominator" element of this
+   * DistribFDistribution.
+   *
+   * @return the value of the "denominator" element of this
+   * DistribFDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getDenominator();
+
+
+  /**
+   * Returns the value of the "denominator" element of this
+   * DistribFDistribution.
+   *
+   * @return the value of the "denominator" element of this
+   * DistribFDistribution as a DistribUncertValue*.
+   */
+  DistribUncertValue getDenominator();
+
+
+  /**
+   * Predicate returning @c true if this DistribFDistribution's "numerator"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribFDistribution's "numerator" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetNumerator();
+
+
+  /**
+   * Predicate returning @c true if this DistribFDistribution's "denominator"
+   * element is set.
+   *
+   * @return {boolean} true if this DistribFDistribution's "denominator" element has
+   * been set, otherwise @c false is returned.
+   */
+  boolean isSetDenominator();
+
+
+  /**
+   * Sets the value of the "numerator" element of this DistribFDistribution.
+   *
+   * @param {DistribUncertValue} numerator DistribUncertValue* value of the "numerator" element to
+   * be set.
+   */
+  long setNumerator(DistribUncertValue numerator);
+
+
+  /**
+   * Sets the value of the "denominator" element of this DistribFDistribution.
+   *
+   * @param {DistribUncertValue} denominator DistribUncertValue* value of the "denominator" element
+   * to be set.
+   */
+  long setDenominator(DistribUncertValue denominator);
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribFDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createNumerator();
+
+
+  /**
+   * Creates a new DistribUncertValue object, adds it to this
+   * DistribFDistribution object and returns the DistribUncertValue object
+   * created.
+   *
+   * @return {DistribUncertValue} a new DistribUncertValue object instance.
+   */
+  DistribUncertValue createDenominator();
+
+
+  /**
+   * Unsets the value of the "numerator" element of this DistribFDistribution.
+   */
+  long unsetNumerator();
+
+
+  /**
+   * Unsets the value of the "denominator" element of this
+   * DistribFDistribution.
+   */
+  long unsetDenominator();
+};
+
+DistribFDistribution implements DistribContinuousUnivariateDistribution;
