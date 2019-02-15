@@ -1,0 +1,72 @@
+/**
+ * The SBML Arrays Dimension class.
+ */
+[Prefix="libsbml::"]
+interface Dimension {
+  /**
+   * Returns the value of the "size" attribute of this Dimension.
+   *
+   * @return {string} the value of the "size" attribute of this Dimension as a string.
+   */
+  DOMString getSize();
+
+
+  /**
+   * Returns the value of the "arrayDimension" attribute of this Dimension.
+   *
+   * @return {number} the value of the "arrayDimension" attribute of this Dimension as a
+   * unsigned integer.
+   */
+  unsigned long getArrayDimension();
+
+
+  /**
+   * Predicate returning true if this Dimension's "size" attribute is set.
+   *
+   * @return {boolean} true if this Dimension's "size" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetSize();
+
+
+  /**
+   * Predicate returning true if this Dimension's "arrayDimension" attribute
+   * is set.
+   *
+   * @return {boolean} true if this Dimension's "arrayDimension" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetArrayDimension();
+
+
+  /**
+   * Sets the value of the "size" attribute of this Dimension.
+   *
+   * @param {string} size value of the "size" attribute to be set.
+   */
+  long setSize(DOMString size);
+
+
+  /**
+   * Sets the value of the "arrayDimension" attribute of this Dimension.
+   *
+   * @param {number{ arrayDimension unsigned long value of the "arrayDimension" attribute
+   * to be set.
+   */
+  long setArrayDimension(unsigned long arrayDimension);
+
+
+  /**
+   * Unsets the value of the "size" attribute of this Dimension.
+   */
+  long unsetSize();
+
+
+  /**
+   * Unsets the value of the "arrayDimension" attribute of this Dimension.
+   */
+  long unsetArrayDimension();
+
+};
+
+Dimension implements SBase;

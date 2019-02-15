@@ -1,0 +1,114 @@
+/**
+ * The SBML Arrays Index class.
+ * @type {String}
+ */
+[Prefix="libsbml::"]
+interface Index {
+  /**
+   * Returns the value of the "referencedAttribute" attribute of this Index.
+   *
+   * @return {string} the value of the "referencedAttribute" attribute of this Index as
+   * a string.
+   */
+  const std::string& getReferencedAttribute() const;
+
+
+  /**
+   * Returns the value of the "arrayDimension" attribute of this Index.
+   *
+   * @return {number} the value of the "arrayDimension" attribute of this Index as a
+   * unsigned integer.
+   */
+  unsigned int getArrayDimension() const;
+
+
+  /**
+   * Predicate returning true if this Index's "referencedAttribute"
+   * attribute is set.
+   *
+   * @return {boolean} true if this Index's "referencedAttribute" attribute has been
+   * set, otherwise false is returned.
+   */
+  bool isSetReferencedAttribute() const;
+
+
+  /**
+   * Predicate returning true if this Index's "arrayDimension" attribute is
+   * set.
+   *
+   * @return {boolean} true if this Index's "arrayDimension" attribute has been set,
+   * otherwise false is returned.
+   */
+  bool isSetArrayDimension() const;
+
+
+  /**
+   * Sets the value of the "referencedAttribute" attribute of this Index.
+   *
+   * @param {string} referencedAttribute std::string& value of the "referencedAttribute"
+   * attribute to be set.
+   */
+  int setReferencedAttribute(const std::string& referencedAttribute);
+
+
+  /**
+   * Sets the value of the "arrayDimension" attribute of this Index.
+   *
+   * @param {number} arrayDimension unsigned int value of the "arrayDimension" attribute
+   * to be set.
+   */
+  int setArrayDimension(unsigned int arrayDimension);
+
+
+  /**
+   * Unsets the value of the "referencedAttribute" attribute of this Index.
+   */
+  int unsetReferencedAttribute();
+
+
+  /**
+   * Unsets the value of the "arrayDimension" attribute of this Index.
+   */
+  int unsetArrayDimension();
+
+
+  /**
+   * Returns the value of the "math" element of this Index.
+   *
+   * @return the value of the "math" element of this Index as a ASTNode*.
+   */
+  const ASTNode* getMath() const;
+
+
+  /**
+   * Returns the value of the "math" element of this Index.
+   *
+   * @return the value of the "math" element of this Index as a ASTNode*.
+   */
+  ASTNode* getMath();
+
+
+  /**
+   * Predicate returning true if this Index's "math" element is set.
+   *
+   * @return {boolean} true if this Index's "math" element has been set, otherwise @c
+   * false is returned.
+   */
+  bool isSetMath() const;
+
+
+  /**
+   * Sets the value of the "math" element of this Index.
+   *
+   * @param {ASTNode} math value of the "math" element to be set.
+   */
+  int setMath(const ASTNode* math);
+
+
+  /**
+   * Unsets the value of the "math" element of this Index.
+   */
+  int unsetMath();
+};
+
+Index implements SBase;
