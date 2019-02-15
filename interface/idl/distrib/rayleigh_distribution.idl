@@ -20,7 +20,7 @@ interface DistribRayleighDistribution {
    * @return {boolean} true if this DistribRayleighDistribution's "scale" element has
    * been set, otherwise false is returned.
    */
-  boolean isSetScale() const;
+  boolean isSetScale();
 
 
   /**

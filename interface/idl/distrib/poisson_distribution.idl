@@ -20,7 +20,7 @@ interface DistribPoissonDistribution {
    * @return {boolean} true if this DistribPoissonDistribution's "rate" element has
    * been set, otherwise false is returned.
    */
-  bool isSetRate() const;
+  bool isSetRate();
 
 
   /**

@@ -9,7 +9,7 @@ interface DistribUncertBound {
    * @return {boolean} the value of the "inclusive" attribute of this DistribUncertBound
    * as a boolean.
    */
-  boolean getInclusive() const;
+  boolean getInclusive();
 
 
   /**
@@ -19,7 +19,7 @@ interface DistribUncertBound {
    * @return {boolean true if this DistribUncertBound's "inclusive" attribute has
    * been set, otherwise false is returned.
    */
-  boolean isSetInclusive() const;
+  boolean isSetInclusive();
 
 
   /**
