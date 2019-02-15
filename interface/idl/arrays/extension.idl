@@ -1,0 +1,13 @@
+/**
+ * Base extension class.
+ */
+[Prefix="libsbml::"]
+interface ArraysExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package implemented
+   * by this libSBML extension.
+   *
+   * @return {string} the XML namespace, as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
+};

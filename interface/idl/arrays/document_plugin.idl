@@ -1,0 +1,9 @@
+/**
+ * Extension of SBMLDocument.
+ */
+[Prefix="libsbml::"]
+interface ArraysSBMLDocumentPlugin {
+
+};
+
+ArraysSBMLDocumentPlugin implements SBasePlugin;
