@@ -96,6 +96,21 @@ interface Rule {
    */
   boolean isSetMath ();
 
+
+  /**
+   * Sets the "math" subelement of this Rule to a copy of the given
+   * ASTNode.
+   *
+   * @param {ASTNode} math the AST structure of the mathematical formula.
+   *
+   * **Note:** The subelement "math" is present in SBML Levels 2
+   * and 3.  In SBML Level 1, the equivalent construct is the
+   * attribute named "formula".  LibSBML provides a unified interface to
+   * the underlying math expression and this method can be used for models
+   * of all Levels of SBML.
+   */
+  long setMath (ASTNode math);
+
   /**
    * Returns the mathematical expression of this Rule in text-string form.
    *

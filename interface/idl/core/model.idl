@@ -388,6 +388,16 @@ interface Model {
    * KineticLaws are not included.
    */
   unsigned long getNumParameters();
+
+  /**
+   * Creates a new Parameter inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {Parameter} the Parameter object created.
+   */
   Parameter createParameter();
 
   /**
@@ -543,6 +553,66 @@ interface Model {
    * attribute value or NULL if no such InitialAssignment exists.
    */
   InitialAssignment getInitialAssignmentBySymbol(DOMString symbol);
+
+
+  /**
+   * Creates a new InitialAssignment inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {InitialAssignment} the InitialAssignment object created.
+   */
+  InitialAssignment createInitialAssignment ();
+
+
+  /**
+   * Creates a new AlgebraicRule inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {AlgebraicRule} the AlgebraicRule object created.
+   */
+  AlgebraicRule createAlgebraicRule ();
+
+
+  /**
+   * Creates a new AssignmentRule inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {AssignmentRule} the AssignmentRule object created.
+   */
+  AssignmentRule createAssignmentRule ();
+
+
+  /**
+   * Creates a new RateRule inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {RateRule} the RateRule object created.
+   */
+  RateRule createRateRule ();
+
+
+  /**
+   * Creates a new Constraint inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {Constraint} the Constraint object created.
+   */
+  Constraint createConstraint ();
 };
 
 Model implements SBase;
