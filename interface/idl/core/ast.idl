@@ -593,4 +593,41 @@ interface ASTNode {
   * Will become a child of the parent node.
   */
  long addChild (ASTNode disownedChild);
+
+
+ /**
+  * Returns true (non-zero) if this node has a value for the MathML
+  * attribute "class".
+  *
+  * @return {boolean} true if this ASTNode has an attribute class, false otherwise.
+  */
+ boolean isSetClass();
+
+
+ /**
+  * Sets the MathML class of this ASTNode to className.
+  *
+  * @param {string} className string representing the MathML class for this node.
+  */
+ long setClass (DOMString className);
+
+
+ /**
+  * Gets the class of this ASTNode.
+  *
+  * @return {DOMString} the MathML class of this ASTNode.
+  */
+ DOMString getClass ();
+
+ /**
+  * Returns true or false depending on whether this
+  * ASTNode is well-formed.
+  *
+  * **Note:** An ASTNode may be well-formed, with each node and its children
+  * having the appropriate number of children for the given type, but may
+  * still be invalid in the context of its use within an SBML model.
+  *
+  * @return true if this ASTNode is well-formed, false otherwise.
+  */
+  boolean isWellFormedASTNode();
 };

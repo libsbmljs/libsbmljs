@@ -179,4 +179,96 @@
  * assignment.
  */
 [Prefix="libsbml::"]
-interface InitialAssignment {};
+interface InitialAssignment {
+  /**
+   * Get the value of the "symbol" attribute of this InitialAssignment.
+   *
+   * @return {string} the identifier string stored as the "symbol" attribute value
+   * in this InitialAssignment.
+   */
+  DOMString getSymbol ();
+
+
+  /**
+   * Get the mathematical formula of this InitialAssignment.
+   *
+   * @return {ASTNode} the value of the "math" subelement of this
+   * InitialAssignment, or NULL if the math is not set.
+   */
+  [Const] ASTNode getMath ();
+
+
+  /**
+   * Predicate returning true if this
+   * InitialAssignment's "symbol" attribute is set.
+   *
+   * @return {boolean} true if the "symbol" attribute of this InitialAssignment
+   * is set, false otherwise.
+   */
+  boolean isSetSymbol ();
+
+
+  /**
+   * Predicate returning true if this
+   * InitialAssignment's "math" subelement contains a value.
+   *
+   * @return {boolean} true if the "math" for this InitialAssignment is set,
+   * false otherwise.
+   */
+  boolean isSetMath ();
+
+
+  /**
+   * Sets the "symbol" attribute value of this InitialAssignment.
+   *
+   * @param {string} sid the identifier of an element defined in this model whose
+   * value can be set.
+   */
+  long setSymbol (DOMString sid);
+
+
+  /**
+   * Unsets the "symbol" attribute value of this InitialAssignment.
+   */
+  long unsetSymbol ();
+
+
+  /**
+   * Sets the "math" subelement of this InitialAssignment.
+   *
+   * The AST passed in @p math is copied.
+   *
+   * @param {ASTNode} math an AST containing the mathematical expression to
+   * be used as the formula for this InitialAssignment.
+   */
+  long setMath (ASTNode math);
+
+
+  /**
+   * Calculates and returns a UnitDefinition that expresses the units
+   * of measurement assumed for the "math" expression of this
+   * InitialAssignment.
+   *
+   * @return {UnitDefinition} a UnitDefinition that expresses the units of the math
+   * expression of this InitialAssignment, or NULL if one cannot be constructed.
+   */
+  UnitDefinition getDerivedUnitDefinition();
+
+
+  /**
+   * Predicate returning true if the math expression of this
+   * InitialAssignment contains parameters/numbers with undeclared units.
+   *
+   * @return {boolean} true if the math expression of this InitialAssignment
+   * includes parameters/numbers
+   * with undeclared units, false otherwise.
+   *
+   * **Note:** A return value of true indicates that the UnitDefinition
+   * returned by InitialAssignment::getDerivedUnitDefinition may not
+   * accurately represent the units of the expression.
+   */
+  boolean containsUndeclaredUnits();
+
+};
+
+InitialAssignment implements SBase;
