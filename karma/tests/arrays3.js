@@ -1,5 +1,5 @@
 describe("Arrays test", function() {
-  it('Tests the arrays package (2/3)', (done) => {
+  it('Tests the arrays package (3/3)', (done) => {
     libsbml().then((libsbml) => {
         try {
           // create new document
@@ -11,12 +11,21 @@ describe("Arrays test", function() {
 
           const model = doc.createModel()
 
+          // create the parameters
+
+          // first parameter - for dimension m
           let p = model.createParameter()
+          p.setId("m")
+          p.setConstant(true)
+          p.setValue(2)
+
+          // second parameter - for dimension n
+          p = model.createParameter()
           p.setId("n")
           p.setConstant(true)
-          p.setValue(10)
+          p.setValue(1)
 
-          // second parameter
+          // third parameter - 2 x 1 matrix of parameters
           p = model.createParameter()
           p.setId("x")
           p.setConstant(false)
@@ -24,11 +33,18 @@ describe("Arrays test", function() {
 
           // create the Dimensions via the Plugin
           const arraysPlug = libsbml.castObject(p.findPlugin("arrays"), libsbml.ArraysSBasePlugin)
-          const dim = arraysPlug.createDimension()
+
+          // first dimension
+          let dim = arraysPlug.createDimension()
           dim.setArrayDimension(0)
+          dim.setSize("m")
+
+          // second dimension
+          dim = arraysPlug.createDimension()
+          dim.setArrayDimension(1)
           dim.setSize("n")
 
-          // third parameter
+          // other parameters
           p = model.createParameter()
           p.setId("y")
           p.setConstant(true)
@@ -40,23 +56,25 @@ describe("Arrays test", function() {
           const ia = model.createInitialAssignment()
           ia.setSymbol("x")
 
-          const math = new libsbml.ASTNode(libsbml.AST_LINEAR_ALGEBRA_VECTOR)
+          const row1 = new libsbml.ASTNode(libsbml.AST_LINEAR_ALGEBRA_VECTOR)
 
           const ci1 = new libsbml.ASTNode(libsbml.AST_NAME)
           ci1.setName("y")
 
+          row1.addChild(ci1)
+
+          const row2 = new libsbml.ASTNode(libsbml.AST_LINEAR_ALGEBRA_VECTOR)
+
           const ci2 = new libsbml.ASTNode(libsbml.AST_INTEGER)
           ci2.setValue(2)
 
-          const c1 = new libsbml.ASTNode(libsbml.AST_FUNCTION_COS)
-          const c11 = new libsbml.ASTNode(libsbml.AST_INTEGER)
-          c11.setValue(5)
-          c1.addChild(c11)
+          row2.addChild(ci2)
 
-          math.addChild(ci1)
-          math.addChild(ci2)
-          math.addChild(c1)
-          math.setClass("ss")
+          const math = new libsbml.ASTNode(libsbml.AST_LINEAR_ALGEBRA_VECTOR)
+
+          math.addChild(row1)
+          math.addChild(row2)
+
           ia.setMath(math)
 
           const writer = new libsbml.SBMLWriter()

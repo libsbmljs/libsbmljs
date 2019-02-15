@@ -1,5 +1,5 @@
-describe("Multi test", function() {
-  it('Tests the multi package', (done) => {
+describe("Arrays test", function() {
+  it('Tests the arrays package (1/3)', (done) => {
     libsbml().then((libsbml) => {
         try {
           // create new document
