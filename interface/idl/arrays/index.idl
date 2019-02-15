@@ -10,7 +10,7 @@ interface Index {
    * @return {string} the value of the "referencedAttribute" attribute of this Index as
    * a string.
    */
-  const std::string& getReferencedAttribute() const;
+  DOMString getReferencedAttribute();
 
 
   /**
@@ -19,7 +19,7 @@ interface Index {
    * @return {number} the value of the "arrayDimension" attribute of this Index as a
    * unsigned integer.
    */
-  unsigned int getArrayDimension() const;
+  unsigned long getArrayDimension();
 
 
   /**
@@ -29,7 +29,7 @@ interface Index {
    * @return {boolean} true if this Index's "referencedAttribute" attribute has been
    * set, otherwise false is returned.
    */
-  bool isSetReferencedAttribute() const;
+  boolean isSetReferencedAttribute();
 
 
   /**
@@ -39,7 +39,7 @@ interface Index {
    * @return {boolean} true if this Index's "arrayDimension" attribute has been set,
    * otherwise false is returned.
    */
-  bool isSetArrayDimension() const;
+  boolean isSetArrayDimension();
 
 
   /**
@@ -48,44 +48,36 @@ interface Index {
    * @param {string} referencedAttribute std::string& value of the "referencedAttribute"
    * attribute to be set.
    */
-  int setReferencedAttribute(const std::string& referencedAttribute);
+  long setReferencedAttribute(DOMString referencedAttribute);
 
 
   /**
    * Sets the value of the "arrayDimension" attribute of this Index.
    *
-   * @param {number} arrayDimension unsigned int value of the "arrayDimension" attribute
+   * @param {number} arrayDimension unsigned long value of the "arrayDimension" attribute
    * to be set.
    */
-  int setArrayDimension(unsigned int arrayDimension);
+  long setArrayDimension(unsigned long arrayDimension);
 
 
   /**
    * Unsets the value of the "referencedAttribute" attribute of this Index.
    */
-  int unsetReferencedAttribute();
+  long unsetReferencedAttribute();
 
 
   /**
    * Unsets the value of the "arrayDimension" attribute of this Index.
    */
-  int unsetArrayDimension();
+  long unsetArrayDimension();
 
 
   /**
    * Returns the value of the "math" element of this Index.
    *
-   * @return the value of the "math" element of this Index as a ASTNode*.
+   * @return the value of the "math" element of this Index as a ASTNode.
    */
-  const ASTNode* getMath() const;
-
-
-  /**
-   * Returns the value of the "math" element of this Index.
-   *
-   * @return the value of the "math" element of this Index as a ASTNode*.
-   */
-  ASTNode* getMath();
+  ASTNode getMath();
 
 
   /**
@@ -94,7 +86,7 @@ interface Index {
    * @return {boolean} true if this Index's "math" element has been set, otherwise @c
    * false is returned.
    */
-  bool isSetMath() const;
+  boolean isSetMath();
 
 
   /**
@@ -102,13 +94,13 @@ interface Index {
    *
    * @param {ASTNode} math value of the "math" element to be set.
    */
-  int setMath(const ASTNode* math);
+  long setMath(ASTNode math);
 
 
   /**
    * Unsets the value of the "math" element of this Index.
    */
-  int unsetMath();
+  long unsetMath();
 };
 
 Index implements SBase;

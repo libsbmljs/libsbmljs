@@ -74,8 +74,9 @@ ext.documentationJSScript = Paths.get(project.rootDir.path,"node_modules","docum
 def documentationJSScriptFile = new File(documentationJSScript)
 
 // additional build options
-// TODO: auto-discover
-ext.isExperimentalBranch = findProperty('isExperimentalBranch') || false
+def arraysDir = new File(Paths.get("libsbml","src","sbml","packages","arrays").toString())
+def arraysExists = arraysDir.exists() && arraysDir.isDirectory()
+ext.isExperimentalBranch = findProperty('isExperimentalBranch') || arraysExists
 ext.withEmrun = findProperty('withEmrun') || false
 
 // optional libsbml packages
@@ -85,11 +86,11 @@ ext.enableFBC = findProperty('enableFBC') || true
 ext.enableMulti = findProperty('enableMulti') || true
 ext.enableQual = findProperty('enableQual') || true
 ext.enableComp = findProperty('enableComp') || true
-ext.enableDistrib = findProperty('enableDistrib') || isExperimentalBranch
-ext.enableDyn = findProperty('enableDyn') || isExperimentalBranch
+ext.enableDistrib = findProperty('enableDistrib') || false
+ext.enableDyn = findProperty('enableDyn') || false
 ext.enableGroups = findProperty('enableGroups') || true
 ext.enableArrays = findProperty('enableArrays') || isExperimentalBranch
-ext.enableSpatial = findProperty('enableSpatial') || isExperimentalBranch
+ext.enableSpatial = findProperty('enableSpatial') || false
 
 class ConcatFiles extends DefaultTask {
   def files = []
@@ -247,6 +248,14 @@ task combineIDL(type: ConcatFiles) {
     include Paths.get(idl_dir, "comp", "document_plugin.idl")
     include Paths.get(idl_dir, "comp", "extension.idl")
   }
+  if (enableArrays) {
+    include Paths.get(idl_dir, "arrays", "ast_plugin.idl")
+    include Paths.get(idl_dir, "arrays", "document_plugin.idl")
+    include Paths.get(idl_dir, "arrays", "extension.idl")
+    include Paths.get(idl_dir, "arrays", "sbase_plugin.idl")
+    include Paths.get(idl_dir, "arrays", "dimension.idl")
+    include Paths.get(idl_dir, "arrays", "index.idl")
+  }
   target = file(Paths.get("$buildDir","interface","idl","sbml_interface.idl"))
 }
 combineIDL.dependsOn(generateAstEnum)
@@ -275,6 +284,9 @@ task combineCPP(type: ConcatFiles) {
   }
   if (enableComp) {
     include Paths.get(cpp_dir, "comp_interface_wrapper.cpp")
+  }
+  if (enableArrays) {
+    include Paths.get(cpp_dir, "arrays_interface_wrapper.cpp")
   }
   include Paths.get(cpp_dir, "sbml_interface_proxy.cpp")
   target = file(Paths.get("$buildDir","interface","cpp","sbml_interface_wrapper.cpp"))

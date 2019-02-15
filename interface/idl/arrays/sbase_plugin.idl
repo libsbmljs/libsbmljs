@@ -39,7 +39,7 @@ interface ArraysSBasePlugin {
    *
    * @return {number} the number of Index objects in this ArraysSBasePlugin.
    */
-  unsigned long getNumIndices() const;
+  unsigned long getNumIndices();
 
 
   /**
@@ -89,7 +89,7 @@ interface ArraysSBasePlugin {
    * @return {Dimension} the first Dimension in this ArraysSBasePlugin based on the given
    * size attribute or NULL if no such Dimension exists.
    */
-  Dimension getDimensionBySize(const std::string& sid);
+  Dimension getDimensionBySize(DOMString sid);
 
 
   /**
@@ -118,7 +118,7 @@ interface ArraysSBasePlugin {
    *
    * @return {number} the number of Dimension objects in this ArraysSBasePlugin.
    */
-  unsigned long getNumDimensions() const;
+  unsigned long getNumDimensions();
 
 
   /**
