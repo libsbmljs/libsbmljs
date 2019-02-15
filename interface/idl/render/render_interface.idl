@@ -590,6 +590,10 @@ interface LocalRenderInformation {
 
 [Prefix="libsbml::"]
 interface RenderExtension {
+  /**
+   * Returns URI of supported versions of this package.
+   */
+  static DOMString getXmlnsL3V1V1();
 };
 
 [Prefix="libsbmljs::"]

@@ -9,7 +9,6 @@ Object.defineProperty(ASTNode.prototype, "children", {
 });
 
 ASTNode.prototype["findPlugin"] = function(name) {
-  console.log('ASTNode find plugin num',this.getNumPlugins());
   for(var i=0; i<this.getNumPlugins(); i++) {
     if(this.getPlugin(i).getPackageName() == name) {
       return this.getPlugin(i);

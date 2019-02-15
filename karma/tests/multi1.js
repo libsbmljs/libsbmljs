@@ -1,5 +1,5 @@
-describe("FBC test", function() {
-  it('Tests the groups package', (done) => {
+describe("Multi test", function() {
+  it('Tests the multi package', (done) => {
     libsbml().then((libsbml) => {
         try {
           // create new document
