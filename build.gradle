@@ -613,41 +613,41 @@ generateDocumentation.dependsOn(combineDocstrings)
 task combineTests(type: ConcatFiles) {
   String tests_dir = Paths.get("karma","tests")
   include Paths.get(tests_dir, "header.js")
-  // include Paths.get(tests_dir, "reading.js")
-  // include Paths.get(tests_dir, "writing.js")
-  // include Paths.get(tests_dir, "units.js")
-  // if (enableLayout) {
-  //   include Paths.get(tests_dir, "layout.js")
-  // }
-  // if (enableFBC) {
-  //   include Paths.get(tests_dir, "fbc.js")
-  // }
-  // if (enableComp) {
-  //   include Paths.get(tests_dir, "comp1.js")
-  //   include Paths.get(tests_dir, "comp2.js")
-  //   include Paths.get(tests_dir, "comp3.js")
-  //   include Paths.get(tests_dir, "comp4.js")
-  // }
-  // if (enableGroups) {
-  //   include Paths.get(tests_dir, "groups1.js")
-  //   include Paths.get(tests_dir, "groups2.js")
-  // }
-  // if (enableQual) {
-  //   include Paths.get(tests_dir, "qual.js")
-  // }
-  // if (enableMulti) {
-  //   include Paths.get(tests_dir, "multi1.js")
-  //   include Paths.get(tests_dir, "multi2.js")
-  //   include Paths.get(tests_dir, "multi3.js")
-  // }
-  // if (enableRender) {
-  //   include Paths.get(tests_dir, "render.js")
-  // }
-  // if (enableArrays) {
-  //   include Paths.get(tests_dir, "arrays1.js")
-  //   include Paths.get(tests_dir, "arrays2.js")
-  //   include Paths.get(tests_dir, "arrays3.js")
-  // }
+  include Paths.get(tests_dir, "reading.js")
+  include Paths.get(tests_dir, "writing.js")
+  include Paths.get(tests_dir, "units.js")
+  if (enableLayout) {
+    include Paths.get(tests_dir, "layout.js")
+  }
+  if (enableFBC) {
+    include Paths.get(tests_dir, "fbc.js")
+  }
+  if (enableComp) {
+    include Paths.get(tests_dir, "comp1.js")
+    include Paths.get(tests_dir, "comp2.js")
+    include Paths.get(tests_dir, "comp3.js")
+    include Paths.get(tests_dir, "comp4.js")
+  }
+  if (enableGroups) {
+    include Paths.get(tests_dir, "groups1.js")
+    include Paths.get(tests_dir, "groups2.js")
+  }
+  if (enableQual) {
+    include Paths.get(tests_dir, "qual.js")
+  }
+  if (enableMulti) {
+    include Paths.get(tests_dir, "multi1.js")
+    include Paths.get(tests_dir, "multi2.js")
+    include Paths.get(tests_dir, "multi3.js")
+  }
+  if (enableRender) {
+    include Paths.get(tests_dir, "render.js")
+  }
+  if (enableArrays) {
+    include Paths.get(tests_dir, "arrays1.js")
+    include Paths.get(tests_dir, "arrays2.js")
+    include Paths.get(tests_dir, "arrays3.js")
+  }
   if (enableDistrib) {
     include Paths.get(tests_dir, "distrib1.js")
   }
