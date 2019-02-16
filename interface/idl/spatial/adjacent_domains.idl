@@ -1,0 +1,72 @@
+/**
+ * # AdjacentDomains class
+ */
+[Prefix="libsbml::"]
+interface AdjacentDomains {
+  /**
+   * Returns the value of the "domain1" attribute of this AdjacentDomains.
+   *
+   * @return the value of the "domain1" attribute of this AdjacentDomains as a
+   * string.
+   */
+  DOMString getDomain1();
+
+
+  /**
+   * Returns the value of the "domain2" attribute of this AdjacentDomains.
+   *
+   * @return the value of the "domain2" attribute of this AdjacentDomains as a
+   * string.
+   */
+  DOMString getDomain2();
+
+
+  /**
+   * Predicate returning true if this AdjacentDomains's "domain1" attribute
+   * is set.
+   *
+   * return {boolean} true if this AdjacentDomains's "domain1" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDomain1();
+
+
+  /**
+   * Predicate returning true if this AdjacentDomains's "domain2" attribute
+   * is set.
+   *
+   * return {boolean} true if this AdjacentDomains's "domain2" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDomain2();
+
+
+  /**
+   * Sets the value of the "domain1" attribute of this AdjacentDomains.
+   *
+   * @param {string} domain1 DOMString& value of the "domain1" attribute to be set.
+   */
+  long setDomain1(DOMString domain1);
+
+
+  /**
+   * Sets the value of the "domain2" attribute of this AdjacentDomains.
+   *
+   * @param {string} domain2 DOMString& value of the "domain2" attribute to be set.
+   */
+  long setDomain2(DOMString domain2);
+
+
+  /**
+   * Unsets the value of the "domain1" attribute of this AdjacentDomains.
+   */
+  long unsetDomain1();
+
+
+  /**
+   * Unsets the value of the "domain2" attribute of this AdjacentDomains.
+   */
+  long unsetDomain2();
+};
+
+AdjacentDomains implements SBase;

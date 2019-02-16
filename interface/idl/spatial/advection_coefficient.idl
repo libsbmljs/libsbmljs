@@ -1,0 +1,86 @@
+/**
+ * # AdvectionCoefficient class
+ */
+[Prefix="libsbml::"]
+interface AdvectionCoefficient {
+  /**
+   * Returns the value of the "variable" attribute of this
+   * AdvectionCoefficient.
+   *
+   * @return {string} the value of the "variable" attribute of this AdvectionCoefficient
+   * as a string.
+   */
+  DOMString getVariable();
+
+
+  /**
+   * Returns the value of the "coordinate" attribute of this
+   * AdvectionCoefficient.
+   *
+   * @return {CoordinateKind_t} the value of the "coordinate" attribute of this
+   * AdvectionCoefficient as a CoordinateKind_t.
+   */
+  libsbml__idl__CoordinateKind_t getCoordinate();
+
+
+  /**
+   * Returns the value of the "coordinate" attribute of this
+   * AdvectionCoefficient.
+   *
+   * @return {string} the value of the "coordinate" attribute of this
+   * AdvectionCoefficient as a string.
+   */
+  DOMString getCoordinateAsString();
+
+
+  /**
+   * Predicate returning true if this AdvectionCoefficient's "variable"
+   * attribute is set.
+   *
+   * return {boolean} true if this AdvectionCoefficient's "variable" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetVariable();
+
+
+  /**
+   * Predicate returning true if this AdvectionCoefficient's "coordinate"
+   * attribute is set.
+   *
+   * return {boolean} true if this AdvectionCoefficient's "coordinate" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetCoordinate();
+
+
+  /**
+   * Sets the value of the "variable" attribute of this AdvectionCoefficient.
+   *
+   * @param {string} variable DOMString& value of the "variable" attribute to be set.
+   */
+  long setVariable(DOMString variable);
+
+
+  /**
+   * Sets the value of the "coordinate" attribute of this AdvectionCoefficient.
+   *
+   * @param {CoordinateKind_t} coordinate value of the "coordinate" attribute to
+   * be set.
+   */
+  long setCoordinate(libsbml__idl__CoordinateKind_t coordinate);
+
+
+  /**
+   * Unsets the value of the "variable" attribute of this AdvectionCoefficient.
+   */
+  long unsetVariable();
+
+
+  /**
+   * Unsets the value of the "coordinate" attribute of this
+   * AdvectionCoefficient.
+   */
+  long unsetCoordinate();
+};
+
+AdvectionCoefficient implements SBase;

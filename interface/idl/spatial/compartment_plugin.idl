@@ -14,11 +14,11 @@ interface SpatialCompartmentPlugin {
 
 
   /**
-   * Predicate returning @c true if this SpatialCompartmentPlugin's
+   * Predicate returning true if this SpatialCompartmentPlugin's
    * "compartmentMapping" element is set.
    *
    * @return {boolean} true if this SpatialCompartmentPlugin's "compartmentMapping"
-   * element has been set, otherwise @c false is returned.
+   * element has been set, otherwise false is returned.
    */
   boolean isSetCompartmentMapping();
 
