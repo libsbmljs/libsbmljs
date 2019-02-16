@@ -65,7 +65,7 @@ interface DistribUncertValue {
    *
    * @param {number} value double value of the "value" attribute to be set.
    */
-  int setValue(double value);
+  long setValue(double value);
 
 
   /**
@@ -73,7 +73,7 @@ interface DistribUncertValue {
    *
    * @param {string} var std::string& value of the "var" attribute to be set.
    */
-  int setVar(DOMString var);
+  long setVar(DOMString var);
 
 
   /**
@@ -81,25 +81,25 @@ interface DistribUncertValue {
    *
    * @param {string} units std::string& value of the "units" attribute to be set.
    */
-  int setUnits(DOMString units);
+  long setUnits(DOMString units);
 
 
   /**
    * Unsets the value of the "value" attribute of this DistribUncertValue.
    */
-  int unsetValue();
+  long unsetValue();
 
 
   /**
    * Unsets the value of the "var" attribute of this DistribUncertValue.
    */
-  int unsetVar();
+  long unsetVar();
 
 
   /**
    * Unsets the value of the "units" attribute of this DistribUncertValue.
    */
-  int unsetUnits();
+  long unsetUnits();
 
 
   /**
@@ -109,7 +109,7 @@ interface DistribUncertValue {
    * @return {boolean} true if this abstract "DistribUncertValue" is of type
    * DistribUncertBound, false otherwise
    */
-  virtual boolean isDistribUncertBound();
+  boolean isDistribUncertBound();
 
 
   /**
@@ -119,7 +119,7 @@ interface DistribUncertValue {
    * @return {boolean} true if this abstract "DistribUncertValue" is of type
    * DistribExternalParameter, false otherwise
    */
-  virtual boolean isDistribExternalParameter();
+  boolean isDistribExternalParameter();
 };
 
 DistribUncertValue implements DistribBase;
