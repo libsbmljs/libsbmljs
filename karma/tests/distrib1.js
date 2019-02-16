@@ -58,8 +58,8 @@ describe("Distrib test", function() {
           const serializedSBML = writer.writeSBMLToString(document)
 
           // make sure the expected tags are there
-          console.log(serializedSBML)
-          // expect(serializedSBML).toContain('multi:listOfSpeciesTypes')
+          expect(serializedSBML).toContain('distrib:drawFromDistribution')
+          expect(serializedSBML).toContain('distrib:normalDistribution')
 
           const reader = new libsbml.SBMLReader()
 

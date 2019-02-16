@@ -4,6 +4,21 @@
 [Prefix="libsbml::"]
 interface DistribExponentialDistribution {
   /**
+   * Creates a new DistribExponentialDistribution using the given SBML Level,
+   * Version and "distrib" package version.
+   *
+   * @param {number} level an unsigned int, the SBML Level to assign to this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {number} version an unsigned int, the SBML Version to assign to this
+   * DistribUncertStatisticSpan.
+   *
+   * @param {number} pkgVersion an unsigned int, the SBML Distrib Version to assign to
+   * this DistribUncertStatisticSpan.
+   */
+  void DistribExponentialDistribution(unsigned long level, unsigned long version, unsigned long pkgVersion);
+
+  /**
    * Returns the value of the "rate" element of this
    * DistribExponentialDistribution.
    *
