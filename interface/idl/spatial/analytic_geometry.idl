@@ -11,10 +11,8 @@ interface AnalyticGeometry {
    *
    * @return the nth AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry.
-   *
-   *
    */
-  const AnalyticVolume* getAnalyticVolume(unsigned long n);
+  AnalyticVolume getAnalyticVolume(unsigned long n);
 
 
   /**
@@ -26,11 +24,8 @@ interface AnalyticGeometry {
    * @return the AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry with the given id or NULL if no such AnalyticVolume
    * exists.
-   *
-   *
-   *
    */
-  AnalyticVolume* getAnalyticVolume(DOMString sid);
+  AnalyticVolume getAnalyticVolume(DOMString sid);
 
 
   /**
@@ -42,11 +37,8 @@ interface AnalyticGeometry {
    * @return the AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry with the given id or NULL if no such AnalyticVolume
    * exists.
-   *
-   *
-   *
    */
-  const AnalyticVolume* getAnalyticVolume(DOMString sid);
+  AnalyticVolume getAnalyticVolume(DOMString sid);
 
 
   /**
@@ -59,7 +51,7 @@ interface AnalyticGeometry {
    * @return the first AnalyticVolume in this AnalyticGeometry based on the
    * given domainType attribute or NULL if no such AnalyticVolume exists.
    */
-  AnalyticVolume* getAnalyticVolumeByDomainType(DOMString sid);
+  AnalyticVolume getAnalyticVolumeByDomainType(DOMString sid);
 
 
   /**
@@ -72,10 +64,8 @@ interface AnalyticGeometry {
    * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @copydetails doc_note_object_is_copied
-   *
-   *
    */
-  long addAnalyticVolume(const AnalyticVolume* av);
+  long addAnalyticVolume(AnalyticVolume av);
 
 
   /**
@@ -91,10 +81,8 @@ interface AnalyticGeometry {
    * object and returns the AnalyticVolume object created.
    *
    * @return a new AnalyticVolume object instance.
-   *
-   *
    */
-  AnalyticVolume* createAnalyticVolume();
+  AnalyticVolume createAnalyticVolume();
 
 
   /**
@@ -111,7 +99,7 @@ interface AnalyticGeometry {
    * @note the caller owns the returned object and is responsible for deleting
    * it.
    */
-  AnalyticVolume* removeAnalyticVolume(unsigned long n);
+  AnalyticVolume removeAnalyticVolume(unsigned long n);
 };
 
 AnalyticGeometry implements GeometryDefinition;
