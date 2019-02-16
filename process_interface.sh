@@ -3,8 +3,14 @@
 
 # documentation return boolean
 find $1 -type f -name '*idl' | xargs sed -i 's/@return @c/return {boolean}/g'
+# documentation unrecognized tags
 find $1 -type f -name '*idl' | xargs sed -i 's/@c //g'
 find $1 -type f -name '*idl' | xargs sed -i 's/@p //g'
+# documentation see also
+find $1 -type f -name '*idl' | xargs sed -i 's/\* @see.*/*/g'
+# collapse trailing docstrings
+find $1 -type f -name '*idl' | xargs sed -iE 's/\*\s+\*\//*//g'
+
 
 # primitive types
 find $1 -type f -name '*idl' | xargs sed -i 's/\bbool\b/boolean/g'
