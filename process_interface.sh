@@ -9,7 +9,9 @@ find $1 -type f -name '*idl' | xargs sed -i 's/@p //g'
 # documentation see also
 find $1 -type f -name '*idl' | xargs sed -i 's/\* @see.*/*/g'
 # collapse trailing docstrings
-find $1 -type f -name '*idl' | xargs sed -Ei '{N; s:\*\s+\*/:*/:g}'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 
 
 # primitive types
@@ -21,7 +23,7 @@ find $1 -type f -name '*idl' | xargs sed -i 's/const std::string&/DOMString/g'
 find $1 -type f -name '*idl' | xargs sed -i 's/std::string/DOMString/g'
 
 # pointers
-find $1 -type f -name '*idl' | xargs sed -Ei 's/^  ([\w]+)\*/  \1/g'
+find $1 -type f -name '*idl' | xargs sed -Ei 's/^  (\w+)\*/  \1/g'
 find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)\*/\1/g'
 
 # const methods
