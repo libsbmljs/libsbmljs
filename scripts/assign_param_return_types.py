@@ -116,7 +116,7 @@ with open(filepath) as f:
                 yield line
 
     transformed_lines = transform_lines(lines)
-    transformed_text = '\n'.join(l for l in transformed_lines if keep_lines[l])
+    transformed_text = '\n'.join(l for n,l in enumerate(transformed_lines) if keep_lines[n])
 
 with open(filepath,'w') as f:
     f.write(transformed_text)
