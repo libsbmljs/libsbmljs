@@ -34,3 +34,6 @@ find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)\*/\1/g'
 
 # const methods
 find $1 -type f -name '*idl' | xargs sed -i 's/ const;$/;/g'
+
+# apply the python script
+find $1 -type f -name '*idl' | xargs python3 "$( dirname "${BASH_SOURCE[0]}" )"/assign_param_return)types.py

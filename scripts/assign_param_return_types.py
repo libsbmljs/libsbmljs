@@ -86,4 +86,7 @@ with open(filepath) as f:
                 yield line
 
     transformed_text = '\n'.join(transform_lines(lines))
-    print(transformed_text)
+    # print(transformed_text)
+
+with open(filepath,'w') as f:
+    f.write(transformed_text)
