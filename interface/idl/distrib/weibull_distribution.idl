@@ -30,7 +30,7 @@ interface DistribWeibullDistribution {
    * @return {boolean} true if this DistribWeibullDistribution's "scale" element has
    * been set, otherwise @c false is returned.
    */
-  bool isSetScale();
+  boolean isSetScale();
 
 
   /**
@@ -40,7 +40,7 @@ interface DistribWeibullDistribution {
    * @return {boolean} true if this DistribWeibullDistribution's "shape" element has
    * been set, otherwise @c false is returned.
    */
-  bool isSetShape();
+  boolean isSetShape();
 
 
   /**
@@ -48,7 +48,7 @@ interface DistribWeibullDistribution {
    *
    * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
-  int setScale(DistribUncertValue scale);
+  long setScale(DistribUncertValue scale);
 
 
   /**
@@ -56,7 +56,7 @@ interface DistribWeibullDistribution {
    *
    * @param {DistribUncertValue} shape DistribUncertValue value of the "shape" element to be set.
    */
-  int setShape(DistribUncertValue shape);
+  long setShape(DistribUncertValue shape);
 
 
   /**
@@ -83,14 +83,14 @@ interface DistribWeibullDistribution {
    * Unsets the value of the "scale" element of this
    * DistribWeibullDistribution.
    */
-  int unsetScale();
+  long unsetScale();
 
 
   /**
    * Unsets the value of the "shape" element of this
    * DistribWeibullDistribution.
    */
-  int unsetShape();
+  long unsetShape();
 };
 
 DistribWeibullDistribution implements DistribContinuousUnivariateDistribution;

@@ -19,7 +19,7 @@ interface DistribCategory {
    * @return {boolean} @c true if this DistribCategory's "rank" attribute has been set,
    * otherwise @c false is returned.
    */
-  bool isSetRank();
+  boolean isSetRank();
 
 
   /**
@@ -61,7 +61,7 @@ interface DistribCategory {
    * @return {boolean} @c true if this DistribCategory's "probability" element has been
    * set, otherwise @c false is returned.
    */
-  bool isSetProbability();
+  boolean isSetProbability();
 
 
   /**
@@ -71,7 +71,7 @@ interface DistribCategory {
    * @return {boolean} @c true if this DistribCategory's "value" element has been set,
    * otherwise @c false is returned.
    */
-  bool isSetValue();
+  boolean isSetValue();
 
 
   /**

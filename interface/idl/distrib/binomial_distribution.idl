@@ -51,7 +51,7 @@ interface DistribBinomialDistribution {
    * @param {DistribUncertValue} numberOfTrials DistribUncertValue value of the "numberOfTrials"
    * element to be set.
    */
-  int setNumberOfTrials(DistribUncertValue numberOfTrials);
+  long setNumberOfTrials(DistribUncertValue numberOfTrials);
 
 
   /**
@@ -61,7 +61,7 @@ interface DistribBinomialDistribution {
    * @param {DistribUncertValue} probabilityOfSuccess value of the
    * "probabilityOfSuccess" element to be set.
    */
-  int setProbabilityOfSuccess(DistribUncertValue probabilityOfSuccess);
+  long setProbabilityOfSuccess(DistribUncertValue probabilityOfSuccess);
 
 
   /**
@@ -88,14 +88,14 @@ interface DistribBinomialDistribution {
    * Unsets the value of the "numberOfTrials" element of this
    * DistribBinomialDistribution.
    */
-  int unsetNumberOfTrials();
+  long unsetNumberOfTrials();
 
 
   /**
    * Unsets the value of the "probabilityOfSuccess" element of this
    * DistribBinomialDistribution.
    */
-  int unsetProbabilityOfSuccess();
+  long unsetProbabilityOfSuccess();
 };
 
 DistribBinomialDistribution implements DistribBase;

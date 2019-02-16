@@ -20,7 +20,7 @@ interface DistribPoissonDistribution {
    * @return {boolean} true if this DistribPoissonDistribution's "rate" element has
    * been set, otherwise false is returned.
    */
-  bool isSetRate();
+  boolean isSetRate();
 
 
   /**
@@ -28,7 +28,7 @@ interface DistribPoissonDistribution {
    *
    * @param {DistribUncertValue} rate DistribUncertValue value of the "rate" element to be set.
    */
-  int setRate(DistribUncertValue rate);
+  long setRate(DistribUncertValue rate);
 
 
   /**
@@ -44,7 +44,7 @@ interface DistribPoissonDistribution {
   /**
    * Unsets the value of the "rate" element of this DistribPoissonDistribution.
    */
-  int unsetRate();
+  long unsetRate();
 };
 
 DistribPoissonDistribution implements DistribDiscreteUnivariateDistribution;

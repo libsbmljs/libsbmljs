@@ -40,7 +40,7 @@ interface DistribCauchyDistribution {
    * @return {boolean} @c true if this DistribCauchyDistribution's "location" element has
    * been set, otherwise @c false is returned.
    */
-  bool isSetLocation();
+  boolean isSetLocation();
 
 
   /**
@@ -50,7 +50,7 @@ interface DistribCauchyDistribution {
    * @return {boolean} @c true if this DistribCauchyDistribution's "scale" element has
    * been set, otherwise @c false is returned.
    */
-  bool isSetScale();
+  boolean isSetScale();
 
 
   /**
@@ -60,7 +60,7 @@ interface DistribCauchyDistribution {
    * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
-  int setLocation(DistribUncertValue location);
+  long setLocation(DistribUncertValue location);
 
 
   /**
@@ -68,7 +68,7 @@ interface DistribCauchyDistribution {
    *
    * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
-  int setScale(DistribUncertValue scale);
+  long setScale(DistribUncertValue scale);
 
 
   /**
@@ -95,13 +95,13 @@ interface DistribCauchyDistribution {
    * Unsets the value of the "location" element of this
    * DistribCauchyDistribution.
    */
-  int unsetLocation();
+  long unsetLocation();
 
 
   /**
    * Unsets the value of the "scale" element of this DistribCauchyDistribution.
    */
-  int unsetScale();
+  long unsetScale();
 };
 
 DistribCauchyDistribution implements DistribContinuousUnivariateDistribution;

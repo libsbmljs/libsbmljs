@@ -30,7 +30,7 @@ interface DistribExponentialDistribution {
    * @return {boolean} @c true if this DistribExponentialDistribution's "rate" element
    * has been set, otherwise @c false is returned.
    */
-  bool isSetRate();
+  boolean isSetRate();
 
 
   /**
@@ -39,7 +39,7 @@ interface DistribExponentialDistribution {
    *
    * @param {DistribUncertValue} rate DistribUncertValue value of the "rate" element to be set.
    */
-  int setRate(DistribUncertValue rate);
+  long setRate(DistribUncertValue rate);
 
 
   /**
@@ -56,7 +56,7 @@ interface DistribExponentialDistribution {
    * Unsets the value of the "rate" element of this
    * DistribExponentialDistribution.
    */
-  int unsetRate();
+  long unsetRate();
 };
 
 DistribExponentialDistribution implements DistribContinuousUnivariateDistribution;

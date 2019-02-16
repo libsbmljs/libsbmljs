@@ -30,7 +30,7 @@ interface DistribLaPlaceDistribution {
    * @return {boolean} true if this DistribLaPlaceDistribution's "location" element
    * has been set, otherwise false is returned.
    */
-  bool isSetLocation();
+  boolean isSetLocation();
 
 
   /**
@@ -40,7 +40,7 @@ interface DistribLaPlaceDistribution {
    * @return {boolean} true if this DistribLaPlaceDistribution's "scale" element has
    * been set, otherwise false is returned.
    */
-  bool isSetScale();
+  boolean isSetScale();
 
 
   /**
@@ -50,7 +50,7 @@ interface DistribLaPlaceDistribution {
    * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
-  int setLocation(DistribUncertValue location);
+  long setLocation(DistribUncertValue location);
 
 
   /**
@@ -58,7 +58,7 @@ interface DistribLaPlaceDistribution {
    *
    * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
-  int setScale(DistribUncertValue scale);
+  long setScale(DistribUncertValue scale);
 
 
   /**
@@ -85,14 +85,14 @@ interface DistribLaPlaceDistribution {
    * Unsets the value of the "location" element of this
    * DistribLaPlaceDistribution.
    */
-  int unsetLocation();
+  long unsetLocation();
 
 
   /**
    * Unsets the value of the "scale" element of this
    * DistribLaPlaceDistribution.
    */
-  int unsetScale();
+  long unsetScale();
 };
 
 DistribLaPlaceDistribution implements DistribContinuousUnivariateDistribution;

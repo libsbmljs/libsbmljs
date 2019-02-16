@@ -70,7 +70,7 @@ interface DistribStudentTDistribution {
    * @param {DistribUncertValue} location DistribUncertValue value of the "location" element to be
    * set.
    */
-  int setLocation(DistribUncertValue location);
+  long setLocation(DistribUncertValue location);
 
 
   /**
@@ -78,7 +78,7 @@ interface DistribStudentTDistribution {
    *
    * @param {DistribUncertValue} scale DistribUncertValue value of the "scale" element to be set.
    */
-  int setScale(DistribUncertValue scale);
+  long setScale(DistribUncertValue scale);
 
 
   /**
@@ -88,7 +88,7 @@ interface DistribStudentTDistribution {
    * @param {DistribUncertValue} degreesOfFreedom DistribUncertValue value of the
    * "degreesOfFreedom" element to be set.
    */
-  int setDegreesOfFreedom(DistribUncertValue degreesOfFreedom);
+  long setDegreesOfFreedom(DistribUncertValue degreesOfFreedom);
 
 
   /**
@@ -125,21 +125,21 @@ interface DistribStudentTDistribution {
    * Unsets the value of the "location" element of this
    * DistribStudentTDistribution.
    */
-  int unsetLocation();
+  long unsetLocation();
 
 
   /**
    * Unsets the value of the "scale" element of this
    * DistribStudentTDistribution.
    */
-  int unsetScale();
+  long unsetScale();
 
 
   /**
    * Unsets the value of the "degreesOfFreedom" element of this
    * DistribStudentTDistribution.
    */
-  int unsetDegreesOfFreedom();
+  long unsetDegreesOfFreedom();
 };
 
 DistribStudentTDistribution implements DistribContinuousUnivariateDistribution;

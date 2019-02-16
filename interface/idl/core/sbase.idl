@@ -68,7 +68,7 @@
  * the form "SBO:NNNNNNN", where "NNNNNNN" is a seven digit integer number;
  * libSBML simplifies the representation by only storing the "NNNNNNN"
  * integer portion.  Thus, in libSBML, the "sboTerm" attribute on SBase has
- * data type int, and SBO identifiers are stored simply as integers.
+ * data type long, and SBO identifiers are stored simply as integers.
  * (For convenience, SBase offers methods for returning both the integer
  * form and a text-string form of the SBO identifier.)  SBO terms are a
  * type of optional annotation, and each different class of SBML object
@@ -362,7 +362,7 @@ interface SBase {
    * Returns the nth CVTerm in the list of CVTerms of this SBML
    * object.
    *
-   * @param {number} n unsigned int the index of the CVTerm to retrieve
+   * @param {number} n unsigned long the index of the CVTerm to retrieve
    *
    * @return {CVTerm} the nth CVTerm in the list of CVTerms for this SBML object.
    * If the index n is invalid, NULL is returned.

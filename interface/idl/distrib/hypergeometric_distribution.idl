@@ -60,7 +60,7 @@ interface DistribHypergeometricDistribution {
    * @return {boolean} true if this DistribHypergeometricDistribution's
    * "numberOfSuccesses" element has been set, otherwise @c false is returned.
    */
-  bool isSetNumberOfSuccesses();
+  boolean isSetNumberOfSuccesses();
 
 
   /**
@@ -70,7 +70,7 @@ interface DistribHypergeometricDistribution {
    * @return {boolean} true if this DistribHypergeometricDistribution's
    * "numberOfTrials" element has been set, otherwise @c false is returned.
    */
-  bool isSetNumberOfTrials();
+  boolean isSetNumberOfTrials();
 
 
   /**
@@ -80,7 +80,7 @@ interface DistribHypergeometricDistribution {
    * @return {boolean} true if this DistribHypergeometricDistribution's
    * "populationSize" element has been set, otherwise @c false is returned.
    */
-  bool isSetPopulationSize();
+  boolean isSetPopulationSize();
 
 
   /**
@@ -90,7 +90,7 @@ interface DistribHypergeometricDistribution {
    * @param {DistribUncertValue} numberOfSuccesses DistribUncertValue value of the
    * "numberOfSuccesses" element to be set.
    */
-  int setNumberOfSuccesses(DistribUncertValue numberOfSuccesses);
+  long setNumberOfSuccesses(DistribUncertValue numberOfSuccesses);
 
 
   /**
@@ -100,7 +100,7 @@ interface DistribHypergeometricDistribution {
    * @param {DistribUncertValue} numberOfTrials DistribUncertValue value of the "numberOfTrials"
    * element to be set.
    */
-  int setNumberOfTrials(DistribUncertValue numberOfTrials);
+  long setNumberOfTrials(DistribUncertValue numberOfTrials);
 
 
   /**
@@ -110,7 +110,7 @@ interface DistribHypergeometricDistribution {
    * @param {DistribUncertValue} populationSize DistribUncertValue value of the "populationSize"
    * element to be set.
    */
-  int setPopulationSize(DistribUncertValue populationSize);
+  long setPopulationSize(DistribUncertValue populationSize);
 
 
   /**
@@ -147,21 +147,21 @@ interface DistribHypergeometricDistribution {
    * Unsets the value of the "numberOfSuccesses" element of this
    * DistribHypergeometricDistribution.
    */
-  int unsetNumberOfSuccesses();
+  long unsetNumberOfSuccesses();
 
 
   /**
    * Unsets the value of the "numberOfTrials" element of this
    * DistribHypergeometricDistribution.
    */
-  int unsetNumberOfTrials();
+  long unsetNumberOfTrials();
 
 
   /**
    * Unsets the value of the "populationSize" element of this
    * DistribHypergeometricDistribution.
    */
-  int unsetPopulationSize();
+  long unsetPopulationSize();
 };
 
 DistribHypergeometricDistribution implements DistribDiscreteUnivariateDistribution;

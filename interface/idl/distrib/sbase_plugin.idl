@@ -20,7 +20,7 @@ interface DistribSBasePlugin {
    * @return {boolean} true if this DistribSBasePlugin's "distribUncertainty" element
    * has been set, otherwise false is returned.
    */
-  bool isSetDistribUncertainty();
+  boolean isSetDistribUncertainty();
 
 
   /**
@@ -30,7 +30,7 @@ interface DistribSBasePlugin {
    * @param {DistribUncertainty} distribUncertainty DistribUncertainty value of the
    * "distribUncertainty" element to be set.
    */
-  int setDistribUncertainty(DistribUncertainty distribUncertainty);
+  long setDistribUncertainty(DistribUncertainty distribUncertainty);
 
 
   /**
@@ -47,7 +47,7 @@ interface DistribSBasePlugin {
    * Unsets the value of the "distribUncertainty" element of this
    * DistribSBasePlugin.
    */
-  int unsetDistribUncertainty();
+  long unsetDistribUncertainty();
 };
 
 DistribSBasePlugin implements SBasePlugin;

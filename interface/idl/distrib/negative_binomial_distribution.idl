@@ -50,7 +50,7 @@ interface DistribNegativeBinomialDistribution {
    * @param {DistribUncertValue} numberOfFailures DistribUncertValue value of the
    * "numberOfFailures" element to be set.
    */
-  int setNumberOfFailures(DistribUncertValue numberOfFailures);
+  long setNumberOfFailures(DistribUncertValue numberOfFailures);
 
 
   /**
@@ -60,7 +60,7 @@ interface DistribNegativeBinomialDistribution {
    * @param {DistribUncertValue} probability DistribUncertValue value of the "probability" element
    * to be set.
    */
-  int setProbability(DistribUncertValue probability);
+  long setProbability(DistribUncertValue probability);
 
 
   /**
@@ -87,14 +87,14 @@ interface DistribNegativeBinomialDistribution {
    * Unsets the value of the "numberOfFailures" element of this
    * DistribNegativeBinomialDistribution.
    */
-  int unsetNumberOfFailures();
+  long unsetNumberOfFailures();
 
 
   /**
    * Unsets the value of the "probability" element of this
    * DistribNegativeBinomialDistribution.
    */
-  int unsetProbability();
+  long unsetProbability();
 };
 
 DistribNegativeBinomialDistribution implements DistribDiscreteUnivariateDistribution;
