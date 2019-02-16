@@ -6,10 +6,10 @@ interface AnalyticGeometry {
   /**
    * Get an AnalyticVolume from the AnalyticGeometry.
    *
-   * @param n an unsigned long representing the index of the AnalyticVolume to
+   * @param {number} n an unsigned long representing the index of the AnalyticVolume to
    * retrieve.
    *
-   * @return the nth AnalyticVolume in the ListOfAnalyticVolumes within this
+   * @return {AnalyticVolume} the nth AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry.
    */
   AnalyticVolume getAnalyticVolume(unsigned long n);
@@ -18,10 +18,10 @@ interface AnalyticGeometry {
   /**
    * Get an AnalyticVolume from the AnalyticGeometry based on its identifier.
    *
-   * @param sid a string representing the identifier of the AnalyticVolume to
+   * @param {string} sid a string representing the identifier of the AnalyticVolume to
    * retrieve.
    *
-   * @return the AnalyticVolume in the ListOfAnalyticVolumes within this
+   * @return {AnalyticVolume} the AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry with the given id or NULL if no such AnalyticVolume
    * exists.
    */
@@ -31,10 +31,10 @@ interface AnalyticGeometry {
   /**
    * Get an AnalyticVolume from the AnalyticGeometry based on its identifier.
    *
-   * @param sid a string representing the identifier of the AnalyticVolume to
+   * @param {string} sid a string representing the identifier of the AnalyticVolume to
    * retrieve.
    *
-   * @return the AnalyticVolume in the ListOfAnalyticVolumes within this
+   * @return {AnalyticVolume} the AnalyticVolume in the ListOfAnalyticVolumes within this
    * AnalyticGeometry with the given id or NULL if no such AnalyticVolume
    * exists.
    */
@@ -45,10 +45,10 @@ interface AnalyticGeometry {
    * Get an AnalyticVolume from the AnalyticGeometry based on the DomainType to
    * which it refers.
    *
-   * @param sid a string representing the domainType attribute of the
+   * @param {string} sid a string representing the domainType attribute of the
    * AnalyticVolume object to retrieve.
    *
-   * @return the first AnalyticVolume in this AnalyticGeometry based on the
+   * @return {AnalyticVolume} the first AnalyticVolume in this AnalyticGeometry based on the
    * given domainType attribute or NULL if no such AnalyticVolume exists.
    */
   AnalyticVolume getAnalyticVolumeByDomainType(DOMString sid);
@@ -57,13 +57,7 @@ interface AnalyticGeometry {
   /**
    * Adds a copy of the given AnalyticVolume to this AnalyticGeometry.
    *
-   * @param av the AnalyticVolume object to add.
-   *
-   * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
-   *
-   * @copydetails doc_note_object_is_copied
+   * @param {AnalyticVolume} av the AnalyticVolume object to add.
    */
   long addAnalyticVolume(AnalyticVolume av);
 
@@ -71,7 +65,7 @@ interface AnalyticGeometry {
   /**
    * Get the number of AnalyticVolume objects in this AnalyticGeometry.
    *
-   * @return the number of AnalyticVolume objects in this AnalyticGeometry.
+   * @return {number} the number of AnalyticVolume objects in this AnalyticGeometry.
    */
   unsigned long getNumAnalyticVolumes();
 
@@ -80,7 +74,7 @@ interface AnalyticGeometry {
    * Creates a new AnalyticVolume object, adds it to this AnalyticGeometry
    * object and returns the AnalyticVolume object created.
    *
-   * @return a new AnalyticVolume object instance.
+   * @return {AnalyticVolume} a new AnalyticVolume object instance.
    */
   AnalyticVolume createAnalyticVolume();
 
@@ -89,14 +83,14 @@ interface AnalyticGeometry {
    * Removes the nth AnalyticVolume from this AnalyticGeometry and returns a
    * pointer to it.
    *
-   * @param n an unsigned long representing the index of the AnalyticVolume to
+   * @param {number} n an unsigned long representing the index of the AnalyticVolume to
    * remove.
    *
-   * @return a pointer to the nth AnalyticVolume in this AnalyticGeometry.
+   * @return {AnalyticVolume} a pointer to the nth AnalyticVolume in this AnalyticGeometry.
    *
    *
    *
-   * @note the caller owns the returned object and is responsible for deleting
+   * **Note:** the caller owns the returned object and is responsible for deleting
    * it.
    */
   AnalyticVolume removeAnalyticVolume(unsigned long n);
