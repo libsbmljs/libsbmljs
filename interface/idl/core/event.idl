@@ -718,6 +718,53 @@ interface Trigger {
    * but is not present in lower Levels of SBML.
    */
   boolean isSetPersistent();
+
+
+  /**
+   * (SBML Level 3 only) Get the value of the "initialValue" attribute
+   * of this Trigger.
+   *
+   * @return the boolean value stored as the "initialValue" attribute value
+   * in this Trigger.
+   *
+   * **Note:** The attribute "initialValue" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  boolean getInitialValue ();
+
+
+  /**
+   * (SBML Level 3 only) Predicate to test whether the "initialValue"
+   * attribute for this trigger is set.
+   *
+   * @return {boolean} true if the initialValue attribute of
+   * this Trigger is set, @c false otherwise.
+   *
+   * **Note:** The attribute "initialValue" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  boolean isSetInitialValue ();
+
+
+  /**
+   * (SBML Level 3 only) Sets the "initialValue" attribute of this Trigger instance.
+   *
+   * @param initialValue a boolean representing the initialValue to be set.
+   *
+   * **Note:** The attribute "initialValue" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  long setInitialValue (boolean initialValue);
+
+
+  /**
+   * (SBML Level 3 only) Unsets the "initialValue" attribute of this
+   * Trigger instance.
+   *
+   * **Note:** The attribute "initialValue" is available in SBML Level 3,
+   * but is not present in lower Levels of SBML.
+   */
+  long unsetInitialValue ();
 };
 
 Trigger implements SBase;

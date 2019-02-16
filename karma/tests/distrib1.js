@@ -1,5 +1,5 @@
 describe("Distrib test", function() {
-  it('createConfidenceIntervalEx', (done) => {
+  it('Tests the dstrib package', (done) => {
     libsbml().then((libsbml) => {
         try {
           const coreVersion = 2
