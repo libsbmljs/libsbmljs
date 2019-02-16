@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 #echo $1
 #exit
 
@@ -36,4 +37,4 @@ find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)\*/\1/g'
 find $1 -type f -name '*idl' | xargs sed -i 's/ const;$/;/g'
 
 # apply the python script
-find $1 -type f -name '*idl' | xargs python3 "$( dirname "${BASH_SOURCE[0]}" )"/assign_param_return)types.py
+find $1 -type f -name '*idl' | xargs python3 $( dirname "$0" )/assign_param_return_types.py
