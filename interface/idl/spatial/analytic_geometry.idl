@@ -29,19 +29,6 @@ interface AnalyticGeometry {
 
 
   /**
-   * Get an AnalyticVolume from the AnalyticGeometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the AnalyticVolume to
-   * retrieve.
-   *
-   * @return {AnalyticVolume} the AnalyticVolume in the ListOfAnalyticVolumes within this
-   * AnalyticGeometry with the given id or NULL if no such AnalyticVolume
-   * exists.
-   */
-  AnalyticVolume getAnalyticVolume(DOMString sid);
-
-
-  /**
    * Get an AnalyticVolume from the AnalyticGeometry based on the DomainType to
    * which it refers.
    *
