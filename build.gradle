@@ -514,7 +514,7 @@ task emccCompileLibSBML(type:Exec) {
   def cmdlineArgs = ["${emccCommand}",
     "-O0",
     // "-Os", // tier 1 code size optimizations
-    // "-OZ", // tier 2 code size optimizations
+    // "-Oz", // tier 2 code size optimizations
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
     "-I",Paths.get("$buildDir","interface","idl").toString(),
