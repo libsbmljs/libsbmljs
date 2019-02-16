@@ -96,7 +96,7 @@ interface DynCompartmentPlugin {
    * @return {SpatialComponent} the SpatialComponent removed. As mentioned above, the caller owns the
    * returned item.
    */
-	SpatialComponent removeSpatialComponent(DOMString sid);
+	/*SpatialComponent removeSpatialComponent(DOMString sid);*/
 };
 
 DynCompartmentPlugin implements SBasePlugin;

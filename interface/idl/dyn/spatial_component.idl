@@ -88,7 +88,7 @@ interface SpatialComponent {
   *
   * @param {string} spatialIndex; string value of the "spatialIndex" attribute to be set
   */
- long setSpatialIndex(DOMString spatialIndex);
+ /*long setSpatialIndex(DOMString spatialIndex);*/
 
 
  /**
