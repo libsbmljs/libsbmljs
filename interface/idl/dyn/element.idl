@@ -1,0 +1,64 @@
+/**
+ * # Implementation of the DynElement class
+ */
+[Prefix="libsbml::"]
+interface DynElement {
+  /**
+  * Returns the value of the "idRef" attribute of this DynElement.
+  *
+  * @return {string} the value of the "idRef" attribute of this DynElement as a string.
+  */
+ DOMString getIdRef();
+
+
+  /**
+   * Returns the value of the "metaIdRef" attribute of this DynElement.
+   *
+   * @return {string} the value of the "metaIdRef" attribute of this DynElement as a string.
+   */
+  DOMString getMetaIdRef();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * DynElement's "idRef" attribute has been set.
+   *
+   * @return {boolean} true if this DynElement's "idRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetIdRef();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * DynElement's "metaIdRef" attribute has been set.
+   *
+   * @return {boolean} true if this DynElement's "metaIdRef" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMetaIdRef();
+
+
+  /**
+   * Sets the value of the "idRef" attribute of this DynElement.
+   *
+   * @param idRef; DOMString value of the "idRef" attribute to be set
+   */
+  long setIdRef(DOMString idRef);
+
+
+  /**
+   * Sets the value of the "metaIdRef" attribute of this DynElement.
+   *
+   * @param metaIdRef; DOMString value of the "metaIdRef" attribute to be set
+   */
+  long setMetaIdRef(DOMString metaIdRef);
+
+
+  /**
+   * Unsets the value of the "idRef" attribute of this DynElement.
+   */
+  long unsetIdRef();
+};
+
+DynElement implements SBase;

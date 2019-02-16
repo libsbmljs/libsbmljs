@@ -1,0 +1,114 @@
+/**
+ * SpatialKind_t
+ */
+enum libsbml__idl__SpatialKind_t {
+  "libsbml::SPATIALKIND_UNKNOWN",
+  "libsbml::DYN_SPATIALKIND_CARTESIANX",
+  "libsbml::DYN_SPATIALKIND_CARTESIANY",
+  "libsbml::DYN_SPATIALKIND_CARTESIANZ",
+  "libsbml::DYN_SPATIALKIND_ALPHA",
+  "libsbml::DYN_SPATIALKIND_BETA",
+  "libsbml::DYN_SPATIALKIND_GAMMA",
+  "libsbml::DYN_SPATIALKIND_FX",
+  "libsbml::DYN_SPATIALKIND_FY",
+  "libsbml::DYN_SPATIALKIND_FZ"
+};
+
+/**
+ * # Implementation of the SpatialComponent class
+ */
+[Prefix="libsbml::"]
+interface SpatialComponent {
+  /**
+  * Returns the value of the "spatialIndex" attribute of this SpatialComponent.
+  *
+  * @return {SpatialKind_t} the value of the "spatialIndex" attribute of this SpatialComponent as a SpatialKind_t.
+  */
+ libsbml__idl__SpatialKind_t getSpatialIndex();
+
+
+ /**
+  * Returns the value of the "variable" attribute of this SpatialComponent.
+  *
+  * @return {string} the value of the "variable" attribute of this SpatialComponent as a string.
+  */
+ DOMString getVariable();
+
+
+ /**
+  * Predicate returning true or false depending on whether this
+  * SpatialComponent's "spatialIndex" attribute has been set.
+  *
+  * @return {boolean} true if this SpatialComponent's "spatialIndex" attribute has been set,
+  * otherwise false is returned.
+  */
+ boolean isSetSpatialIndex();
+
+
+ /**
+  * Predicate returning true or false depending on whether this
+  * SpatialComponent's "variable" attribute has been set.
+  *
+  * @return {boolean} true if this SpatialComponent's "variable" attribute has been set,
+  * otherwise false is returned.
+  */
+ boolean isSetVariable();
+
+
+ /**
+  * Predicate returning true or false depending on whether this
+  * SpatialComponent's "id" attribute has been set.
+  *
+  * @return {boolean} true if this SpatialComponent's "id" attribute has been set,
+  * otherwise false is returned.
+  */
+ boolean isSetId();
+
+
+ /**
+  * Predicate returning true or false depending on whether this
+  * SpatialComponent's "name" attribute has been set.
+  *
+  * @return {boolean} true if this SpatialComponent's "name" attribute has been set,
+  * otherwise false is returned.
+  */
+ boolean isSetName();
+
+
+ /**
+  * Sets the value of the "spatialIndex" attribute of this SpatialComponent.
+  *
+  * @param {SpatialKind_t} spatialIndex; SpatialKind_t value of the "spatialIndex" attribute to be set
+  */
+ long setSpatialIndex(libsbml__idl__SpatialKind_t spatialIndex);
+
+
+ /**
+  * Sets the value of the "spatialIndex" attribute of this SpatialComponent.
+  *
+  * @param {string} spatialIndex; string value of the "spatialIndex" attribute to be set
+  */
+ long setSpatialIndex(DOMString spatialIndex);
+
+
+ /**
+  * Sets the value of the "variable" attribute of this SpatialComponent.
+  *
+  * @param {string} variable; DOMString value of the "variable" attribute to be set
+  */
+ long setVariable(DOMString variable);
+
+
+ /**
+  * Unsets the value of the "spatialIndex" attribute of this SpatialComponent.
+  */
+ long unsetSpatialIndex();
+
+
+ /**
+  * Unsets the value of the "variable" attribute of this SpatialComponent.
+  */
+ long unsetVariable();
+};
+
+SpatialComponent implements SBase;
