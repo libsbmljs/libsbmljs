@@ -3,6 +3,37 @@
  */
 [Prefix="libsbml::"]
 interface DistribInput {
+  /**
+   * Returns the value of the "index" attribute of this DistribInput.
+   *
+   * @return {number} the value of the "index" attribute of this DistribInput as a
+   * unsigned integer.
+   */
+  unsigned long getIndex();
+
+
+  /**
+   * Predicate returning true if this DistribInput's "index" attribute is
+   * set.
+   *
+   * @return {boolean} true if this DistribInput's "index" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetIndex();
+
+
+  /**
+   * Sets the value of the "index" attribute of this DistribInput.
+   *
+   * @param {number} index unsigned long value of the "index" attribute to be set.
+   */
+  long setIndex(unsigned long index);
+
+
+  /**
+   * Unsets the value of the "index" attribute of this DistribInput.
+   */
+  long unsetIndex();
 };
 
 DistribInput implements DistribBase;

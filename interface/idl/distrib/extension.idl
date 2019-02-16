@@ -14,4 +14,13 @@ interface DistribExtension {
    * @return {string} the XML namespace, as a string.
    */
   static DOMString getXmlnsL3V1V1();
+
+
+  /**
+   * Returns the XML namespace URI of the SBML Level&nbsp;3 package implemented
+   * by this libSBML extension.
+   *
+   * @return {string} the XML namespace, as a string.
+   */
+  static DOMString getXmlnsL3V2V1();
 };

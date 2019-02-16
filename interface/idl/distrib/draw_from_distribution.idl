@@ -288,6 +288,70 @@ interface DistribDrawFromDistribution {
    * DistribDrawFromDistribution.
    */
   long unsetDistribution();
+
+  /**
+   * Get a DistribInput from the DistribDrawFromDistribution.
+   *
+   * @param {number} n an unsigned int representing the index of the DistribInput to
+   * retrieve.
+   *
+   * @return {DistribInput} the nth DistribInput in the ListOfDistribInputs within this
+   * DistribDrawFromDistribution.
+   */
+  DistribInput getDistribInput(unsigned long n);
+
+
+  /**
+   * Get a DistribInput from the DistribDrawFromDistribution.
+   *
+   * @param {number} n an unsigned int representing the "index" attribute
+   * value of the DistribInput to retrieve.
+   *
+   * @return {DistribInput} the DistribInput in the ListOfDistribInputs with the
+   * given "index" value.
+   */
+  DistribInput getDistribInputByIndex(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given DistribInput to this DistribDrawFromDistribution.
+   *
+   * @param {DistribInput} di the DistribInput object to add.
+   */
+  long addDistribInput(DistribInput di);
+
+
+  /**
+   * Get the number of DistribInput objects in this
+   * DistribDrawFromDistribution.
+   *
+   * @return {number} the number of DistribInput objects in this
+   * DistribDrawFromDistribution.
+   */
+  unsigned long getNumDistribInputs();
+
+
+  /**
+   * Creates a new DistribInput object, adds it to this
+   * DistribDrawFromDistribution object and returns the DistribInput object
+   * created.
+   *
+   * @return {DistribInput} a new DistribInput object instance.
+   */
+  DistribInput createDistribInput();
+
+
+  /**
+   * Removes the nth DistribInput from this DistribDrawFromDistribution and
+   * returns a pointer to it.
+   *
+   * @param {number} n an unsigned int representing the index of the DistribInput to
+   * remove.
+   *
+   * @return {DistribInput} a pointer to the nth DistribInput in this
+   * DistribDrawFromDistribution.
+   */
+  DistribInput removeDistribInput(unsigned long n);
 };
 
 DistribDrawFromDistribution implements DistribBase;
