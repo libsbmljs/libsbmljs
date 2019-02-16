@@ -9,7 +9,7 @@ find $1 -type f -name '*idl' | xargs sed -i 's/@p //g'
 # documentation see also
 find $1 -type f -name '*idl' | xargs sed -i 's/\* @see.*/*/g'
 # collapse trailing docstrings
-find $1 -type f -name '*idl' | xargs sed -Ei '{N; s:\*\s+\*/:*/:g ;D}'
+find $1 -type f -name '*idl' | xargs sed -Ei '{N; s:\*\s+\*/:*/:g}'
 
 
 # primitive types
