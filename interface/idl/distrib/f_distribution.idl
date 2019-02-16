@@ -23,16 +23,6 @@ interface DistribFDistribution {
 
 
   /**
-   * Returns the value of the "denominator" element of this
-   * DistribFDistribution.
-   *
-   * @return the value of the "denominator" element of this
-   * DistribFDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getDenominator();
-
-
-  /**
    * Predicate returning @c true if this DistribFDistribution's "numerator"
    * element is set.
    *

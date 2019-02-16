@@ -14,16 +14,6 @@ interface DistribExponentialDistribution {
 
 
   /**
-   * Returns the value of the "rate" element of this
-   * DistribExponentialDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "rate" element of this
-   * DistribExponentialDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getRate();
-
-
-  /**
    * Predicate returning @c true if this DistribExponentialDistribution's
    * "rate" element is set.
    *

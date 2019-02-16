@@ -24,25 +24,6 @@ interface DistribUncertStatistics {
 
 
   /**
-   * Returns the value of the "kurtosis" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "kurtosis" element of this
-   * DistribUncertStatistics as a DistribUncertValue.
-   */
-  DistribUncertValue getKurtosis();
-
-
-  /**
-   * Returns the value of the "mean" element of this DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "mean" element of this DistribUncertStatistics as
-   * a DistribUncertValue.
-   */
-  DistribUncertValue getMean();
-
-
-  /**
    * Returns the value of the "mean" element of this DistribUncertStatistics.
    *
    * @return {DistribUncertValue} the value of the "mean" element of this DistribUncertStatistics as
@@ -61,40 +42,12 @@ interface DistribUncertStatistics {
 
 
   /**
-   * Returns the value of the "median" element of this DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "median" element of this DistribUncertStatistics
-   * as a DistribUncertValue.
-   */
-  DistribUncertValue getMedian();
-
-
-  /**
    * Returns the value of the "mode" element of this DistribUncertStatistics.
    *
    * @return {DistribUncertValue} the value of the "mode" element of this DistribUncertStatistics as
    * a DistribUncertValue.
    */
   DistribUncertValue getMode();
-
-
-  /**
-   * Returns the value of the "mode" element of this DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "mode" element of this DistribUncertStatistics as
-   * a DistribUncertValue.
-   */
-  DistribUncertValue getMode();
-
-
-  /**
-   * Returns the value of the "skewness" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "skewness" element of this
-   * DistribUncertStatistics as a DistribUncertValue.
-   */
-  DistribUncertValue getSkewness();
 
 
   /**
@@ -118,16 +71,6 @@ interface DistribUncertStatistics {
 
 
   /**
-   * Returns the value of the "standardDeviation" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "standardDeviation" element of this
-   * DistribUncertStatistics as a DistribUncertValue.
-   */
-  DistribUncertValue getStandardDeviation();
-
-
-  /**
    * Returns the value of the "variance" element of this
    * DistribUncertStatistics.
    *
@@ -135,26 +78,6 @@ interface DistribUncertStatistics {
    * DistribUncertStatistics as a DistribUncertValue.
    */
   DistribUncertValue getVariance();
-
-
-  /**
-   * Returns the value of the "variance" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertValue} the value of the "variance" element of this
-   * DistribUncertStatistics as a DistribUncertValue.
-   */
-  DistribUncertValue getVariance();
-
-
-  /**
-   * Returns the value of the "confidenceInterval" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertStatisticSpan} the value of the "confidenceInterval" element of this
-   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
-   */
-  DistribUncertStatisticSpan getConfidenceInterval();
 
 
   /**
@@ -178,16 +101,6 @@ interface DistribUncertStatistics {
 
 
   /**
-   * Returns the value of the "credibleInterval" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertStatisticSpan} the value of the "credibleInterval" element of this
-   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
-   */
-  DistribUncertStatisticSpan getCredibleInterval();
-
-
-  /**
    * Returns the value of the "interquartileRange" element of this
    * DistribUncertStatistics.
    *
@@ -195,25 +108,6 @@ interface DistribUncertStatistics {
    * DistribUncertStatistics as a DistribUncertStatisticSpan*.
    */
   DistribUncertStatisticSpan getInterquartileRange();
-
-
-  /**
-   * Returns the value of the "interquartileRange" element of this
-   * DistribUncertStatistics.
-   *
-   * @return {DistribUncertStatisticSpan} the value of the "interquartileRange" element of this
-   * DistribUncertStatistics as a DistribUncertStatisticSpan*.
-   */
-  DistribUncertStatisticSpan getInterquartileRange();
-
-
-  /**
-   * Returns the value of the "range" element of this DistribUncertStatistics.
-   *
-   * @return {DistribUncertStatisticSpan} the value of the "range" element of this DistribUncertStatistics
-   * as a DistribUncertStatisticSpan*.
-   */
-  DistribUncertStatisticSpan getRange();
 
 
   /**

@@ -17,16 +17,6 @@ interface DistribDiscreteUnivariateDistribution {
    * Returns the value of the "truncationUpperBound" element of this
    * DistribDiscreteUnivariateDistribution.
    *
-   * @return the value of the "truncationUpperBound" element of this
-   * DistribDiscreteUnivariateDistribution as a DistribUncertBound.
-   */
-  DistribUncertBound getTruncationUpperBound();
-
-
-  /**
-   * Returns the value of the "truncationUpperBound" element of this
-   * DistribDiscreteUnivariateDistribution.
-   *
    * @return {DistribUncertBound} the value of the "truncationUpperBound" element of this
    * DistribDiscreteUnivariateDistribution as a DistribUncertBound.
    */

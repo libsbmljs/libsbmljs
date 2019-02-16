@@ -1,0 +1,30 @@
+/**
+ * # DistribCategoricalUnivariateDistribution
+ */
+[Prefix="libsbml::"]
+interface DistribCategoricalUnivariateDistribution {
+  /**
+   * Predicate returning true if this abstract
+   * "DistribCategoricalUnivariateDistribution" is of type
+   * DistribBernoulliDistribution
+   *
+   * @return {boolean} true if this abstract
+   * "DistribCategoricalUnivariateDistribution" is of type
+   * DistribBernoulliDistribution, false otherwise
+   */
+  boolean isDistribBernoulliDistribution();
+
+
+  /**
+   * Predicate returning true if this abstract
+   * "DistribCategoricalUnivariateDistribution" is of type
+   * DistribCategoricalDistribution
+   *
+   * @return {boolean} true if this abstract
+   * "DistribCategoricalUnivariateDistribution" is of type
+   * DistribCategoricalDistribution, false otherwise
+   */
+  boolean isDistribCategoricalDistribution();
+};
+
+DistribCategoricalUnivariateDistribution implements DistribUnivariateDistribution;

@@ -24,26 +24,6 @@ interface DistribUniformDistribution {
 
 
   /**
-   * Returns the value of the "maximum" element of this
-   * DistribUniformDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "maximum" element of this
-   * DistribUniformDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getMaximum();
-
-
-  /**
-   * Returns the value of the "numberOfClasses" element of this
-   * DistribUniformDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "numberOfClasses" element of this
-   * DistribUniformDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getNumberOfClasses();
-
-
-  /**
    * Returns the value of the "numberOfClasses" element of this
    * DistribUniformDistribution.
    *

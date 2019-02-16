@@ -24,16 +24,6 @@ interface DistribCauchyDistribution {
 
 
   /**
-   * Returns the value of the "scale" element of this
-   * DistribCauchyDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "scale" element of this DistribCauchyDistribution
-   * as a DistribUncertValue.
-   */
-  DistribUncertValue getScale();
-
-
-  /**
    * Predicate returning @c true if this DistribCauchyDistribution's "location"
    * element is set.
    *

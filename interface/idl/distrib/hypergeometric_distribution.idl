@@ -24,26 +24,6 @@ interface DistribHypergeometricDistribution {
 
 
   /**
-   * Returns the value of the "numberOfTrials" element of this
-   * DistribHypergeometricDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "numberOfTrials" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getNumberOfTrials();
-
-
-  /**
-   * Returns the value of the "populationSize" element of this
-   * DistribHypergeometricDistribution.
-   *
-   * @return {DistribUncertValue} the value of the "populationSize" element of this
-   * DistribHypergeometricDistribution as a DistribUncertValue.
-   */
-  DistribUncertValue getPopulationSize();
-
-
-  /**
    * Returns the value of the "populationSize" element of this
    * DistribHypergeometricDistribution.
    *

@@ -22,15 +22,6 @@ interface DistribBetaDistribution {
 
 
   /**
-   * Returns the value of the "beta" element of this DistribBetaDistribution.
-   *
-   * @return the value of the "beta" element of this DistribBetaDistribution as
-   * a DistribUncertValue.
-   */
-  DistribUncertValue getBeta();
-
-
-  /**
    * Predicate returning true if this DistribBetaDistribution's "alpha"
    * element is set.
    *
