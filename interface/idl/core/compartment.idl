@@ -491,6 +491,13 @@ interface Compartment {
    * Compartment object is set, false otherwise.
    */
   boolean isSetSpatialDimensions ();
+
+
+  /**
+   * Initializes the fields of this Compartment object to "typical" defaults
+   * values.
+   */
+  void initDefaults ();
 };
 
 Compartment implements SBase;

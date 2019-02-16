@@ -34,8 +34,8 @@ mkdir expat
 tar -xf expat-2.2.6.tar.bz2 -C expat --strip-components=1
 ```
 
-1. Obtain the libSBML source code and store it in a directory named `libsbml` inside this directory.
-  * Checkout libSBML via svn or download one of the releases (stable or experimental) and unpack into the `libsbml` directory. For example, to checkout the experimental branch,
+1. Obtain the libSBML source code and store it in a directory named `libsbml` inside this repository.
+  * Checkout libSBML via svn or download one of the releases (stable or experimental) and unpack into the `libsbml` directory. If you choose to download a release, we suggest downloading the archive `libSBML-x.y.z-core-plus-packages-src.tar.gz`. You will have to rename the extracted directory to `libsbml`. If you choose to checkout the svn code, ensure that it is checked out into the `libsbml` directory. For example, to check out the experimental branch:
 ```
 svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental libsbml
 ```

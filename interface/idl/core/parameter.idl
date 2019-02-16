@@ -175,6 +175,12 @@ interface Parameter {
    */
   long setUnits(DOMString units);
 
+  /**
+   * Gets the value of the "constant" attribute of this Parameter instance.
+   *
+   * @return {boolean} true if this Parameter is declared as being constant,
+   * false otherwise.
+   */
   boolean getConstant();
 
   /**
@@ -192,6 +198,20 @@ interface Parameter {
    * @return {boolean} true if the "constant" attribute of this Parameter is set, false otherwise
    */
   boolean isSetConstant();
+
+
+  /**
+   * Initializes the fields of this Parameter object to "typical" defaults
+   * values.
+   *
+   * The SBML Parameter component has slightly different aspects and
+   * default attribute values in different SBML Levels and Versions.  Many
+   * SBML object classes defined by libSBML have an initDefaults() method
+   * to set the values to certain common defaults, based mostly on what
+   * they are in SBML Level&nbsp;2.  In the case of Parameter, this method
+   * only sets the value of the "constant" attribute to true.
+   */
+  void initDefaults ();
 };
 
 Parameter implements SBase;
@@ -352,6 +372,20 @@ interface LocalParameter {
   /*boolean getConstant();
   long setConstant(boolean value);
   boolean isSetConstant();*/
+
+
+  /**
+   * Initializes the fields of this Parameter object to "typical" defaults
+   * values.
+   *
+   * The SBML Parameter component has slightly different aspects and
+   * default attribute values in different SBML Levels and Versions.  Many
+   * SBML object classes defined by libSBML have an initDefaults() method
+   * to set the values to certain common defaults, based mostly on what
+   * they are in SBML Level&nbsp;2.  In the case of Parameter, this method
+   * only sets the value of the "constant" attribute to true.
+   */
+  void initDefaults ();
 };
 
 LocalParameter implements SBase;

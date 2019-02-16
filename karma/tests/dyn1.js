@@ -1,5 +1,5 @@
 describe("Dyn test", function() {
-  it('Tests the dyn package', (done) => {
+  it('Tests the dyn package (1/2)', (done) => {
     libsbml().then((libsbml) => {
         try {
           const coreVersion = 2
@@ -167,9 +167,8 @@ describe("Dyn test", function() {
           const serializedSBML = writer.writeSBMLToString(document)
 
           // make sure the expected tags are there
-          console.log(serializedSBML)
-          // expect(serializedSBML).toContain('dyn:drawFromDistribution')
-          // expect(serializedSBML).toContain('dyn:normalDistribution')
+          expect(serializedSBML).toContain('dyn:cboTerm')
+          expect(serializedSBML).toContain('dyn:applyToAll')
 
           const reader = new libsbml.SBMLReader()
 

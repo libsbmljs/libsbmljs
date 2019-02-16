@@ -1089,6 +1089,13 @@ interface Species {
    * Unsets the "hasOnlySubstanceUnits" attribute value of this Species object.
    */
   long unsetHasOnlySubstanceUnits ();
+
+
+  /**
+   * Initializes the fields of this Species object to "typical" defaults
+   * values.
+   */
+  void initDefaults ();
 };
 
 Species implements SBase;
