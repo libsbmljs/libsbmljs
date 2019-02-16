@@ -1,0 +1,38 @@
+/**
+ * # Implementation of the DynSBasePlugin class
+ */
+[Prefix="libsbml::"]
+interface DynSBasePlugin {
+  /**
+   * Returns the value of the "cboTerm" attribute of this DynSBasePlugin.
+   *
+   * @return the value of the "cboTerm" attribute of this DynSBasePlugin as a string.
+   */
+  DOMString getCboTerm();
+
+
+  /**
+   * Predicate returning @c true or @c false depending on whether this
+   * DynSBasePlugin's "cboTerm" attribute has been set.
+   *
+   * @return @c true if this DynSBasePlugin's "cboTerm" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  boolean isSetCboTerm();
+
+
+  /**
+   * Sets the value of the "cboTerm" attribute of this DynSBasePlugin.
+   *
+   * @param cboTerm; DOMString value of the "cboTerm" attribute to be set
+   */
+  long setCboTerm(DOMString cboTerm);
+
+
+  /**
+   * Unsets the value of the "cboTerm" attribute of this DynSBasePlugin.
+   */
+  long unsetCboTerm();
+};
+
+DynSBasePlugin implements SBasePlugin;

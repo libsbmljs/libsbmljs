@@ -1,0 +1,8 @@
+/**
+ * # Implementation of the DynSBMLDocumentPlugin class
+ */
+[Prefix="libsbml::"]
+interface DynSBMLDocumentPlugin {
+};
+
+DynSBMLDocumentPlugin implements SBasePlugin;

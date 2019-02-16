@@ -1,0 +1,13 @@
+/**
+ * # Implementation of the DynExtension class
+ */
+[Prefix="libsbml::"]
+interface DynExtension {
+  /**
+   * Returns the XML namespace URI of the SBML Level 3 package implemented
+   * by this libSBML extension.
+   *
+   * @return {string} the XML namespace, as a string.
+   */
+  static DOMString getXmlnsL3V1V1();
+};

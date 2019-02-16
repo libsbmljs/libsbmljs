@@ -1,0 +1,70 @@
+/**
+ * # Implementation of the DynEventPlugin class
+ */
+[Prefix="libsbml::"]
+interface DynEventPlugin {
+  /**
+   * Returns the value of the "cboTerm" attribute of this DynEventPlugin.
+   *
+   * @return {string} the value of the "cboTerm" attribute of this DynEventPlugin as a string.
+   */
+  DOMString getCboTerm();
+
+
+  /**
+   * Returns the value of the "applyToAll" attribute of this DynEventPlugin.
+   *
+   * @return {boolean} the value of the "applyToAll" attribute of this DynEventPlugin as a boolean.
+   */
+  boolean getApplyToAll();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * DynEventPlugin's "cboTerm" attribute has been set.
+   *
+   * @return {boolean} true if this DynEventPlugin's "cboTerm" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCboTerm();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * DynEventPlugin's "applyToAll" attribute has been set.
+   *
+   * @return {boolean} true if this DynEventPlugin's "applyToAll" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetApplyToAll();
+
+
+  /**
+   * Sets the value of the "cboTerm" attribute of this DynEventPlugin.
+   *
+   * @param {string} cboTerm; DOMString value of the "cboTerm" attribute to be set
+   */
+  long setCboTerm(DOMString cboTerm);
+
+
+  /**
+   * Sets the value of the "applyToAll" attribute of this DynEventPlugin.
+   *
+   * @param {boolean} applyToAll; boolean value of the "applyToAll" attribute to be set
+   */
+  long setApplyToAll(boolean applyToAll);
+
+
+  /**
+   * Unsets the value of the "cboTerm" attribute of this DynEventPlugin.
+   */
+  long unsetCboTerm();
+
+
+  /**
+   * Unsets the value of the "applyToAll" attribute of this DynEventPlugin.
+   */
+  long unsetApplyToAll();
+};
+
+DynEventPlugin implements SBasePlugin;

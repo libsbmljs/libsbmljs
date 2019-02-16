@@ -1,0 +1,102 @@
+/**
+ * # Implementation of the DynCompartmentPlugin class
+ */
+[Prefix="libsbml::"]
+interface DynCompartmentPlugin {
+  /**
+   * Returns the value of the "cboTerm" attribute of this DynCompartmentPlugin.
+   *
+   * @return {string} the value of the "cboTerm" attribute of this DynCompartmentPlugin as a string.
+   */
+  DOMString getCboTerm();
+
+
+  /**
+   * Predicate returning true or false depending on whether this
+   * DynCompartmentPlugin's "cboTerm" attribute has been set.
+   *
+   * @return {boolean} true if this DynCompartmentPlugin's "cboTerm" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCboTerm();
+
+
+  /**
+   * Sets the value of the "cboTerm" attribute of this DynCompartmentPlugin.
+   *
+   * @param {string} cboTerm; DOMString value of the "cboTerm" attribute to be set
+   */
+  long setCboTerm(DOMString cboTerm);
+
+
+  /**
+   * Unsets the value of the "cboTerm" attribute of this DynCompartmentPlugin.
+   */
+  long unsetCboTerm();
+
+
+  /**
+   * Get a SpatialComponent from the ListOfSpatialComponents.
+   *
+   * @param {number} n the index number of the SpatialComponent to get.
+   *
+   * @return {SpatialComponent} the nth SpatialComponent in the ListOfSpatialComponents within this DynCompartmentPlugin.
+   */
+	SpatialComponent getSpatialComponent(unsigned long n);
+
+
+  /**
+   * Adds a copy the given "SpatialComponent" to this DynCompartmentPlugin.
+   *
+   * @param {SpatialComponent} sc; the SpatialComponent object to add
+   */
+  long addSpatialComponent(SpatialComponent sc);
+
+
+  /**
+   * Get the number of SpatialComponent objects in this DynCompartmentPlugin.
+   *
+   * @return {number} the number of SpatialComponent objects in this DynCompartmentPlugin
+   */
+  unsigned long getNumSpatialComponents();
+
+
+  /**
+   * Creates a new SpatialComponent object, adds it to this DynCompartmentPlugins
+   * ListOfSpatialComponents and returns the SpatialComponent object created.
+   *
+   * @return {SpatialComponent} a new SpatialComponent object instance
+   */
+  SpatialComponent createSpatialComponent();
+
+
+  /**
+   * Removes the nth SpatialComponent from the ListOfSpatialComponents within this DynCompartmentPlugin.
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   *
+   * @param {number} n the index of the SpatialComponent to remove.
+   *
+   * @return {SpatialComponent}
+   */
+	SpatialComponent removeSpatialComponent(unsigned long n);
+
+
+  /**
+   * Removes the SpatialComponent with the given identifier from the ListOfSpatialComponents within this DynCompartmentPlugin
+   * and returns a pointer to it.
+   *
+   * The caller owns the returned item and is responsible for deleting it.
+   * If none of the items in this list have the identifier sid, then
+   * NULL is returned.
+   *
+   * @param {string} sid the identifier of the SpatialComponent to remove.
+   *
+   * @return {SpatialComponent} the SpatialComponent removed. As mentioned above, the caller owns the
+   * returned item.
+   */
+	SpatialComponent removeSpatialComponent(DOMString sid);
+};
+
+DynCompartmentPlugin implements SBasePlugin;
