@@ -8,6 +8,12 @@ find $1 -type f -name '*idl' | xargs sed -i 's/@c //g'
 find $1 -type f -name '*idl' | xargs sed -i 's/@p //g'
 # documentation see also
 find $1 -type f -name '*idl' | xargs sed -i 's/\* @see.*/*/g'
+# documentation notes
+find $1 -type f -name '*idl' | xargs sed -i 's/@note/**Note:**/g'
+# copydetails
+find $1 -type f -name '*idl' | xargs sed -i 's/@copydetails.*$//g'
+# libsbml return codes
+find $1 -type f -name '*idl' | xargs sed -i 's/@li @sbmlconstant{LIBSBML_OPERATION.*$//g'
 # collapse trailing docstrings
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
