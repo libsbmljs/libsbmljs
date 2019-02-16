@@ -1,0 +1,183 @@
+/**
+ * # BoundaryCondition class
+ */
+[Prefix="libsbml::"]
+interface BoundaryCondition {
+  /**
+   * Returns the value of the "variable" attribute of this BoundaryCondition.
+   *
+   * @return the value of the "variable" attribute of this BoundaryCondition as
+   * a string.
+   */
+  const std::string& getVariable() const;
+
+
+  /**
+   * Returns the value of the "type" attribute of this BoundaryCondition.
+   *
+   * @return the value of the "type" attribute of this BoundaryCondition as a
+   * BoundaryConditionKind_t.
+   */
+  BoundaryConditionKind_t getType() const;
+
+
+  /**
+   * Returns the value of the "type" attribute of this BoundaryCondition.
+   *
+   * @return the value of the "type" attribute of this BoundaryCondition as a
+   * string.
+   */
+  const std::string& getTypeAsString() const;
+
+
+  /**
+   * Returns the value of the "coordinateBoundary" attribute of this
+   * BoundaryCondition.
+   *
+   * @return the value of the "coordinateBoundary" attribute of this
+   * BoundaryCondition as a string.
+   */
+  const std::string& getCoordinateBoundary() const;
+
+
+  /**
+   * Returns the value of the "boundaryDomainType" attribute of this
+   * BoundaryCondition.
+   *
+   * @return the value of the "boundaryDomainType" attribute of this
+   * BoundaryCondition as a string.
+   */
+  const std::string& getBoundaryDomainType() const;
+
+
+  /**
+   * Predicate returning @c true if this BoundaryCondition's "variable"
+   * attribute is set.
+   *
+   * @return @c true if this BoundaryCondition's "variable" attribute has been
+   * set, otherwise @c false is returned.
+   */
+  bool isSetVariable() const;
+
+
+  /**
+   * Predicate returning @c true if this BoundaryCondition's "type" attribute
+   * is set.
+   *
+   * @return @c true if this BoundaryCondition's "type" attribute has been set,
+   * otherwise @c false is returned.
+   */
+  bool isSetType() const;
+
+
+  /**
+   * Predicate returning @c true if this BoundaryCondition's
+   * "coordinateBoundary" attribute is set.
+   *
+   * @return @c true if this BoundaryCondition's "coordinateBoundary" attribute
+   * has been set, otherwise @c false is returned.
+   */
+  bool isSetCoordinateBoundary() const;
+
+
+  /**
+   * Predicate returning @c true if this BoundaryCondition's
+   * "boundaryDomainType" attribute is set.
+   *
+   * @return @c true if this BoundaryCondition's "boundaryDomainType" attribute
+   * has been set, otherwise @c false is returned.
+   */
+  bool isSetBoundaryDomainType() const;
+
+
+  /**
+   * Sets the value of the "variable" attribute of this BoundaryCondition.
+   *
+   * @param variable std::string& value of the "variable" attribute to be set.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
+   * OperationReturnValues_t}
+   */
+  int setVariable(const std::string& variable);
+
+
+  /**
+   * Sets the value of the "type" attribute of this BoundaryCondition.
+   *
+   * @param type BoundaryConditionKind_t value of the "type" attribute to be
+   * set.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
+   * OperationReturnValues_t}
+   */
+  int setType(const BoundaryConditionKind_t type);
+
+
+  /**
+   * Sets the value of the "type" attribute of this BoundaryCondition.
+   *
+   * @param type std::string& of the "type" attribute to be set.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
+   * OperationReturnValues_t}
+   */
+  int setType(const std::string& type);
+
+
+  /**
+   * Sets the value of the "coordinateBoundary" attribute of this
+   * BoundaryCondition.
+   *
+   * @param coordinateBoundary std::string& value of the "coordinateBoundary"
+   * attribute to be set.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
+   * OperationReturnValues_t}
+   */
+  int setCoordinateBoundary(const std::string& coordinateBoundary);
+
+
+  /**
+   * Sets the value of the "boundaryDomainType" attribute of this
+   * BoundaryCondition.
+   *
+   * @param boundaryDomainType std::string& value of the "boundaryDomainType"
+   * attribute to be set.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
+   * OperationReturnValues_t}
+   */
+  int setBoundaryDomainType(const std::string& boundaryDomainType);
+
+
+  /**
+   * Unsets the value of the "variable" attribute of this BoundaryCondition.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   */
+  int unsetVariable();
+
+
+  /**
+   * Unsets the value of the "type" attribute of this BoundaryCondition.
+   *
+   * @copydetails doc_returns_success_code
+   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   */
+  int unsetType();
+};
+
+BoundaryCondition implements SBase;

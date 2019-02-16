@@ -1,5 +1,5 @@
 /**
- * # AdvectionCoefficient class
+ * # AnalyticGeometry class
  */
 [Prefix="libsbml::"]
 interface AnalyticGeometry {
