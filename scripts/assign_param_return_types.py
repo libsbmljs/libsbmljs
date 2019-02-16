@@ -50,7 +50,6 @@ with open(filepath) as f:
         else:
             return {**map_method_defs(line_num+1, (line_num,*unmapped_line_nums))}
     method_def_map = map_method_defs(0, tuple())
-    # print(method_def_map.keys())
 
     keep_lines = {l: True for l in range(len(lines))}
 
@@ -63,11 +62,6 @@ with open(filepath) as f:
         line = lines[line_num]
         d = try_match_def(line)
         if d is not None:
-            # assert type(d) != dict
-            # print(type(d))
-            # print(d,line_num)
-            # print(get_method_defs(line_num+1))
-            # print({d:line_num}, **{get_method_defs(line_num+1)})
             return {d:line_num, **get_method_defs(line_num+1)}
         else:
             return get_method_defs(line_num+1)
@@ -85,7 +79,6 @@ with open(filepath) as f:
                     keep_lines[l] = False
             else:
                 raise RuntimeError('Start & stop are reversed')
-            # print('duplicate', sig, '{} vs {}'.format(line_num, sigs[sig]))
 
     def transform_type(t):
         if t == 'DOMString':
@@ -102,9 +95,7 @@ with open(filepath) as f:
         param_match = param_exp.match(line)
         if param_match is not None:
             method_def = method_def_map[line_num]
-            # print(line,method_def.arg_types,'\n')
             if len(method_def.arg_types) == 1:
-                # print(param_match.group(1)+'{'+transform_type(method_def.arg_types[0])+'} '+param_match.group(2),'\n')
                 return param_match.group(1)+'{'+transform_type(method_def.arg_types[0])+'} '+param_match.group(2)
 
     return_exp = re.compile(r'^([\s]*\* @return )([^{].*)$')
@@ -112,8 +103,6 @@ with open(filepath) as f:
         m = return_exp.match(line)
         if m is not None:
             method_def = method_def_map[line_num]
-            # print(line, ':', method_def.type)
-            # print(m.group(1)+'{'+transform_type(method_def.type)+'} '+m.group(2),'\n')
             return m.group(1)+'{'+transform_type(method_def.type)+'} '+m.group(2)
 
     def transform_lines(lines):
@@ -128,7 +117,6 @@ with open(filepath) as f:
 
     transformed_lines = transform_lines(lines)
     transformed_text = '\n'.join(l for l in transformed_lines if keep_lines[l])
-    # print(transformed_text)
 
 with open(filepath,'w') as f:
     f.write(transformed_text)
