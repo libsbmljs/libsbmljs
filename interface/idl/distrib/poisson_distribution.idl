@@ -28,7 +28,7 @@ interface DistribPoissonDistribution {
    *
    * @param {DistribUncertValue} rate DistribUncertValue value of the "rate" element to be set.
    */
-  int setRate(const DistribUncertValue rate);
+  int setRate(DistribUncertValue rate);
 
 
   /**
