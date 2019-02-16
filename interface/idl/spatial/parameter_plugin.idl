@@ -1,0 +1,194 @@
+/**
+ * # Extension of Parameter
+ */
+[Prefix="libsbml::"]
+interface SpatialParameterPlugin {
+  /**
+   * Returns the value of the "spatialSymbolReference" element of this
+   * SpatialParameterPlugin.
+   *
+   * @return {SpatialSymbolReference} the value of the "spatialSymbolReference" element of this
+   * SpatialParameterPlugin as a SpatialSymbolReference.
+   */
+  SpatialSymbolReference getSpatialSymbolReference();
+
+
+  /**
+   * Returns the value of the "advectionCoefficient" element of this
+   * SpatialParameterPlugin.
+   *
+   * @return {AdvectionCoefficient} the value of the "advectionCoefficient" element of this
+   * SpatialParameterPlugin as a AdvectionCoefficient.
+   */
+  AdvectionCoefficient getAdvectionCoefficient();
+
+
+  /**
+   * Returns the value of the "boundaryCondition" element of this
+   * SpatialParameterPlugin.
+   *
+   * @return {BoundaryCondition} the value of the "boundaryCondition" element of this
+   * SpatialParameterPlugin as a BoundaryCondition.
+   */
+  BoundaryCondition getBoundaryCondition();
+
+
+  /**
+   * Returns the value of the "diffusionCoefficient" element of this
+   * SpatialParameterPlugin.
+   *
+   * @return {DiffusionCoefficient} the value of the "diffusionCoefficient" element of this
+   * SpatialParameterPlugin as a DiffusionCoefficient.
+   */
+  DiffusionCoefficient getDiffusionCoefficient();
+
+
+  /**
+   * Predicate returning true if this SpatialParameterPlugin's
+   * "spatialSymbolReference" element is set.
+   *
+   * @return {boolean} true if this SpatialParameterPlugin's "spatialSymbolReference"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetSpatialSymbolReference();
+
+
+  /**
+   * Predicate returning true if this SpatialParameterPlugin's
+   * "advectionCoefficient" element is set.
+   *
+   * @return {boolean} true if this SpatialParameterPlugin's "advectionCoefficient"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetAdvectionCoefficient();
+
+
+  /**
+   * Predicate returning true if this SpatialParameterPlugin's
+   * "boundaryCondition" element is set.
+   *
+   * @return {boolean} true if this SpatialParameterPlugin's "boundaryCondition"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetBoundaryCondition();
+
+
+  /**
+   * Predicate returning true if this SpatialParameterPlugin's
+   * "diffusionCoefficient" element is set.
+   *
+   * @return {boolean} true if this SpatialParameterPlugin's "diffusionCoefficient"
+   * element has been set, otherwise false is returned.
+   */
+  boolean isSetDiffusionCoefficient();
+
+
+  /**
+   * Sets the value of the "spatialSymbolReference" element of this
+   * SpatialParameterPlugin.
+   *
+   * @param {SpatialSymbolReference} spatialSymbolReference SpatialSymbolReference value of the
+   * "spatialSymbolReference" element to be set.
+   */
+  long setSpatialSymbolReference(SpatialSymbolReference spatialSymbolReference);
+
+
+  /**
+   * Sets the value of the "advectionCoefficient" element of this
+   * SpatialParameterPlugin.
+   *
+   * @param {AdvectionCoefficient} advectionCoefficient AdvectionCoefficient value of the
+   * "advectionCoefficient" element to be set.
+   */
+  long setAdvectionCoefficient(AdvectionCoefficient advectionCoefficient);
+
+
+  /**
+   * Sets the value of the "boundaryCondition" element of this
+   * SpatialParameterPlugin.
+   *
+   * @param {BoundaryCondition} boundaryCondition BoundaryCondition value of the
+   * "boundaryCondition" element to be set.
+   */
+  long setBoundaryCondition(BoundaryCondition boundaryCondition);
+
+
+  /**
+   * Sets the value of the "diffusionCoefficient" element of this
+   * SpatialParameterPlugin.
+   *
+   * @param {DiffusionCoefficient} diffusionCoefficient DiffusionCoefficient value of the
+   * "diffusionCoefficient" element to be set.
+   */
+  long setDiffusionCoefficient(DiffusionCoefficient diffusionCoefficient);
+
+
+  /**
+   * Creates a new SpatialSymbolReference object, adds it to this
+   * SpatialParameterPlugin object and returns the SpatialSymbolReference
+   * object created.
+   *
+   * @return {SpatialSymbolReference} a new SpatialSymbolReference object instance.
+   */
+  SpatialSymbolReference createSpatialSymbolReference();
+
+
+  /**
+   * Creates a new AdvectionCoefficient object, adds it to this
+   * SpatialParameterPlugin object and returns the AdvectionCoefficient object
+   * created.
+   *
+   * @return {AdvectionCoefficient} a new AdvectionCoefficient object instance.
+   */
+  AdvectionCoefficient createAdvectionCoefficient();
+
+
+  /**
+   * Creates a new BoundaryCondition object, adds it to this
+   * SpatialParameterPlugin object and returns the BoundaryCondition object
+   * created.
+   *
+   * @return {BoundaryCondition} a new BoundaryCondition object instance.
+   */
+  BoundaryCondition createBoundaryCondition();
+
+
+  /**
+   * Creates a new DiffusionCoefficient object, adds it to this
+   * SpatialParameterPlugin object and returns the DiffusionCoefficient object
+   * created.
+   *
+   * @return {DiffusionCoefficient} a new DiffusionCoefficient object instance.
+   */
+  DiffusionCoefficient createDiffusionCoefficient();
+
+
+  /**
+   * Unsets the value of the "spatialSymbolReference" element of this
+   * SpatialParameterPlugin.
+   */
+  long unsetSpatialSymbolReference();
+
+
+  /**
+   * Unsets the value of the "advectionCoefficient" element of this
+   * SpatialParameterPlugin.
+   */
+  long unsetAdvectionCoefficient();
+
+
+  /**
+   * Unsets the value of the "boundaryCondition" element of this
+   * SpatialParameterPlugin.
+   */
+  long unsetBoundaryCondition();
+
+
+  /**
+   * Unsets the value of the "diffusionCoefficient" element of this
+   * SpatialParameterPlugin.
+   */
+  long unsetDiffusionCoefficient();
+};
+
+SpatialParameterPlugin implements SBasePlugin;

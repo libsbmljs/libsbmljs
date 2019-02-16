@@ -1,0 +1,53 @@
+/**
+ * # Extension of Compartment
+ */
+[Prefix="libsbml::"]
+interface SpatialCompartmentPlugin {
+  /**
+   * Returns the value of the "compartmentMapping" element of this
+   * SpatialCompartmentPlugin.
+   *
+   * @return {CompartmentMapping} the value of the "compartmentMapping" element of this
+   * SpatialCompartmentPlugin as a CompartmentMapping.
+   */
+  CompartmentMapping getCompartmentMapping();
+
+
+  /**
+   * Predicate returning @c true if this SpatialCompartmentPlugin's
+   * "compartmentMapping" element is set.
+   *
+   * @return {boolean} true if this SpatialCompartmentPlugin's "compartmentMapping"
+   * element has been set, otherwise @c false is returned.
+   */
+  boolean isSetCompartmentMapping();
+
+
+  /**
+   * Sets the value of the "compartmentMapping" element of this
+   * SpatialCompartmentPlugin.
+   *
+   * @param {CompartmentMapping} compartmentMapping CompartmentMapping value of the
+   * "compartmentMapping" element to be set.
+   */
+  long setCompartmentMapping(CompartmentMapping compartmentMapping);
+
+
+  /**
+   * Creates a new CompartmentMapping object, adds it to this
+   * SpatialCompartmentPlugin object and returns the CompartmentMapping object
+   * created.
+   *
+   * @return {CompartmentMapping} a new CompartmentMapping object instance.
+   */
+  CompartmentMapping createCompartmentMapping();
+
+
+  /**
+   * Unsets the value of the "compartmentMapping" element of this
+   * SpatialCompartmentPlugin.
+   */
+  long unsetCompartmentMapping();
+};
+
+SpatialCompartmentPlugin implements SBasePlugin;

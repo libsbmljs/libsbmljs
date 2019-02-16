@@ -1,0 +1,40 @@
+/**
+ * # Extension of Reaction
+ */
+[Prefix="libsbml::"]
+interface SpatialReactionPlugin {
+  /**
+   * Returns the value of the "isLocal" attribute of this
+   * SpatialReactionPlugin.
+   *
+   * @return the value of the "isLocal" attribute of this SpatialReactionPlugin
+   * as a boolean.
+   */
+  boolean getIsLocal();
+
+
+  /**
+   * Predicate returning true if this SpatialReactionPlugin's "isLocal"
+   * attribute is set.
+   *
+   * @return {boolean} true if this SpatialReactionPlugin's "isLocal" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetIsLocal();
+
+
+  /**
+   * Sets the value of the "isLocal" attribute of this SpatialReactionPlugin.
+   *
+   * @param {boolean} isLocal boolean value of the "isLocal" attribute to be set.
+   */
+  long setIsLocal(boolean isLocal);
+
+
+  /**
+   * Unsets the value of the "isLocal" attribute of this SpatialReactionPlugin.
+   */
+  long unsetIsLocal();
+};
+
+SpatialReactionPlugin implements SBasePlugin;

@@ -1,0 +1,41 @@
+/**
+ * # Extension of Species
+ */
+[Prefix="libsbml::"]
+interface SpatialSpeciesPlugin {
+  /**
+   * Returns the value of the "isSpatial" attribute of this
+   * SpatialSpeciesPlugin.
+   *
+   * @return {boolean} the value of the "isSpatial" attribute of this
+   * SpatialSpeciesPlugin as a boolean.
+   */
+  boolean getIsSpatial();
+
+
+  /**
+   * Predicate returning true if this SpatialSpeciesPlugin's "isSpatial"
+   * attribute is set.
+   *
+   * @return {boolean} true if this SpatialSpeciesPlugin's "isSpatial" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetIsSpatial();
+
+
+  /**
+   * Sets the value of the "isSpatial" attribute of this SpatialSpeciesPlugin.
+   *
+   * @param {boolean} isSpatial boolean value of the "isSpatial" attribute to be set.
+   */
+  long setIsSpatial(boolean isSpatial);
+
+
+  /**
+   * Unsets the value of the "isSpatial" attribute of this
+   * SpatialSpeciesPlugin.
+   */
+  long unsetIsSpatial();
+};
+
+SpatialSpeciesPlugin implements SBasePlugin;

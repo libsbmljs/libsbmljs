@@ -1,0 +1,8 @@
+/**
+ * # Extension of SBMLDocument
+ */
+[Prefix="libsbml::"]
+interface SpatialSBMLDocumentPlugin {
+};
+
+SpatialSBMLDocumentPlugin implements SBasePlugin;

@@ -1,0 +1,48 @@
+/**
+ * # Extension of Model
+ */
+[Prefix="libsbml::"]
+interface SpatialModelPlugin {
+  /**
+   * Returns the value of the "geometry" element of this SpatialModelPlugin.
+   *
+   * @return the value of the "geometry" element of this SpatialModelPlugin as
+   * a Geometry.
+   */
+  Geometry getGeometry();
+
+
+  /**
+   * Predicate returning true if this SpatialModelPlugin's "geometry"
+   * element is set.
+   *
+   * @return {boolean} true if this SpatialModelPlugin's "geometry" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetGeometry();
+
+
+  /**
+   * Sets the value of the "geometry" element of this SpatialModelPlugin.
+   *
+   * @param geometry Geometry value of the "geometry" element to be set.
+   */
+  long setGeometry(Geometry geometry);
+
+
+  /**
+   * Creates a new Geometry object, adds it to this SpatialModelPlugin object
+   * and returns the Geometry object created.
+   *
+   * @return {Geometry} a new Geometry object instance.
+   */
+  Geometry createGeometry();
+
+
+  /**
+   * Unsets the value of the "geometry" element of this SpatialModelPlugin.
+   */
+  long unsetGeometry();
+};
+
+SpatialModelPlugin implements SBasePlugin;
