@@ -149,20 +149,6 @@ interface MixedGeometry {
 
 
   /**
-   * Get an OrdinalMapping from the MixedGeometry based on the
-   * GeometryDefinition to which it refers.
-   *
-   * @param {OrdinalMapping} sid a string representing the geometryDefinition attribute of the
-   * OrdinalMapping object to retrieve.
-   *
-   * @return {number} the first OrdinalMapping in this MixedGeometry based on the given
-   * geometryDefinition attribute or NULL if no such OrdinalMapping exists.
-   */
-  OrdinalMapping getOrdinalMappingByGeometryDefinition(DOMString
-    sid);
-
-
-  /**
    * Adds a copy of the given OrdinalMapping to this MixedGeometry.
    *
    * @param {OrdinalMapping} om the OrdinalMapping object to add.

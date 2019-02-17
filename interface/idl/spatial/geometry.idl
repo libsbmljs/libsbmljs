@@ -282,35 +282,7 @@ interface Geometry {
    * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
    * domain1 attribute or NULL if no such AdjacentDomains exists.
    */
-  AdjacentDomains getAdjacentDomainsByDomain1(DOMString sid)
-   ;
-
-
-  /**
-   * Get an AdjacentDomains from the Geometry based on the Domain1 to which it
-   * refers.
-   *
-   * @param {string} sid a string representing the domain1 attribute of the
-   * AdjacentDomains object to retrieve.
-   *
-   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
-   * domain1 attribute or NULL if no such AdjacentDomains exists.
-   */
   AdjacentDomains getAdjacentDomainsByDomain1(DOMString sid);
-
-
-  /**
-   * Get an AdjacentDomains from the Geometry based on the Domain2 to which it
-   * refers.
-   *
-   * @param {string} sid a string representing the domain2 attribute of the
-   * AdjacentDomains object to retrieve.
-   *
-   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
-   * domain2 attribute or NULL if no such AdjacentDomains exists.
-   */
-  AdjacentDomains getAdjacentDomainsByDomain2(DOMString sid)
-   ;
 
 
   /**

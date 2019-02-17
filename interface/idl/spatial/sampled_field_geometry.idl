@@ -83,20 +83,6 @@ interface SampledFieldGeometry {
    * @return {SampledVolume} the first SampledVolume in this SampledFieldGeometry based on the
    * given domainType attribute or NULL if no such SampledVolume exists.
    */
-  SampledVolume getSampledVolumeByDomainType(DOMString sid)
-   ;
-
-
-  /**
-   * Get a SampledVolume from the SampledFieldGeometry based on the DomainType
-   * to which it refers.
-   *
-   * @param {string} sid a string representing the domainType attribute of the
-   * SampledVolume object to retrieve.
-   *
-   * @return {SampledVolume} the first SampledVolume in this SampledFieldGeometry based on the
-   * given domainType attribute or NULL if no such SampledVolume exists.
-   */
   SampledVolume getSampledVolumeByDomainType(DOMString sid);
 
 
