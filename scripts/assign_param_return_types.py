@@ -57,7 +57,8 @@ for filepath in sys.argv[1:]:
         blacklisted_methods = ('getId','setId','isSetId','unsetId',
             'getName','setName','isSetName','unsetName')
 
-        sigs = {}
+        sigs_line_map = {}
+        sig_count = {}
         last_line = 0
         for method_def,line_num in method_defs.items():
             # remove blacklisted methods
@@ -68,10 +69,12 @@ for filepath in sys.argv[1:]:
             else:
                 last_line = line_num
                 sig = make_sig(method_def)
-                if not sig in sigs:
-                    sigs[sig] = line_num
+                if not sig in sigs_line_map:
+                    sigs_line_map[sig] = line_num
+                    sig_count[sig] = 1
                 else:
-                    start = sigs[sig]
+                    sig_count[sig] += 1
+                    start = sigs_line_map[sig]
                     stop = line_num
                     if stop>start:
                         for l in range(start,stop):
@@ -85,6 +88,13 @@ for filepath in sys.argv[1:]:
             line = lines[line_num]
             d = try_match_def(line)
             if d is not None:
+                sig = make_sig(d)
+                if sig_count[sig] > 1:
+                    if len(d.arg_types) == 1 and d.arg_types[0] == 'DOMString':
+                        # string overloads for indexing, removal etc. methods
+                        keep_lines[line_num] = False
+                        for l in unmapped_line_nums:
+                            keep_lines[l] = False
                 return {line_num: d, **{l: d for l in unmapped_line_nums}, **map_method_defs(line_num+1, tuple())}
             else:
                 return {**map_method_defs(line_num+1, (line_num,*unmapped_line_nums))}
