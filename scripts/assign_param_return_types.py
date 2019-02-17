@@ -99,6 +99,8 @@ for filepath in sys.argv[1:]:
                 return 'number'
             elif t == 'unsigned long':
                 return 'number'
+            elif t == 'double':
+                return 'number'
             elif t.startswith('libsbml__idl__'):
                 return t.replace('libsbml__idl__','')
             else:
