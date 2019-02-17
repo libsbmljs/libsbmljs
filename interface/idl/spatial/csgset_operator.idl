@@ -75,7 +75,7 @@ interface CSGSetOperator {
    * @param {SetOperation_t} operationType SetOperation_t value of the "operationType" attribute
    * to be set.
    */
-  long setOperationType(libsbml_idl__SetOperation_t operationType);
+  long setOperationType(libsbml__idl__SetOperation_t operationType);
 
 
   /**
@@ -119,7 +119,7 @@ interface CSGSetOperator {
    *
    * @return {ListOfCSGNodes} the ListOfCSGNodes from this CSGSetOperator.
    */
-  ListOfCSGNodes getListOfCSGNodes();
+  /*ListOfCSGNodes getListOfCSGNodes();*/
 
 
   /**

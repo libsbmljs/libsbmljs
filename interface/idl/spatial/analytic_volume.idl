@@ -9,7 +9,7 @@ interface AnalyticVolume {
    * @return {FunctionKind_t} the value of the "functionType" attribute of this AnalyticVolume
    * as a FunctionKind_t.
    */
-  FunctionKind_t getFunctionType();
+  libsbml__idl__FunctionKind_t getFunctionType();
 
 
   /**
@@ -75,7 +75,7 @@ interface AnalyticVolume {
    * @param {const} functionType FunctionKind_t value of the "functionType" attribute
    * to be set.
    */
-  long setFunctionType(FunctionKind_t functionType);
+  long setFunctionType(libsbml__idl__FunctionKind_t functionType);
 
 
   /**

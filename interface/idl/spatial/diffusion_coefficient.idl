@@ -19,7 +19,7 @@ interface DiffusionCoefficient {
    * @return {DiffusionKind_t} the value of the "type" attribute of this DiffusionCoefficient as
    * a DiffusionKind_t.
    */
-  DiffusionKind_t getType();
+  libsbml__idl__DiffusionKind_t getType();
 
 
   /**
@@ -128,7 +128,7 @@ interface DiffusionCoefficient {
    *
    * @param {DiffusionKind_t} type DiffusionKind_t value of the "type" attribute to be set.
    */
-  long setType(DiffusionKind_t type);
+  long setType(libsbml__idl__DiffusionKind_t type);
 
 
   /**

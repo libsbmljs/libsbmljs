@@ -9,7 +9,7 @@ interface Geometry {
    * @return {GeometryKind_t} the value of the "coordinateSystem" attribute of this Geometry as
    * a GeometryKind_t.
    */
-  GeometryKind_t getCoordinateSystem();
+  libsbml__idl__GeometryKind_t getCoordinateSystem();
 
 
   /**
@@ -37,7 +37,7 @@ interface Geometry {
    * @param {GeometryKind_t} coordinateSystem GeometryKind_t value of the "coordinateSystem"
    * attribute to be set.
    */
-  long setCoordinateSystem(GeometryKind_t coordinateSystem);
+  long setCoordinateSystem(libsbml__idl__GeometryKind_t coordinateSystem);
 
 
   /**

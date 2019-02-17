@@ -42,7 +42,7 @@ interface Domain {
    *
    * @return {ListOfInteriorPoints} the ListOfInteriorPoints from this Domain.
    */
-  ListOfInteriorPoints getListOfInteriorPoints();
+  /*ListOfInteriorPoints getListOfInteriorPoints();*/
 
 
   /**

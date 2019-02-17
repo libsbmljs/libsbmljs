@@ -9,7 +9,7 @@ interface ParametricObject {
    * @return {PolygonKind_t} the value of the "polygonType" attribute of this ParametricObject
    * as a PolygonKind_t.
    */
-  PolygonKind_t getPolygonType();
+  libsbml__idl__PolygonKind_t getPolygonType();
 
 
   /**
@@ -76,7 +76,7 @@ interface ParametricObject {
    * @return {DataKind_t} the value of the "dataType" attribute of this ParametricObject as
    * a DataKind_t.
    */
-  DataKind_t getDataType();
+  libsbml__idl__DataKind_t getDataType();
 
 
   /**
@@ -154,7 +154,7 @@ interface ParametricObject {
    * @param {PolygonKind_t} polygonType PolygonKind_t value of the "polygonType" attribute to
    * be set.
    */
-  long setPolygonType(PolygonKind_t polygonType);
+  long setPolygonType(libsbml__idl__PolygonKind_t polygonType);
 
 
   /**

@@ -53,7 +53,7 @@ interface ParametricGeometry {
    *
    * @return {ListOfParametricObjects} the ListOfParametricObjects from this ParametricGeometry.
    */
-  ListOfParametricObjects getListOfParametricObjects();
+  /*ListOfParametricObjects getListOfParametricObjects();*/
 
 
   /**

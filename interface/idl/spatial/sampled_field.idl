@@ -74,7 +74,7 @@ interface SampledField {
    * @return {CompressionKind_t} the value of the "compression" attribute of this SampledField as a
    * CompressionKind_t.
    */
-  CompressionKind_t getCompression();
+  libsbml__idl__CompressionKind_t getCompression();
 
 
   /**
