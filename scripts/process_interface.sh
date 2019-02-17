@@ -24,6 +24,12 @@ find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:n
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 
 
 # primitive types
@@ -39,10 +45,13 @@ find $1 -type f -name '*idl' | xargs sed -Ei 's/^  (\w+)\*/  \1/g'
 find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)\*/\1/g'
 
 # const values (usu. enums)
-find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)_t\*/\1_t/g'
+find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)_t/\1_t/g'
 
 # const methods
 find $1 -type f -name '*idl' | xargs sed -i 's/ const;$/;/g'
+
+# virtual methods
+find $1 -type f -name '*idl' | xargs sed -i 's/virtual //g'
 
 # apply the python script
 find $1 -type f -name '*idl' | xargs python3 $( dirname "$0" )/assign_param_return_types.py
