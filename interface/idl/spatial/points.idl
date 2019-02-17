@@ -1,0 +1,173 @@
+/**
+ * # SpatialPoints class
+ */
+[Prefix="libsbml::"]
+interface SpatialPoints {
+  /**
+   * Returns the value of the "compression" attribute of this SpatialPoints.
+   *
+   * @return {CompressionKind_t} the value of the "compression" attribute of this SpatialPoints as
+   * a CompressionKind_t.
+   */
+  CompressionKind_t getCompression();
+
+
+  /**
+   * Returns the value of the "compression" attribute of this SpatialPoints.
+   *
+   * @return {string} the value of the "compression" attribute of this SpatialPoints as
+   * a string.
+   */
+  DOMString getCompressionAsString();
+
+
+  /**
+   * Returns the value of the "arrayData" attribute of this SpatialPoints.
+   *
+   * @param outArray double* array that will be used to return the value of the
+   * "arrayData" attribute of this SpatialPoints.
+   *
+   * **Note:** the value of the "arrayData" attribute of this SpatialPoints is
+   * returned in the argument array.
+   */
+  void getArrayData(double* outArray);
+
+
+  /**
+   * Returns the value of the "arrayDataLength" attribute of this
+   * SpatialPoints.
+   *
+   * @return {number} the value of the "arrayDataLength" attribute of this SpatialPoints
+   * as a integer.
+   */
+  long getArrayDataLength();
+
+
+  /**
+   * Returns the value of the "dataType" attribute of this SpatialPoints.
+   *
+   * @return {DataKind_t} the value of the "dataType" attribute of this SpatialPoints as a
+   * DataKind_t.
+   */
+  libsbml__idl__DataKind_t getDataType();
+
+
+  /**
+   * Returns the value of the "dataType" attribute of this SpatialPoints.
+   *
+   * @return {string} the value of the "dataType" attribute of this SpatialPoints as a
+   * string.
+   */
+  DOMString getDataTypeAsString();
+
+
+  /**
+   * Predicate returning true if this SpatialPoints's "compression"
+   * attribute is set.
+   *
+   * return {boolean} true if this SpatialPoints's "compression" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetCompression();
+
+
+  /**
+   * Predicate returning true if this SpatialPoints's "arrayData" attribute
+   * is set.
+   *
+   * return {boolean} true if this SpatialPoints's "arrayData" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetArrayData();
+
+
+  /**
+   * Predicate returning true if this SpatialPoints's "arrayDataLength"
+   * attribute is set.
+   *
+   * return {boolean} true if this SpatialPoints's "arrayDataLength" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetArrayDataLength();
+
+
+  /**
+   * Predicate returning true if this SpatialPoints's "dataType" attribute
+   * is set.
+   *
+   * return {boolean} true if this SpatialPoints's "dataType" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetDataType();
+
+
+  /**
+   * Sets the value of the "compression" attribute of this SpatialPoints.
+   *
+   * @param {CompressionKind_t} compression CompressionKind_t value of the "compression" attribute
+   * to be set.
+   */
+  long setCompression(CompressionKind_t compression);
+
+
+  /**
+   * Sets the value of the "arrayData" attribute of this SpatialPoints.
+   *
+   * @param inArray double* array value of the "arrayData" attribute to be set.
+   *
+   * @param arrayLength long value for the length of the "arrayData" attribute
+   * to be set.
+   */
+  long setArrayData(double* inArray, long arrayLength);
+
+
+  /**
+   * Sets the value of the "arrayDataLength" attribute of this SpatialPoints.
+   *
+   * @param {number} arrayDataLength long value of the "arrayDataLength" attribute to be
+   * set.
+   */
+  long setArrayDataLength(long arrayDataLength);
+
+
+  /**
+   * Sets the value of the "dataType" attribute of this SpatialPoints.
+   *
+   * @param {DataKind_t} dataType DataKind_t value of the "dataType" attribute to be set.
+   */
+  long setDataType(libsbml__idl__DataKind_t dataType);
+
+
+  /**
+   * Sets the value of the "dataType" attribute of this SpatialPoints.
+   *
+   * @param {string} dataType DOMString& of the "dataType" attribute to be set.
+   */
+  /*long setDataType(DOMString dataType);*/
+
+
+  /**
+   * Unsets the value of the "compression" attribute of this SpatialPoints.
+   */
+  long unsetCompression();
+
+
+  /**
+   * Unsets the value of the "arrayData" attribute of this SpatialPoints.
+   */
+  long unsetArrayData();
+
+
+  /**
+   * Unsets the value of the "arrayDataLength" attribute of this SpatialPoints.
+   */
+  long unsetArrayDataLength();
+
+
+  /**
+   * Unsets the value of the "dataType" attribute of this SpatialPoints.
+   */
+  long unsetDataType();
+};
+
+SpatialPoints implements SBase;

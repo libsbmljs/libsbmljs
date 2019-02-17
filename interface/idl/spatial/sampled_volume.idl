@@ -1,0 +1,140 @@
+/**
+ * # SampledVolume class
+ */
+[Prefix="libsbml::"]
+interface SampledVolume {
+  /**
+   * Returns the value of the "domainType" attribute of this SampledVolume.
+   *
+   * @return {string} the value of the "domainType" attribute of this SampledVolume as a
+   * string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Returns the value of the "sampledValue" attribute of this SampledVolume.
+   *
+   * @return {number} the value of the "sampledValue" attribute of this SampledVolume as
+   * a double.
+   */
+  double getSampledValue();
+
+
+  /**
+   * Returns the value of the "minValue" attribute of this SampledVolume.
+   *
+   * @return {number} the value of the "minValue" attribute of this SampledVolume as a
+   * double.
+   */
+  double getMinValue();
+
+
+  /**
+   * Returns the value of the "maxValue" attribute of this SampledVolume.
+   *
+   * @return {number} the value of the "maxValue" attribute of this SampledVolume as a
+   * double.
+   */
+  double getMaxValue();
+
+
+  /**
+   * Predicate returning true if this SampledVolume's "domainType" attribute
+   * is set.
+   *
+   * return {boolean} true if this SampledVolume's "domainType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Predicate returning true if this SampledVolume's "sampledValue"
+   * attribute is set.
+   *
+   * return {boolean} true if this SampledVolume's "sampledValue" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetSampledValue();
+
+
+  /**
+   * Predicate returning true if this SampledVolume's "minValue" attribute
+   * is set.
+   *
+   * return {boolean} true if this SampledVolume's "minValue" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMinValue();
+
+
+  /**
+   * Predicate returning true if this SampledVolume's "maxValue" attribute
+   * is set.
+   *
+   * return {boolean} true if this SampledVolume's "maxValue" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMaxValue();
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this SampledVolume.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Sets the value of the "sampledValue" attribute of this SampledVolume.
+   *
+   * @param {number} sampledValue double value of the "sampledValue" attribute to be
+   * set.
+   */
+  long setSampledValue(double sampledValue);
+
+
+  /**
+   * Sets the value of the "minValue" attribute of this SampledVolume.
+   *
+   * @param {number} minValue double value of the "minValue" attribute to be set.
+   */
+  long setMinValue(double minValue);
+
+
+  /**
+   * Sets the value of the "maxValue" attribute of this SampledVolume.
+   *
+   * @param {number} maxValue double value of the "maxValue" attribute to be set.
+   */
+  long setMaxValue(double maxValue);
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this SampledVolume.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Unsets the value of the "sampledValue" attribute of this SampledVolume.
+   */
+  long unsetSampledValue();
+
+
+  /**
+   * Unsets the value of the "minValue" attribute of this SampledVolume.
+   */
+  long unsetMinValue();
+
+
+  /**
+   * Unsets the value of the "maxValue" attribute of this SampledVolume.
+   */
+  long unsetMaxValue();
+};
+
+SampledVolume implements SBase;

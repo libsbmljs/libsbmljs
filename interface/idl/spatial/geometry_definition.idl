@@ -1,0 +1,89 @@
+/**
+ * # GeometryDefinition class
+ */
+[Prefix="libsbml::"]
+interface GeometryDefinition {
+  /**
+   * Returns the value of the "isActive" attribute of this GeometryDefinition.
+   *
+   * @return {boolean} the value of the "isActive" attribute of this GeometryDefinition
+   * as a boolean.
+   */
+  boolean getIsActive();
+
+
+  /**
+   * Predicate returning true if this GeometryDefinition's "isActive"
+   * attribute is set.
+   *
+   * return {boolean} true if this GeometryDefinition's "isActive" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetIsActive();
+
+
+  /**
+   * Sets the value of the "isActive" attribute of this GeometryDefinition.
+   *
+   * @param {boolean} isActive boolean value of the "isActive" attribute to be set.
+   */
+  long setIsActive(boolean isActive);
+
+
+  /**
+   * Unsets the value of the "isActive" attribute of this GeometryDefinition.
+   */
+  long unsetIsActive();
+
+
+  /**
+   * Predicate returning true if this abstract "GeometryDefinition" is of
+   * type AnalyticGeometry
+   *
+   * return {boolean} true if this abstract "GeometryDefinition" is of type
+   * AnalyticGeometry, false otherwise
+   */
+  boolean isAnalyticGeometry();
+
+
+  /**
+   * Predicate returning true if this abstract "GeometryDefinition" is of
+   * type SampledFieldGeometry
+   *
+   * return {boolean} true if this abstract "GeometryDefinition" is of type
+   * SampledFieldGeometry, false otherwise
+   */
+  boolean isSampledFieldGeometry();
+
+
+  /**
+   * Predicate returning true if this abstract "GeometryDefinition" is of
+   * type CSGeometry
+   *
+   * return {boolean} true if this abstract "GeometryDefinition" is of type
+   * CSGeometry, false otherwise
+   */
+  boolean isCSGeometry();
+
+
+  /**
+   * Predicate returning true if this abstract "GeometryDefinition" is of
+   * type ParametricGeometry
+   *
+   * return {boolean} true if this abstract "GeometryDefinition" is of type
+   * ParametricGeometry, false otherwise
+   */
+  boolean isParametricGeometry();
+
+
+  /**
+   * Predicate returning true if this abstract "GeometryDefinition" is of
+   * type MixedGeometry
+   *
+   * return {boolean} true if this abstract "GeometryDefinition" is of type
+   * MixedGeometry, false otherwise
+   */
+  boolean isMixedGeometry();
+};
+
+GeometryDefinition implements SBase;

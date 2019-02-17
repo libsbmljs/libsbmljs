@@ -1,0 +1,105 @@
+/**
+ * # InteriorPoint class
+ */
+[Prefix="libsbml::"]
+interface InteriorPoint {
+  /**
+   * Returns the value of the "coord1" attribute of this InteriorPoint.
+   *
+   * @return {number} the value of the "coord1" attribute of this InteriorPoint as a
+   * double.
+   */
+  double getCoord1();
+
+
+  /**
+   * Returns the value of the "coord2" attribute of this InteriorPoint.
+   *
+   * @return {number} the value of the "coord2" attribute of this InteriorPoint as a
+   * double.
+   */
+  double getCoord2();
+
+
+  /**
+   * Returns the value of the "coord3" attribute of this InteriorPoint.
+   *
+   * @return {number} the value of the "coord3" attribute of this InteriorPoint as a
+   * double.
+   */
+  double getCoord3();
+
+
+  /**
+   * Predicate returning true if this InteriorPoint's "coord1" attribute is
+   * set.
+   *
+   * return {boolean} true if this InteriorPoint's "coord1" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCoord1();
+
+
+  /**
+   * Predicate returning true if this InteriorPoint's "coord2" attribute is
+   * set.
+   *
+   * return {boolean} true if this InteriorPoint's "coord2" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCoord2();
+
+
+  /**
+   * Predicate returning true if this InteriorPoint's "coord3" attribute is
+   * set.
+   *
+   * return {boolean} true if this InteriorPoint's "coord3" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCoord3();
+
+
+  /**
+   * Sets the value of the "coord1" attribute of this InteriorPoint.
+   *
+   * @param {number} coord1 double value of the "coord1" attribute to be set.
+   */
+  long setCoord1(double coord1);
+
+
+  /**
+   * Sets the value of the "coord2" attribute of this InteriorPoint.
+   *
+   * @param {number} coord2 double value of the "coord2" attribute to be set.
+   */
+  long setCoord2(double coord2);
+
+
+  /**
+   * Sets the value of the "coord3" attribute of this InteriorPoint.
+   *
+   * @param {number} coord3 double value of the "coord3" attribute to be set.
+   */
+  long setCoord3(double coord3);
+
+
+  /**
+   * Unsets the value of the "coord1" attribute of this InteriorPoint.
+   */
+  long unsetCoord1();
+
+
+  /**
+   * Unsets the value of the "coord2" attribute of this InteriorPoint.
+   */
+  long unsetCoord2();
+
+
+  /**
+   * Unsets the value of the "coord3" attribute of this InteriorPoint.
+   */
+  long unsetCoord3();
+};
+
+InteriorPoint implements SBase;

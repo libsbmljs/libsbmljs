@@ -1,0 +1,76 @@
+/**
+ * # OrdinalMapping class
+ */
+[Prefix="libsbml::"]
+interface OrdinalMapping {
+  /**
+   * Returns the value of the "geometryDefinition" attribute of this
+   * OrdinalMapping.
+   *
+   * @return {string} the value of the "geometryDefinition" attribute of this
+   * OrdinalMapping as a string.
+   */
+  DOMString getGeometryDefinition();
+
+
+  /**
+   * Returns the value of the "ordinal" attribute of this OrdinalMapping.
+   *
+   * @return {number} the value of the "ordinal" attribute of this OrdinalMapping as a
+   * integer.
+   */
+  long getOrdinal();
+
+
+  /**
+   * Predicate returning true if this OrdinalMapping's "geometryDefinition"
+   * attribute is set.
+   *
+   * return {boolean} true if this OrdinalMapping's "geometryDefinition" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetGeometryDefinition();
+
+
+  /**
+   * Predicate returning true if this OrdinalMapping's "ordinal" attribute
+   * is set.
+   *
+   * return {boolean} true if this OrdinalMapping's "ordinal" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetOrdinal();
+
+
+  /**
+   * Sets the value of the "geometryDefinition" attribute of this
+   * OrdinalMapping.
+   *
+   * @param {string} geometryDefinition DOMString& value of the "geometryDefinition"
+   * attribute to be set.
+   */
+  long setGeometryDefinition(DOMString geometryDefinition);
+
+
+  /**
+   * Sets the value of the "ordinal" attribute of this OrdinalMapping.
+   *
+   * @param {number} ordinal long value of the "ordinal" attribute to be set.
+   */
+  long setOrdinal(long ordinal);
+
+
+  /**
+   * Unsets the value of the "geometryDefinition" attribute of this
+   * OrdinalMapping.
+   */
+  long unsetGeometryDefinition();
+
+
+  /**
+   * Unsets the value of the "ordinal" attribute of this OrdinalMapping.
+   */
+  long unsetOrdinal();
+};
+
+OrdinalMapping implements SBase;

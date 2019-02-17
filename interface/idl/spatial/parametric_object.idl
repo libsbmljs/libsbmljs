@@ -1,0 +1,260 @@
+/**
+ * # ParametricObject class
+ */
+[Prefix="libsbml::"]
+interface ParametricObject {
+  /**
+   * Returns the value of the "polygonType" attribute of this ParametricObject.
+   *
+   * @return {PolygonKind_t} the value of the "polygonType" attribute of this ParametricObject
+   * as a PolygonKind_t.
+   */
+  PolygonKind_t getPolygonType();
+
+
+  /**
+   * Returns the value of the "polygonType" attribute of this ParametricObject.
+   *
+   * @return {string} the value of the "polygonType" attribute of this ParametricObject
+   * as a string.
+   */
+  DOMString getPolygonTypeAsString();
+
+
+  /**
+   * Returns the value of the "domainType" attribute of this ParametricObject.
+   *
+   * @return {string} the value of the "domainType" attribute of this ParametricObject
+   * as a string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Returns the value of the "pointIndex" attribute of this ParametricObject.
+   *
+   * @param outArray long* array that will be used to return the value of the
+   * "pointIndex" attribute of this ParametricObject.
+   *
+   * **Note:** the value of the "pointIndex" attribute of this ParametricObject is
+   * returned in the argument array.
+   */
+  void getPointIndex(long* outArray);
+
+
+  /**
+   * Returns the value of the "pointIndexLength" attribute of this
+   * ParametricObject.
+   *
+   * @return {number} the value of the "pointIndexLength" attribute of this
+   * ParametricObject as a integer.
+   */
+  long getPointIndexLength();
+
+
+  /**
+   * Returns the value of the "compression" attribute of this ParametricObject.
+   *
+   * @return {CompressionKind_t} the value of the "compression" attribute of this ParametricObject
+   * as a CompressionKind_t.
+   */
+  libsbml__idl__CompressionKind_t getCompression();
+
+
+  /**
+   * Returns the value of the "compression" attribute of this ParametricObject.
+   *
+   * @return {string} the value of the "compression" attribute of this ParametricObject
+   * as a string.
+   */
+  DOMString getCompressionAsString();
+
+
+  /**
+   * Returns the value of the "dataType" attribute of this ParametricObject.
+   *
+   * @return {DataKind_t} the value of the "dataType" attribute of this ParametricObject as
+   * a DataKind_t.
+   */
+  DataKind_t getDataType();
+
+
+  /**
+   * Returns the value of the "dataType" attribute of this ParametricObject.
+   *
+   * @return {string} the value of the "dataType" attribute of this ParametricObject as
+   * a string.
+   */
+  DOMString getDataTypeAsString();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "polygonType"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "polygonType" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetPolygonType();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "domainType"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "domainType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "pointIndex"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "pointIndex" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetPointIndex();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "pointIndexLength"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "pointIndexLength" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetPointIndexLength();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "compression"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "compression" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetCompression();
+
+
+  /**
+   * Predicate returning true if this ParametricObject's "dataType"
+   * attribute is set.
+   *
+   * return {boolean} true if this ParametricObject's "dataType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDataType();
+
+
+  /**
+   * Sets the value of the "polygonType" attribute of this ParametricObject.
+   *
+   * @param {PolygonKind_t} polygonType PolygonKind_t value of the "polygonType" attribute to
+   * be set.
+   */
+  long setPolygonType(PolygonKind_t polygonType);
+
+
+  /**
+   * Sets the value of the "polygonType" attribute of this ParametricObject.
+   *
+   * @param {string} polygonType DOMString& of the "polygonType" attribute to be set.
+   */
+  long setPolygonType(DOMString polygonType);
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this ParametricObject.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Sets the value of the "pointIndex" attribute of this ParametricObject.
+   *
+   * @param inArray long* array value of the "pointIndex" attribute to be set.
+   *
+   * @param arrayLength long value for the length of the "pointIndex" attribute
+   * to be set.
+   */
+  long setPointIndex(long* inArray, long arrayLength);
+
+
+  /**
+   * Sets the value of the "pointIndexLength" attribute of this
+   * ParametricObject.
+   *
+   * @param {number} pointIndexLength long value of the "pointIndexLength" attribute to
+   * be set.
+   */
+  long setPointIndexLength(long pointIndexLength);
+
+
+  /**
+   * Sets the value of the "compression" attribute of this ParametricObject.
+   *
+   * @param {CompressionKind_t} compression CompressionKind_t value of the "compression" attribute
+   * to be set.
+   */
+  long setCompression(libsbml__idl__CompressionKind_t compression);
+
+
+  /**
+   * Sets the value of the "dataType" attribute of this ParametricObject.
+   *
+   * @param {DataKind_t} dataType DataKind_t value of the "dataType" attribute to be set.
+   */
+  long setDataType(DataKind_t dataType);
+
+
+  /**
+   * Sets the value of the "dataType" attribute of this ParametricObject.
+   *
+   * @param {string} dataType DOMString& of the "dataType" attribute to be set.
+   */
+  long setDataType(DOMString dataType);
+
+
+  /**
+   * Unsets the value of the "polygonType" attribute of this ParametricObject.
+   */
+  long unsetPolygonType();
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this ParametricObject.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Unsets the value of the "pointIndex" attribute of this ParametricObject.
+   */
+  long unsetPointIndex();
+
+
+  /**
+   * Unsets the value of the "pointIndexLength" attribute of this
+   * ParametricObject.
+   */
+  long unsetPointIndexLength();
+
+
+  /**
+   * Unsets the value of the "compression" attribute of this ParametricObject.
+   */
+  long unsetCompression();
+
+
+  /**
+   * Unsets the value of the "dataType" attribute of this ParametricObject.
+   */
+  long unsetDataType();
+};
+
+ParametricObject implements SBase;

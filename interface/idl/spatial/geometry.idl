@@ -1,0 +1,722 @@
+/**
+ * # Geometry class
+ */
+[Prefix="libsbml::"]
+interface Geometry {
+  /**
+   * Returns the value of the "coordinateSystem" attribute of this Geometry.
+   *
+   * @return {GeometryKind_t} the value of the "coordinateSystem" attribute of this Geometry as
+   * a GeometryKind_t.
+   */
+  GeometryKind_t getCoordinateSystem();
+
+
+  /**
+   * Returns the value of the "coordinateSystem" attribute of this Geometry.
+   *
+   * @return {string} the value of the "coordinateSystem" attribute of this Geometry as
+   * a string.
+   */
+  DOMString getCoordinateSystemAsString();
+
+
+  /**
+   * Predicate returning true if this Geometry's "coordinateSystem"
+   * attribute is set.
+   *
+   * return {boolean} true if this Geometry's "coordinateSystem" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetCoordinateSystem();
+
+
+  /**
+   * Sets the value of the "coordinateSystem" attribute of this Geometry.
+   *
+   * @param {GeometryKind_t} coordinateSystem GeometryKind_t value of the "coordinateSystem"
+   * attribute to be set.
+   */
+  long setCoordinateSystem(GeometryKind_t coordinateSystem);
+
+
+  /**
+   * Sets the value of the "coordinateSystem" attribute of this Geometry.
+   *
+   * @param {string} coordinateSystem DOMString& of the "coordinateSystem" attribute
+   * to be set.
+   */
+  long setCoordinateSystem(DOMString coordinateSystem);
+
+
+  /**
+   * Unsets the value of the "coordinateSystem" attribute of this Geometry.
+   */
+  long unsetCoordinateSystem();
+
+
+  /**
+   * Returns the ListOfCoordinateComponents from this Geometry.
+   *
+   * @return {ListOfCoordinateComponents} the ListOfCoordinateComponents from this Geometry.
+   */
+  /*ListOfCoordinateComponents getListOfCoordinateComponents();*/
+
+
+  /**
+   * Get a CoordinateComponent from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the CoordinateComponent
+   * to retrieve.
+   *
+   * @return {CoordinateComponent} the nth CoordinateComponent in the ListOfCoordinateComponents
+   * within this Geometry.
+   */
+  CoordinateComponent getCoordinateComponent(unsigned long n);
+
+
+  /**
+   * Get a CoordinateComponent from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the CoordinateComponent
+   * to retrieve.
+   *
+   * @return {CoordinateComponent} the CoordinateComponent in the ListOfCoordinateComponents within
+   * this Geometry with the given id or NULL if no such CoordinateComponent
+   * exists.
+   */
+  CoordinateComponent getCoordinateComponent(DOMString sid);
+
+
+  /**
+   * Get a CoordinateComponent from the Geometry based on its identifier.
+   *
+   * @param {CoordinateComponent} sid a string representing the identifier of the CoordinateComponent
+   * to retrieve.
+   *
+   * @return {number} the CoordinateComponent in the ListOfCoordinateComponents within
+   * this Geometry with the given id or NULL if no such CoordinateComponent
+   * exists.
+   */
+  CoordinateComponent getCoordinateComponent(DOMString sid)
+   ;
+
+
+  /**
+   * Adds a copy of the given CoordinateComponent to this Geometry.
+   *
+   * @param {CoordinateComponent} cc the CoordinateComponent object to add.
+   */
+  long addCoordinateComponent(CoordinateComponent cc);
+
+
+  /**
+   * Get the number of CoordinateComponent objects in this Geometry.
+   *
+   * @return {number} the number of CoordinateComponent objects in this Geometry.
+   */
+  unsigned long getNumCoordinateComponents();
+
+
+  /**
+   * Creates a new CoordinateComponent object, adds it to this Geometry object
+   * and returns the CoordinateComponent object created.
+   *
+   * @return {CoordinateComponent} a new CoordinateComponent object instance.
+   */
+  CoordinateComponent createCoordinateComponent();
+
+
+  /**
+   * Removes the nth CoordinateComponent from this Geometry and returns a
+   * pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the CoordinateComponent
+   * to remove.
+   *
+   * @return {CoordinateComponent} a pointer to the nth CoordinateComponent in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  CoordinateComponent removeCoordinateComponent(unsigned long n);
+
+
+  /**
+   * Removes the CoordinateComponent from this Geometry based on its identifier
+   * and returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the CoordinateComponent
+   * to remove.
+   *
+   * @return {CoordinateComponent} the CoordinateComponent in this Geometry based on the identifier
+   * or NULL if no such CoordinateComponent exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  CoordinateComponent removeCoordinateComponent(DOMString sid);
+
+
+  /**
+   * Returns the ListOfDomainTypes from this Geometry.
+   *
+   * @return {ListOfDomainTypes} the ListOfDomainTypes from this Geometry.
+   */
+  /*ListOfDomainTypes getListOfDomainTypes();*/
+
+
+  /**
+   * Get a DomainType from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the DomainType to
+   * retrieve.
+   *
+   * @return {DomainType} the nth DomainType in the ListOfDomainTypes within this Geometry.
+   */
+  DomainType getDomainType(unsigned long n);
+
+
+  /**
+   * Get a DomainType from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the DomainType to
+   * retrieve.
+   *
+   * @return {DomainType} the DomainType in the ListOfDomainTypes within this Geometry with
+   * the given id or NULL if no such DomainType exists.
+   */
+  DomainType getDomainType(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given DomainType to this Geometry.
+   *
+   * @param {DomainType} dt the DomainType object to add.
+   */
+  long addDomainType(DomainType dt);
+
+
+  /**
+   * Get the number of DomainType objects in this Geometry.
+   *
+   * @return {number} the number of DomainType objects in this Geometry.
+   */
+  unsigned long getNumDomainTypes();
+
+
+  /**
+   * Creates a new DomainType object, adds it to this Geometry object and
+   * returns the DomainType object created.
+   *
+   * @return {DomainType} a new DomainType object instance.
+   */
+  DomainType createDomainType();
+
+
+  /**
+   * Removes the nth DomainType from this Geometry and returns a pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the DomainType to
+   * remove.
+   *
+   * @return {DomainType} a pointer to the nth DomainType in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  DomainType removeDomainType(unsigned long n);
+
+
+  /**
+   * Removes the DomainType from this Geometry based on its identifier and
+   * returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the DomainType to
+   * remove.
+   *
+   * @return {DomainType} the DomainType in this Geometry based on the identifier or NULL if
+   * no such DomainType exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  DomainType removeDomainType(DOMString sid);
+
+
+  /**
+   * Returns the ListOfDomains from this Geometry.
+   *
+   * @return {ListOfDomains} the ListOfDomains from this Geometry.
+   */
+  /*ListOfDomains getListOfDomains();*/
+
+
+  /**
+   * Get a Domain from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the Domain to retrieve.
+   *
+   * @return {Domain} the nth Domain in the ListOfDomains within this Geometry.
+   */
+  Domain getDomain(unsigned long n);
+
+
+  /**
+   * Get a Domain from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the Domain to retrieve.
+   *
+   * @return {Domain} the Domain in the ListOfDomains within this Geometry with the
+   * given id or NULL if no such Domain exists.
+   */
+  Domain getDomain(DOMString sid);
+
+
+  /**
+   * Get a Domain from the Geometry based on the DomainType to which it refers.
+   *
+   * @param {string} sid a string representing the domainType attribute of the Domain
+   * object to retrieve.
+   *
+   * @return {Domain} the first Domain in this Geometry based on the given domainType
+   * attribute or NULL if no such Domain exists.
+   */
+  Domain getDomainByDomainType(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given Domain to this Geometry.
+   *
+   * @param {Domain} d the Domain object to add.
+   */
+  long addDomain(Domain d);
+
+
+  /**
+   * Get the number of Domain objects in this Geometry.
+   *
+   * @return {number} the number of Domain objects in this Geometry.
+   */
+  unsigned long getNumDomains();
+
+
+  /**
+   * Creates a new Domain object, adds it to this Geometry object and returns
+   * the Domain object created.
+   *
+   * @return {Domain} a new Domain object instance.
+   */
+  Domain createDomain();
+
+
+  /**
+   * Removes the nth Domain from this Geometry and returns a pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the Domain to remove.
+   *
+   * @return {Domain} a pointer to the nth Domain in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  Domain removeDomain(unsigned long n);
+
+
+  /**
+   * Removes the Domain from this Geometry based on its identifier and returns
+   * a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the Domain to remove.
+   *
+   * @return {Domain} the Domain in this Geometry based on the identifier or NULL if no
+   * such Domain exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  Domain removeDomain(DOMString sid);
+
+
+  /**
+   * Returns the ListOfAdjacentDomains from this Geometry.
+   *
+   * @return {ListOfAdjacentDomains} the ListOfAdjacentDomains from this Geometry.
+   */
+  /*ListOfAdjacentDomains getListOfAdjacentDomains();*/
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the AdjacentDomains to
+   * retrieve.
+   *
+   * @return {AdjacentDomains} the nth AdjacentDomains in the ListOfAdjacentDomains within this
+   * Geometry.
+   */
+  AdjacentDomains getAdjacentDomains(unsigned long n);
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the AdjacentDomains to
+   * retrieve.
+   *
+   * @return {AdjacentDomains} the AdjacentDomains in the ListOfAdjacentDomains within this
+   * Geometry with the given id or NULL if no such AdjacentDomains exists.
+   */
+  AdjacentDomains getAdjacentDomains(DOMString sid);
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry based on the Domain1 to which it
+   * refers.
+   *
+   * @param {string} sid a string representing the domain1 attribute of the
+   * AdjacentDomains object to retrieve.
+   *
+   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
+   * domain1 attribute or NULL if no such AdjacentDomains exists.
+   */
+  AdjacentDomains getAdjacentDomainsByDomain1(DOMString sid)
+   ;
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry based on the Domain1 to which it
+   * refers.
+   *
+   * @param {string} sid a string representing the domain1 attribute of the
+   * AdjacentDomains object to retrieve.
+   *
+   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
+   * domain1 attribute or NULL if no such AdjacentDomains exists.
+   */
+  AdjacentDomains getAdjacentDomainsByDomain1(DOMString sid);
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry based on the Domain2 to which it
+   * refers.
+   *
+   * @param {string} sid a string representing the domain2 attribute of the
+   * AdjacentDomains object to retrieve.
+   *
+   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
+   * domain2 attribute or NULL if no such AdjacentDomains exists.
+   */
+  AdjacentDomains getAdjacentDomainsByDomain2(DOMString sid)
+   ;
+
+
+  /**
+   * Get an AdjacentDomains from the Geometry based on the Domain2 to which it
+   * refers.
+   *
+   * @param {string} sid a string representing the domain2 attribute of the
+   * AdjacentDomains object to retrieve.
+   *
+   * @return {AdjacentDomains} the first AdjacentDomains in this Geometry based on the given
+   * domain2 attribute or NULL if no such AdjacentDomains exists.
+   */
+  AdjacentDomains getAdjacentDomainsByDomain2(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given AdjacentDomains to this Geometry.
+   *
+   * @param {AdjacentDomains} ad the AdjacentDomains object to add.
+   */
+  long addAdjacentDomains(AdjacentDomains ad);
+
+
+  /**
+   * Get the number of AdjacentDomains objects in this Geometry.
+   *
+   * @return {number} the number of AdjacentDomains objects in this Geometry.
+   */
+  unsigned long getNumAdjacentDomains();
+
+
+  /**
+   * Creates a new AdjacentDomains object, adds it to this Geometry object and
+   * returns the AdjacentDomains object created.
+   *
+   * @return {AdjacentDomains} a new AdjacentDomains object instance.
+   */
+  AdjacentDomains createAdjacentDomains();
+
+
+  /**
+   * Removes the nth AdjacentDomains from this Geometry and returns a pointer
+   * to it.
+   *
+   * @param {number} n an unsigned long representing the index of the AdjacentDomains to
+   * remove.
+   *
+   * @return {AdjacentDomains} a pointer to the nth AdjacentDomains in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  AdjacentDomains removeAdjacentDomains(unsigned long n);
+
+
+  /**
+   * Removes the AdjacentDomains from this Geometry based on its identifier and
+   * returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the AdjacentDomains to
+   * remove.
+   *
+   * @return {AdjacentDomains} the AdjacentDomains in this Geometry based on the identifier or
+   * NULL if no such AdjacentDomains exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  AdjacentDomains removeAdjacentDomains(DOMString sid);
+
+
+  /**
+   * Returns the ListOfGeometryDefinitions from this Geometry.
+   *
+   * @return {ListOfGeometryDefinitions} the ListOfGeometryDefinitions from this Geometry.
+   */
+  /*ListOfGeometryDefinitions getListOfGeometryDefinitions();*/
+
+
+  /**
+   * Get a GeometryDefinition from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {GeometryDefinition} the nth GeometryDefinition in the ListOfGeometryDefinitions within
+   * this Geometry.
+   */
+  GeometryDefinition getGeometryDefinition(unsigned long n);
+
+
+  /**
+   * Get a GeometryDefinition from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {GeometryDefinition} the GeometryDefinition in the ListOfGeometryDefinitions within
+   * this Geometry with the given id or NULL if no such GeometryDefinition
+   * exists.
+   */
+  GeometryDefinition getGeometryDefinition(DOMString sid);
+
+
+  /**
+   * Get a GeometryDefinition from the Geometry based on its identifier.
+   *
+   * @param {GeometryDefinition} sid a string representing the identifier of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {number} the GeometryDefinition in the ListOfGeometryDefinitions within
+   * this Geometry with the given id or NULL if no such GeometryDefinition
+   * exists.
+   */
+  GeometryDefinition getGeometryDefinition(DOMString sid)
+   ;
+
+
+  /**
+   * Adds a copy of the given GeometryDefinition to this Geometry.
+   *
+   * @param {GeometryDefinition} gd the GeometryDefinition object to add.
+   */
+  long addGeometryDefinition(GeometryDefinition gd);
+
+
+  /**
+   * Get the number of GeometryDefinition objects in this Geometry.
+   *
+   * @return {number} the number of GeometryDefinition objects in this Geometry.
+   */
+  unsigned long getNumGeometryDefinitions();
+
+
+  /**
+   * Creates a new AnalyticGeometry object, adds it to this Geometry object and
+   * returns the AnalyticGeometry object created.
+   *
+   * @return {AnalyticGeometry} a new AnalyticGeometry object instance.
+   */
+  AnalyticGeometry createAnalyticGeometry();
+
+
+  /**
+   * Creates a new SampledFieldGeometry object, adds it to this Geometry object
+   * and returns the SampledFieldGeometry object created.
+   *
+   * @return {SampledFieldGeometry} a new SampledFieldGeometry object instance.
+   */
+  SampledFieldGeometry createSampledFieldGeometry();
+
+
+  /**
+   * Creates a new CSGeometry object, adds it to this Geometry object and
+   * returns the CSGeometry object created.
+   *
+   * @return {CSGeometry} a new CSGeometry object instance.
+   */
+  CSGeometry createCSGeometry();
+
+
+  /**
+   * Creates a new ParametricGeometry object, adds it to this Geometry object
+   * and returns the ParametricGeometry object created.
+   *
+   * @return {ParametricGeometry} a new ParametricGeometry object instance.
+   */
+  ParametricGeometry createParametricGeometry();
+
+
+  /**
+   * Creates a new MixedGeometry object, adds it to this Geometry object and
+   * returns the MixedGeometry object created.
+   *
+   * @return {MixedGeometry} a new MixedGeometry object instance.
+   */
+  MixedGeometry createMixedGeometry();
+
+
+  /**
+   * Removes the nth GeometryDefinition from this Geometry and returns a
+   * pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the GeometryDefinition
+   * to remove.
+   *
+   * @return {GeometryDefinition} a pointer to the nth GeometryDefinition in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  GeometryDefinition removeGeometryDefinition(unsigned long n);
+
+
+  /**
+   * Removes the GeometryDefinition from this Geometry based on its identifier
+   * and returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the GeometryDefinition
+   * to remove.
+   *
+   * @return {GeometryDefinition} the GeometryDefinition in this Geometry based on the identifier or
+   * NULL if no such GeometryDefinition exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  GeometryDefinition removeGeometryDefinition(DOMString sid);
+
+
+  /**
+   * Returns the ListOfSampledFields from this Geometry.
+   *
+   * @return {ListOfSampledFields} the ListOfSampledFields from this Geometry.
+   */
+  /*ListOfSampledFields getListOfSampledFields();*/
+
+
+  /**
+   * Get a SampledField from the Geometry.
+   *
+   * @param {number} n an unsigned long representing the index of the SampledField to
+   * retrieve.
+   *
+   * @return {SampledField} the nth SampledField in the ListOfSampledFields within this
+   * Geometry.
+   */
+  SampledField getSampledField(unsigned long n);
+
+
+  /**
+   * Get a SampledField from the Geometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the SampledField to
+   * retrieve.
+   *
+   * @return {SampledField} the SampledField in the ListOfSampledFields within this Geometry
+   * with the given id or NULL if no such SampledField exists.
+   */
+  SampledField getSampledField(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given SampledField to this Geometry.
+   *
+   * @param {SampledField} sf the SampledField object to add.
+   */
+  long addSampledField(SampledField sf);
+
+
+  /**
+   * Get the number of SampledField objects in this Geometry.
+   *
+   * @return {number} the number of SampledField objects in this Geometry.
+   */
+  unsigned long getNumSampledFields();
+
+
+  /**
+   * Creates a new SampledField object, adds it to this Geometry object and
+   * returns the SampledField object created.
+   *
+   * @return {SampledField} a new SampledField object instance.
+   */
+  SampledField createSampledField();
+
+
+  /**
+   * Removes the nth SampledField from this Geometry and returns a pointer to
+   * it.
+   *
+   * @param {number} n an unsigned long representing the index of the SampledField to
+   * remove.
+   *
+   * @return {SampledField} a pointer to the nth SampledField in this Geometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  SampledField removeSampledField(unsigned long n);
+
+
+  /**
+   * Removes the SampledField from this Geometry based on its identifier and
+   * returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the SampledField to
+   * remove.
+   *
+   * @return {SampledField} the SampledField in this Geometry based on the identifier or NULL
+   * if no such SampledField exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  SampledField removeSampledField(DOMString sid);
+};
+
+Geometry implements SBase;

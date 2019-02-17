@@ -1,0 +1,43 @@
+/**
+ * # SpatialSymbolReference class
+ */
+[Prefix="libsbml::"]
+interface SpatialSymbolReference {
+  /**
+   * Returns the value of the "spatialRef" attribute of this
+   * SpatialSymbolReference.
+   *
+   * @return {string} the value of the "spatialRef" attribute of this
+   * SpatialSymbolReference as a string.
+   */
+  DOMString getSpatialRef();
+
+
+  /**
+   * Predicate returning true if this SpatialSymbolReference's "spatialRef"
+   * attribute is set.
+   *
+   * return {boolean} true if this SpatialSymbolReference's "spatialRef" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetSpatialRef();
+
+
+  /**
+   * Sets the value of the "spatialRef" attribute of this
+   * SpatialSymbolReference.
+   *
+   * @param {string} spatialRef DOMString& value of the "spatialRef" attribute to be
+   * set.
+   */
+  long setSpatialRef(DOMString spatialRef);
+
+
+  /**
+   * Unsets the value of the "spatialRef" attribute of this
+   * SpatialSymbolReference.
+   */
+  long unsetSpatialRef();
+};
+
+SpatialSymbolReference implements SBase;

@@ -1,0 +1,86 @@
+/**
+ * # TransformationComponent class
+ */
+[Prefix="libsbml::"]
+interface TransformationComponent {
+  /**
+   * Returns the value of the "components" attribute of this
+   * TransformationComponent.
+   *
+   * @param outArray double* array that will be used to return the value of the
+   * "components" attribute of this TransformationComponent.
+   *
+   * **Note:** the value of the "components" attribute of this
+   * TransformationComponent is returned in the argument array.
+   */
+  void getComponents(double* outArray);
+
+
+  /**
+   * Returns the value of the "componentsLength" attribute of this
+   * TransformationComponent.
+   *
+   * @return {number} the value of the "componentsLength" attribute of this
+   * TransformationComponent as a integer.
+   */
+  long getComponentsLength();
+
+
+  /**
+   * Predicate returning true if this TransformationComponent's "components"
+   * attribute is set.
+   *
+   * return {boolean} true if this TransformationComponent's "components" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetComponents();
+
+
+  /**
+   * Predicate returning true if this TransformationComponent's
+   * "componentsLength" attribute is set.
+   *
+   * return {boolean} true if this TransformationComponent's "componentsLength"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetComponentsLength();
+
+
+  /**
+   * Sets the value of the "components" attribute of this
+   * TransformationComponent.
+   *
+   * @param inArray double* array value of the "components" attribute to be
+   * set.
+   *
+   * @param arrayLength long value for the length of the "components" attribute
+   * to be set.
+   */
+  long setComponents(double* inArray, long arrayLength);
+
+
+  /**
+   * Sets the value of the "componentsLength" attribute of this
+   * TransformationComponent.
+   *
+   * @param {number} componentsLength long value of the "componentsLength" attribute to
+   * be set.
+   */
+  long setComponentsLength(long componentsLength);
+
+
+  /**
+   * Unsets the value of the "components" attribute of this
+   * TransformationComponent.
+   */
+  long unsetComponents();
+
+
+  /**
+   * Unsets the value of the "componentsLength" attribute of this
+   * TransformationComponent.
+   */
+  long unsetComponentsLength();
+};
+
+TransformationComponent implements SBase;

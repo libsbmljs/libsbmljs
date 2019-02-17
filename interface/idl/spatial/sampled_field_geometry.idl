@@ -1,0 +1,161 @@
+/**
+ * # SampledFieldGeometry class
+ */
+[Prefix="libsbml::"]
+interface SampledFieldGeometry {
+  /**
+   * Returns the value of the "sampledField" attribute of this
+   * SampledFieldGeometry.
+   *
+   * @return {string} the value of the "sampledField" attribute of this
+   * SampledFieldGeometry as a string.
+   */
+  DOMString getSampledField();
+
+
+  /**
+   * Predicate returning true if this SampledFieldGeometry's "sampledField"
+   * attribute is set.
+   *
+   * return {boolean} true if this SampledFieldGeometry's "sampledField" attribute
+   * has been set, otherwise false is returned.
+   */
+  boolean isSetSampledField();
+
+
+  /**
+   * Sets the value of the "sampledField" attribute of this
+   * SampledFieldGeometry.
+   *
+   * @param {string} sampledField DOMString& value of the "sampledField" attribute to
+   * be set.
+   */
+  long setSampledField(DOMString sampledField);
+
+
+  /**
+   * Unsets the value of the "sampledField" attribute of this
+   * SampledFieldGeometry.
+   */
+  long unsetSampledField();
+
+
+  /**
+   * Returns the ListOfSampledVolumes from this SampledFieldGeometry.
+   *
+   * @return {ListOfSampledVolumes} the ListOfSampledVolumes from this SampledFieldGeometry.
+   */
+  /*ListOfSampledVolumes getListOfSampledVolumes();*/
+
+
+  /**
+   * Get a SampledVolume from the SampledFieldGeometry.
+   *
+   * @param {number} n an unsigned long representing the index of the SampledVolume to
+   * retrieve.
+   *
+   * @return {SampledVolume} the nth SampledVolume in the ListOfSampledVolumes within this
+   * SampledFieldGeometry.
+   */
+  SampledVolume getSampledVolume(unsigned long n);
+
+
+  /**
+   * Get a SampledVolume from the SampledFieldGeometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the SampledVolume to
+   * retrieve.
+   *
+   * @return {SampledVolume} the SampledVolume in the ListOfSampledVolumes within this
+   * SampledFieldGeometry with the given id or NULL if no such SampledVolume
+   * exists.
+   */
+  /*SampledVolume getSampledVolume(DOMString sid);*/
+
+
+  /**
+   * Get a SampledVolume from the SampledFieldGeometry based on the DomainType
+   * to which it refers.
+   *
+   * @param {string} sid a string representing the domainType attribute of the
+   * SampledVolume object to retrieve.
+   *
+   * @return {SampledVolume} the first SampledVolume in this SampledFieldGeometry based on the
+   * given domainType attribute or NULL if no such SampledVolume exists.
+   */
+  SampledVolume getSampledVolumeByDomainType(DOMString sid)
+   ;
+
+
+  /**
+   * Get a SampledVolume from the SampledFieldGeometry based on the DomainType
+   * to which it refers.
+   *
+   * @param {string} sid a string representing the domainType attribute of the
+   * SampledVolume object to retrieve.
+   *
+   * @return {SampledVolume} the first SampledVolume in this SampledFieldGeometry based on the
+   * given domainType attribute or NULL if no such SampledVolume exists.
+   */
+  SampledVolume getSampledVolumeByDomainType(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given SampledVolume to this SampledFieldGeometry.
+   *
+   * @param {SampledVolume} sv the SampledVolume object to add.
+   */
+  long addSampledVolume(SampledVolume sv);
+
+
+  /**
+   * Get the number of SampledVolume objects in this SampledFieldGeometry.
+   *
+   * @return {number} the number of SampledVolume objects in this SampledFieldGeometry.
+   */
+  unsigned long getNumSampledVolumes();
+
+
+  /**
+   * Creates a new SampledVolume object, adds it to this SampledFieldGeometry
+   * object and returns the SampledVolume object created.
+   *
+   * @return {SampledVolume} a new SampledVolume object instance.
+   */
+  SampledVolume createSampledVolume();
+
+
+  /**
+   * Removes the nth SampledVolume from this SampledFieldGeometry and returns a
+   * pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the SampledVolume to
+   * remove.
+   *
+   * @return {SampledVolume} a pointer to the nth SampledVolume in this SampledFieldGeometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  SampledVolume removeSampledVolume(unsigned long n);
+
+
+  /**
+   * Removes the SampledVolume from this SampledFieldGeometry based on its
+   * identifier and returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the SampledVolume to
+   * remove.
+   *
+   * @return {SampledVolume} the SampledVolume in this SampledFieldGeometry based on the
+   * identifier or NULL if no such SampledVolume exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  /*SampledVolume removeSampledVolume(DOMString sid);*/
+};
+
+SampledFieldGeometry implements GeometryDefinition;

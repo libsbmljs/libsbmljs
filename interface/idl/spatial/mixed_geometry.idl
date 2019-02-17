@@ -1,0 +1,237 @@
+/**
+ * # MixedGeometry class
+ */
+[Prefix="libsbml::"]
+interface MixedGeometry {
+  /**
+   * Returns the ListOfGeometryDefinitions from this MixedGeometry.
+   *
+   * @return {ListOfGeometryDefinitions} the ListOfGeometryDefinitions from this MixedGeometry.
+   */
+  /*ListOfGeometryDefinitions getListOfGeometryDefinitions();*/
+
+
+  /**
+   * Get a GeometryDefinition from the MixedGeometry.
+   *
+   * @param {number} n an unsigned long representing the index of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {GeometryDefinition} the nth GeometryDefinition in the ListOfGeometryDefinitions within
+   * this MixedGeometry.
+   */
+  GeometryDefinition getGeometryDefinition(unsigned long n);
+
+
+  /**
+   * Get a GeometryDefinition from the MixedGeometry based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {GeometryDefinition} the GeometryDefinition in the ListOfGeometryDefinitions within
+   * this MixedGeometry with the given id or NULL if no such GeometryDefinition
+   * exists.
+   */
+  GeometryDefinition getGeometryDefinition(DOMString sid);
+
+
+  /**
+   * Get a GeometryDefinition from the MixedGeometry based on its identifier.
+   *
+   * @param {GeometryDefinition} sid a string representing the identifier of the GeometryDefinition
+   * to retrieve.
+   *
+   * @return {number} the GeometryDefinition in the ListOfGeometryDefinitions within
+   * this MixedGeometry with the given id or NULL if no such GeometryDefinition
+   * exists.
+   */
+  GeometryDefinition getGeometryDefinition(DOMString sid)
+   ;
+
+
+  /**
+   * Adds a copy of the given GeometryDefinition to this MixedGeometry.
+   *
+   * @param {GeometryDefinition} gd the GeometryDefinition object to add.
+   */
+  long addGeometryDefinition(GeometryDefinition gd);
+
+
+  /**
+   * Get the number of GeometryDefinition objects in this MixedGeometry.
+   *
+   * @return {number} the number of GeometryDefinition objects in this MixedGeometry.
+   */
+  unsigned long getNumGeometryDefinitions();
+
+
+  /**
+   * Creates a new AnalyticGeometry object, adds it to this MixedGeometry
+   * object and returns the AnalyticGeometry object created.
+   *
+   * @return {AnalyticGeometry} a new AnalyticGeometry object instance.
+   */
+  AnalyticGeometry createAnalyticGeometry();
+
+
+  /**
+   * Creates a new SampledFieldGeometry object, adds it to this MixedGeometry
+   * object and returns the SampledFieldGeometry object created.
+   *
+   * @return {SampledFieldGeometry} a new SampledFieldGeometry object instance.
+   */
+  SampledFieldGeometry createSampledFieldGeometry();
+
+
+  /**
+   * Creates a new CSGeometry object, adds it to this MixedGeometry object and
+   * returns the CSGeometry object created.
+   *
+   * @return {CSGeometry} a new CSGeometry object instance.
+   */
+  CSGeometry createCSGeometry();
+
+
+  /**
+   * Creates a new ParametricGeometry object, adds it to this MixedGeometry
+   * object and returns the ParametricGeometry object created.
+   *
+   * @return {ParametricGeometry} a new ParametricGeometry object instance.
+   */
+  ParametricGeometry createParametricGeometry();
+
+
+  /**
+   * Creates a new MixedGeometry object, adds it to this MixedGeometry object
+   * and returns the MixedGeometry object created.
+   *
+   * @return {MixedGeometry} a new MixedGeometry object instance.
+   */
+  MixedGeometry createMixedGeometry();
+
+
+  /**
+   * Removes the nth GeometryDefinition from this MixedGeometry and returns a
+   * pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the GeometryDefinition
+   * to remove.
+   *
+   * @return {GeometryDefinition} a pointer to the nth GeometryDefinition in this MixedGeometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  GeometryDefinition removeGeometryDefinition(unsigned long n);
+
+
+  /**
+   * Removes the GeometryDefinition from this MixedGeometry based on its
+   * identifier and returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the GeometryDefinition
+   * to remove.
+   *
+   * @return {GeometryDefinition} the GeometryDefinition in this MixedGeometry based on the
+   * identifier or NULL if no such GeometryDefinition exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  GeometryDefinition removeGeometryDefinition(DOMString sid);
+
+
+  /**
+   * Returns the ListOfOrdinalMappings from this MixedGeometry.
+   *
+   * @return {ListOfOrdinalMappings} the ListOfOrdinalMappings from this MixedGeometry.
+   */
+  /*ListOfOrdinalMappings getListOfOrdinalMappings();*/
+
+
+  /**
+   * Get an OrdinalMapping from the MixedGeometry.
+   *
+   * @param {number} n an unsigned long representing the index of the OrdinalMapping to
+   * retrieve.
+   *
+   * @return {OrdinalMapping} the nth OrdinalMapping in the ListOfOrdinalMappings within this
+   * MixedGeometry.
+   */
+  OrdinalMapping getOrdinalMapping(unsigned long n);
+
+
+  /**
+   * Get an OrdinalMapping from the MixedGeometry based on the
+   * GeometryDefinition to which it refers.
+   *
+   * @param {OrdinalMapping} sid a string representing the geometryDefinition attribute of the
+   * OrdinalMapping object to retrieve.
+   *
+   * @return {number} the first OrdinalMapping in this MixedGeometry based on the given
+   * geometryDefinition attribute or NULL if no such OrdinalMapping exists.
+   */
+  OrdinalMapping getOrdinalMappingByGeometryDefinition(const
+    DOMString& sid);
+
+
+  /**
+   * Get an OrdinalMapping from the MixedGeometry based on the
+   * GeometryDefinition to which it refers.
+   *
+   * @param {OrdinalMapping} sid a string representing the geometryDefinition attribute of the
+   * OrdinalMapping object to retrieve.
+   *
+   * @return {number} the first OrdinalMapping in this MixedGeometry based on the given
+   * geometryDefinition attribute or NULL if no such OrdinalMapping exists.
+   */
+  OrdinalMapping getOrdinalMappingByGeometryDefinition(DOMString
+    sid);
+
+
+  /**
+   * Adds a copy of the given OrdinalMapping to this MixedGeometry.
+   *
+   * @param {OrdinalMapping} om the OrdinalMapping object to add.
+   */
+  long addOrdinalMapping(OrdinalMapping om);
+
+
+  /**
+   * Get the number of OrdinalMapping objects in this MixedGeometry.
+   *
+   * @return {number} the number of OrdinalMapping objects in this MixedGeometry.
+   */
+  unsigned long getNumOrdinalMappings();
+
+
+  /**
+   * Creates a new OrdinalMapping object, adds it to this MixedGeometry object
+   * and returns the OrdinalMapping object created.
+   *
+   * @return {OrdinalMapping} a new OrdinalMapping object instance.
+   */
+  OrdinalMapping createOrdinalMapping();
+
+
+  /**
+   * Removes the nth OrdinalMapping from this MixedGeometry and returns a
+   * pointer to it.
+   *
+   * @param {number} n an unsigned long representing the index of the OrdinalMapping to
+   * remove.
+   *
+   * @return {OrdinalMapping} a pointer to the nth OrdinalMapping in this MixedGeometry.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  OrdinalMapping removeOrdinalMapping(unsigned long n);
+};
+
+MixedGeometry implements GeometryDefinition;

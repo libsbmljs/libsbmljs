@@ -1,0 +1,40 @@
+/**
+ * # DomainType class
+ */
+[Prefix="libsbml::"]
+interface DomainType {
+  /**
+   * Returns the value of the "spatialDimensions" attribute of this DomainType.
+   *
+   * @return {number} the value of the "spatialDimensions" attribute of this DomainType
+   * as a integer.
+   */
+  long getSpatialDimensions();
+
+
+  /**
+   * Predicate returning true if this DomainType's "spatialDimensions"
+   * attribute is set.
+   *
+   * return {boolean} true if this DomainType's "spatialDimensions" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetSpatialDimensions();
+
+
+  /**
+   * Sets the value of the "spatialDimensions" attribute of this DomainType.
+   *
+   * @param {number} spatialDimensions long value of the "spatialDimensions" attribute to
+   * be set.
+   */
+  long setSpatialDimensions(long spatialDimensions);
+
+
+  /**
+   * Unsets the value of the "spatialDimensions" attribute of this DomainType.
+   */
+  long unsetSpatialDimensions();
+};
+
+DomainType implements SBase;

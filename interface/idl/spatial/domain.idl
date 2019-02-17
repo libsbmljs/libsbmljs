@@ -1,0 +1,100 @@
+/**
+ * # Domain class
+ */
+[Prefix="libsbml::"]
+interface Domain {
+  /**
+   * Returns the value of the "domainType" attribute of this Domain.
+   *
+   * @return {string} the value of the "domainType" attribute of this Domain as a
+   * string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Predicate returning true if this Domain's "domainType" attribute is
+   * set.
+   *
+   * return {boolean} true if this Domain's "domainType" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this Domain.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this Domain.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Returns the ListOfInteriorPoints from this Domain.
+   *
+   * @return {ListOfInteriorPoints} the ListOfInteriorPoints from this Domain.
+   */
+  ListOfInteriorPoints getListOfInteriorPoints();
+
+
+  /**
+   * Get an InteriorPoint from the Domain.
+   *
+   * @param {number} n an unsigned long representing the index of the InteriorPoint to
+   * retrieve.
+   *
+   * @return {InteriorPoint} the nth InteriorPoint in the ListOfInteriorPoints within this
+   * Domain.
+   */
+  InteriorPoint getInteriorPoint(unsigned long n);
+
+
+  /**
+   * Adds a copy of the given InteriorPoint to this Domain.
+   *
+   * @param {InteriorPoint} ip the InteriorPoint object to add.
+   */
+  long addInteriorPoint(InteriorPoint ip);
+
+
+  /**
+   * Get the number of InteriorPoint objects in this Domain.
+   *
+   * @return {number} the number of InteriorPoint objects in this Domain.
+   */
+  unsigned long getNumInteriorPoints();
+
+
+  /**
+   * Creates a new InteriorPoint object, adds it to this Domain object and
+   * returns the InteriorPoint object created.
+   *
+   * @return {InteriorPoint} a new InteriorPoint object instance.
+   */
+  InteriorPoint createInteriorPoint();
+
+
+  /**
+   * Removes the nth InteriorPoint from this Domain and returns a pointer to
+   * it.
+   *
+   * @param {number} n an unsigned long representing the index of the InteriorPoint to
+   * remove.
+   *
+   * @return {InteriorPoint} a pointer to the nth InteriorPoint in this Domain.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  InteriorPoint removeInteriorPoint(unsigned long n);
+};
+
+Domain implements SBase;
