@@ -76,8 +76,7 @@ interface Geometry {
    * this Geometry with the given id or NULL if no such CoordinateComponent
    * exists.
    */
-  CoordinateComponent getCoordinateComponent(DOMString sid)
-   ;
+  /*CoordinateComponent getCoordinateComponent(DOMString sid);*/
 
 
   /**
@@ -370,8 +369,7 @@ interface Geometry {
    * this Geometry with the given id or NULL if no such GeometryDefinition
    * exists.
    */
-  GeometryDefinition getGeometryDefinition(DOMString sid)
-   ;
+  /*GeometryDefinition getGeometryDefinition(DOMString sid);*/
 
 
   /**

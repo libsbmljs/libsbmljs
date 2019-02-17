@@ -33,8 +33,7 @@ interface MixedGeometry {
    * this MixedGeometry with the given id or NULL if no such GeometryDefinition
    * exists.
    */
-  GeometryDefinition getGeometryDefinition(DOMString sid)
-   ;
+  /*GeometryDefinition getGeometryDefinition(DOMString sid);*/
 
 
   /**
