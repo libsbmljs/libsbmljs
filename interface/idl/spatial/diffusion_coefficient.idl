@@ -1,0 +1,208 @@
+/**
+ * # DiffusionCoefficient class
+ */
+[Prefix="libsbml::"]
+interface DiffusionCoefficient {
+  /**
+   * Returns the value of the "variable" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @return {string} the value of the "variable" attribute of this DiffusionCoefficient
+   * as a string.
+   */
+  DOMString getVariable();
+
+
+  /**
+   * Returns the value of the "type" attribute of this DiffusionCoefficient.
+   *
+   * @return {DiffusionKind_t} the value of the "type" attribute of this DiffusionCoefficient as
+   * a DiffusionKind_t.
+   */
+  DiffusionKind_t getType();
+
+
+  /**
+   * Returns the value of the "type" attribute of this DiffusionCoefficient.
+   *
+   * @return {string} the value of the "type" attribute of this DiffusionCoefficient as
+   * a string.
+   */
+  DOMString getTypeAsString();
+  //bgoli22
+
+
+
+  /**
+   * Returns the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @return {CoordinateKind_t} the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient as a CoordinateKind_t.
+   */
+  libsbml__idl__CoordinateKind_t getCoordinateReference1();
+
+
+  /**
+   * Returns the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @return {string} the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient as a string.
+   */
+  DOMString getCoordinateReference1AsString();
+
+
+  /**
+   * Returns the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @return {CoordinateKind_t} the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient as a CoordinateKind_t.
+   */
+  libsbml__idl__CoordinateKind_t getCoordinateReference2();
+
+
+  /**
+   * Returns the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @return {string} the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient as a string.
+   */
+  DOMString getCoordinateReference2AsString();
+  //bgoli22
+
+
+
+  /**
+   * Predicate returning true if this DiffusionCoefficient's "variable"
+   * attribute is set.
+   *
+   * return {boolean} true if this DiffusionCoefficient's "variable" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetVariable();
+
+
+  /**
+   * Predicate returning true if this DiffusionCoefficient's "type"
+   * attribute is set.
+   *
+   * return {boolean} true if this DiffusionCoefficient's "type" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetType();
+
+
+  /**
+   * Predicate returning true if this DiffusionCoefficient's
+   * "coordinateReference1" attribute is set.
+   *
+   * return {boolean} true if this DiffusionCoefficient's "coordinateReference1"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetCoordinateReference1();
+
+
+  /**
+   * Predicate returning true if this DiffusionCoefficient's
+   * "coordinateReference2" attribute is set.
+   *
+   * return {boolean} true if this DiffusionCoefficient's "coordinateReference2"
+   * attribute has been set, otherwise false is returned.
+   */
+  boolean isSetCoordinateReference2();
+
+
+  /**
+   * Sets the value of the "variable" attribute of this DiffusionCoefficient.
+   *
+   * @param {string} variable DOMString& value of the "variable" attribute to be set.
+   */
+  long setVariable(DOMString variable);
+
+
+  /**
+   * Sets the value of the "type" attribute of this DiffusionCoefficient.
+   *
+   * @param {DiffusionKind_t} type DiffusionKind_t value of the "type" attribute to be set.
+   */
+  long setType(DiffusionKind_t type);
+
+
+  /**
+   * Sets the value of the "type" attribute of this DiffusionCoefficient.
+   *
+   * @param {string} type DOMString& of the "type" attribute to be set.
+   */
+  long setType(DOMString type);
+
+
+  /**
+   * Sets the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @param {CoordinateKind_t} coordinateReference1 CoordinateKind_t value of the
+   * "coordinateReference1" attribute to be set.
+   */
+  long setCoordinateReference1(libsbml__idl__CoordinateKind_t coordinateReference1);
+
+
+  /**
+   * Sets the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @param {string} coordinateReference1 DOMString& of the "coordinateReference1"
+   * attribute to be set.
+   */
+  long setCoordinateReference1(DOMString coordinateReference1);
+
+
+  /**
+   * Sets the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @param {CoordinateKind_t} coordinateReference2 CoordinateKind_t value of the
+   * "coordinateReference2" attribute to be set.
+   */
+  long setCoordinateReference2(libsbml__idl__CoordinateKind_t coordinateReference2);
+
+
+  /**
+   * Sets the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient.
+   *
+   * @param {string} coordinateReference2 DOMString& of the "coordinateReference2"
+   * attribute to be set.
+   */
+  long setCoordinateReference2(DOMString coordinateReference2);
+
+
+  /**
+   * Unsets the value of the "variable" attribute of this DiffusionCoefficient.
+   */
+  long unsetVariable();
+
+
+  /**
+   * Unsets the value of the "type" attribute of this DiffusionCoefficient.
+   */
+  long unsetType();
+
+
+  /**
+   * Unsets the value of the "coordinateReference1" attribute of this
+   * DiffusionCoefficient.
+   */
+  long unsetCoordinateReference1();
+
+
+  /**
+   * Unsets the value of the "coordinateReference2" attribute of this
+   * DiffusionCoefficient.
+   */
+  long unsetCoordinateReference2();
+};
+
+DiffusionCoefficient implements SBase;

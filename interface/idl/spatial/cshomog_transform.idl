@@ -1,0 +1,104 @@
+/**
+ * # CSGHomogeneousTransformation class
+ */
+[Prefix="libsbml::"]
+interface CSGHomogeneousTransformation {
+  /**
+   * Returns the value of the "forwardTransformation" element of this
+   * CSGHomogeneousTransformation.
+   *
+   * @return {TransformationComponent} the value of the "forwardTransformation" element of this
+   * CSGHomogeneousTransformation as a TransformationComponent*.
+   */
+  TransformationComponent getForwardTransformation();
+
+
+  /**
+   * Returns the value of the "reverseTransformation" element of this
+   * CSGHomogeneousTransformation.
+   *
+   * @return {TransformationComponent} the value of the "reverseTransformation" element of this
+   * CSGHomogeneousTransformation as a TransformationComponent*.
+   */
+  TransformationComponent getReverseTransformation();
+
+
+  /**
+   * Predicate returning true if this CSGHomogeneousTransformation's
+   * "forwardTransformation" element is set.
+   *
+   * return {boolean} true if this CSGHomogeneousTransformation's
+   * "forwardTransformation" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetForwardTransformation();
+
+
+  /**
+   * Predicate returning true if this CSGHomogeneousTransformation's
+   * "reverseTransformation" element is set.
+   *
+   * return {boolean} true if this CSGHomogeneousTransformation's
+   * "reverseTransformation" element has been set, otherwise false is
+   * returned.
+   */
+  boolean isSetReverseTransformation();
+
+
+  /**
+   * Sets the value of the "forwardTransformation" element of this
+   * CSGHomogeneousTransformation.
+   *
+   * @param forwardTransformation TransformationComponent* value of the
+   * "forwardTransformation" element to be set.
+   */
+  long setForwardTransformation(TransformationComponent
+    forwardTransformation);
+
+
+  /**
+   * Sets the value of the "reverseTransformation" element of this
+   * CSGHomogeneousTransformation.
+   *
+   * @param reverseTransformation TransformationComponent* value of the
+   * "reverseTransformation" element to be set.
+   */
+  long setReverseTransformation(TransformationComponent
+    reverseTransformation);
+
+
+  /**
+   * Creates a new TransformationComponent object, adds it to this
+   * CSGHomogeneousTransformation object and returns the
+   * TransformationComponent object created.
+   *
+   * @return {TransformationComponent} a new TransformationComponent object instance.
+   */
+  TransformationComponent createForwardTransformation();
+
+
+  /**
+   * Creates a new TransformationComponent object, adds it to this
+   * CSGHomogeneousTransformation object and returns the
+   * TransformationComponent object created.
+   *
+   * @return {TransformationComponent} a new TransformationComponent object instance.
+   */
+  TransformationComponent createReverseTransformation();
+
+
+  /**
+   * Unsets the value of the "forwardTransformation" element of this
+   * CSGHomogeneousTransformation.
+   */
+  long unsetForwardTransformation();
+
+
+  /**
+   * Unsets the value of the "reverseTransformation" element of this
+   * CSGHomogeneousTransformation.
+   */
+  long unsetReverseTransformation();
+};
+
+CSGHomogeneousTransformation implements CSGTransformation;

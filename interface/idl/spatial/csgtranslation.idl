@@ -1,0 +1,105 @@
+/**
+ * # CSGTranslation class
+ */
+[Prefix="libsbml::"]
+interface CSGTranslation {
+  /**
+   * Returns the value of the "translateX" attribute of this CSGTranslation.
+   *
+   * @return {number} the value of the "translateX" attribute of this CSGTranslation as
+   * a double.
+   */
+  double getTranslateX();
+
+
+  /**
+   * Returns the value of the "translateY" attribute of this CSGTranslation.
+   *
+   * @return {number} the value of the "translateY" attribute of this CSGTranslation as
+   * a double.
+   */
+  double getTranslateY();
+
+
+  /**
+   * Returns the value of the "translateZ" attribute of this CSGTranslation.
+   *
+   * @return {number} the value of the "translateZ" attribute of this CSGTranslation as
+   * a double.
+   */
+  double getTranslateZ();
+
+
+  /**
+   * Predicate returning true if this CSGTranslation's "translateX"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGTranslation's "translateX" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetTranslateX();
+
+
+  /**
+   * Predicate returning true if this CSGTranslation's "translateY"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGTranslation's "translateY" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetTranslateY();
+
+
+  /**
+   * Predicate returning true if this CSGTranslation's "translateZ"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGTranslation's "translateZ" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetTranslateZ();
+
+
+  /**
+   * Sets the value of the "translateX" attribute of this CSGTranslation.
+   *
+   * @param {number} translateX double value of the "translateX" attribute to be set.
+   */
+  long setTranslateX(double translateX);
+
+
+  /**
+   * Sets the value of the "translateY" attribute of this CSGTranslation.
+   *
+   * @param {number} translateY double value of the "translateY" attribute to be set.
+   */
+  long setTranslateY(double translateY);
+
+
+  /**
+   * Sets the value of the "translateZ" attribute of this CSGTranslation.
+   *
+   * @param {number} translateZ double value of the "translateZ" attribute to be set.
+   */
+  long setTranslateZ(double translateZ);
+
+
+  /**
+   * Unsets the value of the "translateX" attribute of this CSGTranslation.
+   */
+  long unsetTranslateX();
+
+
+  /**
+   * Unsets the value of the "translateY" attribute of this CSGTranslation.
+   */
+  long unsetTranslateY();
+
+
+  /**
+   * Unsets the value of the "translateZ" attribute of this CSGTranslation.
+   */
+  long unsetTranslateZ();
+};
+
+CSGTranslation implements CSGTransformation;
