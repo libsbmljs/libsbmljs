@@ -67,7 +67,7 @@ for filepath in sys.argv[1:]:
                 return get_method_defs(line_num+1)
         method_defs = get_method_defs(0)
 
-        blacklisted_methods = set('getId','setId','isSetId','unsetId',
+        blacklisted_methods = ('getId','setId','isSetId','unsetId',
             'getName','setName','isSetName','unsetName')
 
         sigs = {}
