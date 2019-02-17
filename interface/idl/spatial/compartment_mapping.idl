@@ -1,0 +1,74 @@
+/**
+ * # CompartmentMapping class
+ */
+[Prefix="libsbml::"]
+interface CompartmentMapping {
+  /**
+   * Returns the value of the "domainType" attribute of this
+   * CompartmentMapping.
+   *
+   * @return {string} the value of the "domainType" attribute of this CompartmentMapping
+   * as a string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Returns the value of the "unitSize" attribute of this CompartmentMapping.
+   *
+   * @return {number} the value of the "unitSize" attribute of this CompartmentMapping
+   * as a double.
+   */
+  double getUnitSize();
+
+
+  /**
+   * Predicate returning true if this CompartmentMapping's "domainType"
+   * attribute is set.
+   *
+   * return {boolean} true if this CompartmentMapping's "domainType" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Predicate returning true if this CompartmentMapping's "unitSize"
+   * attribute is set.
+   *
+   * return {boolean} true if this CompartmentMapping's "unitSize" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetUnitSize();
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this CompartmentMapping.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Sets the value of the "unitSize" attribute of this CompartmentMapping.
+   *
+   * @param {number} unitSize double value of the "unitSize" attribute to be set.
+   */
+  long setUnitSize(double unitSize);
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this CompartmentMapping.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Unsets the value of the "unitSize" attribute of this CompartmentMapping.
+   */
+  long unsetUnitSize();
+};
+
+CompartmentMapping implements SBase;

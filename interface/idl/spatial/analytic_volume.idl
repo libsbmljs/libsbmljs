@@ -75,7 +75,7 @@ interface AnalyticVolume {
    * @param {const} functionType FunctionKind_t value of the "functionType" attribute
    * to be set.
    */
-  long setFunctionType(const FunctionKind_t functionType);
+  long setFunctionType(FunctionKind_t functionType);
 
 
   /**

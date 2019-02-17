@@ -1,0 +1,58 @@
+/**
+ * # CSGPrimitive class
+ */
+[Prefix="libsbml::"]
+interface CSGPrimitive {
+  /**
+   * Returns the value of the "primitiveType" attribute of this CSGPrimitive.
+   *
+   * @return {PrimitiveKind_t} the value of the "primitiveType" attribute of this CSGPrimitive as
+   * a PrimitiveKind_t.
+   */
+  libsbml__idl__PrimitiveKind_t getPrimitiveType();
+
+
+  /**
+   * Returns the value of the "primitiveType" attribute of this CSGPrimitive.
+   *
+   * @return {string} the value of the "primitiveType" attribute of this CSGPrimitive as
+   * a string.
+   */
+  DOMString getPrimitiveTypeAsString();
+
+
+  /**
+   * Predicate returning true if this CSGPrimitive's "primitiveType"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGPrimitive's "primitiveType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetPrimitiveType();
+
+
+  /**
+   * Sets the value of the "primitiveType" attribute of this CSGPrimitive.
+   *
+   * @param {PrimitiveKind_t} primitiveType PrimitiveKind_t value of the "primitiveType"
+   * attribute to be set.
+   */
+  long setPrimitiveType(libsbml__idl__PrimitiveKind_t primitiveType);
+
+
+  /**
+   * Sets the value of the "primitiveType" attribute of this CSGPrimitive.
+   *
+   * @param {string} primitiveType DOMString& of the "primitiveType" attribute to be
+   * set.
+   */
+  long setPrimitiveType(DOMString primitiveType);
+
+
+  /**
+   * Unsets the value of the "primitiveType" attribute of this CSGPrimitive.
+   */
+  long unsetPrimitiveType();
+};
+
+CSGPrimitive implements CSGNode;

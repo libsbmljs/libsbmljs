@@ -1,0 +1,259 @@
+/**
+ * # CSGSetOperator class
+ */
+[Prefix="libsbml::"]
+interface CSGSetOperator {
+  /**
+   * Returns the value of the "operationType" attribute of this CSGSetOperator.
+   *
+   * @return {SetOperation_t} the value of the "operationType" attribute of this CSGSetOperator
+   * as a SetOperation_t.
+   */
+  libsbml__idl__SetOperation_t getOperationType();
+
+
+  /**
+   * Returns the value of the "operationType" attribute of this CSGSetOperator.
+   *
+   * @return {string} the value of the "operationType" attribute of this CSGSetOperator
+   * as a string.
+   */
+  DOMString getOperationTypeAsString();
+
+
+  /**
+   * Returns the value of the "complementA" attribute of this CSGSetOperator.
+   *
+   * @return {string} the value of the "complementA" attribute of this CSGSetOperator as
+   * a string.
+   */
+  DOMString getComplementA();
+
+
+  /**
+   * Returns the value of the "complementB" attribute of this CSGSetOperator.
+   *
+   * @return {string} the value of the "complementB" attribute of this CSGSetOperator as
+   * a string.
+   */
+  DOMString getComplementB();
+
+
+  /**
+   * Predicate returning true if this CSGSetOperator's "operationType"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGSetOperator's "operationType" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetOperationType();
+
+
+  /**
+   * Predicate returning true if this CSGSetOperator's "complementA"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGSetOperator's "complementA" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetComplementA();
+
+
+  /**
+   * Predicate returning true if this CSGSetOperator's "complementB"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGSetOperator's "complementB" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetComplementB();
+
+
+  /**
+   * Sets the value of the "operationType" attribute of this CSGSetOperator.
+   *
+   * @param {SetOperation_t} operationType SetOperation_t value of the "operationType" attribute
+   * to be set.
+   */
+  long setOperationType(libsbml_idl__SetOperation_t operationType);
+
+
+  /**
+   * Sets the value of the "operationType" attribute of this CSGSetOperator.
+   *
+   * @param {string} operationType DOMString& of the "operationType" attribute to be
+   * set.
+   */
+  long setOperationType(DOMString operationType);
+
+
+  /**
+   * Sets the value of the "complementA" attribute of this CSGSetOperator.
+   *
+   * @param {string} complementA DOMString& value of the "complementA" attribute to be
+   * set.
+   */
+  long setComplementA(DOMString complementA);
+
+
+  /**
+   * Sets the value of the "complementB" attribute of this CSGSetOperator.
+   *
+   * @param {string} complementB DOMString& value of the "complementB" attribute to be
+   * set.
+   */
+  long setComplementB(DOMString complementB);
+
+
+  /**
+   * Unsets the value of the "operationType" attribute of this CSGSetOperator.
+   */
+  long unsetOperationType();
+
+
+  /**
+   * Unsets the value of the "complementA" attribute of this CSGSetOperator.
+   */
+  long unsetComplementA();
+
+
+  /**
+   * Unsets the value of the "complementB" attribute of this CSGSetOperator.
+   */
+  long unsetComplementB();
+
+
+  /**
+   * Returns the ListOfCSGNodes from this CSGSetOperator.
+   *
+   * @return {ListOfCSGNodes} the ListOfCSGNodes from this CSGSetOperator.
+   */
+  ListOfCSGNodes getListOfCSGNodes();
+
+
+  /**
+   * Get a CSGNode from the CSGSetOperator.
+   *
+   * @param {number} n an unsigned long representing the index of the CSGNode to
+   * retrieve.
+   *
+   * @return {CSGNode} the nth CSGNode in the ListOfCSGNodes within this CSGSetOperator.
+   */
+  CSGNode getCSGNode(unsigned long n);
+
+
+  /**
+   * Get a CSGNode from the CSGSetOperator based on its identifier.
+   *
+   * @param {string} sid a string representing the identifier of the CSGNode to
+   * retrieve.
+   *
+   * @return {CSGNode} the CSGNode in the ListOfCSGNodes within this CSGSetOperator with
+   * the given id or NULL if no such CSGNode exists.
+   */
+  CSGNode getCSGNode(DOMString sid);
+
+
+  /**
+   * Adds a copy of the given CSGNode to this CSGSetOperator.
+   *
+   * @param {CSGNode} csgn the CSGNode object to add.
+   */
+  long addCSGNode(CSGNode csgn);
+
+
+  /**
+   * Get the number of CSGNode objects in this CSGSetOperator.
+   *
+   * @return {number} the number of CSGNode objects in this CSGSetOperator.
+   */
+  unsigned long getNumCSGNodes();
+
+
+  /**
+   * Creates a new CSGPrimitive object, adds it to this CSGSetOperator object
+   * and returns the CSGPrimitive object created.
+   *
+   * @return {CSGPrimitive} a new CSGPrimitive object instance.
+   */
+  CSGPrimitive createCSGPrimitive();
+
+
+  /**
+   * Creates a new CSGTranslation object, adds it to this CSGSetOperator object
+   * and returns the CSGTranslation object created.
+   *
+   * @return {CSGTranslation} a new CSGTranslation object instance.
+   */
+  CSGTranslation createCSGTranslation();
+
+
+  /**
+   * Creates a new CSGRotation object, adds it to this CSGSetOperator object
+   * and returns the CSGRotation object created.
+   *
+   * @return {CSGRotation} a new CSGRotation object instance.
+   */
+  CSGRotation createCSGRotation();
+
+
+  /**
+   * Creates a new CSGScale object, adds it to this CSGSetOperator object and
+   * returns the CSGScale object created.
+   *
+   * @return {CSGScale} a new CSGScale object instance.
+   */
+  CSGScale createCSGScale();
+
+
+  /**
+   * Creates a new CSGHomogeneousTransformation object, adds it to this
+   * CSGSetOperator object and returns the CSGHomogeneousTransformation object
+   * created.
+   *
+   * @return {CSGHomogeneousTransformation} a new CSGHomogeneousTransformation object instance.
+   */
+  CSGHomogeneousTransformation createCSGHomogeneousTransformation();
+
+
+  /**
+   * Creates a new CSGSetOperator object, adds it to this CSGSetOperator object
+   * and returns the CSGSetOperator object created.
+   *
+   * @return {CSGSetOperator} a new CSGSetOperator object instance.
+   */
+  CSGSetOperator createCSGSetOperator();
+
+
+  /**
+   * Removes the nth CSGNode from this CSGSetOperator and returns a pointer to
+   * it.
+   *
+   * @param {number} n an unsigned long representing the index of the CSGNode to remove.
+   *
+   * @return {CSGNode} a pointer to the nth CSGNode in this CSGSetOperator.
+   *
+   *
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  CSGNode removeCSGNode(unsigned long n);
+
+
+  /**
+   * Removes the CSGNode from this CSGSetOperator based on its identifier and
+   * returns a pointer to it.
+   *
+   * @param {string} sid a string representing the identifier of the CSGNode to remove.
+   *
+   * @return {CSGNode} the CSGNode in this CSGSetOperator based on the identifier or NULL
+   * if no such CSGNode exists.
+   *
+   * **Note:** the caller owns the returned object and is responsible for deleting
+   * it.
+   */
+  CSGNode removeCSGNode(DOMString sid);
+};
+
+CSGSetOperator implements CSGNode;

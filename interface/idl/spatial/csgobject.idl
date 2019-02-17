@@ -1,0 +1,160 @@
+/**
+ * # CSGObject class
+ */
+[Prefix="libsbml::"]
+interface CSGObject {
+  /**
+   * Returns the value of the "domainType" attribute of this CSGObject.
+   *
+   * @return {string} the value of the "domainType" attribute of this CSGObject as a
+   * string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Returns the value of the "ordinal" attribute of this CSGObject.
+   *
+   * @return {number} the value of the "ordinal" attribute of this CSGObject as a
+   * integer.
+   */
+  long getOrdinal();
+
+
+  /**
+   * Predicate returning true if this CSGObject's "domainType" attribute is
+   * set.
+   *
+   * return {boolean} true if this CSGObject's "domainType" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Predicate returning true if this CSGObject's "ordinal" attribute is
+   * set.
+   *
+   * return {boolean} true if this CSGObject's "ordinal" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetOrdinal();
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this CSGObject.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Sets the value of the "ordinal" attribute of this CSGObject.
+   *
+   * @param {number} ordinal long value of the "ordinal" attribute to be set.
+   */
+  long setOrdinal(long ordinal);
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this CSGObject.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Unsets the value of the "ordinal" attribute of this CSGObject.
+   */
+  long unsetOrdinal();
+
+
+  /**
+   * Returns the value of the "csgNode" element of this CSGObject.
+   *
+   * @return {CSGNode} the value of the "csgNode" element of this CSGObject as a
+   * CSGNode*.
+   */
+  CSGNode getCSGNode();
+
+
+  /**
+   * Predicate returning true if this CSGObject's "csgNode" element is set.
+   *
+   * return {boolean} true if this CSGObject's "csgNode" element has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetCSGNode();
+
+
+  /**
+   * Sets the value of the "csgNode" element of this CSGObject.
+   *
+   * @param {CSGNode} csgNode CSGNode* value of the "csgNode" element to be set.
+   */
+  long setCSGNode(CSGNode csgNode);
+
+
+  /**
+   * Creates a new CSGPrimitive object, adds it to this CSGObject object and
+   * returns the CSGPrimitive object created.
+   *
+   * @return {CSGPrimitive} a new CSGPrimitive object instance.
+   */
+  CSGPrimitive createCSGPrimitive();
+
+
+  /**
+   * Creates a new CSGTranslation object, adds it to this CSGObject object and
+   * returns the CSGTranslation object created.
+   *
+   * @return {CSGTranslation} a new CSGTranslation object instance.
+   */
+  CSGTranslation createCSGTranslation();
+
+
+  /**
+   * Creates a new CSGRotation object, adds it to this CSGObject object and
+   * returns the CSGRotation object created.
+   *
+   * @return {CSGRotation} a new CSGRotation object instance.
+   */
+  CSGRotation createCSGRotation();
+
+
+  /**
+   * Creates a new CSGScale object, adds it to this CSGObject object and
+   * returns the CSGScale object created.
+   *
+   * @return {CSGScale} a new CSGScale object instance.
+   */
+  CSGScale createCSGScale();
+
+
+  /**
+   * Creates a new CSGHomogeneousTransformation object, adds it to this
+   * CSGObject object and returns the CSGHomogeneousTransformation object
+   * created.
+   *
+   * @return {CSGHomogeneousTransformation} a new CSGHomogeneousTransformation object instance.
+   */
+  CSGHomogeneousTransformation createCSGHomogeneousTransformation();
+
+
+  /**
+   * Creates a new CSGSetOperator object, adds it to this CSGObject object and
+   * returns the CSGSetOperator object created.
+   *
+   * @return {CSGSetOperator} a new CSGSetOperator object instance.
+   */
+  CSGSetOperator createCSGSetOperator();
+
+
+  /**
+   * Unsets the value of the "csgNode" element of this CSGObject.
+   */
+  long unsetCSGNode();
+};
+
+CSGObject implements SBase;

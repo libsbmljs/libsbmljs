@@ -1,0 +1,142 @@
+/**
+ * # CSGRotation class
+ */
+[Prefix="libsbml::"]
+interface CSGRotation {
+  /**
+   * Returns the value of the "rotateX" attribute of this CSGRotation.
+   *
+   * @return {number} the value of the "rotateX" attribute of this CSGRotation as a
+   * double.
+   */
+  double getRotateX();
+
+
+  /**
+   * Returns the value of the "rotateY" attribute of this CSGRotation.
+   *
+   * @return {number} the value of the "rotateY" attribute of this CSGRotation as a
+   * double.
+   */
+  double getRotateY();
+
+
+  /**
+   * Returns the value of the "rotateZ" attribute of this CSGRotation.
+   *
+   * @return {number} the value of the "rotateZ" attribute of this CSGRotation as a
+   * double.
+   */
+  double getRotateZ();
+
+
+  /**
+   * Returns the value of the "rotateAngleInRadians" attribute of this
+   * CSGRotation.
+   *
+   * @return {number} the value of the "rotateAngleInRadians" attribute of this
+   * CSGRotation as a double.
+   */
+  double getRotateAngleInRadians();
+
+
+  /**
+   * Predicate returning true if this CSGRotation's "rotateX" attribute is
+   * set.
+   *
+   * return {boolean} true if this CSGRotation's "rotateX" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetRotateX();
+
+
+  /**
+   * Predicate returning true if this CSGRotation's "rotateY" attribute is
+   * set.
+   *
+   * return {boolean} true if this CSGRotation's "rotateY" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetRotateY();
+
+
+  /**
+   * Predicate returning true if this CSGRotation's "rotateZ" attribute is
+   * set.
+   *
+   * return {boolean} true if this CSGRotation's "rotateZ" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetRotateZ();
+
+
+  /**
+   * Predicate returning true if this CSGRotation's "rotateAngleInRadians"
+   * attribute is set.
+   *
+   * return {boolean} true if this CSGRotation's "rotateAngleInRadians" attribute has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetRotateAngleInRadians();
+
+
+  /**
+   * Sets the value of the "rotateX" attribute of this CSGRotation.
+   *
+   * @param {number} rotateX double value of the "rotateX" attribute to be set.
+   */
+  long setRotateX(double rotateX);
+
+
+  /**
+   * Sets the value of the "rotateY" attribute of this CSGRotation.
+   *
+   * @param {number} rotateY double value of the "rotateY" attribute to be set.
+   */
+  long setRotateY(double rotateY);
+
+
+  /**
+   * Sets the value of the "rotateZ" attribute of this CSGRotation.
+   *
+   * @param {number} rotateZ double value of the "rotateZ" attribute to be set.
+   */
+  long setRotateZ(double rotateZ);
+
+
+  /**
+   * Sets the value of the "rotateAngleInRadians" attribute of this
+   * CSGRotation.
+   *
+   * @param {number} rotateAngleInRadians double value of the "rotateAngleInRadians"
+   * attribute to be set.
+   */
+  long setRotateAngleInRadians(double rotateAngleInRadians);
+
+
+  /**
+   * Unsets the value of the "rotateX" attribute of this CSGRotation.
+   */
+  long unsetRotateX();
+
+
+  /**
+   * Unsets the value of the "rotateY" attribute of this CSGRotation.
+   */
+  long unsetRotateY();
+
+
+  /**
+   * Unsets the value of the "rotateZ" attribute of this CSGRotation.
+   */
+  long unsetRotateZ();
+
+
+  /**
+   * Unsets the value of the "rotateAngleInRadians" attribute of this
+   * CSGRotation.
+   */
+  long unsetRotateAngleInRadians();
+};
+
+CSGRotation implements CSGTransformation;

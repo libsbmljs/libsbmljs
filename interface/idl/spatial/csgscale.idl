@@ -1,0 +1,99 @@
+/**
+ * # CSGScale class
+ */
+[Prefix="libsbml::"]
+interface CSGScale {
+  /**
+   * Returns the value of the "scaleX" attribute of this CSGScale.
+   *
+   * @return {number} the value of the "scaleX" attribute of this CSGScale as a double.
+   */
+  double getScaleX();
+
+
+  /**
+   * Returns the value of the "scaleY" attribute of this CSGScale.
+   *
+   * @return {number} the value of the "scaleY" attribute of this CSGScale as a double.
+   */
+  double getScaleY();
+
+
+  /**
+   * Returns the value of the "scaleZ" attribute of this CSGScale.
+   *
+   * @return {number} the value of the "scaleZ" attribute of this CSGScale as a double.
+   */
+  double getScaleZ();
+
+
+  /**
+   * Predicate returning true if this CSGScale's "scaleX" attribute is set.
+   *
+   * return {boolean} true if this CSGScale's "scaleX" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetScaleX();
+
+
+  /**
+   * Predicate returning true if this CSGScale's "scaleY" attribute is set.
+   *
+   * return {boolean} true if this CSGScale's "scaleY" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetScaleY();
+
+
+  /**
+   * Predicate returning true if this CSGScale's "scaleZ" attribute is set.
+   *
+   * return {boolean} true if this CSGScale's "scaleZ" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetScaleZ();
+
+
+  /**
+   * Sets the value of the "scaleX" attribute of this CSGScale.
+   *
+   * @param {number} scaleX double value of the "scaleX" attribute to be set.
+   */
+  long setScaleX(double scaleX);
+
+
+  /**
+   * Sets the value of the "scaleY" attribute of this CSGScale.
+   *
+   * @param {number} scaleY double value of the "scaleY" attribute to be set.
+   */
+  long setScaleY(double scaleY);
+
+
+  /**
+   * Sets the value of the "scaleZ" attribute of this CSGScale.
+   *
+   * @param {number} scaleZ double value of the "scaleZ" attribute to be set.
+   */
+  long setScaleZ(double scaleZ);
+
+
+  /**
+   * Unsets the value of the "scaleX" attribute of this CSGScale.
+   */
+  long unsetScaleX();
+
+
+  /**
+   * Unsets the value of the "scaleY" attribute of this CSGScale.
+   */
+  long unsetScaleY();
+
+
+  /**
+   * Unsets the value of the "scaleZ" attribute of this CSGScale.
+   */
+  long unsetScaleZ();
+};
+
+CSGScale implements CSGTransformation;

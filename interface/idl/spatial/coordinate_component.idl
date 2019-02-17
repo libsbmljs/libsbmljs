@@ -1,0 +1,175 @@
+/**
+ * # CoordinateComponent class
+ */
+[Prefix="libsbml::"]
+interface CoordinateComponent {
+  /**
+   * Returns the value of the "type" attribute of this CoordinateComponent.
+   *
+   * @return {CoordinateKind_t} the value of the "type" attribute of this CoordinateComponent as a
+   * CoordinateKind_t.
+   */
+  libsbml__idl__CoordinateKind_t getType();
+
+
+  /**
+   * Returns the value of the "type" attribute of this CoordinateComponent.
+   *
+   * @return {string} the value of the "type" attribute of this CoordinateComponent as a
+   * string.
+   */
+  DOMString getTypeAsString();
+
+
+  /**
+   * Returns the value of the "unit" attribute of this CoordinateComponent.
+   *
+   * @return {string} the value of the "unit" attribute of this CoordinateComponent as a
+   * string.
+   */
+  DOMString getUnit();
+
+
+  /**
+   * Predicate returning true if this CoordinateComponent's "type" attribute
+   * is set.
+   *
+   * return {boolean} true if this CoordinateComponent's "type" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetType();
+
+
+  /**
+   * Predicate returning true if this CoordinateComponent's "unit" attribute
+   * is set.
+   *
+   * return {boolean} true if this CoordinateComponent's "unit" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetUnit();
+
+
+  /**
+   * Sets the value of the "type" attribute of this CoordinateComponent.
+   *
+   * @param {CoordinateKind_t} type CoordinateKind_t value of the "type" attribute to be set.
+   */
+  long setType(libsbml__idl__CoordinateKind_t type);
+
+
+  /**
+   * Sets the value of the "type" attribute of this CoordinateComponent.
+   *
+   * @param {string} type DOMString& of the "type" attribute to be set.
+   */
+  long setType(DOMString type);
+
+
+  /**
+   * Sets the value of the "unit" attribute of this CoordinateComponent.
+   *
+   * @param {string} unit DOMString& value of the "unit" attribute to be set.
+   */
+  long setUnit(DOMString unit);
+
+
+  /**
+   * Unsets the value of the "type" attribute of this CoordinateComponent.
+   */
+  long unsetType();
+
+
+  /**
+   * Unsets the value of the "unit" attribute of this CoordinateComponent.
+   */
+  long unsetUnit();
+
+
+  /**
+   * Returns the value of the "boundaryMin" element of this
+   * CoordinateComponent.
+   *
+   * @return {Boundary} the value of the "boundaryMin" element of this CoordinateComponent
+   * as a Boundary*.
+   */
+  Boundary getBoundaryMin();
+
+
+  /**
+   * Returns the value of the "boundaryMax" element of this
+   * CoordinateComponent.
+   *
+   * @return {Boundary} the value of the "boundaryMax" element of this CoordinateComponent
+   * as a Boundary*.
+   */
+  Boundary getBoundaryMax();
+
+
+  /**
+   * Predicate returning true if this CoordinateComponent's "boundaryMin"
+   * element is set.
+   *
+   * return {boolean} true if this CoordinateComponent's "boundaryMin" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetBoundaryMin();
+
+
+  /**
+   * Predicate returning true if this CoordinateComponent's "boundaryMax"
+   * element is set.
+   *
+   * return {boolean} true if this CoordinateComponent's "boundaryMax" element has
+   * been set, otherwise false is returned.
+   */
+  boolean isSetBoundaryMax();
+
+
+  /**
+   * Sets the value of the "boundaryMin" element of this CoordinateComponent.
+   *
+   * @param {Boundary} boundaryMin Boundary* value of the "boundaryMin" element to be set.
+   */
+  long setBoundaryMin(Boundary boundaryMin);
+
+
+  /**
+   * Sets the value of the "boundaryMax" element of this CoordinateComponent.
+   *
+   * @param {Boundary} boundaryMax Boundary* value of the "boundaryMax" element to be set.
+   */
+  long setBoundaryMax(Boundary boundaryMax);
+
+
+  /**
+   * Creates a new Boundary object, adds it to this CoordinateComponent object
+   * and returns the Boundary object created.
+   *
+   * @return {Boundary} a new Boundary object instance.
+   */
+  Boundary createBoundaryMin();
+
+
+  /**
+   * Creates a new Boundary object, adds it to this CoordinateComponent object
+   * and returns the Boundary object created.
+   *
+   * @return {Boundary} a new Boundary object instance.
+   */
+  Boundary createBoundaryMax();
+
+
+  /**
+   * Unsets the value of the "boundaryMin" element of this CoordinateComponent.
+   */
+  long unsetBoundaryMin();
+
+
+  /**
+   * Unsets the value of the "boundaryMax" element of this CoordinateComponent.
+   */
+  long unsetBoundaryMax();
+};
+
+CoordinateComponent implements SBase;

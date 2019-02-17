@@ -1,0 +1,65 @@
+/**
+ * # CSGNode class
+ */
+[Prefix="libsbml::"]
+interface CSGNode {
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type
+   * CSGPrimitive
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type CSGPrimitive, @c
+   * false otherwise
+   */
+  boolean isCSGPrimitive();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type
+   * CSGTranslation
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type CSGTranslation, @c
+   * false otherwise
+   */
+  boolean isCSGTranslation();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type
+   * CSGRotation
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type CSGRotation, @c
+   * false otherwise
+   */
+  boolean isCSGRotation();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type CSGScale
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type CSGScale, false
+   * otherwise
+   */
+  boolean isCSGScale();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type
+   * CSGHomogeneousTransformation
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type
+   * CSGHomogeneousTransformation, false otherwise
+   */
+  boolean isCSGHomogeneousTransformation();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGNode" is of type
+   * CSGSetOperator
+   *
+   * return {boolean} true if this abstract "CSGNode" is of type CSGSetOperator, @c
+   * false otherwise
+   */
+  boolean isCSGSetOperator();
+};
+
+CSGNode implements SBase;

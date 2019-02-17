@@ -1,0 +1,134 @@
+/**
+ * # CSGTransformation class
+ */
+[Prefix="libsbml::"]
+interface CSGTransformation {
+  /**
+   * Returns the value of the "csgNode" element of this CSGTransformation.
+   *
+   * @return {CSGNode} the value of the "csgNode" element of this CSGTransformation as a
+   * CSGNode*.
+   */
+  CSGNode getCSGNode();
+
+
+  /**
+   * Predicate returning true if this CSGTransformation's "csgNode" element
+   * is set.
+   *
+   * return {boolean} true if this CSGTransformation's "csgNode" element has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetCSGNode();
+
+
+  /**
+   * Sets the value of the "csgNode" element of this CSGTransformation.
+   *
+   * @param {CSGNode} csgNode CSGNode* value of the "csgNode" element to be set.
+   */
+  long setCSGNode(CSGNode csgNode);
+
+
+  /**
+   * Creates a new CSGPrimitive object, adds it to this CSGTransformation
+   * object and returns the CSGPrimitive object created.
+   *
+   * @return {CSGPrimitive} a new CSGPrimitive object instance.
+   */
+  CSGPrimitive createCSGPrimitive();
+
+
+  /**
+   * Creates a new CSGTranslation object, adds it to this CSGTransformation
+   * object and returns the CSGTranslation object created.
+   *
+   * @return {CSGTranslation} a new CSGTranslation object instance.
+   */
+  CSGTranslation createCSGTranslation();
+
+
+  /**
+   * Creates a new CSGRotation object, adds it to this CSGTransformation object
+   * and returns the CSGRotation object created.
+   *
+   * @return {CSGRotation} a new CSGRotation object instance.
+   */
+  CSGRotation createCSGRotation();
+
+
+  /**
+   * Creates a new CSGScale object, adds it to this CSGTransformation object
+   * and returns the CSGScale object created.
+   *
+   * @return {CSGScale} a new CSGScale object instance.
+   */
+  CSGScale createCSGScale();
+
+
+  /**
+   * Creates a new CSGHomogeneousTransformation object, adds it to this
+   * CSGTransformation object and returns the CSGHomogeneousTransformation
+   * object created.
+   *
+   * @return {CSGHomogeneousTransformation} a new CSGHomogeneousTransformation object instance.
+   */
+  CSGHomogeneousTransformation createCSGHomogeneousTransformation();
+
+
+  /**
+   * Creates a new CSGSetOperator object, adds it to this CSGTransformation
+   * object and returns the CSGSetOperator object created.
+   *
+   * @return {CSGSetOperator} a new CSGSetOperator object instance.
+   */
+  CSGSetOperator createCSGSetOperator();
+
+
+  /**
+   * Unsets the value of the "csgNode" element of this CSGTransformation.
+   */
+  long unsetCSGNode();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGTransformation" is of
+   * type CSGTranslation
+   *
+   * return {boolean} true if this abstract "CSGTransformation" is of type
+   * CSGTranslation, false otherwise
+   */
+  boolean isCSGTranslation();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGTransformation" is of
+   * type CSGRotation
+   *
+   * return {boolean} true if this abstract "CSGTransformation" is of type
+   * CSGRotation, false otherwise
+   */
+  boolean isCSGRotation();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGTransformation" is of
+   * type CSGScale
+   *
+   * return {boolean} true if this abstract "CSGTransformation" is of type CSGScale,
+   * false otherwise
+   */
+  boolean isCSGScale();
+
+
+  /**
+   * Predicate returning true if this abstract "CSGTransformation" is of
+   * type CSGHomogeneousTransformation
+   *
+   * return {boolean} true if this abstract "CSGTransformation" is of type
+   * CSGHomogeneousTransformation, false otherwise
+   */
+  boolean isCSGHomogeneousTransformation();
+};
+
+CSGTransformation implements CSGNode;
