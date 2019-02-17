@@ -539,6 +539,7 @@ task emccCompileLibSBML(type:Exec) {
     "-O0",
     // "-Os", // tier 1 code size optimizations
     // "-Oz", // tier 2 code size optimizations
+    // "--js-opts","0", // prevents js minification
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
     "-I",Paths.get("$buildDir","interface","idl").toString(),
@@ -680,7 +681,7 @@ task combineTests(type: ConcatFiles) {
     include Paths.get(tests_dir, "dyn2.js")
   }
   if (enableSpatial) {
-    // include Paths.get(tests_dir, "spatial.js")
+    include Paths.get(tests_dir, "spatial.js")
   }
   target = file(Paths.get("$buildDir","tests","index.js"))
 }
