@@ -105,7 +105,7 @@ enum libsbml__idl__CoordinateKind_t {
  * Enumeration of values permitted as the value of the "functionkind"
  * attribute on Spatial objects.
  */
-enum FunctionKind_t{
+enum libsbml__idl__FunctionKind_t{
   "libsbml::SPATIAL_FUNCTIONKIND_LAYERED",
   "libsbml::SPATIAL_FUNCTIONKIND_INVALID"
 };
@@ -114,7 +114,7 @@ enum FunctionKind_t{
  * Enumeration of values permitted as the value of the "primitivekind"
  * attribute on Spatial objects.
  */
-enum PrimitiveKind_t {
+enum libsbml__idl__PrimitiveKind_t {
   "libsbml::SPATIAL_PRIMITIVEKIND_SPHERE",
   "libsbml::SPATIAL_PRIMITIVEKIND_CUBE",
   "libsbml::SPATIAL_PRIMITIVEKIND_CYLINDER",
@@ -129,7 +129,7 @@ enum PrimitiveKind_t {
  * Enumeration of values permitted as the value of the "diffusionkind"
  * attribute on Spatial objects.
  */
-enum DiffusionKind_t {
+enum libsbml__idl__DiffusionKind_t {
   "libsbml::SPATIAL_DIFFUSIONKIND_ISOTROPIC",
   "libsbml::SPATIAL_DIFFUSIONKIND_ANISOTROPIC",
   "libsbml::SPATIAL_DIFFUSIONKIND_TENSOR",
@@ -140,7 +140,7 @@ enum DiffusionKind_t {
  * Enumeration of values permitted as the value of the "geometrykind"
  * attribute on Spatial objects.
  */
-enum GeometryKind_t {
+enum libsbml__idl__GeometryKind_t {
   "libsbml::SPATIAL_GEOMETRYKIND_CARTESIAN",
   "libsbml::SPATIAL_GEOMETRYKIND_INVALID"
 };
@@ -149,7 +149,7 @@ enum GeometryKind_t {
  * Enumeration of values permitted as the value of the "setoperation"
  * attribute on Spatial objects.
  */
-enum SetOperation_t {
+enum libsbml__idl__SetOperation_t {
   "libsbml::SPATIAL_SETOPERATION_UNION",
   "libsbml::SPATIAL_SETOPERATION_INTERSECTION",
   "libsbml::SPATIAL_SETOPERATION_DIFFERENCE",
@@ -160,7 +160,7 @@ enum SetOperation_t {
  * Enumeration of values permitted as the value of the
  * "interpolationkind" attribute on Spatial objects.
  */
-enum InterpolationKind_t {
+enum libsbml__idl__InterpolationKind_t {
   "libsbml::SPATIAL_INTERPOLATIONKIND_NEARESTNEIGHBOR",
   "libsbml::SPATIAL_INTERPOLATIONKIND_LINEAR",
   "libsbml::SPATIAL_INTERPOLATIONKIND_INVALID"
@@ -170,7 +170,7 @@ enum InterpolationKind_t {
  * Enumeration of values permitted as the value of the "polygonkind"
  * attribute on Spatial objects.
  */
-enum PolygonKind_t {
+enum libsbml__idl__PolygonKind_t {
   "libsbml::SPATIAL_POLYGONKIND_TRIANGLE",
   "libsbml::SPATIAL_POLYGONKIND_QUADRILATERAL",
   "libsbml::SPATIAL_POLYGONKIND_INVALID"
