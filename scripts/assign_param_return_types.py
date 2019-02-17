@@ -40,19 +40,6 @@ for filepath in sys.argv[1:]:
                 arg_types=tuple(parse_arg_types(m.group(3))),
                 )
 
-        def map_method_defs(line_num, unmapped_line_nums):
-            if line_num >= len(lines):
-                return {}
-            line = lines[line_num]
-            d = try_match_def(line)
-            if d is not None:
-                return {line_num: d, **{l: d for l in unmapped_line_nums}, **map_method_defs(line_num+1, tuple())}
-            else:
-                return {**map_method_defs(line_num+1, (line_num,*unmapped_line_nums))}
-        method_def_map = map_method_defs(0, tuple())
-
-        keep_lines = {l: True for l in range(len(lines))}
-
         def make_sig(method_def):
             return (method_def.type,method_def.name,*method_def.arg_types)
 
@@ -91,6 +78,19 @@ for filepath in sys.argv[1:]:
                             keep_lines[l] = False
                     else:
                         raise RuntimeError('Start & stop are reversed')
+
+        def map_method_defs(line_num, unmapped_line_nums):
+            if line_num >= len(lines):
+                return {}
+            line = lines[line_num]
+            d = try_match_def(line)
+            if d is not None:
+                return {line_num: d, **{l: d for l in unmapped_line_nums}, **map_method_defs(line_num+1, tuple())}
+            else:
+                return {**map_method_defs(line_num+1, (line_num,*unmapped_line_nums))}
+        method_def_map = map_method_defs(0, tuple())
+
+        keep_lines = {l: True for l in range(len(lines))}
 
         def transform_type(t):
             if t == 'DOMString':
