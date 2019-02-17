@@ -19,6 +19,10 @@ LIBSBML_CPP_NAMESPACE_BEGIN
     ASTNode_t* parseFormula(const std::string& formula) {
       return SBML_parseFormula(formula.c_str());
     }
+
+    ASTNode_t* fromMathML(const std::string& mathml) {
+      return readMathMLFromString(mathml.c_str());
+    }
   };
 
   class UnitKindConstructor {

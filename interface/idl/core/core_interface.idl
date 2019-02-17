@@ -28,6 +28,16 @@ interface SBMLFormulaParser {
    * @return {ASTNode} the root AST node of the formula
    */
   ASTNode parseFormula(DOMString formula);
+
+  /**
+   * Converts a MathML string to a libsbml ASTNode representation using
+   * the libsbml method
+   * [readMathMLFromString](http://sbml.org/Software/libSBML/5.17.0/docs//cpp-api/_math_m_l_8cpp.html#a0fb4f7430eb05834379253ce3611a00a).
+   *
+   * @param {string} mathml a string of the MathML to convert
+   * @return {ASTNode} the root AST node of the formula
+   */
+  ASTNode fromMathML(DOMString mathml);
 };
 
 [Prefix="libsbml::"]
