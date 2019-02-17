@@ -39,7 +39,7 @@ interface ParametricObject {
    * **Note:** the value of the "pointIndex" attribute of this ParametricObject is
    * returned in the argument array.
    */
-  void getPointIndex(long* outArray);
+  void getPointIndex(long[] outArray);
 
 
   /**
@@ -174,7 +174,7 @@ interface ParametricObject {
    * @param arrayLength long value for the length of the "pointIndex" attribute
    * to be set.
    */
-  long setPointIndex(long* inArray, long arrayLength);
+  long setPointIndex(long[] inArray, long arrayLength);
 
 
   /**
@@ -201,7 +201,7 @@ interface ParametricObject {
    *
    * @param {DataKind_t} dataType DataKind_t value of the "dataType" attribute to be set.
    */
-  long setDataType(DataKind_t dataType);
+  long setDataType(libsbml__idl__DataKind_t dataType);
 
 
   /**

@@ -1,8 +1,8 @@
 /**
- * # AnalyticVolume class
+ * # Boundary class
  */
 [Prefix="libsbml::"]
-interface AnalyticVolume {
+interface Boundary {
   /**
    * Returns the value of the "value" attribute of this Boundary.
    *
@@ -34,4 +34,4 @@ interface AnalyticVolume {
   long unsetValue();
 };
 
-AnalyticVolume implements SBase;
+Boundary implements SBase;

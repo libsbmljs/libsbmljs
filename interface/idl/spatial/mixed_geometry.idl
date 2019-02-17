@@ -145,8 +145,7 @@ interface MixedGeometry {
    * @return {number} the first OrdinalMapping in this MixedGeometry based on the given
    * geometryDefinition attribute or NULL if no such OrdinalMapping exists.
    */
-  OrdinalMapping getOrdinalMappingByGeometryDefinition(const
-    DOMString& sid);
+  OrdinalMapping getOrdinalMappingByGeometryDefinition(DOMString sid);
 
 
   /**

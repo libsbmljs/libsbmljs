@@ -2,7 +2,7 @@
  * SBMLSpatialTypeCode_t Enumeration of possible types in the libSBML
  * "spatial" package implementation.
  */
-enum SBMLSpatialTypeCode_t {
+enum libsbml__idl__SBMLSpatialTypeCode_t {
   "libsbml::SBML_SPATIAL_DOMAINTYPE",
   "libsbml::SBML_SPATIAL_DOMAIN",
   "libsbml::SBML_SPATIAL_INTERIORPOINT",
@@ -43,13 +43,38 @@ enum SBMLSpatialTypeCode_t {
  * Enumeration of values permitted as the value of the "boundarykind"
  * attribute on Spatial objects.
  */
-enum BoundaryConditionKind_t {
+enum libsbml__idl__BoundaryConditionKind_t {
   "libsbml::SPATIAL_BOUNDARYKIND_ROBIN_VALUE_COEFFICIENT",
   "libsbml::SPATIAL_BOUNDARYKIND_ROBIN_INWARD_NORMAL_GRADIENT_COEFFICIENT",
   "libsbml::SPATIAL_BOUNDARYKIND_ROBIN_SUM",
   "libsbml::SPATIAL_BOUNDARYKIND_NEUMANN",
   "libsbml::SPATIAL_BOUNDARYKIND_DIRICHLET",
   "libsbml::SPATIAL_BOUNDARYKIND_INVALID"
+};
+
+
+/**
+ * Enumeration of values permitted as the value of the "compressionkind"
+ * attribute on Spatial objects.
+ */
+libsbml__idl__CompressionKind_t enum {
+  "libsbml::SPATIAL_COMPRESSIONKIND_UNCOMPRESSED",
+  "libsbml::SPATIAL_COMPRESSIONKIND_DEFLATED",
+  "libsbml::SPATIAL_COMPRESSIONKIND_INVALID"
+};
+
+/**
+ * Enumeration of values permitted as the value of the "datakind"
+ * attribute on Spatial objects.
+ */
+libsbml__idl__DataKind_t enum
+{
+  "libsbml::SPATIAL_DATAKIND_DOUBLE",
+  "libsbml::SPATIAL_DATAKIND_FLOAT",
+  "libsbml::SPATIAL_DATAKIND_UINT8",
+  "libsbml::SPATIAL_DATAKIND_UINT16",
+  "libsbml::SPATIAL_DATAKIND_UINT32",
+  "libsbml::SPATIAL_DATAKIND_INVALID"
 };
 
 /**
@@ -61,7 +86,7 @@ interface SpatialExtension {
    * Returns the XML namespace URI of the SBML Level 3 package implemented
    * by this libSBML extension.
    *
-   * @return {string} the XML namespace, as a string.
+   * @return {string} the XML namespaceas a string.
    */
   static DOMString getXmlnsL3V1V1();
 };
