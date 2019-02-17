@@ -6,73 +6,32 @@ interface AnalyticVolume {
   /**
    * Returns the value of the "value" attribute of this Boundary.
    *
-   * @return the value of the "value" attribute of this Boundary as a double.
+   * @return {number} the value of the "value" attribute of this Boundary as a double.
    */
-  double getValue() const;
+  double getValue();
 
 
   /**
-   * Predicate returning @c true if this Boundary's "id" attribute is set.
+   * Predicate returning true if this Boundary's "value" attribute is set.
    *
-   * @return @c true if this Boundary's "id" attribute has been set, otherwise
-   * @c false is returned.
+   * return {boolean} true if this Boundary's "value" attribute has been set,
+   * otherwise false is returned.
    */
-  bool isSetId() const;
-
-
-  /**
-   * Predicate returning @c true if this Boundary's "value" attribute is set.
-   *
-   * @return @c true if this Boundary's "value" attribute has been set,
-   * otherwise @c false is returned.
-   */
-  bool isSetValue() const;
-
-
-  /**
-   * Sets the value of the "id" attribute of this Boundary.
-   *
-   * @param id std::string& value of the "id" attribute to be set.
-   *
-   * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
-   */
-  int setId(const std::string& id);
+  boolean isSetValue();
 
 
   /**
    * Sets the value of the "value" attribute of this Boundary.
    *
-   * @param value double value of the "value" attribute to be set.
-   *
-   * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
+   * @param {number} value double value of the "value" attribute to be set.
    */
-  int setValue(double value);
-
-
-  /**
-   * Unsets the value of the "id" attribute of this Boundary.
-   *
-   * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
-   */
-  int unsetId();
+  long setValue(double value);
 
 
   /**
    * Unsets the value of the "value" attribute of this Boundary.
-   *
-   * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
    */
-  int unsetValue();
+  long unsetValue();
 };
 
 AnalyticVolume implements SBase;
