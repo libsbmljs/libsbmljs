@@ -115,7 +115,7 @@ enum FunctionKind_t{
  * attribute on Spatial objects.
  */
 enum PrimitiveKind_t {
-  SPATIAL_PRIMITIVEKIND_SPHERE              /*!< The spatial primitivekind is @c "sphere". */
+  "libsbml::SPATIAL_PRIMITIVEKIND_SPHERE",
   "libsbml::SPATIAL_PRIMITIVEKIND_CUBE",
   "libsbml::SPATIAL_PRIMITIVEKIND_CYLINDER",
   "libsbml::SPATIAL_PRIMITIVEKIND_CONE",
