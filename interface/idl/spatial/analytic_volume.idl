@@ -1,0 +1,158 @@
+/**
+ * # AnalyticVolume class
+ */
+[Prefix="libsbml::"]
+interface AnalyticVolume {
+  /**
+   * Returns the value of the "functionType" attribute of this AnalyticVolume.
+   *
+   * @return {FunctionKind_t} the value of the "functionType" attribute of this AnalyticVolume
+   * as a FunctionKind_t.
+   */
+  FunctionKind_t getFunctionType();
+
+
+  /**
+   * Returns the value of the "functionType" attribute of this AnalyticVolume.
+   *
+   * @return {string} the value of the "functionType" attribute of this AnalyticVolume
+   * as a string.
+   */
+  DOMString getFunctionTypeAsString();
+
+
+  /**
+   * Returns the value of the "ordinal" attribute of this AnalyticVolume.
+   *
+   * @return {number} the value of the "ordinal" attribute of this AnalyticVolume as a
+   * integer.
+   */
+  long getOrdinal();
+
+
+  /**
+   * Returns the value of the "domainType" attribute of this AnalyticVolume.
+   *
+   * @return {string} the value of the "domainType" attribute of this AnalyticVolume as
+   * a string.
+   */
+  DOMString getDomainType();
+
+
+  /**
+   * Predicate returning true if this AnalyticVolume's "functionType"
+   * attribute is set.
+   *
+   * return {boolean} true if this AnalyticVolume's "functionType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetFunctionType();
+
+
+  /**
+   * Predicate returning true if this AnalyticVolume's "ordinal" attribute
+   * is set.
+   *
+   * return {boolean} true if this AnalyticVolume's "ordinal" attribute has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetOrdinal();
+
+
+  /**
+   * Predicate returning true if this AnalyticVolume's "domainType"
+   * attribute is set.
+   *
+   * return {boolean} true if this AnalyticVolume's "domainType" attribute has been
+   * set, otherwise false is returned.
+   */
+  boolean isSetDomainType();
+
+
+  /**
+   * Sets the value of the "functionType" attribute of this AnalyticVolume.
+   *
+   * @param {const} functionType FunctionKind_t value of the "functionType" attribute
+   * to be set.
+   */
+  long setFunctionType(const FunctionKind_t functionType);
+
+
+  /**
+   * Sets the value of the "functionType" attribute of this AnalyticVolume.
+   *
+   * @param {string} functionType DOMString& of the "functionType" attribute to be
+   * set.
+   */
+  long setFunctionType(DOMString functionType);
+
+
+  /**
+   * Sets the value of the "ordinal" attribute of this AnalyticVolume.
+   *
+   * @param {number} ordinal long value of the "ordinal" attribute to be set.
+   */
+  long setOrdinal(long ordinal);
+
+
+  /**
+   * Sets the value of the "domainType" attribute of this AnalyticVolume.
+   *
+   * @param {string} domainType DOMString& value of the "domainType" attribute to be
+   * set.
+   */
+  long setDomainType(DOMString domainType);
+
+
+  /**
+   * Unsets the value of the "functionType" attribute of this AnalyticVolume.
+   */
+  long unsetFunctionType();
+
+
+  /**
+   * Unsets the value of the "ordinal" attribute of this AnalyticVolume.
+   */
+  long unsetOrdinal();
+
+
+  /**
+   * Unsets the value of the "domainType" attribute of this AnalyticVolume.
+   */
+  long unsetDomainType();
+
+
+  /**
+   * Returns the value of the "math" element of this AnalyticVolume.
+   *
+   * @return {ASTNode} the value of the "math" element of this AnalyticVolume as a
+   * ASTNode*.
+   */
+  ASTNode getMath();
+
+
+  /**
+   * Predicate returning true if this AnalyticVolume's "math" element is
+   * set.
+   *
+   * return {boolean} true if this AnalyticVolume's "math" element has been set,
+   * otherwise false is returned.
+   */
+  boolean isSetMath();
+
+
+  /**
+   * Sets the value of the "math" element of this AnalyticVolume.
+   *
+   * @param {ASTNode} math ASTNode* value of the "math" element to be set.
+   */
+  long setMath(ASTNode math);
+
+
+  /**
+   * Unsets the value of the "math" element of this AnalyticVolume.
+   */
+  long unsetMath();
+};
+
+AnalyticVolume implements SBase;
