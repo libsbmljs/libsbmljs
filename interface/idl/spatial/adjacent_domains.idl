@@ -6,7 +6,7 @@ interface AdjacentDomains {
   /**
    * Returns the value of the "domain1" attribute of this AdjacentDomains.
    *
-   * @return the value of the "domain1" attribute of this AdjacentDomains as a
+   * @return {string} the value of the "domain1" attribute of this AdjacentDomains as a
    * string.
    */
   DOMString getDomain1();
@@ -15,7 +15,7 @@ interface AdjacentDomains {
   /**
    * Returns the value of the "domain2" attribute of this AdjacentDomains.
    *
-   * @return the value of the "domain2" attribute of this AdjacentDomains as a
+   * @return {string} the value of the "domain2" attribute of this AdjacentDomains as a
    * string.
    */
   DOMString getDomain2();

@@ -7,7 +7,7 @@ interface SpatialReactionPlugin {
    * Returns the value of the "isLocal" attribute of this
    * SpatialReactionPlugin.
    *
-   * @return the value of the "isLocal" attribute of this SpatialReactionPlugin
+   * @return {boolean} the value of the "isLocal" attribute of this SpatialReactionPlugin
    * as a boolean.
    */
   boolean getIsLocal();

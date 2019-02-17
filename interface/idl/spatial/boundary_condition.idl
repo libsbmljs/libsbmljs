@@ -6,7 +6,7 @@ interface BoundaryCondition {
   /**
    * Returns the value of the "variable" attribute of this BoundaryCondition.
    *
-   * @return the value of the "variable" attribute of this BoundaryCondition as
+   * @return {string} the value of the "variable" attribute of this BoundaryCondition as
    * a string.
    */
   DOMString getVariable();
@@ -15,7 +15,7 @@ interface BoundaryCondition {
   /**
    * Returns the value of the "type" attribute of this BoundaryCondition.
    *
-   * @return the value of the "type" attribute of this BoundaryCondition as a
+   * @return {BoundaryConditionKind_t} the value of the "type" attribute of this BoundaryCondition as a
    * BoundaryConditionKind_t.
    */
   libsbml__idl__BoundaryConditionKind_t getType();
@@ -24,7 +24,7 @@ interface BoundaryCondition {
   /**
    * Returns the value of the "type" attribute of this BoundaryCondition.
    *
-   * @return the value of the "type" attribute of this BoundaryCondition as a
+   * @return {string} the value of the "type" attribute of this BoundaryCondition as a
    * string.
    */
   DOMString getTypeAsString();
@@ -34,7 +34,7 @@ interface BoundaryCondition {
    * Returns the value of the "coordinateBoundary" attribute of this
    * BoundaryCondition.
    *
-   * @return the value of the "coordinateBoundary" attribute of this
+   * @return {string} the value of the "coordinateBoundary" attribute of this
    * BoundaryCondition as a string.
    */
   DOMString getCoordinateBoundary();
@@ -44,7 +44,7 @@ interface BoundaryCondition {
    * Returns the value of the "boundaryDomainType" attribute of this
    * BoundaryCondition.
    *
-   * @return the value of the "boundaryDomainType" attribute of this
+   * @return {string} the value of the "boundaryDomainType" attribute of this
    * BoundaryCondition as a string.
    */
   DOMString getBoundaryDomainType();
@@ -93,7 +93,7 @@ interface BoundaryCondition {
   /**
    * Sets the value of the "variable" attribute of this BoundaryCondition.
    *
-   * @param variable DOMString& value of the "variable" attribute to be set.
+   * @param {string} variable DOMString& value of the "variable" attribute to be set.
    */
   long setVariable(DOMString variable);
 
@@ -101,7 +101,7 @@ interface BoundaryCondition {
   /**
    * Sets the value of the "type" attribute of this BoundaryCondition.
    *
-   * @param type BoundaryConditionKind_t value of the "type" attribute to be
+   * @param {BoundaryConditionKind_t} type BoundaryConditionKind_t value of the "type" attribute to be
    * set.
    */
   long setType(libsbml__idl__BoundaryConditionKind_t type);
@@ -110,7 +110,7 @@ interface BoundaryCondition {
   /**
    * Sets the value of the "type" attribute of this BoundaryCondition.
    *
-   * @param type DOMString& of the "type" attribute to be set.
+   * @param {string} type DOMString& of the "type" attribute to be set.
    */
   long setType(DOMString type);
 
@@ -119,7 +119,7 @@ interface BoundaryCondition {
    * Sets the value of the "coordinateBoundary" attribute of this
    * BoundaryCondition.
    *
-   * @param coordinateBoundary DOMString& value of the "coordinateBoundary"
+   * @param {string} coordinateBoundary DOMString& value of the "coordinateBoundary"
    * attribute to be set.
    */
   long setCoordinateBoundary(DOMString coordinateBoundary);
@@ -129,7 +129,7 @@ interface BoundaryCondition {
    * Sets the value of the "boundaryDomainType" attribute of this
    * BoundaryCondition.
    *
-   * @param boundaryDomainType DOMString& value of the "boundaryDomainType"
+   * @param {string} boundaryDomainType DOMString& value of the "boundaryDomainType"
    * attribute to be set.
    */
   long setBoundaryDomainType(DOMString boundaryDomainType);

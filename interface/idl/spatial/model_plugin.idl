@@ -6,7 +6,7 @@ interface SpatialModelPlugin {
   /**
    * Returns the value of the "geometry" element of this SpatialModelPlugin.
    *
-   * @return the value of the "geometry" element of this SpatialModelPlugin as
+   * @return {Geometry} the value of the "geometry" element of this SpatialModelPlugin as
    * a Geometry.
    */
   Geometry getGeometry();
@@ -25,7 +25,7 @@ interface SpatialModelPlugin {
   /**
    * Sets the value of the "geometry" element of this SpatialModelPlugin.
    *
-   * @param geometry Geometry value of the "geometry" element to be set.
+   * @param {Geometry} geometry Geometry value of the "geometry" element to be set.
    */
   long setGeometry(Geometry geometry);
 
