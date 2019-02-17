@@ -26,19 +26,6 @@ interface MixedGeometry {
   /**
    * Get a GeometryDefinition from the MixedGeometry based on its identifier.
    *
-   * @param {string} sid a string representing the identifier of the GeometryDefinition
-   * to retrieve.
-   *
-   * @return {GeometryDefinition} the GeometryDefinition in the ListOfGeometryDefinitions within
-   * this MixedGeometry with the given id or NULL if no such GeometryDefinition
-   * exists.
-   */
-  GeometryDefinition getGeometryDefinition(DOMString sid);
-
-
-  /**
-   * Get a GeometryDefinition from the MixedGeometry based on its identifier.
-   *
    * @param {GeometryDefinition} sid a string representing the identifier of the GeometryDefinition
    * to retrieve.
    *
@@ -126,22 +113,6 @@ interface MixedGeometry {
    * it.
    */
   GeometryDefinition removeGeometryDefinition(unsigned long n);
-
-
-  /**
-   * Removes the GeometryDefinition from this MixedGeometry based on its
-   * identifier and returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the GeometryDefinition
-   * to remove.
-   *
-   * @return {GeometryDefinition} the GeometryDefinition in this MixedGeometry based on the
-   * identifier or NULL if no such GeometryDefinition exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  GeometryDefinition removeGeometryDefinition(DOMString sid);
 
 
   /**

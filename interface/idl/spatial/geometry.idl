@@ -41,15 +41,6 @@ interface Geometry {
 
 
   /**
-   * Sets the value of the "coordinateSystem" attribute of this Geometry.
-   *
-   * @param {string} coordinateSystem DOMString& of the "coordinateSystem" attribute
-   * to be set.
-   */
-  long setCoordinateSystem(DOMString coordinateSystem);
-
-
-  /**
    * Unsets the value of the "coordinateSystem" attribute of this Geometry.
    */
   long unsetCoordinateSystem();
@@ -73,19 +64,6 @@ interface Geometry {
    * within this Geometry.
    */
   CoordinateComponent getCoordinateComponent(unsigned long n);
-
-
-  /**
-   * Get a CoordinateComponent from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the CoordinateComponent
-   * to retrieve.
-   *
-   * @return {CoordinateComponent} the CoordinateComponent in the ListOfCoordinateComponents within
-   * this Geometry with the given id or NULL if no such CoordinateComponent
-   * exists.
-   */
-  CoordinateComponent getCoordinateComponent(DOMString sid);
 
 
   /**
@@ -145,22 +123,6 @@ interface Geometry {
 
 
   /**
-   * Removes the CoordinateComponent from this Geometry based on its identifier
-   * and returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the CoordinateComponent
-   * to remove.
-   *
-   * @return {CoordinateComponent} the CoordinateComponent in this Geometry based on the identifier
-   * or NULL if no such CoordinateComponent exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  CoordinateComponent removeCoordinateComponent(DOMString sid);
-
-
-  /**
    * Returns the ListOfDomainTypes from this Geometry.
    *
    * @return {ListOfDomainTypes} the ListOfDomainTypes from this Geometry.
@@ -177,18 +139,6 @@ interface Geometry {
    * @return {DomainType} the nth DomainType in the ListOfDomainTypes within this Geometry.
    */
   DomainType getDomainType(unsigned long n);
-
-
-  /**
-   * Get a DomainType from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the DomainType to
-   * retrieve.
-   *
-   * @return {DomainType} the DomainType in the ListOfDomainTypes within this Geometry with
-   * the given id or NULL if no such DomainType exists.
-   */
-  DomainType getDomainType(DOMString sid);
 
 
   /**
@@ -233,22 +183,6 @@ interface Geometry {
 
 
   /**
-   * Removes the DomainType from this Geometry based on its identifier and
-   * returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the DomainType to
-   * remove.
-   *
-   * @return {DomainType} the DomainType in this Geometry based on the identifier or NULL if
-   * no such DomainType exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  DomainType removeDomainType(DOMString sid);
-
-
-  /**
    * Returns the ListOfDomains from this Geometry.
    *
    * @return {ListOfDomains} the ListOfDomains from this Geometry.
@@ -264,17 +198,6 @@ interface Geometry {
    * @return {Domain} the nth Domain in the ListOfDomains within this Geometry.
    */
   Domain getDomain(unsigned long n);
-
-
-  /**
-   * Get a Domain from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the Domain to retrieve.
-   *
-   * @return {Domain} the Domain in the ListOfDomains within this Geometry with the
-   * given id or NULL if no such Domain exists.
-   */
-  Domain getDomain(DOMString sid);
 
 
   /**
@@ -330,21 +253,6 @@ interface Geometry {
 
 
   /**
-   * Removes the Domain from this Geometry based on its identifier and returns
-   * a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the Domain to remove.
-   *
-   * @return {Domain} the Domain in this Geometry based on the identifier or NULL if no
-   * such Domain exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  Domain removeDomain(DOMString sid);
-
-
-  /**
    * Returns the ListOfAdjacentDomains from this Geometry.
    *
    * @return {ListOfAdjacentDomains} the ListOfAdjacentDomains from this Geometry.
@@ -362,18 +270,6 @@ interface Geometry {
    * Geometry.
    */
   AdjacentDomains getAdjacentDomains(unsigned long n);
-
-
-  /**
-   * Get an AdjacentDomains from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the AdjacentDomains to
-   * retrieve.
-   *
-   * @return {AdjacentDomains} the AdjacentDomains in the ListOfAdjacentDomains within this
-   * Geometry with the given id or NULL if no such AdjacentDomains exists.
-   */
-  AdjacentDomains getAdjacentDomains(DOMString sid);
 
 
   /**
@@ -473,22 +369,6 @@ interface Geometry {
 
 
   /**
-   * Removes the AdjacentDomains from this Geometry based on its identifier and
-   * returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the AdjacentDomains to
-   * remove.
-   *
-   * @return {AdjacentDomains} the AdjacentDomains in this Geometry based on the identifier or
-   * NULL if no such AdjacentDomains exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  AdjacentDomains removeAdjacentDomains(DOMString sid);
-
-
-  /**
    * Returns the ListOfGeometryDefinitions from this Geometry.
    *
    * @return {ListOfGeometryDefinitions} the ListOfGeometryDefinitions from this Geometry.
@@ -506,19 +386,6 @@ interface Geometry {
    * this Geometry.
    */
   GeometryDefinition getGeometryDefinition(unsigned long n);
-
-
-  /**
-   * Get a GeometryDefinition from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the GeometryDefinition
-   * to retrieve.
-   *
-   * @return {GeometryDefinition} the GeometryDefinition in the ListOfGeometryDefinitions within
-   * this Geometry with the given id or NULL if no such GeometryDefinition
-   * exists.
-   */
-  GeometryDefinition getGeometryDefinition(DOMString sid);
 
 
   /**
@@ -614,22 +481,6 @@ interface Geometry {
 
 
   /**
-   * Removes the GeometryDefinition from this Geometry based on its identifier
-   * and returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the GeometryDefinition
-   * to remove.
-   *
-   * @return {GeometryDefinition} the GeometryDefinition in this Geometry based on the identifier or
-   * NULL if no such GeometryDefinition exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  GeometryDefinition removeGeometryDefinition(DOMString sid);
-
-
-  /**
    * Returns the ListOfSampledFields from this Geometry.
    *
    * @return {ListOfSampledFields} the ListOfSampledFields from this Geometry.
@@ -647,18 +498,6 @@ interface Geometry {
    * Geometry.
    */
   SampledField getSampledField(unsigned long n);
-
-
-  /**
-   * Get a SampledField from the Geometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the SampledField to
-   * retrieve.
-   *
-   * @return {SampledField} the SampledField in the ListOfSampledFields within this Geometry
-   * with the given id or NULL if no such SampledField exists.
-   */
-  SampledField getSampledField(DOMString sid);
 
 
   /**
@@ -701,22 +540,6 @@ interface Geometry {
    * it.
    */
   SampledField removeSampledField(unsigned long n);
-
-
-  /**
-   * Removes the SampledField from this Geometry based on its identifier and
-   * returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the SampledField to
-   * remove.
-   *
-   * @return {SampledField} the SampledField in this Geometry based on the identifier or NULL
-   * if no such SampledField exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  SampledField removeSampledField(DOMString sid);
 };
 
 Geometry implements SBase;

@@ -59,14 +59,6 @@ interface CoordinateComponent {
 
 
   /**
-   * Sets the value of the "type" attribute of this CoordinateComponent.
-   *
-   * @param {string} type DOMString& of the "type" attribute to be set.
-   */
-  long setType(DOMString type);
-
-
-  /**
    * Sets the value of the "unit" attribute of this CoordinateComponent.
    *
    * @param {string} unit DOMString& value of the "unit" attribute to be set.

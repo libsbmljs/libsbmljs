@@ -15,18 +15,6 @@ interface CSGeometry {
 
 
   /**
-   * Get a CSGObject from the CSGeometry based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the CSGObject to
-   * retrieve.
-   *
-   * @return {CSGObject} the CSGObject in the ListOfCSGObjects within this CSGeometry with
-   * the given id or NULL if no such CSGObject exists.
-   */
-  CSGObject getCSGObject(DOMString sid);
-
-
-  /**
    * Get a CSGObject from the CSGeometry based on the DomainType to which it
    * refers.
    *
@@ -79,22 +67,6 @@ interface CSGeometry {
    * it.
    */
   CSGObject removeCSGObject(unsigned long n);
-
-
-  /**
-   * Removes the CSGObject from this CSGeometry based on its identifier and
-   * returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the CSGObject to
-   * remove.
-   *
-   * @return {CSGObject} the CSGObject in this CSGeometry based on the identifier or NULL
-   * if no such CSGObject exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  CSGObject removeCSGObject(DOMString sid);
 };
 
 CSGeometry implements GeometryDefinition;

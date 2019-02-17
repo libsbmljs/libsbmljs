@@ -158,14 +158,6 @@ interface ParametricObject {
 
 
   /**
-   * Sets the value of the "polygonType" attribute of this ParametricObject.
-   *
-   * @param {string} polygonType DOMString& of the "polygonType" attribute to be set.
-   */
-  long setPolygonType(DOMString polygonType);
-
-
-  /**
    * Sets the value of the "domainType" attribute of this ParametricObject.
    *
    * @param {string} domainType DOMString& value of the "domainType" attribute to be
@@ -210,14 +202,6 @@ interface ParametricObject {
    * @param {DataKind_t} dataType DataKind_t value of the "dataType" attribute to be set.
    */
   long setDataType(DataKind_t dataType);
-
-
-  /**
-   * Sets the value of the "dataType" attribute of this ParametricObject.
-   *
-   * @param {string} dataType DOMString& of the "dataType" attribute to be set.
-   */
-  long setDataType(DOMString dataType);
 
 
   /**

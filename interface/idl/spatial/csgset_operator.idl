@@ -79,15 +79,6 @@ interface CSGSetOperator {
 
 
   /**
-   * Sets the value of the "operationType" attribute of this CSGSetOperator.
-   *
-   * @param {string} operationType DOMString& of the "operationType" attribute to be
-   * set.
-   */
-  long setOperationType(DOMString operationType);
-
-
-  /**
    * Sets the value of the "complementA" attribute of this CSGSetOperator.
    *
    * @param {string} complementA DOMString& value of the "complementA" attribute to be
@@ -140,18 +131,6 @@ interface CSGSetOperator {
    * @return {CSGNode} the nth CSGNode in the ListOfCSGNodes within this CSGSetOperator.
    */
   CSGNode getCSGNode(unsigned long n);
-
-
-  /**
-   * Get a CSGNode from the CSGSetOperator based on its identifier.
-   *
-   * @param {string} sid a string representing the identifier of the CSGNode to
-   * retrieve.
-   *
-   * @return {CSGNode} the CSGNode in the ListOfCSGNodes within this CSGSetOperator with
-   * the given id or NULL if no such CSGNode exists.
-   */
-  CSGNode getCSGNode(DOMString sid);
 
 
   /**
@@ -239,21 +218,6 @@ interface CSGSetOperator {
    * it.
    */
   CSGNode removeCSGNode(unsigned long n);
-
-
-  /**
-   * Removes the CSGNode from this CSGSetOperator based on its identifier and
-   * returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the CSGNode to remove.
-   *
-   * @return {CSGNode} the CSGNode in this CSGSetOperator based on the identifier or NULL
-   * if no such CSGNode exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  CSGNode removeCSGNode(DOMString sid);
 };
 
 CSGSetOperator implements CSGNode;

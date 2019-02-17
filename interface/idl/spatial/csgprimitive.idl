@@ -41,15 +41,6 @@ interface CSGPrimitive {
 
 
   /**
-   * Sets the value of the "primitiveType" attribute of this CSGPrimitive.
-   *
-   * @param {string} primitiveType DOMString& of the "primitiveType" attribute to be
-   * set.
-   */
-  long setPrimitiveType(DOMString primitiveType);
-
-
-  /**
    * Unsets the value of the "primitiveType" attribute of this CSGPrimitive.
    */
   long unsetPrimitiveType();

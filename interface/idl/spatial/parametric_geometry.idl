@@ -69,20 +69,6 @@ interface ParametricGeometry {
 
 
   /**
-   * Get a ParametricObject from the ParametricGeometry based on its
-   * identifier.
-   *
-   * @param {string} sid a string representing the identifier of the ParametricObject to
-   * retrieve.
-   *
-   * @return {ParametricObject} the ParametricObject in the ListOfParametricObjects within this
-   * ParametricGeometry with the given id or NULL if no such ParametricObject
-   * exists.
-   */
-  ParametricObject getParametricObject(DOMString sid);
-
-
-  /**
    * Get a ParametricObject from the ParametricGeometry based on the DomainType
    * to which it refers.
    *
@@ -133,22 +119,6 @@ interface ParametricGeometry {
    * it.
    */
   ParametricObject removeParametricObject(unsigned long n);
-
-
-  /**
-   * Removes the ParametricObject from this ParametricGeometry based on its
-   * identifier and returns a pointer to it.
-   *
-   * @param {string} sid a string representing the identifier of the ParametricObject to
-   * remove.
-   *
-   * @return {ParametricObject} the ParametricObject in this ParametricGeometry based on the
-   * identifier or NULL if no such ParametricObject exists.
-   *
-   * **Note:** the caller owns the returned object and is responsible for deleting
-   * it.
-   */
-  ParametricObject removeParametricObject(DOMString sid);
 };
 
 ParametricGeometry implements GeometryDefinition;

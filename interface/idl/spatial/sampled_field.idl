@@ -238,29 +238,12 @@ interface SampledField {
 
 
   /**
-   * Sets the value of the "interpolationType" attribute of this SampledField.
-   *
-   * @param {string} interpolationType DOMString& of the "interpolationType" attribute
-   * to be set.
-   */
-  long setInterpolationType(DOMString interpolationType);
-
-
-  /**
    * Sets the value of the "compression" attribute of this SampledField.
    *
    * @param {CompressionKind_t} compression CompressionKind_t value of the "compression" attribute
    * to be set.
    */
   long setCompression(libsbml__idl__CompressionKind_t compression);
-
-
-  /**
-   * Sets the value of the "compression" attribute of this SampledField.
-   *
-   * @param {string} compression DOMString& of the "compression" attribute to be set.
-   */
-  long setCompression(DOMString compression);
 
 
   /**

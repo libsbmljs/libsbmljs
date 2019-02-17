@@ -132,14 +132,6 @@ interface DiffusionCoefficient {
 
 
   /**
-   * Sets the value of the "type" attribute of this DiffusionCoefficient.
-   *
-   * @param {string} type DOMString& of the "type" attribute to be set.
-   */
-  long setType(DOMString type);
-
-
-  /**
    * Sets the value of the "coordinateReference1" attribute of this
    * DiffusionCoefficient.
    *
@@ -150,16 +142,6 @@ interface DiffusionCoefficient {
 
 
   /**
-   * Sets the value of the "coordinateReference1" attribute of this
-   * DiffusionCoefficient.
-   *
-   * @param {string} coordinateReference1 DOMString& of the "coordinateReference1"
-   * attribute to be set.
-   */
-  long setCoordinateReference1(DOMString coordinateReference1);
-
-
-  /**
    * Sets the value of the "coordinateReference2" attribute of this
    * DiffusionCoefficient.
    *
@@ -167,16 +149,6 @@ interface DiffusionCoefficient {
    * "coordinateReference2" attribute to be set.
    */
   long setCoordinateReference2(libsbml__idl__CoordinateKind_t coordinateReference2);
-
-
-  /**
-   * Sets the value of the "coordinateReference2" attribute of this
-   * DiffusionCoefficient.
-   *
-   * @param {string} coordinateReference2 DOMString& of the "coordinateReference2"
-   * attribute to be set.
-   */
-  long setCoordinateReference2(DOMString coordinateReference2);
 
 
   /**
