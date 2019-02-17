@@ -66,19 +66,31 @@ for filepath in sys.argv[1:]:
             else:
                 return get_method_defs(line_num+1)
         method_defs = get_method_defs(0)
+
+        blacklisted_methods = set('getId','setId','isSetId','unsetId',
+            'getName','setName','isSetName','unsetName')
+
         sigs = {}
+        last_line = 0
         for method_def,line_num in method_defs.items():
-            sig = make_sig(method_def)
-            if not sig in sigs:
-                sigs[sig] = line_num
-            else:
-                start = sigs[sig]
-                stop = line_num
-                if stop>start:
-                    for l in range(start,stop):
+            # remove blacklisted methods
+            if method_def.name in blacklisted_methods:
+                if last_line+1 < line_num:
+                    for l in range(last_line+1,line_num):
                         keep_lines[l] = False
+            else:
+                last_line = line_num
+                sig = make_sig(method_def)
+                if not sig in sigs:
+                    sigs[sig] = line_num
                 else:
-                    raise RuntimeError('Start & stop are reversed')
+                    start = sigs[sig]
+                    stop = line_num
+                    if stop>start:
+                        for l in range(start,stop):
+                            keep_lines[l] = False
+                    else:
+                        raise RuntimeError('Start & stop are reversed')
 
         def transform_type(t):
             if t == 'DOMString':
