@@ -59,6 +59,7 @@ for filepath in sys.argv[1:]:
 
         sigs_line_map = {}
         sig_count = {}
+        name_count = {}
         last_line = 0
         for method_def,line_num in method_defs.items():
             # remove blacklisted methods
@@ -81,6 +82,8 @@ for filepath in sys.argv[1:]:
                             keep_lines[l] = False
                     else:
                         raise RuntimeError('Start & stop are reversed')
+        for method_def in method_defs.keys():
+            name_count[method_def.name] = name_count.get(method_def.name,0)
 
         def map_method_defs(line_num, unmapped_line_nums):
             if line_num >= len(lines):
@@ -89,7 +92,7 @@ for filepath in sys.argv[1:]:
             d = try_match_def(line)
             if d is not None:
                 sig = make_sig(d)
-                if sig_count[sig] > 1:
+                if name_count[d.name] > 1:
                     if len(d.arg_types) == 1 and d.arg_types[0] == 'DOMString':
                         # string overloads for indexing, removal etc. methods
                         keep_lines[line_num] = False
