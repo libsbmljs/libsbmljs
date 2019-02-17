@@ -96,6 +96,7 @@ with open(filepath) as f:
         if param_match is not None:
             method_def = method_def_map[line_num]
             if len(method_def.arg_types) == 1:
+                # print(param_match.group(1)+'{'+transform_type(method_def.arg_types[0])+'} '+param_match.group(2))
                 return param_match.group(1)+'{'+transform_type(method_def.arg_types[0])+'} '+param_match.group(2)
 
     return_exp = re.compile(r'^([\s]*\* @return )([^{].*)$')
@@ -117,6 +118,7 @@ with open(filepath) as f:
 
     transformed_lines = transform_lines(lines)
     transformed_text = '\n'.join(l for n,l in enumerate(transformed_lines) if keep_lines[n])
+    # print(transformed_text)
 
 with open(filepath,'w') as f:
     f.write(transformed_text)

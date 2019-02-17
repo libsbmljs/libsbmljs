@@ -38,6 +38,9 @@ find $1 -type f -name '*idl' | xargs sed -i 's/std::string/DOMString/g'
 find $1 -type f -name '*idl' | xargs sed -Ei 's/^  (\w+)\*/  \1/g'
 find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)\*/\1/g'
 
+# const values (usu. enums)
+find $1 -type f -name '*idl' | xargs sed -Ei 's/const (\w+)_t\*/\1_t/g'
+
 # const methods
 find $1 -type f -name '*idl' | xargs sed -i 's/ const;$/;/g'
 
