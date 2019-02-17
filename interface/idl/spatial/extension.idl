@@ -57,7 +57,7 @@ enum libsbml__idl__BoundaryConditionKind_t {
  * Enumeration of values permitted as the value of the "compressionkind"
  * attribute on Spatial objects.
  */
-libsbml__idl__CompressionKind_t enum {
+enum libsbml__idl__CompressionKind_t {
   "libsbml::SPATIAL_COMPRESSIONKIND_UNCOMPRESSED",
   "libsbml::SPATIAL_COMPRESSIONKIND_DEFLATED",
   "libsbml::SPATIAL_COMPRESSIONKIND_INVALID"
@@ -67,8 +67,7 @@ libsbml__idl__CompressionKind_t enum {
  * Enumeration of values permitted as the value of the "datakind"
  * attribute on Spatial objects.
  */
-libsbml__idl__DataKind_t enum
-{
+enum libsbml__idl__DataKind_t {
   "libsbml::SPATIAL_DATAKIND_DOUBLE",
   "libsbml::SPATIAL_DATAKIND_FLOAT",
   "libsbml::SPATIAL_DATAKIND_UINT8",
