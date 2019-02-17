@@ -94,9 +94,84 @@ interface SpatialExtension {
  * Enumeration of values permitted as the value of the "coordinatekind"
  * attribute on Spatial objects.
  */
-enum CoordinateKind_t {
+enum libsbml__idl__CoordinateKind_t {
   "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_X",
   "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_Y",
   "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_Z",
   "libsbml::SPATIAL_COORDINATEKIND_INVALID"
+};
+
+/**
+ * Enumeration of values permitted as the value of the "functionkind"
+ * attribute on Spatial objects.
+ */
+enum FunctionKind_t{
+  "libsbml::SPATIAL_FUNCTIONKIND_LAYERED",
+  "libsbml::SPATIAL_FUNCTIONKIND_INVALID"
+};
+
+/**
+ * Enumeration of values permitted as the value of the "primitivekind"
+ * attribute on Spatial objects.
+ */
+enum PrimitiveKind_t {
+  SPATIAL_PRIMITIVEKIND_SPHERE              /*!< The spatial primitivekind is @c "sphere". */
+SPATIAL_PRIMITIVEKIND_CUBE                /*!< The spatial primitivekind is @c "cube". */
+SPATIAL_PRIMITIVEKIND_CYLINDER            /*!< The spatial primitivekind is @c "cylinder". */
+SPATIAL_PRIMITIVEKIND_CONE                /*!< The spatial primitivekind is @c "cone". */
+SPATIAL_PRIMITIVEKIND_CIRCLE              /*!< The spatial primitivekind is @c "circle". */
+SPATIAL_PRIMITIVEKIND_SQUARE              /*!< The spatial primitivekind is @c "square". */
+SPATIAL_PRIMITIVEKIND_RIGHTTRIANGLE       /*!< The spatial primitivekind is @c "rightTriangle". */
+SPATIAL_PRIMITIVEKIND_INVALID             /*!< Invalid PrimitiveKind value. */
+};
+
+/**
+ * Enumeration of values permitted as the value of the "diffusionkind"
+ * attribute on Spatial objects.
+ */
+enum DiffusionKind_t {
+SPATIAL_DIFFUSIONKIND_ISOTROPIC         /*!< The spatial diffusionkind is @c "isotropic". */
+SPATIAL_DIFFUSIONKIND_ANISOTROPIC       /*!< The spatial diffusionkind is @c "anisotropic". */
+SPATIAL_DIFFUSIONKIND_TENSOR            /*!< The spatial diffusionkind is @c "tensor". */
+SPATIAL_DIFFUSIONKIND_INVALID           /*!< Invalid DiffusionKind value. */
+};
+
+/**
+ * Enumeration of values permitted as the value of the "geometrykind"
+ * attribute on Spatial objects.
+ */
+enum GeometryKind_t {
+SPATIAL_GEOMETRYKIND_CARTESIAN       /*!< The spatial geometrykind is @c "cartesian". */
+SPATIAL_GEOMETRYKIND_INVALID         /*!< Invalid GeometryKind value. */
+};
+
+/**
+ * Enumeration of values permitted as the value of the "setoperation"
+ * attribute on Spatial objects.
+ */
+enum SetOperation_t {
+SPATIAL_SETOPERATION_UNION              /*!< The spatial setoperation is @c "union". */
+SPATIAL_SETOPERATION_INTERSECTION       /*!< The spatial setoperation is @c "intersection". */
+SPATIAL_SETOPERATION_DIFFERENCE         /*!< The spatial setoperation is @c "relativeComplement". */
+SPATIAL_SETOPERATION_INVALID            /*!< Invalid SetOperation value. */
+};
+
+/**
+ * Enumeration of values permitted as the value of the
+ * "interpolationkind" attribute on Spatial objects.
+ */
+enum InterpolationKind_t {
+SPATIAL_INTERPOLATIONKIND_NEARESTNEIGHBOR       /*!< The spatial interpolationkind is @c "nearestNeighbor". */
+SPATIAL_INTERPOLATIONKIND_LINEAR                /*!< The spatial interpolationkind is @c "linear". */
+SPATIAL_INTERPOLATIONKIND_INVALID               /*!< Invalid InterpolationKind value. */
+};
+
+/**
+ * Enumeration of values permitted as the value of the "polygonkind"
+ * attribute on Spatial objects.
+ */
+enum PolygonKind_t {
+SPATIAL_POLYGONKIND_TRIANGLE            /*!< The spatial polygonkind is @c "triangle". */
+SPATIAL_POLYGONKIND_QUADRILATERAL       /*!< The spatial polygonkind is @c "quadrilateral". */
+SPATIAL_POLYGONKIND_INVALID             /*!< Invalid PolygonKind value. */
 };
