@@ -89,3 +89,14 @@ interface SpatialExtension {
    */
   static DOMString getXmlnsL3V1V1();
 };
+
+/**
+ * Enumeration of values permitted as the value of the "coordinatekind"
+ * attribute on Spatial objects.
+ */
+enum CoordinateKind_t {
+  "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_X",
+  "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_Y",
+  "libsbml::SPATIAL_COORDINATEKIND_CARTESIAN_Z",
+  "libsbml::SPATIAL_COORDINATEKIND_INVALID"
+};

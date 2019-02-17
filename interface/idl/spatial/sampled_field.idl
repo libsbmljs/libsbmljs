@@ -96,7 +96,7 @@ interface SampledField {
    * **Note:** the value of the "samples" attribute of this SampledField is
    * returned in the argument array.
    */
-  void getSamples(long* outArray);
+  void getSamples(long[] outArray);
 
 
   /**

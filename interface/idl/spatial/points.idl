@@ -30,7 +30,7 @@ interface SpatialPoints {
    * **Note:** the value of the "arrayData" attribute of this SpatialPoints is
    * returned in the argument array.
    */
-  void getArrayData(double* outArray);
+  void getArrayData(double[] outArray);
 
 
   /**
@@ -118,7 +118,7 @@ interface SpatialPoints {
    * @param arrayLength long value for the length of the "arrayData" attribute
    * to be set.
    */
-  long setArrayData(double* inArray, long arrayLength);
+  long setArrayData(double[] inArray, long arrayLength);
 
 
   /**
