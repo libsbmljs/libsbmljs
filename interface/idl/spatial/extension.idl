@@ -116,13 +116,13 @@ enum FunctionKind_t{
  */
 enum PrimitiveKind_t {
   SPATIAL_PRIMITIVEKIND_SPHERE              /*!< The spatial primitivekind is @c "sphere". */
-SPATIAL_PRIMITIVEKIND_CUBE                /*!< The spatial primitivekind is @c "cube". */
-SPATIAL_PRIMITIVEKIND_CYLINDER            /*!< The spatial primitivekind is @c "cylinder". */
-SPATIAL_PRIMITIVEKIND_CONE                /*!< The spatial primitivekind is @c "cone". */
-SPATIAL_PRIMITIVEKIND_CIRCLE              /*!< The spatial primitivekind is @c "circle". */
-SPATIAL_PRIMITIVEKIND_SQUARE              /*!< The spatial primitivekind is @c "square". */
-SPATIAL_PRIMITIVEKIND_RIGHTTRIANGLE       /*!< The spatial primitivekind is @c "rightTriangle". */
-SPATIAL_PRIMITIVEKIND_INVALID             /*!< Invalid PrimitiveKind value. */
+  "libsbml::SPATIAL_PRIMITIVEKIND_CUBE",
+  "libsbml::SPATIAL_PRIMITIVEKIND_CYLINDER",
+  "libsbml::SPATIAL_PRIMITIVEKIND_CONE",
+  "libsbml::SPATIAL_PRIMITIVEKIND_CIRCLE",
+  "libsbml::SPATIAL_PRIMITIVEKIND_SQUARE",
+  "libsbml::SPATIAL_PRIMITIVEKIND_RIGHTTRIANGLE",
+  "libsbml::SPATIAL_PRIMITIVEKIND_INVALID"
 };
 
 /**
@@ -130,10 +130,10 @@ SPATIAL_PRIMITIVEKIND_INVALID             /*!< Invalid PrimitiveKind value. */
  * attribute on Spatial objects.
  */
 enum DiffusionKind_t {
-SPATIAL_DIFFUSIONKIND_ISOTROPIC         /*!< The spatial diffusionkind is @c "isotropic". */
-SPATIAL_DIFFUSIONKIND_ANISOTROPIC       /*!< The spatial diffusionkind is @c "anisotropic". */
-SPATIAL_DIFFUSIONKIND_TENSOR            /*!< The spatial diffusionkind is @c "tensor". */
-SPATIAL_DIFFUSIONKIND_INVALID           /*!< Invalid DiffusionKind value. */
+  "libsbml::SPATIAL_DIFFUSIONKIND_ISOTROPIC",
+  "libsbml::SPATIAL_DIFFUSIONKIND_ANISOTROPIC",
+  "libsbml::SPATIAL_DIFFUSIONKIND_TENSOR",
+  "libsbml::SPATIAL_DIFFUSIONKIND_INVALID"
 };
 
 /**
@@ -141,8 +141,8 @@ SPATIAL_DIFFUSIONKIND_INVALID           /*!< Invalid DiffusionKind value. */
  * attribute on Spatial objects.
  */
 enum GeometryKind_t {
-SPATIAL_GEOMETRYKIND_CARTESIAN       /*!< The spatial geometrykind is @c "cartesian". */
-SPATIAL_GEOMETRYKIND_INVALID         /*!< Invalid GeometryKind value. */
+  "libsbml::SPATIAL_GEOMETRYKIND_CARTESIAN",
+  "libsbml::SPATIAL_GEOMETRYKIND_INVALID"
 };
 
 /**
@@ -150,10 +150,10 @@ SPATIAL_GEOMETRYKIND_INVALID         /*!< Invalid GeometryKind value. */
  * attribute on Spatial objects.
  */
 enum SetOperation_t {
-SPATIAL_SETOPERATION_UNION              /*!< The spatial setoperation is @c "union". */
-SPATIAL_SETOPERATION_INTERSECTION       /*!< The spatial setoperation is @c "intersection". */
-SPATIAL_SETOPERATION_DIFFERENCE         /*!< The spatial setoperation is @c "relativeComplement". */
-SPATIAL_SETOPERATION_INVALID            /*!< Invalid SetOperation value. */
+  "libsbml::SPATIAL_SETOPERATION_UNION",
+  "libsbml::SPATIAL_SETOPERATION_INTERSECTION",
+  "libsbml::SPATIAL_SETOPERATION_DIFFERENCE",
+  "libsbml::SPATIAL_SETOPERATION_INVALID"
 };
 
 /**
@@ -161,9 +161,9 @@ SPATIAL_SETOPERATION_INVALID            /*!< Invalid SetOperation value. */
  * "interpolationkind" attribute on Spatial objects.
  */
 enum InterpolationKind_t {
-SPATIAL_INTERPOLATIONKIND_NEARESTNEIGHBOR       /*!< The spatial interpolationkind is @c "nearestNeighbor". */
-SPATIAL_INTERPOLATIONKIND_LINEAR                /*!< The spatial interpolationkind is @c "linear". */
-SPATIAL_INTERPOLATIONKIND_INVALID               /*!< Invalid InterpolationKind value. */
+  "libsbml::SPATIAL_INTERPOLATIONKIND_NEARESTNEIGHBOR",
+  "libsbml::SPATIAL_INTERPOLATIONKIND_LINEAR",
+  "libsbml::SPATIAL_INTERPOLATIONKIND_INVALID"
 };
 
 /**
@@ -171,7 +171,7 @@ SPATIAL_INTERPOLATIONKIND_INVALID               /*!< Invalid InterpolationKind v
  * attribute on Spatial objects.
  */
 enum PolygonKind_t {
-SPATIAL_POLYGONKIND_TRIANGLE            /*!< The spatial polygonkind is @c "triangle". */
-SPATIAL_POLYGONKIND_QUADRILATERAL       /*!< The spatial polygonkind is @c "quadrilateral". */
-SPATIAL_POLYGONKIND_INVALID             /*!< Invalid PolygonKind value. */
+  "libsbml::SPATIAL_POLYGONKIND_TRIANGLE",
+  "libsbml::SPATIAL_POLYGONKIND_QUADRILATERAL",
+  "libsbml::SPATIAL_POLYGONKIND_INVALID"
 };
