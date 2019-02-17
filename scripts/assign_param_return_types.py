@@ -54,6 +54,8 @@ for filepath in sys.argv[1:]:
                 return get_method_defs(line_num+1)
         method_defs = get_method_defs(0)
 
+        keep_lines = {l: True for l in range(len(lines))}
+
         blacklisted_methods = ('getId','setId','isSetId','unsetId',
             'getName','setName','isSetName','unsetName')
 
@@ -83,7 +85,7 @@ for filepath in sys.argv[1:]:
                     else:
                         raise RuntimeError('Start & stop are reversed')
         for method_def in method_defs.keys():
-            name_count[method_def.name] = name_count.get(method_def.name,0)
+            name_count[method_def.name] = name_count.get(method_def.name,0)+1
 
         def map_method_defs(line_num, unmapped_line_nums):
             if line_num >= len(lines):
@@ -102,8 +104,6 @@ for filepath in sys.argv[1:]:
             else:
                 return {**map_method_defs(line_num+1, (line_num,*unmapped_line_nums))}
         method_def_map = map_method_defs(0, tuple())
-
-        keep_lines = {l: True for l in range(len(lines))}
 
         def transform_type(t):
             if t == 'DOMString':
