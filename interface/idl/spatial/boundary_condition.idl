@@ -94,11 +94,6 @@ interface BoundaryCondition {
    * Sets the value of the "variable" attribute of this BoundaryCondition.
    *
    * @param variable DOMString& value of the "variable" attribute to be set.
-   *
-   *
-   *
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
    */
   long setVariable(DOMString variable);
 
@@ -108,11 +103,6 @@ interface BoundaryCondition {
    *
    * @param type BoundaryConditionKind_t value of the "type" attribute to be
    * set.
-   *
-   *
-   *
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
    */
   long setType(libsbml__idl__BoundaryConditionKind_t type);
 
@@ -121,11 +111,6 @@ interface BoundaryCondition {
    * Sets the value of the "type" attribute of this BoundaryCondition.
    *
    * @param type DOMString& of the "type" attribute to be set.
-   *
-   *
-   *
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
    */
   long setType(DOMString type);
 
@@ -136,11 +121,6 @@ interface BoundaryCondition {
    *
    * @param coordinateBoundary DOMString& value of the "coordinateBoundary"
    * attribute to be set.
-   *
-   *
-   *
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
    */
   long setCoordinateBoundary(DOMString coordinateBoundary);
 
@@ -151,25 +131,18 @@ interface BoundaryCondition {
    *
    * @param boundaryDomainType DOMString& value of the "boundaryDomainType"
    * attribute to be set.
-   *
-   *
-   *
-   * @li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE,
-   * OperationReturnValues_t}
    */
   long setBoundaryDomainType(DOMString boundaryDomainType);
 
 
   /**
    * Unsets the value of the "variable" attribute of this BoundaryCondition.
-   *
    */
   long unsetVariable();
 
 
   /**
    * Unsets the value of the "type" attribute of this BoundaryCondition.
-   *
    */
   long unsetType();
 };
