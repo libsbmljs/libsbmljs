@@ -76,7 +76,7 @@ for filepath in sys.argv[1:]:
             # remove blacklisted methods
             if method_def.name in blacklisted_methods:
                 if last_line+1 < line_num:
-                    for l in range(last_line+1,line_num):
+                    for l in range(last_line+1,line_num+1):
                         keep_lines[l] = False
             else:
                 last_line = line_num
