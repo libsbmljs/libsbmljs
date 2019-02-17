@@ -13,7 +13,7 @@ interface TransformationComponent {
    * **Note:** the value of the "components" attribute of this
    * TransformationComponent is returned in the argument array.
    */
-  void getComponents(double* outArray);
+  void getComponents(double[] outArray);
 
 
   /**
@@ -56,7 +56,7 @@ interface TransformationComponent {
    * @param arrayLength long value for the length of the "components" attribute
    * to be set.
    */
-  long setComponents(double* inArray, long arrayLength);
+  long setComponents(double[] inArray, long arrayLength);
 
 
   /**

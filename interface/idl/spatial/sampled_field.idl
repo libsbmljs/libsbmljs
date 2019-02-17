@@ -55,7 +55,7 @@ interface SampledField {
    * @return {InterpolationKind_t} the value of the "interpolationType" attribute of this
    * SampledField as a InterpolationKind_t.
    */
-  InterpolationKind_t getInterpolationType();
+  libsbml__idl__InterpolationKind_t getInterpolationType();
 
 
   /**
@@ -66,7 +66,6 @@ interface SampledField {
    * SampledField as a string.
    */
   DOMString getInterpolationTypeAsString();
-  //bgoli22
 
 
   /**
@@ -235,7 +234,7 @@ interface SampledField {
    * @param {InterpolationKind_t} interpolationType InterpolationKind_t value of the
    * "interpolationType" attribute to be set.
    */
-  long setInterpolationType(InterpolationKind_t interpolationType);
+  long setInterpolationType(libsbml__idl__InterpolationKind_t interpolationType);
 
 
   /**
@@ -253,7 +252,7 @@ interface SampledField {
    * @param {CompressionKind_t} compression CompressionKind_t value of the "compression" attribute
    * to be set.
    */
-  long setCompression(CompressionKind_t compression);
+  long setCompression(libsbml__idl__CompressionKind_t compression);
 
 
   /**
@@ -272,7 +271,7 @@ interface SampledField {
    * @param arrayLength long value for the length of the "samples" attribute to
    * be set.
    */
-  long setSamples(long* inArray, long arrayLength);
+  long setSamples(long[] inArray, long arrayLength);
 
 
   /**
