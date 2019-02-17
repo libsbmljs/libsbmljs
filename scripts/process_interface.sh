@@ -16,7 +16,11 @@ find $1 -type f -name '*idl' | xargs sed -i 's/@copydetails.*$//g'
 # libsbml return codes
 find $1 -type f -name '*idl' | xargs sed -i 's/@li @sbmlconstant{LIBSBML_OPERATION.*$//g'
 find $1 -type f -name '*idl' | xargs sed -i 's/@li @sbmlconstant{LIBSBML_INVALID_ATTRIBUTE_VALUE.*$//g'
+find $1 -type f -name '*idl' | xargs sed -Ei 's/^(\s*\*)\s*OperationReturnValues_t}.*$/\1/g'
 # collapse trailing docstrings
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
+find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
 find $1 -type f -name '*idl' | xargs sed -Ei 'N;s:(\*\s+)+\*/:*/:g;t next;P;D;:next;'
