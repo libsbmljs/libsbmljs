@@ -84,9 +84,6 @@ ext.isExperimentalBranch = assnDefault(findProperty('isExperimentalBranch'), arr
 ext.withEmrun = assnDefault(findProperty('withEmrun'), false)
 ext.coreOnly = assnDefault(findProperty('coreOnly'), false)
 
-def package_name = 'libsbmljs_' + (coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable'))
-def package_version = libSbmlVersion+versionTag
-
 // optional libsbml packages
 ext.enableLayout = assnDefault(findProperty('enableLayout'), !coreOnly)
 ext.enableRender = assnDefault(findProperty('enableRender'), !coreOnly)
@@ -471,6 +468,9 @@ if (versionTag == null) {
   throw new GradleException('Please set the version tag using -PversionTag=-beta1 etc.')
 }
 
+def package_name = 'libsbmljs_' + (coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable'))
+def package_version = libSbmlVersion+versionTag
+
 
 // ** Build Expat **
 
@@ -574,6 +574,7 @@ task emccCompileLibSBML(type:Exec) {
     "-s","BINARYEN_TRAP_MODE='clamp'",
     "-s","MODULARIZE=1",
     "-s","EXPORT_NAME=\"libsbml\"",
+    // "-s","EXPORT_ALL=1",
     "-s","ALLOW_MEMORY_GROWTH=1",
     // "-s","FILESYSTEM=0",
     // "-g",
@@ -588,7 +589,7 @@ emccCompileLibSBML.doFirst {
   mkdir Paths.get("$buildDir",package_name).toString()
 }
 emccCompileLibSBML.doLast {
-  file(Paths.get("$buildDir",package_name,'libsbml.js').toString()).renameTo(file(Paths.get("$buildDir",package_name,'index.js').toString()))
+  // file(Paths.get("$buildDir",package_name,'libsbml.js').toString()).renameTo(file(Paths.get("$buildDir",package_name,'index.js').toString()))
 }
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
