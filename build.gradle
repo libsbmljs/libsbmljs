@@ -84,6 +84,9 @@ ext.isExperimentalBranch = assnDefault(findProperty('isExperimentalBranch'), arr
 ext.withEmrun = assnDefault(findProperty('withEmrun'), false)
 ext.coreOnly = assnDefault(findProperty('coreOnly'), false)
 
+def package_name = 'libsbmljs_' + (coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable'))
+def package_version = libSbmlVersion+versionTag
+
 // optional libsbml packages
 ext.enableLayout = assnDefault(findProperty('enableLayout'), !coreOnly)
 ext.enableRender = assnDefault(findProperty('enableRender'), !coreOnly)
@@ -540,7 +543,7 @@ libsbmlBuild.dependsOn(libsbmlGenerate)
 
 
 task emccCompileLibSBML(type:Exec) {
-  workingDir "${buildDir}"
+  workingDir Paths.get("${buildDir}",package_name).toString()
   def cmdlineArgs = ["${emccCommand}",
     "-O0",
     // "-Os", // tier 1 code size optimizations
@@ -580,6 +583,12 @@ task emccCompileLibSBML(type:Exec) {
     cmdlineArgs += ["--emrun"]
   }
   commandLine cmdlineArgs
+}
+emccCompileLibSBML.doFirst {
+  mkdir Paths.get("$buildDir",package_name).toString()
+}
+emccCompileLibSBML.doLast {
+  file(Paths.get("$buildDir",package_name,'libsbml.js').toString()).renameTo(file(Paths.get("$buildDir",package_name,'index.js').toString()))
 }
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(combineCPP)
 emccCompileLibSBML.dependsOn(libsbmlBuild).dependsOn(generateIdlInterface)
@@ -694,9 +703,6 @@ task combineTests(type: ConcatFiles) {
 combineTests.doFirst {
   mkdir Paths.get("$buildDir","tests").toString()
 }
-
-def package_name = 'libsbmljs_' + (coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable'))
-def package_version = libSbmlVersion+versionTag
 
 task copyNpmMetadata(type: Copy) {
     from 'packaging'
