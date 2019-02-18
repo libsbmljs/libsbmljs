@@ -82,17 +82,18 @@ def arraysDir = new File(Paths.get("libsbml","src","sbml","packages","arrays").t
 def arraysExists = arraysDir.exists() && arraysDir.isDirectory()
 ext.isExperimentalBranch = assnDefault(findProperty('isExperimentalBranch'), arraysExists)
 ext.withEmrun = assnDefault(findProperty('withEmrun'), false)
+ext.coreOnly = assnDefault(findProperty('coreOnly'), false)
 
 // optional libsbml packages
-ext.enableLayout = assnDefault(findProperty('enableLayout'), true)
-ext.enableRender = assnDefault(findProperty('enableRender'), true)
-ext.enableFBC = assnDefault(findProperty('enableFBC'), true)
-ext.enableMulti = assnDefault(findProperty('enableMulti'), true)
-ext.enableQual = assnDefault(findProperty('enableQual'), true)
-ext.enableComp = assnDefault(findProperty('enableComp'), true)
+ext.enableLayout = assnDefault(findProperty('enableLayout'), !coreOnly)
+ext.enableRender = assnDefault(findProperty('enableRender'), !coreOnly)
+ext.enableFBC = assnDefault(findProperty('enableFBC'), !coreOnly)
+ext.enableMulti = assnDefault(findProperty('enableMulti'), !coreOnly)
+ext.enableQual = assnDefault(findProperty('enableQual'), !coreOnly)
+ext.enableComp = assnDefault(findProperty('enableComp'), !coreOnly)
 ext.enableDistrib = assnDefault(findProperty('enableDistrib'), isExperimentalBranch)
 ext.enableDyn = assnDefault(findProperty('enableDyn'), isExperimentalBranch)
-ext.enableGroups = assnDefault(findProperty('enableGroups'), true)
+ext.enableGroups = assnDefault(findProperty('enableGroups'), !coreOnly)
 ext.enableArrays = assnDefault(findProperty('enableArrays'), isExperimentalBranch)
 ext.enableSpatial = assnDefault(findProperty('enableSpatial'), isExperimentalBranch)
 
@@ -694,10 +695,10 @@ combineTests.doFirst {
   mkdir Paths.get("$buildDir","tests").toString()
 }
 
-package_name = 'libsbmljs_' + coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable')
-package_version = libSbmlVersion+versionTag
+def package_name = 'libsbmljs_' + (coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable'))
+def package_version = libSbmlVersion+versionTag
 
-task copy(type: Copy) {
+task copyNpmMetadata(type: Copy) {
     from 'packaging'
     into "$buildDir"
     include 'package.json'
@@ -721,3 +722,5 @@ println "    -- Multi ${enableMulti}"
 println "    -- Qual ${enableQual}"
 println "    -- Render ${enableRender}"
 println "    -- Spatial ${enableSpatial}"
+println " -- npm package     $package_name"
+println " -- npm pkg version $package_version"
