@@ -1,0 +1,23 @@
+{
+  "name": "libsbmljs",
+  "version": "5.17.0-beta1",
+  "description": "A WebAssembly/JavaScript SBML library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libsbmljs/libsbmljs.git"
+  },
+  "keywords": [
+    "systems",
+    "biology"
+  ],
+  "author": "Kyle Medley",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/libsbmljs/libsbmljs/issues"
+  },
+  "homepage": "https://github.com/libsbmljs/libsbmljs#readme"
+}
