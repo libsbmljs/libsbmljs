@@ -462,6 +462,11 @@ if (!sbmlVersionFile.exists() || sbmlVersionFile.isDirectory()) {
 }
 ext.libSbmlVersion = sbmlVersionFile.text.trim()
 
+ext.versionTag = findProperty('versionTag')
+if (versionTag == null) {
+  throw new GradleException('Please set the version tag using -PversionTag=-beta1 etc.')
+}
+
 
 // ** Build Expat **
 
@@ -687,6 +692,16 @@ task combineTests(type: ConcatFiles) {
 }
 combineTests.doFirst {
   mkdir Paths.get("$buildDir","tests").toString()
+}
+
+package_name = 'libsbmljs_' + coreOnly ? 'core' : (isExperimentalBranch ? 'experimental' : 'stable')
+package_version = libSbmlVersion+versionTag
+
+task copy(type: Copy) {
+    from 'packaging'
+    into "$buildDir"
+    include 'package.json'
+    expand(package_name: package_name, package_version: package_version)
 }
 
 

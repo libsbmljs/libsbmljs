@@ -1,6 +1,6 @@
 {
-  "name": "libsbmljs",
-  "version": "5.17.0-beta1",
+  "name": "<%= package_name %>",
+  "version": "<%= package_version %>",
   "description": "A WebAssembly/JavaScript SBML library",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "systems",
-    "biology"
+    "biology",
+    "sbml"
   ],
   "author": "Kyle Medley",
   "license": "Apache-2.0",
