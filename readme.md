@@ -19,6 +19,7 @@ What you will need before starting:
 * SVN (1.8.15 or later, only if you want to build libSBML from svn)
 * CMake (3.12.1 or later)
 * Gradle (5.1.1 or later)
+* Node.js (10.15.0 or later)
 * [Emscripten SDK](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html) (1.38.21 or later)
 
 1. Activate the Emscripten SDK using the command
@@ -53,10 +54,6 @@ gradle -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=tr
 
 The libsbmljs wrapper can be tested in the browser using [Karma](http://karma-runner.github.io/latest/index.html).
 You must first build libsbmljs from source as described above.
-
-What you will need before starting:
-
-* Node (10.15.0 or later)
 
 How to run testing with Karma:
 
