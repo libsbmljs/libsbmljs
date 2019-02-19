@@ -1,5 +1,5 @@
 /**
- * # libsbml.js
+ * # libsbmljs
  *
  * A WebAssembly / JavaScript wrapper for the [libSBML C++ library](http://sbml.org/Software/libSBML).
  *
