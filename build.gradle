@@ -545,9 +545,9 @@ libsbmlBuild.dependsOn(libsbmlGenerate)
 task emccCompileLibSBML(type:Exec) {
   workingDir Paths.get("${buildDir}",package_name).toString()
   def cmdlineArgs = ["${emccCommand}",
-    "-O0",
+    // "-O0",
     // "-Os", // tier 1 code size optimizations
-    // "-Oz", // tier 2 code size optimizations
+    "-Oz", // tier 2 code size optimizations
     // "--js-opts","0", // prevents js minification
     "-I",Paths.get(libsbmlOutputDir,"include").toString(),
     "-I",Paths.get(expatOutputDir,"include").toString(),
@@ -707,7 +707,7 @@ combineTests.doFirst {
 
 task copyNpmMetadata(type: Copy) {
     from 'packaging'
-    into "$buildDir"
+    into Paths.get("$buildDir",package_name).toString()
     include 'package.json'
     expand(package_name: package_name, package_version: package_version)
 }
