@@ -638,7 +638,7 @@ task generateDocumentation(type:Exec) {
   def cmdlineArgs = ["node",
     "${documentationJSScript}",
     "build",Paths.get("$buildDir","docs","merged_docstrings.js").toString(),
-    "--project-name","libsbml.js",
+    "--project-name","libsbmljs" + coreOnly ? " core" : (isExperimentalBranch ? " experimental" : "stable"),
     "--project-version","${libSbmlVersion}",
     "--project-description","WebAssembly/JavaScript bindings for libSBML",
     "--project-homepage","https://ww.github.io/libsbml.js/libsbml.js",
