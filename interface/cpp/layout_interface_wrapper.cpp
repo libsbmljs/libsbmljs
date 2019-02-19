@@ -40,7 +40,7 @@ namespace libsbmljs {
     CurveCaster() {}
 
     bool isCubicBezier(libsbml::LineSegment* x) {
-      libsbml::LineSegment* result = dynamic_cast<libsbml::LineSegment*>(x);
+      libsbml::LineSegment* result = dynamic_cast<libsbml::CubicBezier*>(x);
       return result;
     }
 
