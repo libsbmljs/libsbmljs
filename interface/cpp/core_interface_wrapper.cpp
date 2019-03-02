@@ -24,6 +24,14 @@ LIBSBML_CPP_NAMESPACE_BEGIN
     ASTNode_t* fromMathML(const std::string& mathml) {
       return readMathMLFromString(mathml.c_str());
     }
+
+    std::string formulaToL3String(const ASTNode_t* formula) {
+      return SBML_formulaToL3String(formula);
+    }
+
+    std::string formulaToString(const ASTNode_t* formula) {
+      return SBML_formulaToString(formula);
+    }
   };
 
   class UnitKindConstructor {

@@ -38,6 +38,24 @@ interface SBMLFormulaParser {
    * @return {ASTNode} the root AST node of the formula
    */
   ASTNode fromMathML(DOMString mathml);
+
+  /**
+   * Converts an ASTNode formula into a string.
+   *
+   * @param {ASTNode} tree The formula to convert
+   * @return {string} A string representation of the formula
+   */
+  DOMString formulaToL3String(ASTNode tree);
+
+  /**
+   * Converts an ASTNode formula into a string.
+   *
+   * **Note:** Obsolete in SBML Leve 3. Use formulaToL3String instead.
+   *
+   * @param {ASTNode} tree The formula to convert
+   * @return {string} A string representation of the formula
+   */
+  DOMString formulaToString(ASTNode tree);
 };
 
 [Prefix="libsbml::"]
