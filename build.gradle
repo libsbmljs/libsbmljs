@@ -650,10 +650,17 @@ task generateDocumentation(type:Exec) {
 }
 generateDocumentation.dependsOn(combineDocstrings)
 
+task copyTestHeader(type: Copy) {
+  from Paths.get("karma","tests").toString()
+  into Paths.get("$buildDir").toString()
+  include 'header.js'
+  expand(package_name: package_name)
+}
+
 // TODO: glob files?
 task combineTests(type: ConcatFiles) {
   String tests_dir = Paths.get("karma","tests")
-  include Paths.get(tests_dir, "header.js")
+  include Paths.get("$buildDir", "header.js")
   include Paths.get(tests_dir, "reading.js")
   include Paths.get(tests_dir, "writing.js")
   include Paths.get(tests_dir, "units.js")
@@ -699,11 +706,20 @@ task combineTests(type: ConcatFiles) {
   if (enableSpatial) {
     include Paths.get(tests_dir, "spatial.js")
   }
-  target = file(Paths.get("$buildDir","tests","index.js"))
+  target = file(Paths.get("$buildDir","index.js"))
 }
 combineTests.doFirst {
   mkdir Paths.get("$buildDir","tests").toString()
 }
+combineTests.dependsOn(copyTestHeader)
+
+task copyKarmaConfig(type: Copy) {
+  from Paths.get(".").toString()
+  into Paths.get("$buildDir").toString()
+  include 'karma.conf.js'
+  expand(package_name: package_name)
+}
+copyKarmaConfig.dependsOn(combineTests)
 
 task copyNpmMetadata(type: Copy) {
     from 'packaging'

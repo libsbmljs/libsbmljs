@@ -14,6 +14,8 @@ const webpack = require('webpack');
 // preprocessors[entry] = ['webpack'];
 // preprocessors = ['webpack']
 
+const libsbmljs_dir = '<%= package_name %>'
+
 module.exports = function(config) {
   config.set({
 
@@ -28,9 +30,9 @@ module.exports = function(config) {
 
     // https://github.com/webpack/webpack-dev-middleware/issues/229
     files: [
-      {pattern: 'build/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
-      {pattern: 'karma/models/*.xml', watched: false, served: true, included: false},
-      'build/tests/index.js'
+      {pattern: libsbmljs_dir+'/libsbml.wasm', watched: false, served: true, included: false, type: 'wasm'},
+      {pattern: '../karma/models/*.xml', watched: false, served: true, included: false},
+      'index.js'
     ],
 
     webpack: {
@@ -41,7 +43,7 @@ module.exports = function(config) {
       module: {
         rules: [
           {
-            test: /\.jsx?$/,
+            test: ${"/\\.jsx?\$/"},
             exclude: /node_modules/,
             use: {
               loader: "babel-loader"
@@ -51,12 +53,13 @@ module.exports = function(config) {
       },
       devtool: 'inline-source-map',
       plugins: [
-        new webpack.IgnorePlugin(/^fs$/)
+        new webpack.IgnorePlugin(${"/^fs\$/"})
       ]
     },
 
     proxies: {
-      '/base/build/tests/libsbml.wasm': '/base/build/libsbml.wasm'
+      '/base/libsbml.wasm': '/base/'+libsbmljs_dir+'/libsbml.wasm',
+      '/base/karma/models/': path.resolve('karma/models/')
     },
 
     // list of files to exclude
@@ -66,7 +69,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'build/tests/index.js': ['webpack', 'sourcemap']
+      'index.js': ['webpack', 'sourcemap']
     },
 
     // test results reporter to use
