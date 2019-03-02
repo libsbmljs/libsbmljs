@@ -48,6 +48,26 @@ Object.defineProperty(Model.prototype, "species", {
   }
 });
 
+Object.defineProperty(Model.prototype, "events", {
+  get: function events() {
+    var result = [];
+    for(var i=0; i<this.getNumEvents(); i++) {
+      result.push(this.getEvent(i));
+    }
+    return result;
+  }
+});
+
+Object.defineProperty(Model.prototype, "functions", {
+  get: function events() {
+    var result = [];
+    for(var i=0; i<this.getNumFunctionDefinitions(); i++) {
+      result.push(this.getFunctionDefinition(i));
+    }
+    return result;
+  }
+});
+
 Model.prototype["findSpecies"] = function(id) {
   for(var i=0; i<this.getNumSpecies(); i++) {
     if(this.getSpecies(i).getId() === id) {
