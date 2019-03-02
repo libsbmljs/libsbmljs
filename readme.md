@@ -43,11 +43,11 @@ svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental lib
 
 1. Build libsbmljs:
 ```
-gradle emccCompileLibSBML
+gradle -PversionTag=-alpha1 emccCompileLibSBML
 ```
 Optionally, you can specify which packages should be enabled/disabled on the command line:
 ```
-gradle -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=true -PenableQual=true -PenableComp=true -PenableDistrib=true -PenableDyn=true -PenableGroups=true -PenableArrays=true -PenableSpatial=true
+gradle -PversionTag=-alpha1 -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=true -PenableQual=true -PenableComp=true -PenableDistrib=true -PenableDyn=true -PenableGroups=true -PenableArrays=true -PenableSpatial=true
 ```
 
 ## Testing with Karma
@@ -63,10 +63,16 @@ How to run testing with Karma:
 npm install
 ```
 
+1. Preprocess the test files
+
+```
+gradle -PversionTag=-alpha1 --rerun-tasks combineTests copyKarmaConfig
+```
+
 1. You should be able to run the tests using
 
 ```
-./node_modules/karma/bin/karma start
+./node_modules/karma/bin/karma start ./build/karma.conf.js --single-run
 ```
 
 The wrapper will be tested using Firefox. To test with other browsers, edit `karma.conf.js` and add the desired browsers.
