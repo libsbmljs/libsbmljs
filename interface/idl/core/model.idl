@@ -303,6 +303,19 @@ interface Model {
    */
   long addReaction (Reaction r);
 
+  /**
+   * Removes the nth Reaction object from this Model object and
+   * returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Reaction object to remove.
+   *
+   * @return {Reaction} the Reaction object removed, or NULL if the given index is
+   * out of range.
+   */
+  Reaction removeReaction (unsigned long n);
+
 
   /**
    * Get the number of Species objects in this Model.
@@ -343,6 +356,19 @@ interface Model {
    * If the index n is invalid, NULL is returned.
    */
   Species getSpecies(unsigned long i);
+
+  /**
+   * Removes the nth Species object from this Model object and
+   * returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Species object to remove.
+   *
+   * @return {Species} the Species object removed, or NULL if the given index is out
+   * of range.
+   *
+   */
   Species removeSpecies(unsigned long i);
 
   /**
@@ -379,7 +405,30 @@ interface Model {
    * If the index n is invalid, NULL is returned.
    */
   Compartment getCompartment(unsigned long n);
+
+  /**
+   * Creates a new Compartment inside this Model and returns it.
+   *
+   * The SBML Level and Version of the enclosing Model object, as well as
+   * any SBML package namespaces, are used to initialize this
+   * object's corresponding attributes.
+   *
+   * @return {Compartment} the Compartment object created.
+   */
   Compartment createCompartment();
+
+  /**
+   * Removes the nth Compartment object from this Model object and
+   * returns a pointer to it.
+   *
+   * The caller owns the returned object and is responsible for deleting it.
+   *
+   * @param {number} n the index of the Compartment object to remove.
+   *
+   * @return {Compartment} the Compartment object removed, or @c NULL if the given index is
+   * out of range.
+   */
+  Compartment removeCompartment (unsigned long n);
 
   /**
    * Get the number of Parameter objects in this Model.
