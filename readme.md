@@ -43,11 +43,11 @@ svn checkout svn://svn.code.sf.net/p/sbml/code/branches/libsbml-experimental lib
 
 1. Build libsbmljs:
 ```
-gradle -PversionTag=-alpha1 emccCompileLibSBML
+gradle -PversionTag=-alpha1 --rerun-tasks emccCompileLibSBML copyNpmMetadata
 ```
-Optionally, you can specify which packages should be enabled/disabled on the command line:
+Optionally, you can specify which packages should be enabled/disabled on the command line (this should never be necessary since this script will detect whether you are using a stable vs experimental build):
 ```
-gradle -PversionTag=-alpha1 -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=true -PenableQual=true -PenableComp=true -PenableDistrib=true -PenableDyn=true -PenableGroups=true -PenableArrays=true -PenableSpatial=true
+gradle -PversionTag=-alpha1 --rerun-tasks -PenableLayout=true -PenableRender=true -PenableFBC=true -PenableMulti=true -PenableQual=true -PenableComp=true -PenableDistrib=true -PenableDyn=true -PenableGroups=true -PenableArrays=true -PenableSpatial=true emccCompileLibSBML copyNpmMetadata
 ```
 
 ## Testing with Karma
